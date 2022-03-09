@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navbar, Nav, Container } from "react-bootstrap";
 import style from "./Navigation.module.css"
 import WelcomePage from "../WelcomePage";
+import LockationHome from "../LockationHome";
 
 const Navigation = () => {
   const dispatche = useDispatch()
@@ -41,8 +42,10 @@ const Navigation = () => {
           <Route path='/signout' element={<Signout />} />
           <Route path='/signin' element={<SignIn/>} />
           <Route path='/signup' element={<Signup/>} />
+          { !auth &&  <Route path='/' element={<WelcomePage/>} />}
+          { !auth &&  <Route path='/locationHome' element={<LockationHome/>} />}
       </Routes>
-      <WelcomePage/>
+      {/* <WelcomePage/> */}
     </div>
   );
 };

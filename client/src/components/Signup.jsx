@@ -33,6 +33,7 @@ const Signup = () => {
     // if (user) dispatche(authUserReducer(user.name))
     // navigate((`/`))
     console.log('name-', name,'pass-', pass,'email-', email)
+    navigate('/locationHome')
   }
 
   return (
