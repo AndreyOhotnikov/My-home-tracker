@@ -11,9 +11,11 @@ const gameRouter = require('./routes/game')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const redis = require('redis');
-let RedisStore = require('connect-redis')(session);
-let redisClient = redis.createClient();
+// const redis = require('redis');
+// let RedisStore = require('connect-redis')(session);
+// let redisClient = redis.createClient();
+const FileStore = require('session-file-store')(session);
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -25,10 +27,12 @@ app.use(express.json());
 // app.use(cors(corsOptions));
 app.use(cors());
 
+const fileStoreOptions = {};
 
 const sessionConfig = {
   name: 'myHome',
-  store: new RedisStore({ client: redisClient }),
+  // store: new RedisStore({ client: redisClient }),
+  store: new FileStore(fileStoreOptions),
   secret: process.env.COOKIE_SECRET,
   resave: false,                    
   saveUninitialized: false,

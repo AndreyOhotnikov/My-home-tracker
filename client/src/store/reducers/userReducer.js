@@ -5,7 +5,7 @@ const defaultState = {
   auth: false,
 }
 
-export const authReducer = (state = defaultState, action) => {
+export const userReducer = (state = defaultState, action) => {
   switch (action.type) {
     case types.AUTH_USER:
       return {...state, auth: action.payload};
