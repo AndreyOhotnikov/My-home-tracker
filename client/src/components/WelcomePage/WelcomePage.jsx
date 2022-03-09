@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { types } from "../store/types"
+import { types } from "../../store/types"
 import { useNavigate } from "react-router-dom";
 
-import MyButton from "./button/MyButton";
+import MyButton from "../button/MyButton";
 
 
 const WelcomePage = () => {

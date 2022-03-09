@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import MyButton from './button/MyButton';
-import MyInput from './input/MyInput';
+import MyButton from '../button/MyButton';
+import MyInput from '../input/MyInput';
 import { useNavigate } from "react-router-dom";
-import { authReducer } from '../store/authReducer';
+import { authReducer } from '../../store/authReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from "react-bootstrap";
 

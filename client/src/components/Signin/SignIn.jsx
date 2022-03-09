@@ -3,9 +3,9 @@ import { Routes, Link, Route, Navigate, useLocation } from "react-router-dom"
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { authUserReducer } from '../store/authReducer';
-import MyButton from './button/MyButton';
-import MyInput from './input/MyInput';
+import { authUserReducer } from '../../store/authReducer';
+import MyButton from '../button/MyButton';
+import MyInput from '../input/MyInput';
 
 
 // import env from "react-dotenv";
