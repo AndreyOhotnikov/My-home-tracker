@@ -1,5 +1,5 @@
-import { types } from "../types/userTypes"
+// import { types } from "../types/userTypes"
 
 
 
-export const authUserReducer = (payload) => ({type: types.AUTH_USER, payload})
+// export const authUserReducer = (payload) => ({type: types.AUTH_USER, payload})

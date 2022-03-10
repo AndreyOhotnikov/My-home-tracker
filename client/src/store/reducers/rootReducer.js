@@ -3,14 +3,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import  saga from 'redux-saga';
 import { all } from '@redux-saga/core/effects';
-import {locationReducer} from './locationReducer'
-import {authReducer} from './authReducer'
+// import {locationReducer} from './locationReducer'
+// import {authReducer} from './authReducer'
 
 const sagaMiddleware = saga()
 
 const rootReducer = combineReducers({
-  auth: authReducer,
-  location: locationReducer
+  // auth: authReducer,
+  //  location: locationReducer
 })
 
 const composeEnhancer =
