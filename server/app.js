@@ -6,8 +6,8 @@ const path = require('path');
 const session = require('express-session');
 require('dotenv').config();
 
-const usersRouter = require('./routes/user');
-const gameRouter = require('./routes/game')
+// const usersRouter = require('./routes/user');
+// const gameRouter = require('./routes/game')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -52,8 +52,8 @@ app.use((req, res, next) => {
   console.log("\x1b[35m", 'res.locals.username:', res.locals.username);
   next();
 });
-app.use('/', gameRouter);
-app.use('/user', usersRouter);
+// app.use('/', gameRouter);
+// app.use('/user', usersRouter);
 
 app.use((req, res, next) => {
   const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');
