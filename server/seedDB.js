@@ -1,5 +1,5 @@
 const {
-  User, City, Street, Home, Userinfo, Benifit, Bid, Chat, Global_news, Instruction, Like, Local_news, Photolink, Response, Store, Support,
+  User, City, Street, Home, Userinfo, Benifit, Bid, Chat, Global_news, Instruction, Like, Local_news, Photolink, Response, Store, Support, Category_store, Category_benifit,
 } = require('./db/models');
 
 const city = [{ name: 'Moscow' }, { name: 'London' }];
@@ -12,7 +12,9 @@ async function addCity(obj) {
     console.log(err);
   }
 }
-city.map((el) => addCity(el));
+
+// city.map((el) => addCity(el));
+
 const street = [{ name: 'Lenina', city_id: 1 }, { name: 'Traphalgar', city_id: 2 }];
 async function addStreet(obj) {
   try {
@@ -24,7 +26,9 @@ async function addStreet(obj) {
     console.log(err);
   }
 }
-street.map((el) => addStreet(el));
+
+// street.map((el) => addStreet(el));
+
 
 const home = [{ name: 31, street_id: 1 }, { name: 123, street_id: 2 }];
 async function addHome(obj) {
@@ -37,7 +41,9 @@ async function addHome(obj) {
     console.log(err);
   }
 }
-home.map((el) => addHome(el));
+
+// home.map((el) => addHome(el));
+
 
 const user = [
   {
@@ -80,7 +86,7 @@ async function addChat(obj) {
     console.log(err);
   }
 }
-//chat.map((el) => addChat(el));
+// chat.map((el) => addChat(el));
 const instruction = [{ user_id: 1, text: 'first instruction', title: 'first' }, { user_id: 2, text: 'second instruction', title: 'second' }];
 async function addInstruction(obj) {
   try {
@@ -93,7 +99,7 @@ async function addInstruction(obj) {
     console.log(err);
   }
 }
-//instruction.map((el) => addInstruction(el));
+// instruction.map((el) => addInstruction(el));
 
 const support = [{ user_id: 1, text: 'first support' }, { user_id: 2, text: 'second support' }];
 async function addSupport(obj) {
@@ -107,7 +113,7 @@ async function addSupport(obj) {
     console.log(err);
   }
 }
-//support.map((el) => addSupport(el));
+// support.map((el) => addSupport(el));
 
 const benifit = [{
   user_id: 1, text: 'first benifit', title: 'first', price: 100000,
@@ -126,7 +132,7 @@ async function addBenifit(obj) {
     console.log(err);
   }
 }
-//benifit.map((el) => addBenifit(el));
+// benifit.map((el) => addBenifit(el));
 
 const userinfo = [{
   user_id: 1, full_name: 'Иванов Иван Иванович', entrance: 3, flat: 100, phone: 88005553535,
@@ -146,7 +152,7 @@ async function addUserinfo(obj) {
     console.log(err);
   }
 }
-//userinfo.map((el) => addUserinfo(el));
+// userinfo.map((el) => addUserinfo(el));
 
 const bid = [{
   user_id: 1, title: 'няня', status: 'актуально', text: 'bid_text',
@@ -165,7 +171,7 @@ async function addBid(obj) {
     console.log(err);
   }
 }
-//bid.map((el) => addBid(el));
+// bid.map((el) => addBid(el));
 
 const store = [{
   user_id: 1, title: 'холодильник', status: 'актуально', text: 'store_text', price: 300,
@@ -185,7 +191,7 @@ async function addStore(obj) {
     console.log(err);
   }
 }
-//store.map((el) => addStore(el));
+// store.map((el) => addStore(el));
 
 const local_news = [{
   user_id: 1, title: 'локальная новость 1', status: 'актуально', text: 'local_text', phone: 88005553535,
@@ -205,7 +211,7 @@ async function addLocal_news(obj) {
     console.log(err);
   }
 }
-//local_news.map((el) => addLocal_news(el));
+// local_news.map((el) => addLocal_news(el));
 
 const global_news = [{
   user_id: 1, title: 'глобальная новость 1', status: 'актуально', text: 'пдщифд_text', phone: 880055,
@@ -225,7 +231,7 @@ async function addGlobal_news(obj) {
     console.log(err);
   }
 }
-//global_news.map((el) => addGlobal_news(el));
+// global_news.map((el) => addGlobal_news(el));
 
 const response = [{
   user_id: 2, global_news_id: 1, status: 'true',
@@ -245,7 +251,7 @@ async function addResponce(obj) {
     console.log(err);
   }
 }
-//response.map((el) => addResponce(el));
+// response.map((el) => addResponce(el));
 
 const like = [{
   user_id: 2, global_news_id: 1, count: 20,
@@ -265,7 +271,7 @@ async function addLike(obj) {
     console.log(err);
   }
 }
-//like.map((el) => addLike(el));
+// like.map((el) => addLike(el));
 
 const photolink = [{
   userinfo_id: 2, global_news_id: 1, link: 'http://localhost:3000/...',
@@ -286,4 +292,38 @@ async function addPhotolink(obj) {
     console.log(err);
   }
 }
-//photolink.map((el) => addPhotolink(el));
+// photolink.map((el) => addPhotolink(el));
+
+const category_store = [{
+  title: 'Продукты', link: 'http://localhost:3000/...',
+}, {
+  title: 'Мебель', link: 'http://localhost:3000/...',
+}];
+async function addCategory_store(obj) {
+  try {
+    await Category_store.create({
+      title: obj.title,
+      link: obj.link,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+// category_store.map((el) => addCategory_store(el));
+
+const category_benifit = [{
+  title: 'Няня', link: 'http://localhost:3000/...',
+}, {
+  title: 'Репетитор', link: 'http://localhost:3000/...',
+}];
+async function addCategory_benifit(obj) {
+  try {
+    await Category_benifit.create({
+      title: obj.title,
+      link: obj.link,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+//category_benifit.map((el) => addCategory_benifit(el));
