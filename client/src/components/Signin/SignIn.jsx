@@ -3,7 +3,7 @@ import { Routes, Link, Route, Navigate, useLocation } from "react-router-dom"
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { authUserReducer } from '../../store/authReducer';
+import { authUserReducer } from '../../store/reducers/userReducer';
 import MyButton from '../button/MyButton';
 import MyInput from '../input/MyInput';
 
