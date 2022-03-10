@@ -1,9 +1,9 @@
 import React,{useState} from "react";
-import {Box, Input, MenuItem, FormControl, Select, TextField, Button}from '@mui/material';
+import {Box, Input, MenuItem, TextField, Button}from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
-import Stack from '@mui/material/Stack';
+
 
 const currencies = [
   {
@@ -31,17 +31,21 @@ const currencies = [
 const BaraholkaForm =()=>{
   const classes=useStyles()
 
-  const [category, setCategory] = useState('');
-  
+  const [nameProduct, setNameProduct]=useState({ value: '' });
+  const [text, setText]=useState({ value: '' });
+  const [category, setCategory] = useState({ value: '' });
+  const [price, setPrice] = useState({ value: '' });
+  const [photo, setPhoto]=useState({ value: '' });
 
-  const handleChange = (event) => {
-    setCategory(event.target.value);
-  };
+ const onSubmitHandler =(event)=>{
+event.preventDefault();
+
+ }
   
   return (
     <Box component='form' className={classes.mainForm}>
-<TextField id="outlined-basic" label="Название товара" variant="outlined" sx={{mt:'20px'}}/>
-<TextField id="outlined-basic" label="Описание товара" variant="outlined" sx={{mt:'20px'}}/>
+<TextField  onChange={event => setNameProduct(event.target.value)} id="outlined-basic" label="Название товара" variant="outlined" sx={{mt:'20px'}}/>
+<TextField  onChange={event => setText(event.target.value)} id="outlined-basic" label="Описание товара" variant="outlined" sx={{mt:'20px'}}/>
 
    <TextField
    sx={{mt:'20px'}}
@@ -49,7 +53,7 @@ const BaraholkaForm =()=>{
           select
           label="Выберите категорию"
           value={category}
-          onChange={handleChange}
+          onChange={event => setCategory(event.target.value)}
         >
           {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -57,7 +61,7 @@ const BaraholkaForm =()=>{
             </MenuItem>
           ))}
         </TextField>
-      <TextField id="outlined-basic" label="Цена" variant="outlined" sx={{mt:'20px'}}/>
+      <TextField onChange={event => setPrice(event.target.value)} id="outlined-basic" label="Цена" variant="outlined" sx={{mt:'20px'}}/>
       
       
       
@@ -66,12 +70,12 @@ const BaraholkaForm =()=>{
         <IconButton color="primary" aria-label="upload picture" component="span">
           <PhotoCamera />
         </IconButton>
-        <Box component="span" >Выберите файл</Box>
-        <Input sx={{display:'none'}} accept="image/*" id="icon-button-file" type="file" />
+        <Box component="span" >Выберите фото</Box>
+        <Input onChange={event => setPhoto(event.target.value)} sx={{display:'none'}} accept="image/*" id="icon-button-file" type="file" />
       </label>
     
 
-      <Button variant="outlined" className={classes.lastButton} sx={{mt:'20px', ml:'40%'}}>Опубликовать</Button>
+      <Button onClick={onSubmitHandler} variant="outlined" className={classes.lastButton} sx={{mt:'20px', ml:'40%'}}>Опубликовать</Button>
 </Box>
   )
 }

@@ -2,6 +2,8 @@ import React from "react";
 import BaraholkaItem from './BaraholkaItem'
 
 
+
+
 const BaraholkaList=()=>{
 
 

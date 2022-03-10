@@ -11,6 +11,7 @@ const sagaMiddleware = saga()
 const rootReducer = combineReducers({
   // auth: authReducer,
   //  location: locationReducer
+  baraholka: baraholkaReducer
 })
 
 const composeEnhancer =
