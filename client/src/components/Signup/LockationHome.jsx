@@ -1,36 +1,52 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Link, Route, useNavigate, Navigate, useLocation } from "react-router-dom"
-import axios from "axios"
-import MyButton from '../button/MyButton';
-import MyInput from '../input/MyInput';
 import { useState } from "react";
-import { authReducer } from '../../store/reducers/userReducer';
 import { useDispatch, useSelector } from 'react-redux';
-import MySelect from '../select/MySelect';
 import Autocomplete from '@mui/material/Autocomplete';
-import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button'
 import { types } from "../../store/types/userTypes";
+import {locationTypes} from "../../store/types/locationTypes"
 
 
 const LockationHome = () => {
-  const [location, setLocation] = useState({city: '', street: "", home: ''})
-  // const [locationInput, setLocationInput] = useState({sity: true, street: true, home: true})
-  const {locationCity, locationStreet, locationHome} = useSelector(state => state.location)
-  const {_user} = useSelector(state => state.auth)
-
+  const [location, setLocation] = useState({city: '', street: "", home: ''}) // это забираем с собой на бек
+  const {_user} = useSelector(state => state.auth) // это забираем с собой на бек из временногог хранилища
+  const locationsCity = useSelector(state => state.location.location)
+  const [locationStreets, setLocationStreets] = useState([])
+  const [locationHomes, setLocationHomes] = useState([])
   const dispatche = useDispatch()
-  console.log(_user)
+  const navigate = useNavigate()
+
+  const getLocations = () => {
+    dispatche({type: locationTypes.GET_ALL_LOCATION_SAGA}) /////////////////////////////////////////////////////
+  }
+  
+  useEffect(() => getLocations(), [])
+
   const selectSity = (e) => {
-    if(e.target.innerText && !e.target.value)  setLocation({...location, city : e.target.innerText})
-    else if(e.target.value) setLocation({...location, city : e.target.value})
-  } 
+    if(e.target.innerText && !e.target.value) {
+      setLocationStreets(locationsCity.find((city) => city.name === e.target.innerText).streets)
+      setLocation({...location, city : e.target.innerText})
+    }  
+    else if (e.target.value) {
+      setLocationStreets([])
+      setLocation({...location, city : e.target.value})
+    }
+  }
+
   const selectStreet = (e) =>{
-    if(e.target.innerText && !e.target.value)  setLocation({...location, street : e.target.innerText})
-    else if(e.target.value) setLocation({...location, street : e.target.value})
-  } 
+    if(e.target.innerText && !e.target.value) {
+      setLocationHomes(locationStreets.find((street) => street.name === e.target.innerText).homes)
+      setLocation({...location, street : e.target.innerText})
+    }  
+    else if(e.target.value) {
+      setLocationHomes([])
+      setLocation({...location, street : e.target.value})
+    } 
+  }
+
   const selectHome = (e) => {
     if(e.target.innerText && !e.target.value)  setLocation({...location, home : e.target.innerText})
     else if(e.target.value) setLocation({...location, home : e.target.value})
@@ -38,28 +54,29 @@ const LockationHome = () => {
   
   
   const signUpAndLocation = () => {
-    console.log(_user, location)
     const newUser = {..._user}
-    locationCity.forEach((city) => {
+    locationsCity.forEach((city) => {
       if (city.name === location.city) newUser.city_id = city.id
     })
-    locationStreet.forEach((street) => {
+    locationStreets.forEach((street) => {
       if (street.name === location.street) newUser.street_id = street.id
     })
-    locationHome.forEach((home) => {
-      if (home.name === location.home) newUser.home_id = home.id
+    locationHomes.forEach((home) => {
+      console.log(home.name, location.home)
+      if (Number(home.name) === Number(location.home)) newUser.home_id = home.id
     })
-    console.log({...newUser, city: location.city, street: location.street, home: location.home})
     dispatche({type: types.SIGN_UP_USER_SAGA, user: {...newUser, city: location.city, street: location.street, home: location.home}})
+    navigate('/')
   }
-
+  
   return (
-  <div>
+    
     <Stack spacing={2} sx={{ width: 300 }}>
          <Autocomplete
         id="free-solo-demo"
         freeSolo
-        options={locationCity.map((option) => option.name)}
+        options={locationsCity.map((option) => option.name)}
+        // options={locationCity.map((option) => option.name)}
         renderInput={(params) => <TextField onChange={(e) => selectSity(e)} {...params} label="Введите свой город" />}
         onChange={(e) => selectSity(e)}
         
@@ -67,20 +84,22 @@ const LockationHome = () => {
         <Autocomplete
           id="free-solo-demo"
           freeSolo
-          options={locationStreet.map((option) => option.name)}
+          options={locationStreets.map((option) => option.name)}
+          // options={locationStreet.map((option) => option.name)}
           renderInput={(params) => <TextField {...params} onChange={(e) => selectStreet(e)} label="Введите свою улицу" />}
           onChange={(e) => selectStreet(e)}
         />
           <Autocomplete
             id="free-solo-demo"
             freeSolo
-            options={locationHome.map((option) => String(option.name))}
+            options={locationHomes.map((option) => String(option.name))}
+            // options={locationHome.map((option) => String(option.name))}
             renderInput={(params) => <TextField {...params} onChange={(e) => selectHome(e)} label="Введите свой дом" />}
             onChange={(e) => selectHome(e)}
           />  
-     </Stack>
      <Button onClick={(e) => signUpAndLocation()} variant="outlined">Прикрепиться</Button>
-  </div>
+     </Stack>
+  
   );
 };
 

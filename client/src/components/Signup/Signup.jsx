@@ -9,6 +9,9 @@ import { Form } from "react-bootstrap";
 import Button from '@mui/material/Button'
 import { signup_UserReducer } from "../../store/actionCreators/userAC";
 import { types } from "../../store/types/userTypes";
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+
 
 const Signup = () => {
   const [name, setName] = useState('')
@@ -23,68 +26,67 @@ const Signup = () => {
   const navigate = useNavigate()
   const logIn = async (e) => {
     e.preventDefault();
-    if (idHome) {
+    const isValid = /[A-Za-z]\w+/.test(name) && /^[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+\.[A-Za-z]{2,}$/.test(email)
+    if (idHome && isValid) {
       dispatche({type: types.SIGN_UP_USER_SAGA, user: {name, email, pass, idHome}})
-      navigate('/signin') // или navigate('/')
-    } else {
-      console.log({name, email, pass, isChairman: predsedatel, photoIsChairman:  photoIsChairman[0] })
+      navigate('/') // или navigate('/')
+    } else if (isValid) {
+      // console.log({name, email, pass, isChairman: predsedatel, photoIsChairman:  photoIsChairman[0] })
+       console.log(24323423)
       dispatche(signup_UserReducer({name, email, pass, isChairman: !predsedatel, photoIsChairman:  photoIsChairman[0] }))
       navigate('/locationHome')
-    }
-    console.log('name-', name,'pass-', pass,'email-', email)
-    console.log(photoIsChairman)
+    } else if (!/^[A-Za-z]\w+$/.test(name)) alert('введи нормально логин')
+     else if (!/^[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+\.[A-Za-z]{2,}$/.test(email)) alert('введи нормально email')
+
+    console.log('name-', name,'pass-', pass,'email-', email, 'idHome---------------', idHome)
+    // console.log(photoIsChairman)
   }
 
   return (
         <form id="signupForm" method="POST" action="" style={{marginTop:'70px'}}>
           <div >
             <h2  id="formTitle">Регистрация</h2>
-            <MyInput 
+
+            <TextField id="username"  
               onChange={e => setName(e.target.value)}
-              id="username"  
               type="text" 
               placeholder="Enter name" 
               name="name" 
               required 
               pattern="[A-Za-z]\w+"
-              title="Латинские буквы, цифры и _"
-              
-            />
+              title="Латинские буквы, цифры и _" />
 
-            <MyInput 
-              onChange={e => setEmail(e.target.value)}
+            <TextField onChange={e => setEmail(e.target.value)}
               id="email"  
               type="text" 
               placeholder="Enter e-mail" 
               name="email" 
               required 
-              pattern="^[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+\.[A-Za-z]{2,}$"
-            />
-            
-            <MyInput 
-              onChange={e => setPass(e.target.value)}
+              pattern="^[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+\.[A-Za-z]{2,}$" />
+
+            <TextField onChange={e => setPass(e.target.value)}
               type="password"  
               placeholder="Enter Password" 
               name="password" 
-              required
-            />
+              required />
+            
             <div className='post_content'>
               <span>Войти как председатель</span><Form.Check.Input type="checkbox" id={`check-api-checkbox`} name="checkbox" value="checkbox" onChange={() => setPredsedatel(!predsedatel)} />
             </div>
             {predsedatel ? 
-              <input style={{width: '300px'}}
+                <TextField style={{width: '300px'}}
                 onChange={(e) => setIdHome(e.target.value)}
                 type="number"
-                placeholder={'Введите id своего дома'}
-              /> :
-              <input style={{width: '300px'}}
-                type="file"
-                // onChange={e => console.log([...e.target.files])}
-                onChange={(e) => setPhotiIsChairman([...e.target.files])}
-                placeholder={'Прикрепите документ подтверждения'}
-              />}
+                placeholder={'Введите id своего дома'} />
+
+              :
+              <TextField style={{width: '300px'}}
+              type="file"
+              onChange={(e) => setPhotiIsChairman([...e.target.files])}
+              placeholder={'Прикрепите документ подтверждения'} />
+
+            }
               <Button onClick={(e) => logIn(e)} variant="outlined">Регистрация</Button>
-            {/* <MyButton  type="submit" onClick={(e) => logIn(e)} >Регистрация</MyButton> */}
           </div>
     </form>
   );

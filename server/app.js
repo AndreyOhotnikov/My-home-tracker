@@ -6,6 +6,7 @@ const path = require('path');
 const session = require('express-session');
 require('dotenv').config();
 
+const locationRouter = require('./routes/location')
 const usersRouter = require('./routes/user');
 // const gameRouter = require('./routes/game')
 
@@ -50,6 +51,7 @@ app.use((req, res, next) => {
 });
 // app.use('/', gameRouter);
 app.use('/user', usersRouter);
+app.use('/global', locationRouter);
 
 app.use((req, res, next) => {
   const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');

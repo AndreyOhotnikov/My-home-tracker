@@ -12,11 +12,15 @@ const WelcomePage = () => {
     navigate(url)
   }
 
+  
+
   return (
       <div>
 
         <MyButton  onClick={() => navigateTo('/signup')}>Зарегистрироваться</MyButton>
         <MyButton  onClick={() => navigateTo('/signin')}>Авторизоваться</MyButton>
+        <MyButton  onClick={() => navigateTo('/signin')}>Выйти</MyButton>
+
       </div>
   )
 }

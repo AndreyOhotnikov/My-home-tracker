@@ -6,6 +6,7 @@ import { all } from '@redux-saga/core/effects';
 import {locationReducer} from './locationReducer'
 import {authReducer} from './userReducer'
 import { watcherSignUp } from '../saga/userSignup';
+import { watcherGetLocation } from '../saga/locations';
 
 const sagaMiddleware = saga()
 
@@ -23,6 +24,6 @@ export const store = createStore(rootReducer, composeEnhancer)
 
 sagaMiddleware.run(
   function*() {
-    yield all([watcherSignUp()/*, watcherChuckNorris() здесь массив функций сага */]) 
+    yield all([watcherSignUp(), watcherGetLocation()/*, watcherChuckNorris() здесь массив функций сага */]) 
   }
 )

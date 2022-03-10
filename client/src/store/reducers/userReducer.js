@@ -3,7 +3,6 @@ import { types } from "../types/userTypes"
 
 const defaultState = {
   auth: false,
-  _user: {name: '', email: '', pass: ''}
 }
 
 export const authReducer = (state = defaultState, action) => {
@@ -13,7 +12,7 @@ export const authReducer = (state = defaultState, action) => {
     case types.SIGN_UP_USER:
       return {...state, _user: action.payload};
     case types.SIGN_UP_AUTH:
-      return {...state, auth: action.payload, _user: {name: '', email: '', pass: ''}};
+      return {...state, auth: action.payload, _user: undefined};
     default:
       return state;
     }

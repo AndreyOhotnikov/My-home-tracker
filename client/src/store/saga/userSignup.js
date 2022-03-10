@@ -1,7 +1,7 @@
 import { types } from "../types/userTypes"
 
 import { takeEvery, put, call, debounce, retry, throttle } from 'redux-saga/effects';
-import {authUserReducer} from '../actionCreators/userAC'
+import {authUserReducer, signupUserReducer} from '../actionCreators/userAC'
 
 async function signUpAsync(user) {
   console.log(user)
@@ -28,7 +28,11 @@ function* workerSignUp({user}) {
   try {
     console.log(user)
     const signUp = yield call(() => signUpAsync(user))
-    yield put(authUserReducer(signUp))
+    console.log(signUp)
+    if(!signUp.error) {
+      yield put(signupUserReducer())
+      yield put(authUserReducer(signUp))
+    } 
   } catch (err) {
     console.error('Err', err);
   } finally {
