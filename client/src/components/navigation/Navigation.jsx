@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Link, Route, useNavigate, Navigate, useLocation } from "react-router-dom"
 
-import SignIn from "../SignIn";
-import Signup from "../Signup";
-import Signout from "../Signout";
+import SignIn from "../Signin/SignIn";
+import Signup from "../Signup/Signup";
+import Signout from "../Signout/Signout";
 import { useDispatch, useSelector } from 'react-redux';
 import { Navbar, Nav, Container } from "react-bootstrap";
 import style from "./Navigation.module.css"
-import WelcomePage from "../WelcomePage";
-import LockationHome from "../LockationHome";
+import WelcomePage from "../WelcomePage/WelcomePage";
+import LockationHome from "../Signup/LockationHome";
 
 const Navigation = () => {
   const dispatche = useDispatch()

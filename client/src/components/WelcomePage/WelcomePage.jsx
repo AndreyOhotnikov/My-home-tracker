@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { types } from "../../store/types"
+import { types } from "../../store/types/userTypes"
 import { useNavigate } from "react-router-dom";
 
 import MyButton from "../button/MyButton";

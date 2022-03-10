@@ -3,10 +3,12 @@ import { useState } from "react";
 import MyButton from '../button/MyButton';
 import MyInput from '../input/MyInput';
 import { useNavigate } from "react-router-dom";
-import { authReducer } from '../../store/authReducer';
+import { authReducer } from '../../store/reducers/userReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from "react-bootstrap";
-
+import Button from '@mui/material/Button'
+import { signup_UserReducer } from "../../store/actionCreators/userAC";
+import { types } from "../../store/types/userTypes";
 
 const Signup = () => {
   const [name, setName] = useState('')
@@ -14,26 +16,23 @@ const Signup = () => {
   const [email, setEmail] = useState('')
   const [idHome, setIdHome] = useState(0)
   const [predsedatel, setPredsedatel] = useState(true)
+  const [photoIsChairman, setPhotiIsChairman] = useState({})
 
   const dispatche = useDispatch()
   const auth = useSelector(state => state.auth.auth)
   const navigate = useNavigate()
   const logIn = async (e) => {
     e.preventDefault();
-      // const response = await fetch(`/user/signup`, {
-      //   method: "POST",
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify({
-      //     name, password: pass
-      //   })
-      // });
-    // const user = await response.json();
-    // if (user) dispatche(authUserReducer(user.name))
-    // navigate((`/`))
+    if (idHome) {
+      dispatche({type: types.SIGN_UP_USER_SAGA, user: {name, email, pass, idHome}})
+      navigate('/signin') // или navigate('/')
+    } else {
+      console.log({name, email, pass, isChairman: predsedatel, photoIsChairman:  photoIsChairman[0] })
+      dispatche(signup_UserReducer({name, email, pass, isChairman: !predsedatel, photoIsChairman:  photoIsChairman[0] }))
+      navigate('/locationHome')
+    }
     console.log('name-', name,'pass-', pass,'email-', email)
-    navigate('/locationHome')
+    console.log(photoIsChairman)
   }
 
   return (
@@ -80,9 +79,12 @@ const Signup = () => {
               /> :
               <input style={{width: '300px'}}
                 type="file"
+                // onChange={e => console.log([...e.target.files])}
+                onChange={(e) => setPhotiIsChairman([...e.target.files])}
                 placeholder={'Прикрепите документ подтверждения'}
               />}
-            <MyButton  type="submit" onClick={(e) => logIn(e)} >Регистрация</MyButton>
+              <Button onClick={(e) => logIn(e)} variant="outlined">Регистрация</Button>
+            {/* <MyButton  type="submit" onClick={(e) => logIn(e)} >Регистрация</MyButton> */}
           </div>
     </form>
   );
