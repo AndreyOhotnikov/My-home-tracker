@@ -29,17 +29,12 @@ const Signup = () => {
     const isValid = /[A-Za-z]\w+/.test(name) && /^[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+\.[A-Za-z]{2,}$/.test(email)
     if (idHome && isValid) {
       dispatche({type: types.SIGN_UP_USER_SAGA, user: {name, email, pass, idHome}})
-      navigate('/') // или navigate('/')
+      navigate('/')
     } else if (isValid) {
-      // console.log({name, email, pass, isChairman: predsedatel, photoIsChairman:  photoIsChairman[0] })
-       console.log(24323423)
       dispatche(signup_UserReducer({name, email, pass, isChairman: !predsedatel, photoIsChairman:  photoIsChairman[0] }))
       navigate('/locationHome')
     } else if (!/^[A-Za-z]\w+$/.test(name)) alert('введи нормально логин')
      else if (!/^[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+\.[A-Za-z]{2,}$/.test(email)) alert('введи нормально email')
-
-    console.log('name-', name,'pass-', pass,'email-', email, 'idHome---------------', idHome)
-    // console.log(photoIsChairman)
   }
 
   return (
@@ -75,16 +70,16 @@ const Signup = () => {
             </div>
             {predsedatel ? 
                 <TextField style={{width: '300px'}}
-                onChange={(e) => setIdHome(e.target.value)}
-                type="number"
-                placeholder={'Введите id своего дома'} />
-
+                  onChange={(e) => setIdHome(e.target.value)}
+                  type="number"
+                  placeholder={'Введите id своего дома'} 
+                />
               :
-              <TextField style={{width: '300px'}}
-              type="file"
-              onChange={(e) => setPhotiIsChairman([...e.target.files])}
-              placeholder={'Прикрепите документ подтверждения'} />
-
+                <TextField style={{width: '300px'}}
+                  type="file"
+                  onChange={(e) => setPhotiIsChairman([...e.target.files])}
+                  placeholder={'Прикрепите документ подтверждения'} 
+                />
             }
               <Button onClick={(e) => logIn(e)} variant="outlined">Регистрация</Button>
           </div>

@@ -7,6 +7,41 @@ const bcrypt = require('bcrypt');
 const { Op } = require("sequelize");
 
 
+exports.checkUserAndCreateSession = async (req, res, next) => {
+  console.log(req.body)
+  const { name, pass } = req.body;
+  let user;
+  try {
+    user = await User.findOne({ where: { nick_name: name }, raw: true });
+    console.log(2342342)
+    if (!user) return res.json({error: 'Неправильное имя!'});
+    const isValidPassword = await bcrypt.compare(pass, user.password);
+    if (!isValidPassword) return res.json({error: 'Неправильное имя или пароль'});
+    else if (user && isValidPassword) {
+      req.session.user = {id: user.id, name: user.nick_name, role: user.role};
+      res.json({user: user.nick_name, role: user.role, home_id: user.home_id })
+    }
+  } catch (err) {
+    console.error('Err message:', err.message);
+    console.error('Err code', err.code);
+  }
+
+}
+
+exports.checkAuth = async (req, res) => {
+  let user 
+  console.log(234234)
+  if(req.session.user) {
+    try {
+      user = await User.findOne({where: {id: req.session.user.id}, raw: true})
+    } catch (error) {
+      
+    }
+    res.json({user: user.nick_name, role: user.role, home_id: user.home_id })
+  } else res.json(false)
+}
+
+
 exports.createUserAndSession = async (req, res, next) => {
   console.log(req.body)
   const {name, email, pass, isChairman, city, street, home, home_id, street_id, city_id, idHome} = req.body
@@ -45,7 +80,7 @@ exports.createUserAndSession = async (req, res, next) => {
         res.json({error: 'У вас нет прав' })
       }
       req.session.user = {id: user.id, name: user.nick_name, role: user.role};
-      res.json({user: user.nick_name, role: user.role, home_id })
+      res.json({user: user.nick_name, role: user.role, home_id: user.home_id })
     } else {
       res.json({error: 'пользователь зарегестрирован' })
     }
@@ -55,7 +90,7 @@ exports.createUserAndSession = async (req, res, next) => {
 }
 
 exports.destroySession = (req, res, next) => { // Уничтоженеи сессии
-  console.log(req.session.user)
+  console.log('destroySession-', req.session.user)
 
   req.session.destroy((err) => {
     console.log('Удаление сессии')

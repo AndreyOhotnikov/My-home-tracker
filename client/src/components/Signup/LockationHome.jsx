@@ -20,53 +20,52 @@ const LockationHome = () => {
   const navigate = useNavigate()
 
   const getLocations = () => {
-    dispatche({type: locationTypes.GET_ALL_LOCATION_SAGA}) /////////////////////////////////////////////////////
+    dispatche({type: locationTypes.GET_ALL_LOCATION_SAGA});
   }
   
-  useEffect(() => getLocations(), [])
+  useEffect(() => getLocations(), []);
 
   const selectSity = (e) => {
     if(e.target.innerText && !e.target.value) {
-      setLocationStreets(locationsCity.find((city) => city.name === e.target.innerText).streets)
-      setLocation({...location, city : e.target.innerText})
+      setLocationStreets(locationsCity.find((city) => city.name === e.target.innerText).streets);
+      setLocation({...location, city : e.target.innerText});
     }  
     else if (e.target.value) {
-      setLocationStreets([])
-      setLocation({...location, city : e.target.value})
+      setLocationStreets([]);
+      setLocation({...location, city : e.target.value});
     }
   }
 
   const selectStreet = (e) =>{
     if(e.target.innerText && !e.target.value) {
-      setLocationHomes(locationStreets.find((street) => street.name === e.target.innerText).homes)
-      setLocation({...location, street : e.target.innerText})
+      setLocationHomes(locationStreets.find((street) => street.name === e.target.innerText).homes);
+      setLocation({...location, street : e.target.innerText});
     }  
     else if(e.target.value) {
-      setLocationHomes([])
-      setLocation({...location, street : e.target.value})
+      setLocationHomes([]);
+      setLocation({...location, street : e.target.value});
     } 
   }
 
   const selectHome = (e) => {
-    if(e.target.innerText && !e.target.value)  setLocation({...location, home : e.target.innerText})
-    else if(e.target.value) setLocation({...location, home : e.target.value})
+    if(e.target.innerText && !e.target.value)  setLocation({...location, home : e.target.innerText});
+    else if(e.target.value) setLocation({...location, home : e.target.value});
   }
   
   
   const signUpAndLocation = () => {
     const newUser = {..._user}
     locationsCity.forEach((city) => {
-      if (city.name === location.city) newUser.city_id = city.id
+      if (city.name === location.city) newUser.city_id = city.id;
     })
     locationStreets.forEach((street) => {
-      if (street.name === location.street) newUser.street_id = street.id
+      if (street.name === location.street) newUser.street_id = street.id;
     })
     locationHomes.forEach((home) => {
-      console.log(home.name, location.home)
-      if (Number(home.name) === Number(location.home)) newUser.home_id = home.id
+      if (Number(home.name) === Number(location.home)) newUser.home_id = home.id;
     })
-    dispatche({type: types.SIGN_UP_USER_SAGA, user: {...newUser, city: location.city, street: location.street, home: location.home}})
-    navigate('/')
+    dispatche({type: types.SIGN_UP_USER_SAGA, user: {...newUser, city: location.city, street: location.street, home: location.home}});
+    navigate('/');
   }
   
   return (
@@ -76,7 +75,6 @@ const LockationHome = () => {
         id="free-solo-demo"
         freeSolo
         options={locationsCity.map((option) => option.name)}
-        // options={locationCity.map((option) => option.name)}
         renderInput={(params) => <TextField onChange={(e) => selectSity(e)} {...params} label="Введите свой город" />}
         onChange={(e) => selectSity(e)}
         
@@ -85,7 +83,6 @@ const LockationHome = () => {
           id="free-solo-demo"
           freeSolo
           options={locationStreets.map((option) => option.name)}
-          // options={locationStreet.map((option) => option.name)}
           renderInput={(params) => <TextField {...params} onChange={(e) => selectStreet(e)} label="Введите свою улицу" />}
           onChange={(e) => selectStreet(e)}
         />
@@ -93,7 +90,6 @@ const LockationHome = () => {
             id="free-solo-demo"
             freeSolo
             options={locationHomes.map((option) => String(option.name))}
-            // options={locationHome.map((option) => String(option.name))}
             renderInput={(params) => <TextField {...params} onChange={(e) => selectHome(e)} label="Введите свой дом" />}
             onChange={(e) => selectHome(e)}
           />  
