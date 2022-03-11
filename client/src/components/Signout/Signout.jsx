@@ -7,19 +7,24 @@ import { types } from "../../store/types/userTypes";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import  styles  from "./Signout.module.css";
+import { openModaleReducer } from "../../store/actionCreators/userAC";
 
 
 
 const Signout = () => {
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
+  const open = useSelector(state => state.auth.modale)
   const dispatche = useDispatch()
   const navigate = useNavigate()
 
   const handleOpen = () => {
-    setOpen(true);
+    // setOpen(true);
+    dispatche(openModaleReducer(true))
   };
   const handleClose = () => {
-    setOpen(false);
+    // setOpen(false);
+    dispatche(openModaleReducer(false))
+
   };
   const logout = async (e) => {
     dispatche({type: types.SIGN_OUT_USER_SAGA})
