@@ -28,9 +28,9 @@ function* workerSignUp({user}) {
   try {
     console.log(user)
     const signUp = yield call(() => signUpAsync(user))
-    console.log(signUp)
+    // console.log(signUp)
     if(!signUp.error) {
-      yield put(signupUserReducer())
+      // yield put(signupUserReducer())
       yield put(authUserReducer(signUp))
     } 
   } catch (err) {
