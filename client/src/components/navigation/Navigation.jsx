@@ -9,6 +9,7 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import style from "./Navigation.module.css"
 import WelcomePage from "../WelcomePage/WelcomePage";
 import LockationHome from "../Signup/LockationHome";
+import Button from '@mui/material/Button'
 
 const Navigation = () => {
   const dispatche = useDispatch()
@@ -45,6 +46,7 @@ const Navigation = () => {
           { !auth &&  <Route path='/' element={<WelcomePage/>} />}
           { !auth &&  <Route path='/locationHome' element={<LockationHome/>} />}
       </Routes>
+ 
       {/* <WelcomePage/> */}
     </div>
   );
