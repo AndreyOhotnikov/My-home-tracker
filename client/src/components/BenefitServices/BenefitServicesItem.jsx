@@ -12,14 +12,14 @@ import Button from "@mui/material/Button";
 
 export const BenefitServicesItem = () => {
   const services = useSelector((state) => state.services);
-  console.log(services[0].title);
+  // console.log(services[0].title);
   // const imgUser = services.find((el) => el.id === userId).avatar;
   return (
     <Box>
       {/* <CardActionArea>
         <CardMedia image={imgUser} title="Contemplative Reptile" />
       </CardActionArea> */}
-      <ListItem variant="body2" color="textSecondary" component="p">
+      {/* <ListItem variant="body2" color="textSecondary" component="p">
         <ListItemText  > Название услуги: {services[0].title}</ListItemText>
       </ListItem>
       <ListItem variant="body2" color="textSecondary" component="p">
@@ -32,7 +32,7 @@ export const BenefitServicesItem = () => {
       </ListItem>
       <Box mt={4}>
         <Button variant="contained">Связаться</Button>
-      </Box>
+      </Box> */}
     </Box>
   );
 };

@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Link, Route, useNavigate, Navigate, useLocation } from "react-router-dom"
+import { Routes, Route, Link } from "react-router-dom";
 
-// import SignIn from "../Signin";
-// import Signup from "../Signup";
-// import Signout from "../Signout";
-// import { useDispatch, useSelector } from 'react-redux';
-// import { Navbar, Nav, Container } from "react-bootstrap";
-// import style from "./Navigation.module.css"
-// import WelcomePage from "../WelcomePage";
-// import LockationHome from "../LockationHome";
+import { BenefitServicesList } from "../BenefitServices/BenefitServicesList";
+import { BenefitServicesMain } from "../BenefitServices/BenefitServicesMain";
+
+// // import SignIn from "../Signin";
+// // import Signup from "../Signup";
+// // import Signout from "../Signout";
+// // import { useDispatch, useSelector } from 'react-redux';
+// // import { Navbar, Nav, Container } from "react-bootstrap";
+// // import style from "./Navigation.module.css"
+// // import WelcomePage from "../WelcomePage";
+// // import LockationHome from "../LockationHome";
 
 // const Navigation = () => {
-//   const dispatche = useDispatch()
-//   const auth = useSelector(state => state.auth.auth)
-//   // const posts = useSelector(state => state.postsR.posts)
+// //   const dispatche = useDispatch()
+// //   const auth = useSelector(state => state.auth.auth)
+// //   // const posts = useSelector(state => state.postsR.posts)
 
-//   // useEffect(() => {
-//   //   if(!auth)  dispatche(checkedAuth())
-//   // }, [])
+// //   // useEffect(() => {
+// //   //   if(!auth)  dispatche(checkedAuth())
+// //   // }, [])
 
-//   // useEffect(() => {
-//   //   if(auth && !posts.length) dispatche(getAllPosts())
-//   // }, [auth])
+// //   // useEffect(() => {
+// //   //   if(auth && !posts.length) dispatche(getAllPosts())
+// //   // }, [auth])
 
 //   return (
 //     <div >
@@ -50,5 +53,15 @@ import { Routes, Link, Route, useNavigate, Navigate, useLocation } from "react-r
 //   );
 // };
 
-
 // export default Navigation;
+export const Navigation = () => {
+  return (
+    <>
+    <Link to="/services">Услуги</Link>
+      <Routes>
+      <Route path="/services" element={<BenefitServicesMain />} />
+        <Route path="/service/:id" element={<BenefitServicesList />} />
+      </Routes>
+    </>
+  );
+};

@@ -9,6 +9,9 @@ require('dotenv').config();
 // const usersRouter = require('./routes/user');
 // const gameRouter = require('./routes/game')
 
+const servicesRouter = require('./routes/benefitServices')
+const benefitCategory=require('./routes/benefitCategory')
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 // const redis = require('redis');
@@ -19,13 +22,14 @@ const FileStore = require('session-file-store')(session);
 
 app.use(logger('dev'));
 app.use(express.json());
-// const corsOptions ={
-//   origin:'http://localhost:3000', 
-//   credentials:true,            //access-control-allow-credentials:true
-//   optionSuccessStatus:200
-// }
-// app.use(cors(corsOptions));
-app.use(cors());
+
+app.use(
+  cors({
+    origin: 'http://127.0.0.1:3000',
+    credentials: true,
+  }),
+);
+// app.use(cors());
 
 const fileStoreOptions = {};
 
@@ -54,6 +58,8 @@ app.use((req, res, next) => {
 });
 // app.use('/', gameRouter);
 // app.use('/user', usersRouter);
+app.use('/category',benefitCategory)
+app.use('/services', servicesRouter)
 
 app.use((req, res, next) => {
   const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');

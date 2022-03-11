@@ -1,3 +1,4 @@
+<<<<<<< HEAD:client/src/components/LockationHome.jsx
 // import React from "react";
 // import { Routes, Link, Route, useNavigate, Navigate, useLocation } from "react-router-dom"
 // import axios from "axios"
@@ -8,6 +9,18 @@
 // import { useDispatch, useSelector } from 'react-redux';
 // // import { useSelector } from 'react-redux';
 // import MySelect from './select/MySelect';
+=======
+import React from "react";
+import { Routes, Link, Route, useNavigate, Navigate, useLocation } from "react-router-dom"
+import axios from "axios"
+import MyButton from '../button/MyButton';
+import MyInput from '../input/MyInput';
+import { useState } from "react";
+import { authReducer } from '../store/authReducer';
+import { useDispatch, useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
+import MySelect from '../select/MySelect';
+>>>>>>> 37ed9c68bfade0373ec1f204187a450d666a456e:client/src/components/Signout/LockationHome.jsx
 
 
 // // import env from "react-dotenv";
