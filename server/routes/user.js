@@ -5,12 +5,13 @@ const router = express.Router();
 // } = require('../db/models');
 // const bcrypt = require('bcrypt');
 // const { Op } = require("sequelize");
-const {createUserAndSession} = require('../controllers/user')
+const {createUserAndSession, destroySession} = require('../controllers/user')
 
 
 
 
 router.post('/signup', createUserAndSession)
 
+router.get('/signout', destroySession);
 
 module.exports = router;

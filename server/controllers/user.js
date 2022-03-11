@@ -53,3 +53,16 @@ exports.createUserAndSession = async (req, res, next) => {
     console.log(error)
   }
 }
+
+exports.destroySession = (req, res, next) => { // Уничтоженеи сессии
+  console.log(req.session.user)
+
+  req.session.destroy((err) => {
+    console.log('Удаление сессии')
+    if (err) return next(err);
+    res.clearCookie('sid');
+    res.json(false);
+    console.log(req?.session?.user)
+
+  });
+}
