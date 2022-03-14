@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import { BenefitServicesForm } from "../BenefitServices/BenefitServicesForm";
+import { BenefitServicesItem } from "../BenefitServices/BenefitServicesItem";
 
 import { BenefitServicesList } from "../BenefitServices/BenefitServicesList";
 import { BenefitServicesMain } from "../BenefitServices/BenefitServicesMain";
@@ -58,9 +60,15 @@ export const Navigation = () => {
   return (
     <>
     <Link to="/services">Услуги</Link>
+    <Link to="/add">Добавить услугу</Link>
+    
+    
       <Routes>
       <Route path="/services" element={<BenefitServicesMain />} />
-        <Route path="/service/:id" element={<BenefitServicesList />} />
+        <Route path="/services/:id" element={<BenefitServicesList />} />
+        <Route path="service/:id" element={<BenefitServicesItem />} />
+        <Route path="/add" element={<BenefitServicesForm />} />
+
       </Routes>
     </>
   );

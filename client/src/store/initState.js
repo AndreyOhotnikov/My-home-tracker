@@ -1,7 +1,10 @@
 
 export const InitialState = {
-  category: [],
   services:[],
+  // user:[],
+  // userInfo:[],
+  // photo:[],
+  
 };
 
 

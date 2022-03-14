@@ -10,7 +10,7 @@ require('dotenv').config();
 // const gameRouter = require('./routes/game')
 
 const servicesRouter = require('./routes/benefitServices')
-const benefitCategory=require('./routes/benefitCategory')
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -58,7 +58,7 @@ app.use((req, res, next) => {
 });
 // app.use('/', gameRouter);
 // app.use('/user', usersRouter);
-app.use('/category',benefitCategory)
+// app.use('/category',benefitCategory)
 app.use('/services', servicesRouter)
 
 app.use((req, res, next) => {

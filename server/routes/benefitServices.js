@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const {getAllServices}=require('../controllers/BenefitServices');
+const {getAllServices,addNewServices}=require('../controllers/BenefitServices');
 
 router
 .get('/',getAllServices)
-// .post('/new', addNewServices)
+.post('/add', addNewServices)
 
 // router
 // .get('/edit/:id',findServices)

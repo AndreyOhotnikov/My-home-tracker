@@ -1,28 +1,30 @@
 import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
-import ListItem from "@mui/material/ListItem";
 import { useDispatch, useSelector } from "react-redux";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import { ImageListItem } from "@mui/material";
-import { BenefitServicesItem } from "./BenefitServicesItem";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
 import {
-  categorySagaApi,
-  servicesSagaApi,
+  sagaAddService
 } from "../../store/actionCreators/benefitServicesAC";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export const BenefitServicesList = () => {
+  const navigate = useNavigate();
   const params = useParams();
-  console.log(params);
+  
 
   const category = useSelector((state) => state.services);
-  console.log(category);
 
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(servicesSagaApi());
-  // }, []);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(sagaAddService());
+  
+  }, []);
 
   const benefits = category
     .map((el) => el.benifits)
@@ -31,30 +33,48 @@ export const BenefitServicesList = () => {
     });
 
   const a = benefits.filter((el) => el.category_id === Number(params.id) && el);
-  console.log(a, "aaaaa");
 
-  console.log(benefits, "kjhgfd");
 
-  //   const reduce = benefits.reduce((acc,el) => acc + el.text + el.price + el.user_id + el.title,0);
-  // console.log(reduce,'reduce');
+  const submitHandler = (id) => {
+    navigate(`/service/${id}`);
+  };
 
   return (
-    <Box>
-      <Grid container direction="column">
-        <Grid item>
-          <Paper></Paper>
-          <Box m={10}>
-            {
-              a?.map((ben) => {
-                return (
-                  <ListItem key={ben.id}>
-                    {ben.user_id} {ben.text} {ben.price}
-                  </ListItem>
-                );
-              })}
-          </Box>
-        </Grid>
-      </Grid>
+    <Box m={10}>
+      {a?.map((ben) => {
+        return (
+          <List
+            key={ben.id}
+            title={ben.title}
+            text={ben.text}
+            price={ben.price}
+            userNic={ben.user_nick_name}
+            sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+          >
+            <ListItem alignItems="flex-start">
+              <ListItemAvatar>
+                <Avatar alt="Remy Sharp" src={ben['User.Userinfo.Photolinks.link']}  />
+                {ben.user_nick_name}
+              </ListItemAvatar>
+              <ListItemText
+                onClick={() => submitHandler(ben.id)}
+                primary={ben.title}
+                secondary={
+                  <React.Fragment>
+                    <Typography
+                      sx={{ display: "inline" }}
+                      component="span"
+                      variant="body2"
+                      color="text.primary"
+                    ></Typography>
+                    {ben.text}
+                  </React.Fragment>
+                }
+              />
+            </ListItem>
+          </List>
+        );
+      })}
     </Box>
   );
 };

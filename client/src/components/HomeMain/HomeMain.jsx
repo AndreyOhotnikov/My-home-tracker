@@ -9,7 +9,8 @@ export const HomeMain = () => {
     <div>
       <BenefitServicesMain />
       <BenefitServicesList />
-      {/* <BenefitServicesForm /> */}
+      <BenefitServicesForm />
+      <BenefitServicesItem />
     </div>
   );
 };

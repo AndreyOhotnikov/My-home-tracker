@@ -42,7 +42,7 @@ export const BenefitServicesMain = () => {
   }, []);
 
   const submitHandler = (id) => {
-    navigate(`/service/${id}`);
+    navigate(`/services/${id}`);
   };
 
   return (

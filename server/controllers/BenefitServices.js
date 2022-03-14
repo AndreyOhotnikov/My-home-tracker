@@ -1,34 +1,60 @@
-const { Benifit, Category_benifit } = require('../db/models')
+const { Benifit, Category_benifit, User, Userinfo, Photolink } = require('../db/models');
+
 
 exports.getAllServices = async (req, res) => {
   console.log('services');
-  const categories = await Category_benifit.findAll({ raw: true })
-  console.log(categories, 'categories');
-  let benefitAndCategory = await Promise.all(await categories.map(async (category) => {
-    console.log('1111');
-    const serv = await Benifit.findAll({ where: { category_id: category.id }, raw: true })
+  let categor;
+  let user;
+
+  categor = await Category_benifit.findAll({ raw: true })
+  
+
+  const benefitAndCategory = await Promise.all(await categor.map(async (category) => {
+    const serv = await Benifit.findAll({ where: { category_id: category.id }, include: [{ model: User, attributes: ['id', 'nick_name', 'email'], include: [{ model: Userinfo, attributes: ['phone', 'full_name'], include: [{ model: Photolink, attributes: ['userinfo_id', 'link'] }] }] }], raw: true })
     category.benifits = serv
     return category
   }))
-  console.log(benefitAndCategory, 'benefitAndCategory');
+  // console.log(benefitAndCategory, 'benefitAndCategory');
   res.json(benefitAndCategory)
 }
 
+exports.addNewServices = async (req, res) => {
+  console.log('iiiiiiiiiiii');
+  console.log(req.body, 'kjhgfdsdfg');
+  const { title, text, price, service } = req.body;
+  console.log('req.body 7: ', req.body);
 
-// exports.getAllServices = async (req, res) => {
-//   console.log('lkkj');
-//   console.log('services');
-//   const services = await Benifit.findAll({ include: { model: Category_benifit, attributes: ['title','link']} , raw: true })
-//   console.log(services, 'services');
-//   res.json(services)
-// }
+  const categId = (id) => {
+    switch (service) {
+      case 'clining':
+        return  4;
+      case 'dogWalking':
+        return  1;
+      case 'repair':
+        return 2;
+      case 'nanny':
+        return  3;
+      case 'beauty':
+        return  5;
+      default:
+        break;
+    }
+  }
+const resCategId = categId();
+// console.log(resCategId,'resCategId');
 
+  let newService;
+  try {
+    const newService = await Benifit.create({
+      title,
+      text,
+      price,
+      category_id: resCategId
+    })
 
-
-// exports.getAllServices = async (req, res) => {
-//   console.log('lkkj');
-//   console.log('services');
-//   const category = await Category_benifit.findAll({ include: { model: Benifit, attributes: ['id','title','text','price']} , raw: true })
-//   console.log(category, 'category');
-//   res.json(category)
-// }
+    console.log(newService);
+  } catch (error) {
+    console.log(error);
+  }
+  res.json(newService)
+}
