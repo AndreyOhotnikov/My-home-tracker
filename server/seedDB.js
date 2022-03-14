@@ -49,7 +49,7 @@ const user = [
     home_id: 1,
   },
   {
-    nick_name: 'bob',
+    nick_name: 'liza',
     email: '123',
     role: 'admin',
     checked: 'true',
@@ -129,9 +129,10 @@ async function addBenifit(obj) {
 // benifit.map((el) => addBenifit(el));
 
 const userinfo = [{
-  user_id: 1, full_name: 'Иванов Иван Иванович', entrance: 3, flat: 100, phone: 88005553535,
+  user_id: 9, full_name: 'Иванов Иван Иванович', entrance: 3, flat: 100, phone: 88005553534
+  ,
 }, {
-  user_id: 2, full_name: 'Петров Пётр Петрович', entrance: 1, flat: 42, phone: 88005553535,
+  user_id: 10, full_name: 'Петров Пётр Петрович', entrance: 1, flat: 42, phone: 88005553535,
 }];
 async function addUserinfo(obj) {
   try {
@@ -149,9 +150,9 @@ async function addUserinfo(obj) {
 // userinfo.map((el) => addUserinfo(el));
 
 const bid = [{
-  user_id: 1, title: 'няня', status: 'актуально', text: 'bid_text',
+  user_id: 5, title: 'няня', status: 'актуально', text: 'bid_text',
 }, {
-  user_id: 2, title: 'Посидеть с собакой', status: 'неактуально', text: 'bid_text',
+  user_id: 6, title: 'Посидеть с собакой', status: 'неактуально', text: 'bid_text',
 }];
 async function addBid(obj) {
   try {
@@ -188,9 +189,9 @@ async function addStore(obj) {
 // store.map((el) => addStore(el));
 
 const local_news = [{
-  user_id: 1, title: 'локальная новость 1', status: 'актуально', text: 'local_text', phone: 88005553535,
+  user_id: 5, title: 'локальная новость 1', status: 'актуально', text: 'local_text', phone: 88005553535,
 }, {
-  user_id: 1, title: 'локальная новость 2', status: 'актуально', text: 'local_text', phone: 88005553535,
+  user_id: 6, title: 'локальная новость 2', status: 'актуально', text: 'local_text', phone: 88005553535,
 }];
 async function addLocal_news(obj) {
   try {
@@ -208,9 +209,9 @@ async function addLocal_news(obj) {
 // local_news.map((el) => addLocal_news(el));
 
 const global_news = [{
-  user_id: 1, title: 'глобальная новость 1', status: 'актуально', text: 'пдщифд_text', phone: 880055,
+  user_id: 5, title: 'глобальная новость 1', status: 'актуально', text: 'пдщифд_text', phone: 880055,
 }, {
-  user_id: 1, title: 'локальная новость 2', status: 'актуально', text: 'local_text', fixed: 'true',
+  user_id: 6, title: 'локальная новость 2', status: 'актуально', text: 'local_text', fixed: 'true',
 }];
 async function addGlobal_news(obj) {
   try {
@@ -268,9 +269,9 @@ async function addLike(obj) {
 // like.map((el) => addLike(el));
 
 const photolink = [{
-  userinfo_id: 2, global_news_id: 1, link: 'http://localhost:3000/...',
+  userinfo_id: 5, global_news_id: 1,bid_id:1,local_news_id:1, link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
 }, {
-  userinfo_id: 1, local_news_id: 2, link: 'http://localhost:3000/...',
+  userinfo_id: 6, global_news_id: 2,bid_id:2,local_news_id:2, link: 'https://images.unsplash.com/photo-1544465544-1b71aee9dfa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBob3RvfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
 }];
 async function addPhotolink(obj) {
   try {
@@ -286,7 +287,7 @@ async function addPhotolink(obj) {
     console.log(err);
   }
 }
-// photolink.map((el) => addPhotolink(el));
+photolink.map((el) => addPhotolink(el));
 
 const category_store = [{
   title: 'Продукты', link: 'http://localhost:3000/...',

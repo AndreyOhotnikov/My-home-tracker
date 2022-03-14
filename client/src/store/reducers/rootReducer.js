@@ -3,14 +3,19 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import  saga from 'redux-saga';
 import { all } from '@redux-saga/core/effects';
-import {locationReducer} from './locationReducer'
-import {authReducer} from './authReducer'
+import {InitialState} from "../initState";
+// import {locationReducer} from './locationReducer'
+import {userReducer} from '../reducers/userReducer'
+import { servicesReducer } from './servicesReducer';
+import { watcherAddServiceSaga,  watcherDelServiceSaga,  watcherGetFindServiceSaga,  watcherServicesSaga } from '../saga/benefitServices';
+// import { authUserReducer } from '../actionCreators/userAC';
 
 const sagaMiddleware = saga()
 
 const rootReducer = combineReducers({
-  auth: authReducer,
-  location: locationReducer
+  user: userReducer,
+  services: servicesReducer,
+  // location: locationReducer
 })
 
 const composeEnhancer =
@@ -18,10 +23,10 @@ const composeEnhancer =
     ? applyMiddleware(thunk)
     : composeWithDevTools(applyMiddleware(thunk, sagaMiddleware));
 
-export const store = createStore(rootReducer, composeEnhancer)
+export const store = createStore(rootReducer,InitialState, composeEnhancer)
 
 sagaMiddleware.run(
   function*() {
-    yield all([/*, watcherChuckNorris() здесь массив функций сага */]) 
+    yield all([watcherServicesSaga(),watcherAddServiceSaga(),watcherDelServiceSaga()]) 
   }
 )

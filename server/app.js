@@ -6,29 +6,37 @@ const path = require('path');
 const session = require('express-session');
 require('dotenv').config();
 
-const usersRouter = require('./routes/user');
-const gameRouter = require('./routes/game')
+// const usersRouter = require('./routes/user');
+// const gameRouter = require('./routes/game')
+
+const servicesRouter = require('./routes/benefitServices')
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const redis = require('redis');
-let RedisStore = require('connect-redis')(session);
-let redisClient = redis.createClient();
+// const redis = require('redis');
+// let RedisStore = require('connect-redis')(session);
+// let redisClient = redis.createClient();
+const FileStore = require('session-file-store')(session);
+
 
 app.use(logger('dev'));
 app.use(express.json());
-// const corsOptions ={
-//   origin:'http://localhost:3000', 
-//   credentials:true,            //access-control-allow-credentials:true
-//   optionSuccessStatus:200
-// }
-// app.use(cors(corsOptions));
-app.use(cors());
 
+app.use(
+  cors({
+    origin: 'http://127.0.0.1:3000',
+    credentials: true,
+  }),
+);
+// app.use(cors());
+
+const fileStoreOptions = {};
 
 const sessionConfig = {
   name: 'myHome',
-  store: new RedisStore({ client: redisClient }),
+  // store: new RedisStore({ client: redisClient }),
+  store: new FileStore(fileStoreOptions),
   secret: process.env.COOKIE_SECRET,
   resave: false,                    
   saveUninitialized: false,
@@ -48,8 +56,11 @@ app.use((req, res, next) => {
   console.log("\x1b[35m", 'res.locals.username:', res.locals.username);
   next();
 });
-app.use('/', gameRouter);
-app.use('/user', usersRouter);
+// app.use('/', gameRouter);
+// app.use('/user', usersRouter);
+// app.use('/category',benefitCategory)
+
+app.use('/services', servicesRouter)
 
 app.use((req, res, next) => {
   const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');
