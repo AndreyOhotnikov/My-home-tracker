@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import  saga from 'redux-saga';
 import { all } from '@redux-saga/core/effects';
 import {locationReducer} from './locationReducer'
+import { firebaseReducer } from './firebaseReducer';
 import {authReducer} from './userReducer'
 import { watcherSignUp } from '../saga/userSignup';
 import { watcherGetLocation } from '../saga/locations';
@@ -15,7 +16,8 @@ const sagaMiddleware = saga()
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  location: locationReducer
+  location: locationReducer,
+  firebase: firebaseReducer
 })
 
 const composeEnhancer =

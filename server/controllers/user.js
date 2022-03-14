@@ -30,15 +30,33 @@ exports.checkUserAndCreateSession = async (req, res, next) => {
 
 exports.checkAuth = async (req, res) => {
   let user 
-  console.log(234234)
+  // console.log(234234)
   if(req.session.user) {
     try {
       user = await User.findOne({where: {id: req.session.user.id}, raw: true})
     } catch (error) {
       
     }
-    res.json({user: user.nick_name, role: user.role, home_id: user.home_id })
-  } else res.json(false)
+    res.json({user: {user_id: user.id, user: user.nick_name, role: user.role, home_id: user.home_id }, 
+    //   config: {
+    //   apiKey: process.env.apiKey,
+    //   authDomain: process.env.authDomain,
+    //   projectId: process.env.projectId,
+    //   storageBucket: process.env.storageBucket,
+    //   messagingSenderId: process.env.messagingSenderId,
+    //   appId: process.env.appId
+    // }
+  })
+  } else res.json({error: false, 
+  //   config: {
+  //   apiKey: process.env.apiKey,
+  //   authDomain: process.env.authDomain,
+  //   projectId: process.env.projectId,
+  //   storageBucket: process.env.storageBucket,
+  //   messagingSenderId: process.env.messagingSenderId,
+  //   appId: process.env.appId
+  // }
+})
 }
 
 
@@ -60,13 +78,13 @@ exports.createUserAndSession = async (req, res, next) => {
       else if (isChairman && city_id && street_id) {
 
         newHome = await Home.create({ name: home, street_id})
-        user = await User.create({nick_name: name, email: email, role: 'chairman', checked: 'false', password: hashedPassword, home_id})
+        user = await User.create({nick_name: name, email: email, role: 'chairman', checked: 'false', password: hashedPassword, home_id: newHome.id})
       } 
       else if (isChairman && city_id) {
 
         newStreet = await Street.create({ name: street, city_id })
         newHome = await Home.create({ name: home, street_id: newStreet.id})
-        user = await User.create({nick_name: name, email: email, role: 'chairman', checked: 'false', password: hashedPassword, home_id})
+        user = await User.create({nick_name: name, email: email, role: 'chairman', checked: 'false', password: hashedPassword, home_id: newHome.id})
       } 
       else if (isChairman ) {
         console.log('-----------------------------------46')
@@ -74,7 +92,7 @@ exports.createUserAndSession = async (req, res, next) => {
         newCity = await City.create({ name: city })
         newStreet = await Street.create({ name: street, city_id: newCity.id })
         newHome = await Home.create({ name: home, street_id: newStreet.id})
-        user = await User.create({nick_name: name, email: email, role: 'chairman', checked: 'false', password: pass, home_id})
+        user = await User.create({nick_name: name, email: email, role: 'chairman', checked: 'false', password: pass, home_id: newHome.id})
       } else {
         console.log('У вас нет прав')
         res.json({error: 'У вас нет прав' })

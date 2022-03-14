@@ -25,16 +25,7 @@ import MailIcon from '@mui/icons-material/Mail';
 
 
 
-const pages = [
-  {name: 'Главная', src: "/"}, 
-  {name: 'Картинка', src: "/pictures"}, 
-  {name: 'Главные новости', src: "/GlobalNews"}, 
-  {name: 'События', src: "/doings"}, 
-  {name: 'Барахолка', src: "/store"},
-  {name: 'Услуги', src: "/benefits"}
-  
-];
-const settings = [{name: 'Профиль', src: "/profile"}, {name: 'Выйти', src: "/signout"}];
+
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -74,7 +65,7 @@ const Navigation = () => {
 
   return ( 
   <div onClick={handleDrawerClose}>
-     <AppBar position="static"  onClick={handleDrawerClose} >
+     { auth && <AppBar position="static"  onClick={handleDrawerClose} >
       <Container  maxWidth="10px" style={{paddingLeft: '5px', paddingRight: '5px'}}  >
         <Toolbar  disableGutters  style={{display: 'contents'}} >
           <Box   style={{display: 'flex', justifyContent: 'space-between'}}  > 
@@ -158,7 +149,7 @@ const Navigation = () => {
               </Box>
             </Toolbar>
           </Container>
-        </AppBar>
+        </AppBar> }
 
       <Routes>
           <Route path='/signin' element={<SignIn/>} />
@@ -178,104 +169,13 @@ const Navigation = () => {
 export default Navigation;
 
 
-
-
-// const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-//   ({ theme, open }) => ({
-//     flexGrow: 1,
-//     padding: theme.spacing(3),
-//     transition: theme.transitions.create('margin', {
-//       easing: theme.transitions.easing.sharp,
-//       duration: theme.transitions.duration.leavingScreen,
-//     }),
-//     marginLeft: `-${drawerWidth}px`,
-//     ...(open && {
-//       transition: theme.transitions.create('margin', {
-//         easing: theme.transitions.easing.easeOut,
-//         duration: theme.transitions.duration.enteringScreen,
-//       }),
-//       marginLeft: 0,
-//     }),
-//   }),
-// );
-
-
-// export default function PersistentDrawerLeft() {
-//   const theme = useTheme();
-//   const [open, setOpen] = React.useState(false);
-
-//   const handleDrawerOpen = () => {
-//     setOpen(true);
-//   };
-
-//   const handleDrawerClose = () => {
-//     setOpen(false);
-//   };
-
-//   return (
-    // <Box sx={{ display: 'flex' }}>
-    //   <CssBaseline />
-    //   <AppBar position="fixed" open={open}>
-    //     <Toolbar>
-    //       <IconButton
-    //         color="inherit"
-    //         aria-label="open drawer"
-    //         onClick={handleDrawerOpen}
-    //         edge="start"
-    //         sx={{ mr: 2, ...(open && { display: 'none' }) }}
-    //       >
-    //         <MenuIcon />
-    //       </IconButton>
-    //       <Typography variant="h6" noWrap component="div">
-    //         Persistent drawer
-    //       </Typography>
-    //     </Toolbar>
-    //   </AppBar>
-    //   <Drawer
-    //     sx={{
-    //       width: drawerWidth,
-    //       flexShrink: 0,
-    //       '& .MuiDrawer-paper': {
-    //         width: drawerWidth,
-    //         boxSizing: 'border-box',
-    //       },
-    //     }}
-    //     variant="persistent"
-    //     anchor="left"
-    //     open={open}
-    //   >
-    //     <DrawerHeader>
-    //       <IconButton onClick={handleDrawerClose}>
-    //         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-    //       </IconButton>
-    //     </DrawerHeader>
-    //     <Divider />
-    //     <List>
-    //       {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-    //         <ListItem button key={text}>
-    //           <ListItemIcon>
-    //             {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-    //           </ListItemIcon>
-    //           <ListItemText primary={text} />
-    //         </ListItem>
-    //       ))}
-    //     </List>
-    //     <Divider />
-    //     <List>
-    //       {['All mail', 'Trash', 'Spam'].map((text, index) => (
-    //         <ListItem button key={text}>
-    //           <ListItemIcon>
-    //             {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-    //           </ListItemIcon>
-    //           <ListItemText primary={text} />
-    //         </ListItem>
-    //       ))}
-    //     </List>
-    //   </Drawer>
-    //   <Main open={open}>
-        
-
-    //   </Main>
-    // </Box>
-//   );
-// }
+const pages = [
+  {name: 'Главная', src: "/"}, 
+  {name: 'Картинка', src: "/pictures"}, 
+  {name: 'Главные новости', src: "/GlobalNews"}, 
+  {name: 'События', src: "/doings"}, 
+  {name: 'Барахолка', src: "/store"},
+  {name: 'Услуги', src: "/benefits"}
+  
+];
+const settings = [{name: 'Профиль', src: "/profile"}, {name: 'Выйти', src: "/signout"}];
