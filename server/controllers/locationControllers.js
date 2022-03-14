@@ -13,7 +13,7 @@ exports.getAllLocations = async (req, res, next) => {
       const streets = await Street.findAll({where: {city_id: city.id}, raw:true})
       console.log('streets', streets)
       const streetsAndHomes = await Promise.all(await streets.map(async (street) => {
-        console.log(1111)
+        // console.log(1111)
         const homes = await Home.findAll({where: {street_id: street.id}, raw:true})
         console.log('homes', homes)
 
@@ -23,7 +23,14 @@ exports.getAllLocations = async (req, res, next) => {
       city.streets = streetsAndHomes;
       return city;
     }))
-    res.json({location: cityesAndSrteetsAndHomes})
+    res.json({location: cityesAndSrteetsAndHomes, config: {
+      apiKey: process.env.apiKey,
+      authDomain: process.env.authDomain,
+      projectId: process.env.projectId,
+      storageBucket: process.env.storageBucket,
+      messagingSenderId: process.env.messagingSenderId,
+      appId: process.env.appId
+    }})
   } catch (error) {
     console.error(error);
   }

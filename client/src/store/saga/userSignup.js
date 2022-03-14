@@ -1,36 +1,44 @@
 import { types } from "../types/userTypes"
-
 import { takeEvery, put, call, debounce, retry, throttle } from 'redux-saga/effects';
 import {authUserReducer, signupUserReducer} from '../actionCreators/userAC'
+import { initializeApp } from "firebase/app";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { firebaseConfig } from "../types/firebaseConfig";
+
 
 async function signUpAsync(user) {
+  const app = initializeApp( firebaseConfig );
+  const storage = getStorage(app);
   console.log(user)
-  let formdata
-  if (user.photoIsChairman) {
-    console.log(11)
-    formdata = new FormData()
-    formdata.append('photo', user.photoIsChairman)
+  if (user.isChairman) {
+    const files = [...user.photoIsChairman]
+      const urls = await Promise.all(await files.map(async (file, index) => {
+        const storageRef = await ref(storage, `images/${Date.now()}${file.name.slice(file.name.indexOf('.'))}`);
+        const snapshot = await uploadBytes(storageRef, file)                      // загрузка файла
+        const url = await getDownloadURL(storageRef)                                     // ссылка на фотку
+        return url;
+      }))
+    user.photoIsChairman = urls
   }
-
   const response = await fetch(`user/signup`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(user, formdata) // {name, email, pass, idHome, city, city_id, home,  home_id, street, street_id}
+    body: JSON.stringify(user) // {name: string, email: string, pass: string, idHome: string, 
+                                          // city: string, city_id: string, home: string,  home_id: string, 
+                                          // street: string, street_id: string,
+                                          // photoIsChairman: [string, string]}
   });
   return await response.json() // сюда примем имя пользователя
 }
 
 
 function* workerSignUp({user}) {
-  // yield console.log('--------------------------------',action.id)
   try {
     console.log(user)
     const signUp = yield call(() => signUpAsync(user))
-    // console.log(signUp)
     if(!signUp.error) {
-      // yield put(signupUserReducer())
       yield put(authUserReducer(signUp))
     } 
   } catch (err) {
