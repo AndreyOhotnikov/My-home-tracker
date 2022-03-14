@@ -21,14 +21,10 @@ import { watcherCheckIsAuth } from '../saga/userIsAuth';
 const sagaMiddleware = saga()
 
 const rootReducer = combineReducers({
-
-  
-  globalNews:globalNewsReducer
-
+  globalNews:globalNewsReducer,
   auth: authReducer,
   location: locationReducer,
   firebase: firebaseReducer
-
 })
 
 const composeEnhancer =

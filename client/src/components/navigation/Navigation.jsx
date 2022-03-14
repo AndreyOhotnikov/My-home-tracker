@@ -166,7 +166,7 @@ const Navigation = () => {
           <Route path='/benefits' element={<BenefitServicesList />} />
           <Route path='/GlobalNews' element={<GlobalNewsList />} />
           { !auth &&  <Route path='/' element={<WelcomePage/>} />}
-          { !auth &&  <Route path='/locationHome' element={<LockationHome/>} />} */}
+          { !auth &&  <Route path='/locationHome' element={<LockationHome/>} />}
       </Routes>
       <ModalPage onClick={handleDrawerClose} /> 
   </div>

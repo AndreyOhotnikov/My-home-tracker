@@ -11,10 +11,10 @@ function App() {
     <div className="App">
        <Provider store={store}>
        <BrowserRouter>
-        {/* <Navigation/> */}
+        <Navigation/>
         {/* { <GlobalNewsList />} */}
         {/* {<GlobalNewsForm/>} */}
-        <ShortGlobalNewsList />
+        {/* <ShortGlobalNewsList /> */}
      </BrowserRouter>
        </Provider>
      
