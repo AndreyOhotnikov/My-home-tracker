@@ -1,12 +1,10 @@
 const router = require('express').Router();
-const {getAllServices,addNewServices}=require('../controllers/BenefitServices');
+const {getAllServices,addNewServices,deleteServise}=require('../controllers/BenefitServices');
 
 router
 .get('/',getAllServices)
 .post('/add', addNewServices)
+.delete('/:id',deleteServise )
 
-// router
-// .get('/edit/:id',findServices)
-// .patch('/edit/:id',editServices)
 
 module.exports = router;

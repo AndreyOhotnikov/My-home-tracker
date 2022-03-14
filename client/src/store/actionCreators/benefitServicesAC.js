@@ -1,4 +1,4 @@
-import { ADD_SERVICE, GET_ALL_CATEGORY, GET_ALL_SERVICES, REQUEST_ADD_SERVICE_SAGA, SAGA_API_CATEGORY, SAGA_API_SERVICES } from "../types/servicesTypes"
+import { ADD_SERVICE, DELETE_SERVICE, GET_ALL_SERVICES, REQUEST_ADD_SERVICE_SAGA, REQUEST_DEL_SERVICE_SAGA,SAGA_API_SERVICES } from "../types/servicesTypes"
 
 export const allServices = (services) => {
   return {
@@ -19,11 +19,25 @@ export const addService = (newService) => {
     type: ADD_SERVICE,
     payload: newService
   }
-} 
+}
 
-export const sagaAddService = (formData) =>{
+export const sagaAddService = (formData) => {
   return {
     type: REQUEST_ADD_SERVICE_SAGA,
     payload: formData
+  }
+}
+
+export const delService = (id) => {
+  return {
+    type: DELETE_SERVICE,
+    payload: id
+  }
+}
+
+export const delSagaService = (id) => {
+  return {
+    type: REQUEST_DEL_SERVICE_SAGA,
+    payload: id
   }
 }

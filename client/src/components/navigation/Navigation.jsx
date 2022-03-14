@@ -60,14 +60,14 @@ export const Navigation = () => {
   return (
     <>
     <Link to="/services">Услуги</Link>
-    <Link to="/add">Добавить услугу</Link>
+    <Link to="/services/new">Добавить услугу</Link>
     
     
       <Routes>
       <Route path="/services" element={<BenefitServicesMain />} />
         <Route path="/services/:id" element={<BenefitServicesList />} />
         <Route path="service/:id" element={<BenefitServicesItem />} />
-        <Route path="/add" element={<BenefitServicesForm />} />
+        <Route path="/services/new" element={<BenefitServicesForm />} />
 
       </Routes>
     </>

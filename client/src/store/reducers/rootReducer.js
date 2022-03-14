@@ -7,7 +7,7 @@ import {InitialState} from "../initState";
 // import {locationReducer} from './locationReducer'
 import {userReducer} from '../reducers/userReducer'
 import { servicesReducer } from './servicesReducer';
-import { watcherAddServiceSaga,  watcherServicesSaga } from '../saga/benefitServices';
+import { watcherAddServiceSaga,  watcherDelServiceSaga,  watcherGetFindServiceSaga,  watcherServicesSaga } from '../saga/benefitServices';
 // import { authUserReducer } from '../actionCreators/userAC';
 
 const sagaMiddleware = saga()
@@ -27,6 +27,6 @@ export const store = createStore(rootReducer,InitialState, composeEnhancer)
 
 sagaMiddleware.run(
   function*() {
-    yield all([watcherServicesSaga(),watcherAddServiceSaga()]) 
+    yield all([watcherServicesSaga(),watcherAddServiceSaga(),watcherDelServiceSaga()]) 
   }
 )
