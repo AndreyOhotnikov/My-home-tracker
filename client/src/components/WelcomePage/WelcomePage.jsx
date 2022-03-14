@@ -1,22 +1,16 @@
 import React, { useEffect } from "react";
-import { types } from "../../store/types"
 import { useNavigate } from "react-router-dom";
-
-import MyButton from "../button/MyButton";
-
+import Button from '@mui/material/Button'
 
 const WelcomePage = () => {
   const navigate = useNavigate()
 
-  const navigateTo = (url) => {
-    navigate(url)
-  }
+  const navigateTo = (url) => navigate(url);
 
-  return (
+   return (
       <div>
-
-        <MyButton  onClick={() => navigateTo('/signup')}>Зарегистрироваться</MyButton>
-        <MyButton  onClick={() => navigateTo('/signin')}>Авторизоваться</MyButton>
+        <Button onClick={() => navigateTo('/signup')}>Зарегистрироваться</Button>
+        <Button onClick={() => navigateTo('/signin')}>Авторизоваться</Button>
       </div>
   )
 }

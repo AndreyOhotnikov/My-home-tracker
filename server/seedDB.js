@@ -12,7 +12,11 @@ async function addCity(obj) {
     console.log(err);
   }
 }
- //city.map((el) => addCity(el));
+
+
+// city.map((el) => addCity(el));
+
+
 const street = [{ name: 'Lenina', city_id: 1 }, { name: 'Traphalgar', city_id: 2 }];
 async function addStreet(obj) {
   try {
@@ -24,7 +28,11 @@ async function addStreet(obj) {
     console.log(err);
   }
 }
-//street.map((el) => addStreet(el));
+
+
+// street.map((el) => addStreet(el));
+
+
 
 const home = [{ name: 31, street_id: 1 }, { name: 123, street_id: 2 }];
 async function addHome(obj) {
@@ -37,7 +45,11 @@ async function addHome(obj) {
     console.log(err);
   }
 }
- //home.map((el) => addHome(el));
+
+
+// home.map((el) => addHome(el));
+
+
 
 const user = [
   {
