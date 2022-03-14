@@ -1,24 +1,18 @@
-// import React, { useEffect } from "react";
-// import { types } from "../../store/types"
-// import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button'
 
-// import MyButton from "../button/MyButton";
+const WelcomePage = () => {
+  const navigate = useNavigate()
 
+  const navigateTo = (url) => navigate(url);
 
-// const WelcomePage = () => {
-//   const navigate = useNavigate()
+   return (
+      <div>
+        <Button onClick={() => navigateTo('/signup')}>Зарегистрироваться</Button>
+        <Button onClick={() => navigateTo('/signin')}>Авторизоваться</Button>
+      </div>
+  )
+}
 
-//   const navigateTo = (url) => {
-//     navigate(url)
-//   }
-
-//   return (
-//       <div>
-
-//         <MyButton  onClick={() => navigateTo('/signup')}>Зарегистрироваться</MyButton>
-//         <MyButton  onClick={() => navigateTo('/signin')}>Авторизоваться</MyButton>
-//       </div>
-//   )
-// }
-
-// export default WelcomePage;
+export default WelcomePage;

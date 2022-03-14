@@ -1,6 +1,6 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Likes', {
+    await queryInterface.createTable('LikeLocals', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -8,20 +8,16 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       user_id: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER),
-        allowNull: true,
-
-        // references: {
-        //   model: 'Users',
-        //   key: 'id',
-        // },
-      },
-      global_news_id: {
         type: Sequelize.INTEGER,
-        allowNull: true,
-
         references: {
-          model: 'Global_news',
+          model: 'Users',
+          key: 'id',
+        },
+      },
+      local_news_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Local_news',
           key: 'id',
         },
       },
@@ -36,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Likes');
+    await queryInterface.dropTable('LikeLocals');
   },
 };

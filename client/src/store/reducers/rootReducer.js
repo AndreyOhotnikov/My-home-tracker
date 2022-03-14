@@ -10,12 +10,29 @@ import { servicesReducer } from './servicesReducer';
 import { watcherAddServiceSaga,  watcherDelServiceSaga,  watcherGetFindServiceSaga,  watcherServicesSaga } from '../saga/benefitServices';
 // import { authUserReducer } from '../actionCreators/userAC';
 
+
+ import {globalNewsReducer} from './globalNewsReducer'
+ import { watcherGlobalNews ,watcherAllGlobalNews, watcherAddLike} from '../saga/globalNews';
+
+import {locationReducer} from './locationReducer'
+import { firebaseReducer } from './firebaseReducer';
+import {authReducer} from './userReducer'
+import { watcherSignUp } from '../saga/userSignup';
+import { watcherGetLocation } from '../saga/locations';
+import { watcherSignOut } from '../saga/userSignout';
+import { watcherSignIn } from '../saga/userSignin';
+import { watcherCheckIsAuth } from '../saga/userIsAuth';
+
+
 const sagaMiddleware = saga()
 
 const rootReducer = combineReducers({
-  user: userReducer,
+  // user: userReducer,
   services: servicesReducer,
-  // location: locationReducer
+  globalNews:globalNewsReducer,
+  auth: authReducer,
+  location: locationReducer,
+  firebase: firebaseReducer
 })
 
 const composeEnhancer =
@@ -27,6 +44,7 @@ export const store = createStore(rootReducer,InitialState, composeEnhancer)
 
 sagaMiddleware.run(
   function*() {
-    yield all([watcherServicesSaga(),watcherAddServiceSaga(),watcherDelServiceSaga()]) 
+    yield all([watcherServicesSaga(),watcherAddServiceSaga(),watcherDelServiceSaga(),watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(),watcherAllGlobalNews(),watcherGlobalNews(),watcherAddLike()]) 
+
   }
 )

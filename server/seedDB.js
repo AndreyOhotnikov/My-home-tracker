@@ -12,7 +12,11 @@ async function addCity(obj) {
     console.log(err);
   }
 }
+
+
 // city.map((el) => addCity(el));
+
+
 const street = [{ name: 'Lenina', city_id: 1 }, { name: 'Traphalgar', city_id: 2 }];
 async function addStreet(obj) {
   try {
@@ -24,7 +28,11 @@ async function addStreet(obj) {
     console.log(err);
   }
 }
+
+
 // street.map((el) => addStreet(el));
+
+
 
 const home = [{ name: 31, street_id: 1 }, { name: 123, street_id: 2 }];
 async function addHome(obj) {
@@ -37,7 +45,11 @@ async function addHome(obj) {
     console.log(err);
   }
 }
+
+
 // home.map((el) => addHome(el));
+
+
 
 const user = [
   {
@@ -147,7 +159,7 @@ async function addUserinfo(obj) {
     console.log(err);
   }
 }
-// userinfo.map((el) => addUserinfo(el));
+//userinfo.map((el) => addUserinfo(el));
 
 const bid = [{
   user_id: 5, title: 'няня', status: 'актуально', text: 'bid_text',
@@ -206,7 +218,7 @@ async function addLocal_news(obj) {
     console.log(err);
   }
 }
-// local_news.map((el) => addLocal_news(el));
+ //local_news.map((el) => addLocal_news(el));
 
 const global_news = [{
   user_id: 5, title: 'глобальная новость 1', status: 'актуально', text: 'пдщифд_text', phone: 880055,
@@ -266,7 +278,7 @@ async function addLike(obj) {
     console.log(err);
   }
 }
-// like.map((el) => addLike(el));
+ //like.map((el) => addLike(el));
 
 const photolink = [{
   userinfo_id: 5, global_news_id: 1,bid_id:1,local_news_id:1, link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
@@ -321,4 +333,4 @@ async function addCategory_benifit(obj) {
     console.log(err);
   }
 }
-//category_benifit.map((el) => addCategory_benifit(el));
+// category_benifit.map((el) => addCategory_benifit(el));

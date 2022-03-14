@@ -13,7 +13,7 @@ import GlobalNewsForm from "./GlobalNewsForm";
 import findDataInGlobalArr from './GlobalNewsList'
 import Button from '@mui/material/Button';
 import {useDispatch} from 'react-redux'
-function GlobalNewsItem({el,view,setView,id,setId}){
+function ShortGlobalNewsItem({el,view,setView,id,setId}){
   const dispatch = useDispatch()
   function changeLike(id){
     dispatch(addLikeSaga(id))
@@ -69,4 +69,4 @@ function GlobalNewsItem({el,view,setView,id,setId}){
 }
 
 
-export default GlobalNewsItem
+export default ShortGlobalNewsItem
