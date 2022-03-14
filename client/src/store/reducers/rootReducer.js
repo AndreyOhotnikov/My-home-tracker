@@ -3,14 +3,17 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import  saga from 'redux-saga';
 import { all } from '@redux-saga/core/effects';
-import {locationReducer} from './locationReducer'
-import {authReducer} from './authReducer'
+// import {locationReducer} from './locationReducer'
+// import {authReducer} from './authReducer'
+ import {globalNewsReducer} from './globalNewsReducer'
+ import { watcherGlobalNews ,watcherAllGlobalNews, watcherAddLike} from '../saga/globalNews';
 
 const sagaMiddleware = saga()
 
 const rootReducer = combineReducers({
-  auth: authReducer,
-  location: locationReducer
+  // auth: authReducer,
+  // location: locationReducer
+  globalNews:globalNewsReducer
 })
 
 const composeEnhancer =
@@ -22,6 +25,6 @@ export const store = createStore(rootReducer, composeEnhancer)
 
 sagaMiddleware.run(
   function*() {
-    yield all([/*, watcherChuckNorris() здесь массив функций сага */]) 
+    yield all([watcherAllGlobalNews(),watcherGlobalNews(),watcherAddLike()]) 
   }
 )
