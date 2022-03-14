@@ -3,6 +3,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import  saga from 'redux-saga';
 import { all } from '@redux-saga/core/effects';
+
+
+ import {globalNewsReducer} from './globalNewsReducer'
+ import { watcherGlobalNews ,watcherAllGlobalNews, watcherAddLike} from '../saga/globalNews';
+
 import {locationReducer} from './locationReducer'
 import { firebaseReducer } from './firebaseReducer';
 import {authReducer} from './userReducer'
@@ -12,12 +17,18 @@ import { watcherSignOut } from '../saga/userSignout';
 import { watcherSignIn } from '../saga/userSignin';
 import { watcherCheckIsAuth } from '../saga/userIsAuth';
 
+
 const sagaMiddleware = saga()
 
 const rootReducer = combineReducers({
+
+  
+  globalNews:globalNewsReducer
+
   auth: authReducer,
   location: locationReducer,
   firebase: firebaseReducer
+
 })
 
 const composeEnhancer =
@@ -29,6 +40,10 @@ export const store = createStore(rootReducer, composeEnhancer)
 
 sagaMiddleware.run(
   function*() {
-    yield all([watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth()/*, watcherChuckNorris() здесь массив функций сага */]) 
+
+   
+
+    yield all([watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(),watcherAllGlobalNews(),watcherGlobalNews(),watcherAddLike()/*, watcherChuckNorris() здесь массив функций сага */]) 
+
   }
 )

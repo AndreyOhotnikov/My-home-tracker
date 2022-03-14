@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Link, Route, useNavigate, Navigate, useLocation } from "react-router-dom"
+
+
+
+
 import SignIn from "../Signin/SignIn";
 import Signup from "../Signup/Signup";
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,9 +41,11 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 
+
 const Navigation = () => {
   const dispatche = useDispatch()
   const auth = useSelector(state => state.auth.auth)
+
   const navigate = useNavigate()
   const theme = useTheme();
 
@@ -152,6 +158,7 @@ const Navigation = () => {
         </AppBar> }
 
       <Routes>
+
           <Route path='/signin' element={<SignIn/>} />
           <Route path='/signup' element={<Signup/>} />
           <Route path='/profile' element={<PrivatePageUser/>} />
@@ -159,7 +166,7 @@ const Navigation = () => {
           <Route path='/benefits' element={<BenefitServicesList />} />
           <Route path='/GlobalNews' element={<GlobalNewsList />} />
           { !auth &&  <Route path='/' element={<WelcomePage/>} />}
-          { !auth &&  <Route path='/locationHome' element={<LockationHome/>} />}
+          { !auth &&  <Route path='/locationHome' element={<LockationHome/>} />} */}
       </Routes>
       <ModalPage onClick={handleDrawerClose} /> 
   </div>
