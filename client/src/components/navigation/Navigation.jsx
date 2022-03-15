@@ -149,7 +149,7 @@ const Navigation = () => {
                       )
                     )}
                   </List>
-                  <Divider /> {/* Линия разделдения */}
+                  <Divider />
                   ываывывпа
                 </Drawer>
 
