@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Local_news extends Model {
     /**
@@ -10,10 +10,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.belongsTo(models.User,{foreignKey:'user_id'})
-      this.hasMany(models.Response,{foreignKey:'local_news_id'})
-      this.hasMany(models.Like,{foreignKey:'local_news_id'})
-      this.hasMany(models.Photolink,{foreignKey:'local_news_id'})
+      this.belongsTo(models.User, { foreignKey: 'user_id' });
+      this.hasMany(models.Response, { foreignKey: 'local_news_id' });
+      // this.hasMany(models.Like, { foreignKey: 'local_news_id' });
+      this.hasMany(models.Photolink, { foreignKey: 'local_news_id' });
+      this.hasMany(models.LikeLocal, { foreignKey: 'local_news_id' });
     }
   }
   Local_news.init({
@@ -21,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     status: DataTypes.STRING,
     text: DataTypes.TEXT,
-    phone: DataTypes.BIGINT
+    phone: DataTypes.BIGINT,
   }, {
     sequelize,
     modelName: 'Local_news',
