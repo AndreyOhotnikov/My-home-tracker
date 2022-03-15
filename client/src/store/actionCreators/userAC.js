@@ -1,4 +1,4 @@
-import { types } from "../types/userTypes"
+ import { types } from "../types/userTypes"
 
 
 // при заходе на сайт и подтягивании куков

@@ -12,11 +12,7 @@ async function addCity(obj) {
     console.log(err);
   }
 }
-
-
-// city.map((el) => addCity(el));
-
-
+ //city.map((el) => addCity(el));
 const street = [{ name: 'Lenina', city_id: 1 }, { name: 'Traphalgar', city_id: 2 }];
 async function addStreet(obj) {
   try {
@@ -28,11 +24,7 @@ async function addStreet(obj) {
     console.log(err);
   }
 }
-
-
-// street.map((el) => addStreet(el));
-
-
+ //street.map((el) => addStreet(el));
 
 const home = [{ name: 31, street_id: 1 }, { name: 123, street_id: 2 }];
 async function addHome(obj) {
@@ -45,10 +37,7 @@ async function addHome(obj) {
     console.log(err);
   }
 }
-
-
-// home.map((el) => addHome(el));
-
+ //home.map((el) => addHome(el));
 
 
 const user = [
@@ -198,7 +187,7 @@ async function addStore(obj) {
     console.log(err);
   }
 }
-// store.map((el) => addStore(el));
+ //store.map((el) => addStore(el));
 
 const local_news = [{
   user_id: 5, title: 'локальная новость 1', status: 'актуально', text: 'local_text', phone: 88005553535,
@@ -302,9 +291,17 @@ async function addPhotolink(obj) {
 photolink.map((el) => addPhotolink(el));
 
 const category_store = [{
-  title: 'Продукты', link: 'http://localhost:3000/...',
+  title: 'Без категории', link: 'http://localhost:3000/...',
 }, {
   title: 'Мебель', link: 'http://localhost:3000/...',
+}, {
+  title: 'Игрушки', link: 'http://localhost:3000/...',
+}, {
+  title: 'Техника', link: 'http://localhost:3000/...',
+}, {
+  title: 'Одежда', link: 'http://localhost:3000/...',
+}, {
+  title: 'Прочее', link: 'http://localhost:3000/...',
 }];
 async function addCategory_store(obj) {
   try {
@@ -316,7 +313,7 @@ async function addCategory_store(obj) {
     console.log(err);
   }
 }
-// category_store.map((el) => addCategory_store(el));
+ //category_store.map((el) => addCategory_store(el));
 
 const category_benifit = [{
   title: 'Няня', link: 'http://localhost:3000/...',
