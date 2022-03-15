@@ -9,8 +9,6 @@
 // import  styles  from "./Signout.module.css";
 // import { openModaleReducer } from "../../store/actionCreators/userAC";
 
-
-
 // const Signout = () => {
 //   const open = useSelector(state => state.auth.modale)
 //   const dispatche = useDispatch()
