@@ -21,7 +21,6 @@ import LockationHome from "../Signup/LockationHome";
 import { types } from "../../store/types/userTypes";
 import { openModaleReducer } from "../../store/actionCreators/userAC";
 import PrivatePageUser from "../PrivatePageUser/PrivatePageUser";
-import BaraholkaList from "../Baraholka/BaraholkaList";
 import {BenefitServicesList} from "../BenefitServices/BenefitServicesList";
 import ModalPage from "../Signout/ModalPage";
 
@@ -236,7 +235,6 @@ const pages = [
   { name: "Картинка", src: "/pictures" },
   { name: "Главные новости", src: "/GlobalNews" },
   { name: "События", src: "/doings" },
-  { name: "Барахолка", src: "/store" },
   { name: "Добавить услугу", src: "/services/new" },
   { name: "Услуги", src: "/services" },
   { name: "Барахолка", src: "/baraholka" },
