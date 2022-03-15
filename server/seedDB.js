@@ -172,7 +172,7 @@ async function addBid(obj) {
 const store = [{
   user_id: 1, title: 'холодильник', status: 'актуально', text: 'store_text', price: 300,
 }, {
-  user_id: 1, title: 'кровать', status: 'актуально', text: 'store_text', price: 300,
+  user_id: 6, title: 'кровать', status: 'актуально', text: 'store_text', price: 300,
 }];
 async function addStore(obj) {
   try {
@@ -187,7 +187,7 @@ async function addStore(obj) {
     console.log(err);
   }
 }
- //store.map((el) => addStore(el));
+ store.map((el) => addStore(el));
 
 const local_news = [{
   user_id: 5, title: 'локальная новость 1', status: 'актуально', text: 'local_text', phone: 88005553535,
@@ -288,7 +288,7 @@ async function addPhotolink(obj) {
     console.log(err);
   }
 }
-photolink.map((el) => addPhotolink(el));
+// photolink.map((el) => addPhotolink(el));
 
 const category_store = [{
   title: 'Без категории', link: 'http://localhost:3000/...',
@@ -313,7 +313,7 @@ async function addCategory_store(obj) {
     console.log(err);
   }
 }
- //category_store.map((el) => addCategory_store(el));
+//  category_store.map((el) => addCategory_store(el));
 
 const category_benifit = [{
   title: 'Няня', link: 'http://localhost:3000/...',
