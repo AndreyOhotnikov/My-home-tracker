@@ -232,6 +232,7 @@ const pages = [
   { name: "Добавить услугу", src: "/services/new" },
   { name: "Услуги", src: "/services" },
 ];
+
 const settings = [
   { name: "Профиль", src: "/profile" },
   { name: "Выйти", src: "/signout" },

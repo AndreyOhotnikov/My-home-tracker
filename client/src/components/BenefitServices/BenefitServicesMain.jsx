@@ -9,29 +9,29 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { makeStyles } from "@mui/styles";
+// import { makeStyles } from "@mui/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { servicesSagaApi } from "../../store/actionCreators/benefitServicesAC";
 
-const useStyles = makeStyles({
-  root: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  item: {
-    display: "flex",
-    justifyContent: "space-between;",
-    flexDirection: "row",
-  },
-  img: {
-    height: 300,
-    width: 300,
-  },
-});
+// const useStyles = makeStyles({
+//   root: {
+//     display: "flex",
+//     flexDirection: "row",
+//     flexWrap: "wrap",
+//   },
+//   item: {
+//     display: "flex",
+//     justifyContent: "space-between;",
+//     flexDirection: "row",
+//   },
+//   img: {
+//     height: 300,
+//     width: 300,
+//   },
+// });
 
 export const BenefitServicesMain = () => {
-  const classes = useStyles();
+  // const classes = useStyles();
 
   const category = useSelector((state) => state.services);
   const navigate = useNavigate();
@@ -46,17 +46,21 @@ export const BenefitServicesMain = () => {
   };
 
   return (
-    <Box className={classes}>
+    <Box 
+    //className={classes}
+    >
       <Grid container xl={8} direction="row">
         <Grid item>
           <Paper>Категории услуг</Paper>
-          <Box m={10} className={classes.item}>
+          <Box m={10} 
+          // className={classes.item}
+          >
             {category.map((category) => {
               return (
                 <Grid key={category.id} container direction="row">
                   <Card>
                     <CardMedia
-                      className={classes.img}
+                      // className={classes.img}
                       component="img"
                       image={category.link}
                       alt="green iguana"

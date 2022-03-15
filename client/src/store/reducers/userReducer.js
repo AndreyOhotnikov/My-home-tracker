@@ -2,7 +2,7 @@ import { types } from "../types/userTypes"
 
 
 const defaultState = {
-  auth: 'hi',
+  auth: false,
   modale: false
 }
 

@@ -6,58 +6,31 @@ const path = require('path');
 const session = require('express-session');
 require('dotenv').config();
 
-// const usersRouter = require('./routes/user');
-// const gameRouter = require('./routes/game')
-
 const servicesRouter = require('./routes/benefitServices')
+
+const globalNewsRouter = require('./routes/globalNews');
+const locationRouter = require('./routes/location')
+const usersRouter = require('./routes/user');
 
 const redis = require('redis');
 const RedisStore = require('connect-redis')(session);
-const globalNewsRouter = require('./routes/globalNews');
-
-const locationRouter = require('./routes/location')
-const usersRouter = require('./routes/user');
-// const gameRouter = require('./routes/game')
-
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-// const redis = require('redis');
-// let RedisStore = require('connect-redis')(session);
-// let redisClient = redis.createClient();
 // const FileStore = require('session-file-store')(session);
-
-
-// app.use(logger('dev'));
-// app.use(express.json());
-
-// app.use(
-//   cors({
-//     origin: 'http://127.0.0.1:3000',
-//     credentials: true,
-//   }),
-// );
-// app.use(cors());
-
-const fileStoreOptions = {};
 
 
 const redisClient = redis.createClient();
 
 app.use(logger('dev'));
 app.use(express.json());
-// const corsOptions ={
-//   origin:'http://localhost:3000',
-//   credentials:true,            //access-control-allow-credentials:true
-//   optionSuccessStatus:200
-// }
-// app.use(cors(corsOptions));
+
 app.use(cors());
 
 const sessionConfig = {
   name: 'myHome',
-  // store: new RedisStore({ client: redisClient }),
-  store: new FileStore(fileStoreOptions),
+  store: new RedisStore({ client: redisClient }),
+  // store: new FileStore(fileStoreOptions),
   secret: process.env.COOKIE_SECRET,
   resave: false,
   saveUninitialized: false,
@@ -75,15 +48,11 @@ app.use((req, res, next) => {
   console.log('\x1b[35m', 'res.locals.username:', res.locals.username);
   next();
 });
-// app.use('/', gameRouter);
-// app.use('/user', usersRouter);
-// app.use('/category',benefitCategory)
 
 app.use('/services', servicesRouter)
 
 app.use('/global', globalNewsRouter);
 
-// app.use('/', gameRouter);
 app.use('/user', usersRouter);
 app.use('/global', locationRouter);
 

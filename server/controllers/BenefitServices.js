@@ -51,6 +51,7 @@ exports.addNewServices = async (req, res) => {
 }
 
 exports.deleteServise = async (req, res) => {
+  console.log('---------------------------------------------------------------------------------')
   const { id } = req.params;
   await Benifit.destroy({where:{id}});
   res.status(200).end();

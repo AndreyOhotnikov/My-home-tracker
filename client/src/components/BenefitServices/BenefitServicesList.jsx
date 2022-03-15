@@ -25,7 +25,7 @@ export const BenefitServicesList = () => {
     dispatch(sagaAddService());
   
   }, []);
-
+  console.log(category)
   const benefits = category
     .map((el) => el.benifits)
     .reduce((a, b) => {

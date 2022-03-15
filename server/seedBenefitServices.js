@@ -3,35 +3,35 @@ const { Benifit, Category_benifit } = require('./db/models')
 
 const services = [
   {
-    user_id: 5,
+    user_id: 1,
     title: 'Выгул собак',
     text: 'Могу прогуляться с вашей собакой с пн-пт в любое время',
     price: 500,
     category_id:1,
   },
   {
-    user_id: 6,
+    user_id: 1,
     title: 'Клининг',
     text: 'Занимаюсь уборкой квартир',
     price: 1000,
     category_id:4,
   },
   {
-    user_id: 5,
+    user_id: 1,
     title: 'Ремонт,бытовые услуги',
     text: 'Починю ваши трубы, устраню протечки',
     price: 800,
     category_id:2,
   },
   {
-    user_id: 6,
+    user_id: 1,
     title: 'Репетитор по математике',
     text: 'Подготовлю вашего ребенка к экзамену в школе',
     price: 800,
     category_id:3,
   },
   {
-    user_id: 6,
+    user_id: 1,
     title: 'Няня',
     text: 'Квалифицированный воспитатель,стаж 10 лет ',
     price: 1000,

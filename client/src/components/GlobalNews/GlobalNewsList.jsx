@@ -41,7 +41,7 @@ function GlobalNewsList(){
      
     </Box>}
     <Routes>
-      {!view && <Route  path="/form/:id" element={<GlobalNewsForm   />} ></Route>}
+      {!view && <Route  path="/form/:id" element={<GlobalNewsForm/>} ></Route>}
       {/* {!view && <Route  path="/global/:id" element={<GlobalNewsId  />} ></Route>} */}
       
       </Routes>
