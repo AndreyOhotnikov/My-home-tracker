@@ -1,5 +1,5 @@
-// import React, { useEffect, useState } from "react";
-// import { Routes, Link, Route, useNavigate, Navigate, useLocation } from "react-router-dom"
+import React, { useEffect, useState } from "react";
+import { Routes, Link, Route } from "react-router-dom";
 
 // import SignIn from "../SignIn";
 // import Signup from "../Signup";
@@ -50,5 +50,27 @@
 //   );
 // };
 
-
 // export default Navigation;
+import HomeMain from "../HomeMain/HomeMain";
+import BaraholkaBox from "../Baraholka/BaraholkaBox";
+import BaraholkaForm from "../Baraholka/BaraholkaForm";
+import BaraholkaList from "../Baraholka/BaraholkaList";
+import BaraholkaItem from "../Baraholka/BaraholkaItem";
+
+const Navigation = () => {
+  return (
+    <>
+      <Link to="/baraholka">Купи/Продай</Link>
+      <Link to="/addProduct">Разместить свой товар</Link>
+
+      <Routes>
+        <Route path="/baraholka" element={<BaraholkaBox />} />
+        <Route path="/baraholka/:id" element={<BaraholkaList />} />
+        <Route path="/product/:id" element={<BaraholkaItem />} />
+        <Route path="/addProduct" element={<BaraholkaForm />} />
+      </Routes>
+    </>
+  );
+};
+
+export default Navigation;

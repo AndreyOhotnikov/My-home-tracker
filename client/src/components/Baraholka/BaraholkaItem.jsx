@@ -1,104 +1,104 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import ACTypes from "../../store/types/baraholkaTypes";
+import { delProductSaga } from "../../store/actionCreators/baraholkaAC";
+import { useNavigate } from "react-router-dom";
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+  Button,
+} from "@mui/material";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import { makeStyles } from '@mui/styles';
+const BaraholkaItem = () => {
+  const params = useParams();
+  //console.log(params);
+  const navigate = useNavigate();
+  const [showContact, setShowContact] = useState(false);
+  const dispatch = useDispatch();
 
+  const category = useSelector((store) => store.baraholka.category);
+  //console.log(category);
 
+  const prList = category
+    .map((el) => el.products)
+    .reduce((a, b) => {
+      return a.concat(b);
+    });
+  console.log(prList);
 
+  const productsList = prList.filter((el) => el.id === Number(params.id));
+  //console.log(productsList);
+  const showContactHandler = () => {
+    setShowContact(true);
+  };
 
-const BaraholkaItem=()=>{
- const classes=useStyles()
+  const deleteProduct = (id) => {
+    console.log("component", id);
+    dispatch({ type: ACTypes.DEL_PRODUCT_SAGA, id });
+    navigate("/baraholka");
+    //delProductSaga(Number(params.id)
+  };
 
-return(
-
-<Box className={classes.rootBox_1}>
-    <Box
-    component="img"
-    className={classes.imgBox}
-    alt="The house from the offer."
-    src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
-  />
- <Box className={classes.textBox}>
-   <Box component="span" className={classes.userNameBox}>Размещено: Иванов Иван Иванович</Box>
-   <Box component="h3" >
-      Заголовок
+  return (
+    <Box>
+      {productsList.map((prodItem) => {
+        return (
+          <List key={prodItem.id}>
+            <ListItemAvatar>
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            </ListItemAvatar>
+            <ListItem variant="body2" color="textSecondary" component="p">
+              <ListItemText>{prodItem.title}</ListItemText>
+            </ListItem>
+            <ListItem variant="body2" color="textSecondary" component="p">
+              <ListItemText>Описание: {prodItem.text}</ListItemText>
+            </ListItem>
+            <ListItem variant="body2" color="textSecondary" component="p">
+              <ListItemText>Цена: {prodItem.price} </ListItemText>
+            </ListItem>
+            <Box mt={4}>
+              <Button variant="contained " onClick={showContactHandler}>
+                Связаться
+              </Button>
+              {showContact && (
+                <>
+                  <ListItem variant="body2" color="textSecondary" component="p">
+                    <ListItemText>
+                      Имя: {prodItem["User.Userinfo.full_name"]}{" "}
+                    </ListItemText>
+                  </ListItem>
+                  <ListItem variant="body2" color="textSecondary" component="p">
+                    <ListItemText>
+                      {" "}
+                      Телефон: {prodItem["User.Userinfo.phone"]}{" "}
+                    </ListItemText>
+                  </ListItem>
+                  <ListItem variant="body2" color="textSecondary" component="p">
+                    <ListItemText>
+                      Email : {prodItem["User.email"]}
+                    </ListItemText>
+                  </ListItem>
+                </>
+              )}
+            </Box>
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={() => deleteProduct(prodItem.id)}
+            >
+              Удалить
+            </Button>
+          </List>
+        );
+      })}
     </Box>
-    <Box component="span" className={classes.titleBox}>
-      Тут будет тест про описание самого товара, и модет быть что-то еще длинное типа куча всего написано просто я хочу посмотреть как это будет умещаться в див
-    </Box>
-    <Box className={classes.priceBox}>Цена: 500р</Box>
-    <Box className={classes.likes}>
-       <Button variant="text" className={classes.likeButton}>&#128077;</Button>
-       <Box component="span" className={classes.count}>0</Box>
-       </Box>
-       <Stack  sx={{ml:'60%', display: 'flex',flexDirection: 'row',}}>
-    <Button variant="contained" sx={{mr:'10px'}}>Связаться</Button>
-      <Button variant="outlined" color="error">Удалить</Button>
-    </Stack>
-    </Box>
- </Box>
-)
-}
+  );
+};
 
-export default BaraholkaItem
-
-
-const useStyles = makeStyles({
-  rootBox_1:{
-    display: 'flex',
-    flexDirection: 'row',
-    position:'absolute',
-    justifyContent:'center',
-    width:'70%',
-    marginTop:'10%',
-    marginLeft:'10%',
-  }, 
-  imgBox:{
-    height: '80%',
-      width: '80%',
-      overflow: 'hidden',
-      borderRadius: '12px',
-      marginRight:'3%',
-      marginTop:'5%',
-  }, 
-  textBox:{
-    display: 'flex',
-      flexDirection: 'column',
-       alignItems: { xs: 'center' },
-       m: 2 ,
-  },
-  userNameBox:{
-     fontSize: 12,
-      textAlign:'end',
-       mt:'15px', ml:'60%'
-      },
-titleBox:{ 
-  color: 'black',
-   fontSize: '18px',
-    textAlign:'start'
-},
-priceBox:{ 
-  display: 'flex',
-  flexDirection: 'row',
-  marginTop: '10px',
- width:'20%',
-  fontSize: '18px',
-  backgroundColor: 'rgb(187, 232, 243)',
-  padding:'10px',
-  borderRadius: '10px',
-  
-},
-likes:{
-  display: 'flex',
-  flexDirection: 'row',
-},
-likeButton:{
- textAlign:'start',
-  width: '10%',
-},
-count:{ 
-  marginTop: '8px',
-}
-})
+export default BaraholkaItem;
