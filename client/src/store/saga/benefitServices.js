@@ -10,8 +10,6 @@ function getServices() {
 function* workerGetServices(action) {
   try {
     const res = yield call(getServices, action.payload);
-
-
     yield put(allServices(res))
   } catch (err) {
     console.error('Err', err);
@@ -25,6 +23,7 @@ export function* watcherServicesSaga() {
 }
 
 function addServicesSaga(action) {
+  console.log('addServicesSaga');
     return fetch("/services/add", {
     method: "POST",
     headers: {

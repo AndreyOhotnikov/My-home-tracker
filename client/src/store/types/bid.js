@@ -1,0 +1,6 @@
+export const ADD_BID = 'ADD_BID'
+export const REQUEST_ADD_BID_SAGA = 'REQUEST_ADD_BID_SAGA'
+export const GET_ALL_BIDS = 'GET_ALL_BIDS'
+export const SAGA_API_BIDS = 'SAGA_API_BIDS'
+export const DELETE_BID = 'DELETE_BID'
+export const REQUEST_DEL_BID_SAGA = 'REQUEST_DEL_BID_SAGA'

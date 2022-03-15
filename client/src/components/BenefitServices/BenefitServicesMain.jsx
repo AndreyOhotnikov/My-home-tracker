@@ -42,6 +42,7 @@ export const BenefitServicesMain = () => {
   }, []);
 
   const submitHandler = (id) => {
+    console.log('submitHandler');
     navigate(`/services/${id}`);
   };
 

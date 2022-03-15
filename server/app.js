@@ -12,7 +12,7 @@ const globalNewsRouter = require('./routes/globalNews');
 const locationRouter = require('./routes/location')
 const usersRouter = require('./routes/user');
 const baraholkaRouter = require('./routes/baraholka');
-
+const bidsRouter = require('./routes/bids')
 // const redis = require('redis');
 // const RedisStore = require('connect-redis')(session);
 
@@ -46,6 +46,7 @@ app.use(session(sessionConfig));
 
 app.use((req, res, next) => {
   res.locals.username = req.session?.user?.name;
+  res.locals.userId = req.session?.user?.id;
 
   console.log('\n\x1b[33m', 'req.session.user :', req.session.user);
   console.log('\x1b[35m', 'res.locals.username:', res.locals.username);
@@ -55,7 +56,7 @@ app.use((req, res, next) => {
 app.use('/services', servicesRouter);
 app.use('/baraholka', baraholkaRouter);
 app.use('/global', globalNewsRouter);
-
+app.use('/bids', bidsRouter);
 app.use('/user', usersRouter);
 app.use('/global', locationRouter);
 
@@ -64,7 +65,7 @@ app.use((req, res, next) => {
   next(error);
 });
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   const appMode = req.app.get('env');
   let error;
 

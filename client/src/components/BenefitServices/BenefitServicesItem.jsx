@@ -16,7 +16,7 @@ export const BenefitServicesItem = () => {
   const dispatch =useDispatch();
   const navigate = useNavigate();
   const [showContact, setShowContact] = useState(false);
-  console.log(params);
+  
 
   const services = useSelector((state) => state.services);
   const service = services

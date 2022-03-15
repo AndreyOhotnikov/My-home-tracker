@@ -1,10 +1,14 @@
-const express = require("express");
-const { Store, Category_store, User, Userinfo } = require("../db/models");
+const express = require('express');
+const {
+  Store, Category_store, User, Userinfo,
+} = require('../db/models');
 
 exports.createProductBaraholka = async (req, res) => {
-  //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-  const { title, text, price, category, link, categoryId } = req.body;
-  //console.log(title, text, price, category, link, categoryId);
+  // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+  const {
+    title, text, price, category, link, categoryId,
+  } = req.body;
+  // console.log(title, text, price, category, link, categoryId);
   let newProduct;
   let categoryPR;
 
@@ -27,7 +31,7 @@ exports.createProductBaraholka = async (req, res) => {
 };
 
 exports.findAllProductAndCategories = async (req, res) => {
-  //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+  // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
   let allCategories;
   let user;
   try {
@@ -42,9 +46,9 @@ exports.findAllProductAndCategories = async (req, res) => {
           include: [
             {
               model: User,
-              attributes: ["id", "nick_name", "email"],
+              attributes: ['id', 'nick_name', 'email'],
               include: [
-                { model: Userinfo, attributes: ["phone", "full_name"] },
+                { model: Userinfo, attributes: ['phone', 'full_name'] },
               ],
             },
           ],
@@ -53,7 +57,7 @@ exports.findAllProductAndCategories = async (req, res) => {
 
         category.products = products;
         return category;
-      })
+      }),
     );
     console.log(categoryAndProduct);
     res.json(categoryAndProduct);
@@ -64,7 +68,7 @@ exports.findAllProductAndCategories = async (req, res) => {
 
 exports.deleteProduct = async (req, res) => {
   const { id } = req.params;
-  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+  console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
   try {
     del = await Store.destroy({ where: { id } });
   } catch (error) {

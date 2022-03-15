@@ -56,6 +56,10 @@ import MailIcon from "@mui/icons-material/Mail";
 import { BenefitServicesMain } from "../BenefitServices/BenefitServicesMain";
 import { BenefitServicesForm } from "../BenefitServices/BenefitServicesForm";
 import { BenefitServicesItem } from "../BenefitServices/BenefitServicesItem";
+import { BidForm } from "../Bids/BidsForm";
+import { AllBidsList } from "../PrivatePageChairman/AllBidsList";
+import { PrivatePageChairman } from "../PrivatePageChairman/PrivatePageChairman";
+import { BidsItem } from "../PrivatePageChairman/BidsItem";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -68,6 +72,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 const Navigation = () => {
   const dispatche = useDispatch();
   const auth = useSelector((state) => state.auth.auth);
+  console.log(auth,'auth');
 
   const navigate = useNavigate();
   const theme = useTheme();
@@ -209,17 +214,19 @@ const Navigation = () => {
         <Route path="/services/:id" element={<BenefitServicesList />} />
         <Route path="service/:id" element={<BenefitServicesItem />} />
         <Route path="/services/new" element={<BenefitServicesForm />} />
-
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<PrivatePageUser />} />
         <Route path="/store" element={<BaraholkaList />} />
-        <Route path="/benefits" element={<BenefitServicesList />} />
+        <Route path="/addBid" element={<BidForm />} />
         <Route path="/GlobalNews" element={<GlobalNewsList />} />
         <Route path="/baraholka" element={<BaraholkaBox />} />
         <Route path="/baraholka/:id" element={<BaraholkaList />} />
         <Route path="/product/:id" element={<BaraholkaItem />} />
         <Route path="/addProduct" element={<BaraholkaForm />} />
+        <Route path="/privateChairman" element={<PrivatePageChairman />} />
+        <Route path="/bids" element={<AllBidsList />} />
+        <Route path="/bid/:id" element={<BidsItem />} />
         {!auth && <Route path="/" element={<WelcomePage />} />}
         {!auth && <Route path="/locationHome" element={<LockationHome />} />}
       </Routes>
@@ -232,13 +239,16 @@ export default Navigation;
 
 const pages = [
   { name: "Главная", src: "/" },
-  { name: "Картинка", src: "/pictures" },
-  { name: "Главные новости", src: "/GlobalNews" },
-  { name: "События", src: "/doings" },
-  { name: "Добавить услугу", src: "/services/new" },
-  { name: "Услуги", src: "/services" },
-  { name: "Барахолка", src: "/baraholka" },
-  { name: "Разместить свой товар", src: "/addProduct" },
+  // { name: "Картинка", src: "/pictures" },
+  // { name: "Главные новости", src: "/GlobalNews" },
+  // { name: "События", src: "/doings" },
+  // { name: "Добавить услугу", src: "/services/new" },
+  // { name: "Услуги", src: "/services" },
+  // { name: "Барахолка", src: "/baraholka" },
+  // { name: "Разместить свой товар", src: "/addProduct" },
+  { name: "Заявка,жалоба", src: "/addBid" },
+  { name: "Личный кабинет,председателя", src: "/privateChairman" },
+  { name: "Все заявки", src: "/bids" },
 ];
 
 const settings = [

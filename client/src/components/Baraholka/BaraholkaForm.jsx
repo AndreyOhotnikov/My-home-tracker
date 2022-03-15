@@ -109,9 +109,9 @@ const BaraholkaForm = () => {
         <Input
           onChange={(event) => setLink(event.target.value)}
           sx={{ display: "none" }}
-          accept="image/*"
-          id="icon-button-file"
-          type="file"
+          // accept="image/*"
+          // id="icon-button-file"
+          // type="link"
         />
       </label>
 
