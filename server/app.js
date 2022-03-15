@@ -56,7 +56,6 @@ app.use('/global', globalNewsRouter);
 app.use('/user', usersRouter);
 app.use('/global', locationRouter);
 
-
 app.use((req, res, next) => {
   const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');
   next(error);
