@@ -21,7 +21,7 @@ import LockationHome from "../Signup/LockationHome";
 import { types } from "../../store/types/userTypes";
 import { openModaleReducer } from "../../store/actionCreators/userAC";
 import PrivatePageUser from "../PrivatePageUser/PrivatePageUser";
-import BaraholkaList from "../Baraholka/BaraholkaList";
+
 import {BenefitServicesList} from "../BenefitServices/BenefitServicesList";
 import ModalPage from "../Signout/ModalPage";
 
