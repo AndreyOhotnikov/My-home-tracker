@@ -11,6 +11,7 @@ const servicesRouter = require('./routes/benefitServices')
 const globalNewsRouter = require('./routes/globalNews');
 const locationRouter = require('./routes/location')
 const usersRouter = require('./routes/user');
+const baraholkaRouter = require('./routes/baraholka');
 
 const redis = require('redis');
 const RedisStore = require('connect-redis')(session);
@@ -50,7 +51,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/services', servicesRouter)
-
+app.use('/baraholka', baraholkaRouter);
 app.use('/global', globalNewsRouter);
 
 app.use('/user', usersRouter);

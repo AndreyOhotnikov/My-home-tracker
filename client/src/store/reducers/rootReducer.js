@@ -7,6 +7,8 @@ import {InitialState} from "../initState";
 // import {locationReducer} from './locationReducer'
 import {userReducer} from '../reducers/userReducer'
 import { servicesReducer } from './servicesReducer';
+import { baraholkaReducer } from "./baraholkaReducer";
+import { watcherBaraholka, watcherProducts, watcherDelProductBaraholka} from "../saga/baraholka";
 import { watcherAddServiceSaga,  watcherDelServiceSaga,  watcherGetFindServiceSaga,  watcherServicesSaga } from '../saga/benefitServices';
 // import { authUserReducer } from '../actionCreators/userAC';
 
@@ -24,15 +26,15 @@ import { watcherSignIn } from '../saga/userSignin';
 import { watcherCheckIsAuth } from '../saga/userIsAuth';
 
 
-const sagaMiddleware = saga()
+const sagaMiddleware = saga();
 
 const rootReducer = combineReducers({
-  // user: userReducer,
   services: servicesReducer,
   globalNews:globalNewsReducer,
   auth: authReducer,
   location: locationReducer,
-  firebase: firebaseReducer
+  firebase: firebaseReducer,
+  baraholka: baraholkaReducer,
 })
 
 const composeEnhancer =
@@ -44,7 +46,7 @@ export const store = createStore(rootReducer,InitialState, composeEnhancer)
 
 sagaMiddleware.run(
   function*() {
-    yield all([watcherServicesSaga(),watcherAddServiceSaga(),watcherDelServiceSaga(),watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(),watcherAllGlobalNews(),watcherGlobalNews(),watcherAddLike()]) 
+    yield all([watcherServicesSaga(),watcherAddServiceSaga(),watcherDelServiceSaga(),watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(),watcherAllGlobalNews(),watcherGlobalNews(),watcherAddLike(),watcherBaraholka(), watcherProducts(), watcherDelProductBaraholka()]) 
 
   }
 )

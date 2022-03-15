@@ -7,7 +7,11 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
-
+import HomeMain from "../HomeMain/HomeMain";
+import BaraholkaBox from "../Baraholka/BaraholkaBox";
+import BaraholkaForm from "../Baraholka/BaraholkaForm";
+import BaraholkaList from "../Baraholka/BaraholkaList";
+import BaraholkaItem from "../Baraholka/BaraholkaItem";
 import SignIn from "../Signin/SignIn";
 import Signup from "../Signup/Signup";
 import { useDispatch, useSelector } from "react-redux";
@@ -213,13 +217,17 @@ const Navigation = () => {
         <Route path="/store" element={<BaraholkaList />} />
         <Route path="/benefits" element={<BenefitServicesList />} />
         <Route path="/GlobalNews" element={<GlobalNewsList />} />
+        <Route path="/baraholka" element={<BaraholkaBox />} />
+        <Route path="/baraholka/:id" element={<BaraholkaList />} />
+        <Route path="/product/:id" element={<BaraholkaItem />} />
+        <Route path="/addProduct" element={<BaraholkaForm />} />
         {!auth && <Route path="/" element={<WelcomePage />} />}
         {!auth && <Route path="/locationHome" element={<LockationHome />} />}
       </Routes>
       <ModalPage onClick={handleDrawerClose} />
     </div>
   );
-};
+}
 
 export default Navigation;
 
@@ -231,6 +239,8 @@ const pages = [
   { name: "Барахолка", src: "/store" },
   { name: "Добавить услугу", src: "/services/new" },
   { name: "Услуги", src: "/services" },
+  { name: "Барахолка", src: "/baraholka" },
+  { name: "Разместить свой товар", src: "/addProduct" },
 ];
 
 const settings = [
