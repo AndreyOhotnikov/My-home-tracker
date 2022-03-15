@@ -36,6 +36,7 @@ const Signup = () => {
     } else if (!/^[A-Za-z]\w+$/.test(name)) alert('введи нормально логин')
      else if (!/^[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+\.[A-Za-z]{2,}$/.test(email)) alert('введи нормально email')
   }
+  
 
   return (
         <form id="signupForm" method="POST" action="" style={{marginTop:'70px'}}>
