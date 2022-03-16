@@ -43,7 +43,7 @@ const BaraholkaForm = () => {
   const [text, setText] = useState({ text: "" });
   const [category, setCategory] = useState({ category: "" });
   const [price, setPrice] = useState({ price: "" });
-  const [link, setLink] = useState({ value: "" });
+  const [link, setLink] = useState('');
 
   let categoryId;
 
@@ -109,9 +109,9 @@ const BaraholkaForm = () => {
         </IconButton>
         <Box component="span">Выберите фото</Box>
         <Input
-          onChange={(event) => setLink(event.target.value)}
+          onChange={(event) => setLink(event.target.files)}
           sx={{ display: "none" }}
-          accept="image/*"
+          // accept="image/*"
           id="icon-button-file"
           type="file"
         />
