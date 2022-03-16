@@ -21,6 +21,7 @@ const InputMessage = () => {
     ws.send(JSON.stringify(text));
     setValue("");
   };
+  
 
   return (
     <div>
@@ -40,7 +41,7 @@ const InputMessage = () => {
         ></input>
         <div>
           <Button
-            type="submit"
+          type="submit"
             variant="outlined"
             size="small"
             color="secondary"
