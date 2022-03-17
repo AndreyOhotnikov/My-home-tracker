@@ -16,25 +16,10 @@ export const BenefitServicesList = () => {
   
   const category = useSelector((state) => state.services);
 
-
   const benefits = category?.map((el) => el.benifits)?.reduce((a, b) => {
       return a.concat(b);
     },);
     const list = benefits?.filter((el) => el.category_id === Number(params.id) && el);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(sagaAddService());
-  
-  }, []);
-  //console.log(category)
-  const benefits = category
-    .map((el) => el.benifits)
-    .reduce((a, b) => {
-      return a.concat(b);
-    });
-    
-
 
   
 

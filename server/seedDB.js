@@ -17,9 +17,9 @@ const {
   Support,
   Category_store,
   Category_benifit,
-} = require("./db/models");
+} = require('./db/models');
 
-const city = [{ name: "Moscow" }, { name: "London" }];
+const city = [{ name: 'Moscow' }, { name: 'London' }];
 async function addCity(obj) {
   try {
     await City.create({
@@ -30,10 +30,10 @@ async function addCity(obj) {
   }
 }
 
-//city.map((el) => addCity(el));
+// city.map((el) => addCity(el));
 const street = [
-  { name: "Lenina", city_id: 1 },
-  { name: "Traphalgar", city_id: 2 },
+  { name: 'Lenina', city_id: 1 },
+  { name: 'Traphalgar', city_id: 2 },
 ];
 
 async function addStreet(obj) {
@@ -47,8 +47,7 @@ async function addStreet(obj) {
   }
 }
 
-//street.map((el) => addStreet(el));
-
+// street.map((el) => addStreet(el));
 
 const home = [
   { name: 31, street_id: 1 },
@@ -65,24 +64,23 @@ async function addHome(obj) {
   }
 }
 
-//home.map((el) => addHome(el));
-
+// home.map((el) => addHome(el));
 
 const user = [
   {
-    nick_name: "bob",
-    email: "123",
-    role: "admin",
-    checked: "true",
-    password: "123",
+    nick_name: 'bob',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
     home_id: 1,
   },
   {
-    nick_name: "liza",
-    email: "123",
-    role: "admin",
-    checked: "true",
-    password: "123",
+    nick_name: 'liza',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
     home_id: 2,
   },
 ];
@@ -104,8 +102,8 @@ async function addUser(obj) {
 //   addUser(el);
 // });
 const chat = [
-  { user_id: 1, text: "blabla" },
-  { user_id: 2, text: "some words" },
+  { user_id: 1, text: 'blabla' },
+  { user_id: 2, text: 'some words' },
 ];
 async function addChat(obj) {
   try {
@@ -117,10 +115,10 @@ async function addChat(obj) {
     console.log(err);
   }
 }
-//chat.map((el) => addChat(el));
+// chat.map((el) => addChat(el));
 const instruction = [
-  { user_id: 1, text: "first instruction", title: "first" },
-  { user_id: 2, text: "second instruction", title: "second" },
+  { user_id: 1, text: 'Памятка для собственников помещений многоквартирных домов.Памятка для собственников помещений многоквартирных домов, проводящих общее собрание по вопросу изменения способа формирования фонда капитального ремонта МКД. В соответствии с пунктом 1.1 части 2 статьи 44, частью 1 статьи 173 Жилищного кодекса Российской Федерации общее собрание собственников помещений в многоквартирном доме вправе принять решение  об изменении способа формирования фонда капитального ремонта  многоквартирного дома в любое время.Порядок принятия решения и оформления его результатов установлен статьями 44-48 Жилищного кодекса Российской Федерации.Согласно части 4 статьи 173 Жилищного кодекса Российской Федерации решение общего собрания собственников помещений в многоквартирном доме об изменении способа формирования фонда капитального ремонта в течение пяти рабочих дней после принятия такого решения направляется владельцу специального счета, на который перечисляются взносы на капитальный ремонт общего имущества в таком многоквартирном доме, или региональному оператору, на счет которого перечисляются эти взносы. В силу части 5 статьи 173 Жилищного кодекса Российской Федерации решение о прекращении формирования фонда капитального ремонта на счете регионального оператора и формировании фонда капитального ремонта на специальном счете вступает в силу через два года после направления региональному оператору решения общего собрания собственников помещений в многоквартирном доме в соответствии с частью 4 настоящей статьи, если меньший срок не установлен законом субъекта Российской Федерации. В течение пяти дней после вступления в силу указанного решения региональный оператор перечисляет средства фонда капитального ремонта на специальный счет.Решение о прекращении формирования фонда капитального ремонта на специальном счете и формировании фонда капитального ремонта на счете регионального оператора вступает в силу через один месяц после направления владельцу специального счета решения общего собрания собственников помещений в многоквартирном доме в соответствии с частью 4 настоящей статьи, но не ранее наступления условия, указанного в части 2 настоящей статьи. В течение пяти дней после вступления в силу указанного решения владелец специального счета перечисляет средства фонда капитального ремонта на счет регионального оператора (Часть 6 статьи 173 Жилищного кодекса Российской Федерации)', title: 'Памятка для собственников помещений многоквартирных домов' },
+  { user_id: 2, text: 'second instruction', title: 'second' },
 ];
 async function addInstruction(obj) {
   try {
@@ -133,11 +131,11 @@ async function addInstruction(obj) {
     console.log(err);
   }
 }
-//instruction.map((el) => addInstruction(el));
+// instruction.map((el) => addInstruction(el));
 
 const support = [
-  { user_id: 1, text: "first support" },
-  { user_id: 2, text: "second support" },
+  { user_id: 1, text: 'first support' },
+  { user_id: 2, text: 'second support' },
 ];
 async function addSupport(obj) {
   try {
@@ -149,47 +147,19 @@ async function addSupport(obj) {
     console.log(err);
   }
 }
-//support.map((el) => addSupport(el));
-
-const benifit = [
-  {
-    user_id: 1,
-    text: "first benifit",
-    title: "first",
-    price: 100000,
-  },
-  {
-    user_id: 2,
-    text: "second benifit",
-    title: "second",
-    price: 1000,
-  },
-];
-async function addBenifit(obj) {
-  try {
-    await Benifit.create({
-      text: obj.text,
-      user_id: obj.user_id,
-      title: obj.title,
-      price: obj.price,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
-//benifit.map((el) => addBenifit(el));
+// support.map((el) => addSupport(el));
 
 const userinfo = [
   {
     user_id: 1,
-    full_name: "Иванов Иван Иванович",
+    full_name: 'Иванов Иван Иванович',
     entrance: 3,
     flat: 100,
     phone: 88005553534,
   },
   {
     user_id: 2,
-    full_name: "Петров Пётр Петрович",
+    full_name: 'Петров Пётр Петрович',
     entrance: 1,
     flat: 42,
     phone: 88005553535,
@@ -211,41 +181,19 @@ async function addUserinfo(obj) {
 }
 // userinfo.map((el) => addUserinfo(el));
 
-
-const bid = [{
-  user_id: 5, title: 'Хулиганство', status: 'актуально', text: 'Разрисованная и замусоренная детская площадка',
-}, {
-  user_id: 6, title: 'Нужен электрик', status: 'неактуально', text: 'Не работает выключатель в комнате',
-}];
-
-async function addBid(obj) {
-  try {
-    await Bid.create({
-      status: obj.status,
-      user_id: obj.user_id,
-      title: obj.title,
-      text: obj.text,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
-//bid.map((el) => addBid(el));
-
-
 const store = [
   {
     user_id: 1,
-    title: "холодильник",
-    status: "актуально",
-    text: "store_text",
+    title: 'холодильник',
+    status: 'актуально',
+    text: 'store_text',
     price: 300,
   },
   {
     user_id: 1,
-    title: "кровать",
-    status: "актуально",
-    text: "store_text",
+    title: 'кровать',
+    status: 'актуально',
+    text: 'store_text',
     price: 300,
   },
 ];
@@ -264,21 +212,21 @@ async function addStore(obj) {
   }
 }
 
-//store.map((el) => addStore(el));
+// store.map((el) => addStore(el));
 
 const local_news = [
   {
     user_id: 1,
-    title: "локальная новость 1",
-    status: "актуально",
-    text: "local_text",
+    title: 'локальная новость 1',
+    status: 'актуально',
+    text: 'local_text',
     phone: 88005553535,
   },
   {
     user_id: 2,
-    title: "локальная новость 2",
-    status: "актуально",
-    text: "local_text",
+    title: 'локальная новость 2',
+    status: 'актуально',
+    text: 'local_text',
     phone: 88005553535,
   },
 ];
@@ -296,23 +244,22 @@ async function addLocal_news(obj) {
   }
 }
 
-//local_news.map((el) => addLocal_news(el));
-
+// local_news.map((el) => addLocal_news(el));
 
 const global_news = [
   {
     user_id: 1,
-    title: "глобальная новость 1",
-    status: "актуально",
-    text: "пдщифд_text",
+    title: 'глобальная новость 1',
+    status: 'актуально',
+    text: 'пдщифд_text',
     phone: 880055,
   },
   {
     user_id: 2,
-    title: "локальная новость 2",
-    status: "актуально",
-    text: "local_text",
-    fixed: "true",
+    title: 'локальная новость 2',
+    status: 'актуально',
+    text: 'local_text',
+    fixed: 'true',
   },
 ];
 async function addGlobal_news(obj) {
@@ -328,18 +275,18 @@ async function addGlobal_news(obj) {
     console.log(err);
   }
 }
-//global_news.map((el) => addGlobal_news(el));
+// global_news.map((el) => addGlobal_news(el));
 
 const response = [
   {
     user_id: 2,
     global_news_id: 1,
-    status: "true",
+    status: 'true',
   },
   {
     user_id: 1,
     local_news_id: 2,
-    status: "true",
+    status: 'true',
   },
 ];
 async function addResponce(obj) {
@@ -396,8 +343,7 @@ const photolink = [
   {
     bid_id: 41, link: 'https://news.store.rambler.ru/img/035a7ae1fb4176e472b69b66b29399d6?img-1-resize=width%3A1280%2Cheight%3A960%2Cfit%3Acover&img-format=auto',
 
-//like.map((el) => addLike(el));
-
+    // like.map((el) => addLike(el));
 
   },
 ];
@@ -415,33 +361,32 @@ async function addPhotolink(obj) {
   }
 }
 
-//photolink.map((el) => addPhotolink(el));
-
+// photolink.map((el) => addPhotolink(el));
 
 const category_store = [
   {
-    title: "Без категории",
-    link: "http://localhost:3000/...",
+    title: 'Без категории',
+    link: 'http://localhost:3000/...',
   },
   {
-    title: "Мебель",
-    link: "http://localhost:3000/...",
+    title: 'Мебель',
+    link: 'http://localhost:3000/...',
   },
   {
-    title: "Игрушки",
-    link: "http://localhost:3000/...",
+    title: 'Игрушки',
+    link: 'http://localhost:3000/...',
   },
   {
-    title: "Техника",
-    link: "http://localhost:3000/...",
+    title: 'Техника',
+    link: 'http://localhost:3000/...',
   },
   {
-    title: "Одежда",
-    link: "http://localhost:3000/...",
+    title: 'Одежда',
+    link: 'http://localhost:3000/...',
   },
   {
-    title: "Прочее",
-    link: "http://localhost:3000/...",
+    title: 'Прочее',
+    link: 'http://localhost:3000/...',
   },
 ];
 async function addCategory_store(obj) {
@@ -455,27 +400,4 @@ async function addCategory_store(obj) {
   }
 }
 
-//category_store.map((el) => addCategory_store(el));
-
-
-const category_benifit = [
-  {
-    title: "Няня",
-    link: "http://localhost:3000/...",
-  },
-  {
-    title: "Репетитор",
-    link: "http://localhost:3000/...",
-  },
-];
-async function addCategory_benifit(obj) {
-  try {
-    await Category_benifit.create({
-      title: obj.title,
-      link: obj.link,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
-// category_benifit.map((el) => addCategory_benifit(el));
+// category_store.map((el) => addCategory_store(el));
