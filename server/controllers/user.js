@@ -84,75 +84,75 @@ exports.destroySession = (req, res, next) => { // Уничтоженеи сес�
 
 
 
-exports.checkAuth = async (req, res) => {
+// exports.checkAuth = async (req, res) => {
 
-  let user, userInfo, photo, bid, benefits, store
+//   let user, userInfo, photo, bid, benefits, store
 
-  // console.log(234234)
-  if (req.session.user) {
-    try {
+//   // console.log(234234)
+//   if (req.session.user) {
+//     try {
 
-      user = await User.findOne({where: {id: req.session.user.id}, raw: true})
-      userInfo = await Userinfo.findOne({where: {user_id: user.id}, raw: true})
-      photo = await Photolink.findOne({where: {userinfo_id: user.id}, raw: true})
-      bid = await Bid.findAll({limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
-      benefits = await Benifit.findAll({limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
-      store = await Store.findAll({limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
-      console.log(store)
+//       user = await User.findOne({where: {id: req.session.user.id}, raw: true})
+//       userInfo = await Userinfo.findOne({where: {user_id: user.id}, raw: true})
+//       photo = await Photolink.findOne({where: {userinfo_id: user.id}, raw: true})
+//       bid = await Bid.findAll({limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
+//       benefits = await Benifit.findAll({limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
+//       store = await Store.findAll({limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
+//       console.log(store)
       
-      res.json({
-        user: {user_id: user.id, user: user.nick_name, role: user.role, home_id: user.home_id }, 
-        userInfo, 
-        photo,
-        bid,
-        benefits,
-        store,
-        email: user.email
-      })
+//       res.json({
+//         user: {user_id: user.id, user: user.nick_name, role: user.role, home_id: user.home_id }, 
+//         userInfo, 
+//         photo,
+//         bid,
+//         benefits,
+//         store,
+//         email: user.email
+//       })
 
-    } catch (error) {
-      res.json({error: false})
-      // req.session.destroy((err) => {
-      //   console.log('Удаление сессии')
-      //   if (err) return next(err);
-      //   res.clearCookie('myHome');
-      //   res.json(false);
-      //   console.log(req?.session?.user)
+//     } catch (error) {
+//       res.json({error: false})
+//       // req.session.destroy((err) => {
+//       //   console.log('Удаление сессии')
+//       //   if (err) return next(err);
+//       //   res.clearCookie('myHome');
+//       //   res.json(false);
+//       //   console.log(req?.session?.user)
         
-      // });
-    }
-  }
-}
+//       // });
+//     }
+//   }
 
 
-    }
-    res.json({
-      user: {
-        user_id: user.id, user: user.nick_name, role: user.role, home_id: user.home_id,
-      },
-      //   config: {
-      //   apiKey: process.env.apiKey,
-      //   authDomain: process.env.authDomain,
-      //   projectId: process.env.projectId,
-      //   storageBucket: process.env.storageBucket,
-      //   messagingSenderId: process.env.messagingSenderId,
-      //   appId: process.env.appId
-      // }
-    });
-  } else {
-    res.json({
-      error: false,
-      //   config: {
-      //   apiKey: process.env.apiKey,
-      //   authDomain: process.env.authDomain,
-      //   projectId: process.env.projectId,
-      //   storageBucket: process.env.storageBucket,
-      //   messagingSenderId: process.env.messagingSenderId,
-      //   appId: process.env.appId
-      // }
-    });
-  }
-};
+
+    
+//     res.json({
+//       user: {
+//         user_id: user.id, user: user.nick_name, role: user.role, home_id: user.home_id,
+//       },
+//       //   config: {
+//       //   apiKey: process.env.apiKey,
+//       //   authDomain: process.env.authDomain,
+//       //   projectId: process.env.projectId,
+//       //   storageBucket: process.env.storageBucket,
+//       //   messagingSenderId: process.env.messagingSenderId,
+//       //   appId: process.env.appId
+//       // }
+//     });
+//   } else {
+//     res.json({
+//       error: false,
+//       //   config: {
+//       //   apiKey: process.env.apiKey,
+//       //   authDomain: process.env.authDomain,
+//       //   projectId: process.env.projectId,
+//       //   storageBucket: process.env.storageBucket,
+//       //   messagingSenderId: process.env.messagingSenderId,
+//       //   appId: process.env.appId
+//       }
+//     });
+  
+// };
 
 exports.createUserAndSession = async (req, res, next) => {
 
