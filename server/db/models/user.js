@@ -10,18 +10,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.belongsTo(models.Home, { foreignKey: 'home_id' });
-      this.hasMany(models.Support, { foreignKey: 'user_id' });
-      this.hasMany(models.Instruction, { foreignKey: 'user_id' });
-      this.hasMany(models.Benifit, { foreignKey: 'user_id' });
-      this.hasMany(models.Chat, { foreignKey: 'user_id' });
-      this.hasMany(models.Bid, { foreignKey: 'user_id' });
-      this.hasOne(models.Userinfo, { foreignKey: 'user_id' });
-      this.hasMany(models.Store, { foreignKey: 'user_id' });
-      this.hasMany(models.Local_news, { foreignKey: 'user_id' });
-      this.hasMany(models.Global_news, { foreignKey: 'user_id' });
-      this.hasMany(models.Response, { foreignKey: 'user_id' });
-      this.hasMany(models.Like, { foreignKey: 'user_id' });
+
+      this.belongsTo(models.Home,{foreignKey:'home_id'})
+      this.hasMany(models.Support,{foreignKey:'user_id'})
+      this.hasMany(models.Instruction,{foreignKey:'user_id'})
+      this.hasMany(models.Benifit,{foreignKey:'user_id'})
+      this.hasMany(models.Chat,{foreignKey:'user_id'})
+      this.hasMany(models.Bid,{foreignKey:'user_id'})
+      this.hasOne(models.Userinfo,{foreignKey:'user_id'})
+      this.hasMany(models.Store,{foreignKey:'user_id'})
+      this.hasMany(models.Local_news,{foreignKey:'user_id'})
+      this.hasMany(models.Global_news,{foreignKey:'user_id'})
+      this.hasMany(models.Response,{foreignKey:'user_id'})
+      this.hasMany(models.Like,{foreignKey:'user_id'})
+      this.hasMany(models.Photolink,{foreignKey:'documentIsChairman_user_id'})
+
     }
   }
   User.init({

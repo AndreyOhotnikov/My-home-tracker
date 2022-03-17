@@ -213,9 +213,15 @@ async function addUserinfo(obj) {
 
 
 const bid = [{
+
+  user_id: 1, title: 'няня', status: 'актуально', text: 'bid_text',
+}, {
+  user_id: 1, title: 'Посидеть с собакой', status: 'неактуально', text: 'bid_text',
+}, {
   user_id: 5, title: 'Хулиганство', status: 'актуально', text: 'Разрисованная и замусоренная детская площадка',
 }, {
   user_id: 6, title: 'Нужен электрик', status: 'неактуально', text: 'Не работает выключатель в комнате',
+
 }];
 
 async function addBid(obj) {
@@ -414,6 +420,7 @@ async function addPhotolink(obj) {
     console.log(err);
   }
 }
+
 
 //photolink.map((el) => addPhotolink(el));
 

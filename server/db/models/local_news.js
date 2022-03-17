@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING,
     text: DataTypes.TEXT,
     phone: DataTypes.BIGINT,
+    link: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Local_news',

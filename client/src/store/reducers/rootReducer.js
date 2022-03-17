@@ -26,6 +26,7 @@ import { watcherGetLocation } from '../saga/locations';
 import { watcherSignOut } from '../saga/userSignout';
 import { watcherSignIn } from '../saga/userSignin';
 import { watcherCheckIsAuth } from '../saga/userIsAuth';
+import { watcherProfilePageEdit } from '../saga/userProfilePage';
 
 import { watcherAddBidSaga, watcherBidsSaga, watcherDelBidSaga, watcherUsersSaga } from '../saga/bid';
 import { bidsReducer, userReducer } from './bidReducer';
@@ -57,12 +58,8 @@ export const store = createStore(rootReducer, InitialState, composeEnhancer)
 
 sagaMiddleware.run(
 
-  //   function* () {
-  //     yield all([watcherServicesSaga(), watcherAddServiceSaga(), watcherDelServiceSaga(), watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(), watcherAllGlobalNews(), watcherGlobalNews(), watcherAddLike(), watcherBaraholka(), watcherProducts(), watcherDelProductBaraholka(), watcherAddBidSaga(),watcherBidsSaga(),watcherDelBidSaga(),watcherUsersSaga()])
-
   function* () {
-    yield all([watcherServicesSaga(), watcherAddServiceSaga(), watcherDelServiceSaga(), watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(), watcherAllGlobalNews(), watcherGlobalNews(), watcherAddLike(), watcherBaraholka(), watcherProducts(), watcherDelProductBaraholka(), watcherDelGlobalNews(), watcherLocalNews(), watcherAllLocalNews(), watcherAddLocalLike(), watcherDelLocalNews(), watcherUsersSaga(), watcherBidsSaga(), watcherAddBidSaga(), watcherDelBidSaga()])
-
+    yield all([watcherProfilePageEdit(), watcherServicesSaga(), watcherAddServiceSaga(), watcherDelServiceSaga(), watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(), watcherAllGlobalNews(), watcherGlobalNews(), watcherAddLike(), watcherBaraholka(), watcherProducts(), watcherDelProductBaraholka(), watcherDelGlobalNews(), watcherLocalNews(), watcherAllLocalNews(), watcherAddLocalLike(), watcherDelLocalNews(), watcherUsersSaga(), watcherBidsSaga(), watcherAddBidSaga(), watcherDelBidSaga()])
 
   }
 )

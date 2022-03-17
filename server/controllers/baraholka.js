@@ -5,7 +5,12 @@ const {
 
 exports.createProductBaraholka = async (req, res) => {
 
-  //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//   const { title, text, price, category, link, categoryId } = req.body;
+//   console.log(title, text, price, category, link, categoryId);
+//   let newProduct;
+//   let categoryPR;
+//   console.log(title, text, price, category, link, categoryId)
+
   const { title, text, price, category, categoryId } = req.body.product;
   const { url } = req.body;
   //console.log(title, text, price, category, link, categoryId);
@@ -13,6 +18,7 @@ exports.createProductBaraholka = async (req, res) => {
   let newProduct;
   let categoryPR;
   console.log(req.body);
+
   try {
     if (!categoryId) {
       categoryPR = await Category_store.findOne({ where: { title: category } });

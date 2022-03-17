@@ -38,6 +38,7 @@ const BaraholkaBox = () => {
   };
 
   return (
+
     <Container>
       <Box>
         <Grid container xl={8} direction="row">
@@ -73,6 +74,7 @@ const BaraholkaBox = () => {
               })}
             </Box>
           </Grid>
+
         </Grid>
       </Box>
     </Container>
