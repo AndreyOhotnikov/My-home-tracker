@@ -53,9 +53,9 @@ async function addBenifitServices(obj) {
 
 
 
-services.map((services) => {
-  addBenifitServices(services)
-})
+// services.map((services) => {
+//   addBenifitServices(services)
+// })
 
 
 const category = [

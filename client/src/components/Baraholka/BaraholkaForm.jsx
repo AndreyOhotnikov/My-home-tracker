@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Navigate, Link, useNavigate } from "react-router-dom";
 import { Box, Input, MenuItem, TextField, Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import IconButton from "@mui/material/IconButton";
@@ -35,14 +36,14 @@ const currencies = [
 
 const BaraholkaForm = () => {
   const classes = useStyles();
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState({ title: "" });
   const [text, setText] = useState({ text: "" });
   const [category, setCategory] = useState({ category: "" });
   const [price, setPrice] = useState({ price: "" });
-  const [link, setLink] = useState({ value: "" });
+  const [link, setLink] = useState('');
 
   let categoryId;
 
@@ -55,6 +56,7 @@ const BaraholkaForm = () => {
       type: ACTypes.ADD_PROD_SAGA,
       product: { title, text, category, price, link, categoryId },
     });
+    navigate(`/baraholka`)
     // console.log(product);
   };
 
@@ -107,11 +109,12 @@ const BaraholkaForm = () => {
         </IconButton>
         <Box component="span">Выберите фото</Box>
         <Input
-          onChange={(event) => setLink(event.target.value)}
+          onChange={(event) => setLink(event.target.files)}
           sx={{ display: "none" }}
-          accept="image/*"
+          // accept="image/*"
           id="icon-button-file"
           type="file"
+
         />
       </label>
 
