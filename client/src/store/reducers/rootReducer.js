@@ -15,8 +15,8 @@ import { locationReducer } from './locationReducer'
 
 
 
- import { watcherGlobalNews ,watcherAllGlobalNews, watcherAddLike,watcherDelGlobalNews} from '../saga/globalNews';
-import { watcherLocalNews,watcherAllLocalNews,watcherAddLocalLike,watcherDelLocalNews } from '../saga/localNews';
+import { watcherGlobalNews, watcherAllGlobalNews, watcherAddLike, watcherDelGlobalNews } from '../saga/globalNews';
+import { watcherLocalNews, watcherAllLocalNews, watcherAddLocalLike, watcherDelLocalNews } from '../saga/localNews';
 
 
 import { firebaseReducer } from './firebaseReducer';
@@ -38,15 +38,14 @@ const sagaMiddleware = saga();
 
 const rootReducer = combineReducers({
   services: servicesReducer,
-
-  globalNews:globalNewsReducer,
-  localReducer:localNewsReducer,
+  globalNews: globalNewsReducer,
+  localReducer: localNewsReducer,
   auth: authReducer,
   location: locationReducer,
   firebase: firebaseReducer,
   baraholka: baraholkaReducer,
-  bids:bidsReducer,
-  user:userReducer,
+  bids: bidsReducer,
+  user: userReducer,
 })
 
 const composeEnhancer =
@@ -58,11 +57,11 @@ export const store = createStore(rootReducer, InitialState, composeEnhancer)
 
 sagaMiddleware.run(
 
-//   function* () {
-//     yield all([watcherServicesSaga(), watcherAddServiceSaga(), watcherDelServiceSaga(), watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(), watcherAllGlobalNews(), watcherGlobalNews(), watcherAddLike(), watcherBaraholka(), watcherProducts(), watcherDelProductBaraholka(), watcherAddBidSaga(),watcherBidsSaga(),watcherDelBidSaga(),watcherUsersSaga()])
+  //   function* () {
+  //     yield all([watcherServicesSaga(), watcherAddServiceSaga(), watcherDelServiceSaga(), watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(), watcherAllGlobalNews(), watcherGlobalNews(), watcherAddLike(), watcherBaraholka(), watcherProducts(), watcherDelProductBaraholka(), watcherAddBidSaga(),watcherBidsSaga(),watcherDelBidSaga(),watcherUsersSaga()])
 
-  function*() {
-    yield all([watcherServicesSaga(),watcherAddServiceSaga(),watcherDelServiceSaga(),watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(),watcherAllGlobalNews(),watcherGlobalNews(),watcherAddLike(),watcherBaraholka(), watcherProducts(), watcherDelProductBaraholka(),watcherDelGlobalNews(),watcherLocalNews(),watcherAllLocalNews(),watcherAddLocalLike(),watcherDelLocalNews()]) 
+  function* () {
+    yield all([watcherServicesSaga(), watcherAddServiceSaga(), watcherDelServiceSaga(), watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(), watcherAllGlobalNews(), watcherGlobalNews(), watcherAddLike(), watcherBaraholka(), watcherProducts(), watcherDelProductBaraholka(), watcherDelGlobalNews(), watcherLocalNews(), watcherAllLocalNews(), watcherAddLocalLike(), watcherDelLocalNews(), watcherUsersSaga(), watcherBidsSaga(), watcherAddBidSaga(), watcherDelBidSaga()])
 
 
   }
