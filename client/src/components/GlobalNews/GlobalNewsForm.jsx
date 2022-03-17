@@ -1,23 +1,27 @@
 import React from "react";
+
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { actiontTypes } from "../../store/types/globalTypes";
 import { Link,Stack } from "@mui/material";
 import Paper from '@mui/material/Paper';
 
-import { styled } from '@mui/material/styles';
+
+import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useEffect } from "react";
-import ImageListItem from '@mui/material/ImageListItem';
-import Button from '@mui/material/Button';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import ImageListItem from "@mui/material/ImageListItem";
+import Button from "@mui/material/Button";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 import { IconButton } from "@mui/material";
 import { Input } from "@mui/material";
-import { Provider, useDispatch,useSelector } from "react-redux";
-import findDataInGlobalArr from './GlobalNewsList'
+import { Provider, useDispatch, useSelector } from "react-redux";
+import findDataInGlobalArr from "./GlobalNewsList";
 import { addGlobalNews } from "../../store/actionCreators/globalNewsAC";
+
+
 import {useParams,useNavigate} from 'react-router-dom'
 import { getAllGlobalNews } from "../../store/actionCreators/globalNewsAC";
 
@@ -49,17 +53,40 @@ function GlobalNewsForm(){
       return setCheck(false)
     
    }
+
   }
-  function trueOrFalse(a){
-   return (a==='true'?true:false)
+  const defaultData = findDataInGlobalArr(params.id)[0];
+  console.log("find", defaultData);
+  const dispatch = useDispatch();
+  const [title, setTitle] = useState(defaultData?.title);
+  const [text, setText] = useState(defaultData?.text);
+  const [link, setLink] = useState(defaultData?.link);
+  const [check, setCheck] = useState(trueOrFalse(defaultData?.fixed) || false);
+  const [idNews, setIdNews] = useState(defaultData?.id || 0);
+
+  const globalNews = useSelector((store) => store);
+  console.log("globalNews", globalNews);
+
+  function count() {
+    if (check == false) {
+      return setCheck(true);
+    } else {
+      return setCheck(false);
+    }
   }
+  function trueOrFalse(a) {
+    return a === "true" ? true : false;
+  }
+
   function sagaGlobalData(){
     console.log(123)
+
     const obj = {
       title,
       text,
       link,
       check,
+
       idNews
     }
      dispatch({type: actiontTypes.ADD_GLOBAL_NEWS_SAGA,payload:obj})
@@ -142,8 +169,7 @@ autoComplete="off">
      </Stack>   
  </>
    )
+
 }
 
-
-
-export default GlobalNewsForm
+export default GlobalNewsForm;

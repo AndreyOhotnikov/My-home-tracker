@@ -1,24 +1,27 @@
 import React from "react";
 
+
 import Box  from '@mui/material/Box';
 import { Button} from "@mui/material";
 import { Link,Stack } from "@mui/material";
 import Paper from '@mui/material/Paper';
 
-import { styled } from '@mui/material/styles';
+
+import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useEffect } from "react";
 import GlobalNewsItem from "./GlobalNewItem";
 
 import { Route, Routes } from "react-router-dom";
 import GlobalNewsForm from "./GlobalNewsForm";
-import { useSelector,useDispatch } from "react-redux";
-import GlobalNewsId from './GlobalNewsId'
+import { useSelector, useDispatch } from "react-redux";
+import GlobalNewsId from "./GlobalNewsId";
 import { getAllGlobalNews } from "../../store/actionCreators/globalNewsAC";
 import { useNavigate } from "react-router-dom";
 import {addLikeSaga} from "../../store/actionCreators/globalNewsAC";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { color } from "@mui/system";
+
 
 function GlobalNewsList(){
   const state = useSelector((store)=>store.globalNews.arrGlobalNews)
@@ -140,14 +143,16 @@ function GlobalNewsList(){
       {!view && <Route  path="/global/:id" element={<GlobalNewsItem isFixed={isFixed}/>} ></Route>}
       {/* {!view && <Route  path="/global/:id" element={<GlobalNewsId  />} ></Route>} */}
       
+
       </Routes>
     </>
-    
   );
 }
 
 //
 
+
 export default GlobalNewsList
 
 //<GlobalNewsItem view={view}  setId={setId} setView={setView} key={index} el={el} />
+

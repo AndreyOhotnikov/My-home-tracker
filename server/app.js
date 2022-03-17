@@ -17,22 +17,36 @@ const locationRouter = require('./routes/location');
 const usersRouter = require('./routes/user');
 const baraholkaRouter = require('./routes/baraholka');
 
+const bidsRouter = require('./routes/bids')
+// const redis = require('redis');
+// const RedisStore = require('connect-redis')(session);
+
+
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-// const FileStore = require('session-file-store')(session);
+const FileStore = require('session-file-store')(session);
 
-const redisClient = redis.createClient();
+
+
+// const redisClient = redis.createClient();
+
+
 
 app.use(logger("dev"));
 app.use(express.json());
 
 app.use(cors());
 
+const fileStoreOptions = {};
+
 const sessionConfig = {
-  name: "myHome",
-  store: new RedisStore({ client: redisClient }),
-  // store: new FileStore(fileStoreOptions),
+  
+
+  name: 'myHome',
+  // store: new RedisStore({ client: redisClient }),
+  store: new FileStore(fileStoreOptions),
   secret: process.env.COOKIE_SECRET,
   resave: false,
   saveUninitialized: false,
@@ -45,6 +59,7 @@ app.use(session(sessionConfig));
 
 app.use((req, res, next) => {
   res.locals.username = req.session?.user?.name;
+  res.locals.userId = req.session?.user?.id;
 
   console.log("\n\x1b[33m", "req.session.user :", req.session.user);
   console.log("\x1b[35m", "res.locals.username:", res.locals.username);
@@ -52,14 +67,15 @@ app.use((req, res, next) => {
 });
 
 
+
+app.use('/bids', bidsRouter);
 app.use('/services', servicesRouter);
 app.use('/baraholka', baraholkaRouter);
 app.use('/globalNews', globalNewsRouter);
 app.use('/localNews', localNewsRouter);
-
-
 app.use("/user", usersRouter);
 app.use("/global", locationRouter);
+
 
 app.use((req, res, next) => {
   const error = createError(
@@ -69,8 +85,11 @@ app.use((req, res, next) => {
   next(error);
 });
 
-app.use((err, req, res, next) => {
-  const appMode = req.app.get("env");
+
+app.use((err, req, res) => {
+  const appMode = req.app.get('env');
+
+
   let error;
 
   if (appMode === "development") {

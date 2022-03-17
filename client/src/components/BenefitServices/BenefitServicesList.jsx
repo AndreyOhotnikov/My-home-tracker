@@ -7,18 +7,20 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import {
-  sagaAddService
-} from "../../store/actionCreators/benefitServicesAC";
 import {  useNavigate, useParams } from "react-router-dom";
+
 
 export const BenefitServicesList = () => {
   const navigate = useNavigate();
   const params = useParams();
   
-
   const category = useSelector((state) => state.services);
 
+
+  const benefits = category?.map((el) => el.benifits)?.reduce((a, b) => {
+      return a.concat(b);
+    },);
+    const list = benefits?.filter((el) => el.category_id === Number(params.id) && el);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -33,7 +35,8 @@ export const BenefitServicesList = () => {
     });
     
 
-  const a = benefits.filter((el) => el.category_id === Number(params.id) && el);
+
+  
 
 
   const submitHandler = (id) => {
@@ -41,8 +44,9 @@ export const BenefitServicesList = () => {
   };
 
   return (
+    <>
     <Box m={10}>
-      {a?.map((ben) => {
+      {list?.map((ben) => {
         return (
           <List
             key={ben.id}
@@ -77,5 +81,6 @@ export const BenefitServicesList = () => {
         );
       })}
     </Box>
+  </>
   );
 };
