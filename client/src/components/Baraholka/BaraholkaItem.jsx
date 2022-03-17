@@ -12,6 +12,8 @@ import {
   ListItemAvatar,
   Avatar,
   Button,
+  CardMedia,
+  Card,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -29,7 +31,6 @@ const BaraholkaItem = () => {
     dispatch(allProductsView());
   }, []);
 
-  
   const prList = category
     .map((el) => el.products)
     .reduce((a, b) => {
@@ -55,9 +56,9 @@ const BaraholkaItem = () => {
       {productsList.map((prodItem) => {
         return (
           <List key={prodItem.id}>
-            <ListItemAvatar>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            </ListItemAvatar>
+            <ListItem sx={{ width: "50%", height: "40%" }}>
+              <CardMedia component="img" image={prodItem.status} />
+            </ListItem>
             <ListItem variant="body2" color="textSecondary">
               <ListItemText>{prodItem.title}</ListItemText>
             </ListItem>
