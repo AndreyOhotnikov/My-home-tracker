@@ -42,8 +42,8 @@ const PrivatePageUser = () => {
 
 
   return ( <>
-    <div style={{border: "1px solid black", width: '100%', height: '90vh', display: 'flex'}}>
-      <div style={{border: "1px solid black", width: '40%', height: '100%', margin: '0'}}>
+    <div style={{width: '100%', height: '90vh', display: 'flex'}}>
+      <div style={{width: '40%', height: '100%', margin: '0'}}>
         <div>
           <img style={{maxWidth: '80%', marginTop: '2%'}} src={photo} alt="Не удалось загрузить фото с сервера."  />
           <div><b>Информация:</b></div>
@@ -59,37 +59,39 @@ const PrivatePageUser = () => {
           : null }
         </div>
       </div>
-      <div  style={{border: "1px solid black", width: '60%', height: '100%', margin: '0'}}>
-          <div style={{border: "1px solid black", width: '100%', height: '20%', display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-            <div style={{height: '15%', marginRight: '3%', marginLeft: '3%'}}> Мои обращения: </div>
-            {bid?.map(el => <div key={el.id} style={{border: "1px solid green", height: '15%', marginRight: '3%',marginLeft: '3%', display: 'flex', justifyContent: 'space-between'}}> 
+      <div  style={{width: '60%', height: '100%', margin: '0'}}>
+          <div style={{width: '100%', height: '20%', display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
+            <div style={{height: '15%', marginRight: '3%', marginLeft: '3%'}}> <b>Мои обращения:</b>  </div>
+            {bid?.map(el => <div key={el.id} style={{border: "1px solid blue",borderRadius: '3%', height: '15%', marginRight: '3%',marginLeft: '3%', display: 'flex', justifyContent: 'space-between'}}> 
               <div>{el.title}</div>
               <div>{el.status}</div>
             </div>)}
           </div> 
-          <div style={{border: "1px solid black", width: '100%', height: '20%', margin: '0'}}>
-          <div style={{border: "1px solid black", height: '15%', margin: '0'}}> Мои услуги </div>
-            <div style={{border: "1px solid green", height: '83%', margin: '0', display: 'flex', justifyContent: 'space-around'}}>
+          <div style={{width: '100%', height: '20%', margin: '0'}}>
+          <div style={{height: '15%', margin: '0'}}> <b>Мои услуги</b>  </div>
+            <div style={{height: '83%', margin: '0', display: 'flex', justifyContent: 'space-around'}}>
               {benefits?.map((el, ind) => {
                 if (ind < 4) {
-                return <div key={el.id} style={{border: "1px solid red", width: '20%', height: '100%', margin: '0'}}> 
+                return <div key={el.id} style={{border: "1px solid blue", borderRadius: '3%', width: '20%', height: '100%', margin: '0'}} onClick={() => navigate(`/service/${el.id}`)}> 
                   <img style={{maxHeight: '30%', marginTop: '2%'}} src={el.link} alt="" />
                   
                     <div><b>{el.title}</b></div>
-                    <div>{el.status}</div>
+                    <div>Описание: {el.text}</div>
+                    <div>Цена: {el.price}</div>
               </div>
               }})}
             </div>
           </div>
-          <div style={{border: "1px solid black", width: '100%', height: '20%', margin: '0'}}>
-            <div style={{border: "1px solid black", height: '15%', margin: '0'}}> Мои товары на барахолке </div>
-            <div style={{border: "1px solid green", height: '83%', margin: '0', display: 'flex', justifyContent: 'space-around'}}>
-              {store?.map(el => <div key={el.id} style={{border: "1px solid red", width: '20%', height: '100%', margin: '0'}} onClick={() => navigate(`/product/${el.id}`)}> 
-                  <img style={{maxHeight: '30%', marginTop: '2%'}} src={el.link} alt="" />
-                  
+          <div style={{ width: '100%', height: '20%', margin: '0'}}>
+            <div style={{ height: '15%', margin: '0'}}> <b>Мои товары на барахолке</b>  </div>
+            <div style={{ height: '83%', margin: '0', display: 'flex', justifyContent: 'space-around'}}>
+              {store?.map(el => <div key={el.id} style={{border: "1px solid blue", borderRadius: '3%', width: '20%', height: '100%', margin: '0'}} onClick={() => navigate(`/product/${el.id}`)}> 
+                  <div style={{height: '60%', width: '100%', marginTop: '2%'}}>
+                    <img style={{maxHeight: '100%'}} src={el.status} alt="" />
+                  </div>
                     <div><b>{el.title}</b></div>
                     <div>{el.price}</div>
-                    <div>{el.status}</div>
+                    
               </div>
               )}
             </div>
@@ -182,6 +184,7 @@ const style = {
   pt: 2,
   px: 4,
   pb: 3,
+  borderRadius: 12,
 };
 
 export default PrivatePageUser;

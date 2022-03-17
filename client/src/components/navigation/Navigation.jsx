@@ -107,7 +107,7 @@ const Navigation = () => {
   useEffect(() => {
     dispatch(servicesSagaApi());
   }, []);
-
+  console.log(auth)
   return (
     <div onClick={handleDrawerClose}>
       {auth && (
@@ -157,7 +157,7 @@ const Navigation = () => {
                     </IconButton>
                   </DrawerHeader>
                   <List onClick={handleDrawerClose} onClose={handleDrawerClose}>
-                    {["Inbox", "Starred", "Send email", "Drafts"].map(
+                    {["Поддержка", "Памятки", "Общая информация"].map(
                       (text, index) => (
                         <ListItem button key={text}>
                           <ListItemIcon>
@@ -169,7 +169,7 @@ const Navigation = () => {
                     )}
                   </List>
                   <Divider />
-                  ываывывпа
+                  
                 </Drawer>
 
                 <div
@@ -196,8 +196,9 @@ const Navigation = () => {
                     onClose={handleCloseUserMenu}
                     onClick={handleDrawerClose}
                   >
-                    {settings.map((setting) => (
-                      <MenuItem
+                    {settings.map((setting) => {
+                     if ( auth.role === setting.role || !setting.role) {
+                     return (<MenuItem
                         key={setting.name}
                         onClick={handleCloseUserMenu}
                       >
@@ -205,13 +206,13 @@ const Navigation = () => {
                           onClick={(e) => {
                             setting.name === "Профиль" && navigate("/profile");
                             setting.name === "Выйти" && handleOpen(e);
+                            (setting.name === "Все заявки" || setting.name === "Все пользователи") && navigate(setting.src);
                           }}
                           textAlign="center"
                         >
                           {setting.name}
                         </Typography>
-                      </MenuItem>
-                    ))}
+                      </MenuItem>)}})}
                   </Menu>
                 </div>
               </Box>
@@ -269,8 +270,8 @@ const pages = [
   { name: "Разместить свой товар", src: "/addProduct" },
 
   { name: "Заявка,жалоба", src: "/addBid" },
-  { name: "Все заявки", src: "/bids" },
-  { name: "Все пользователи", src: "/users" },
+  // { name: "Все заявки", src: "/bids" },
+  // { name: "Все пользователи", src: "/users" },
 
 
   { name: "ЧАТ", src: "/chat" },
@@ -285,4 +286,6 @@ const pages = [
 const settings = [
   { name: "Профиль", src: "/profile" },
   { name: "Выйти", src: "/signout" },
+  { role: 'chairman', name: "Все заявки", src: "/bids" },
+  { role: 'chairman', name: "Все пользователи", src: "/users" },
 ];

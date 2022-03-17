@@ -91,9 +91,9 @@ exports.checkAuth = async (req, res) => {
       user = await User.findOne({where: {id: req.session.user.id}, raw: true})
       userInfo = await Userinfo.findOne({where: {user_id: user.id}, raw: true})
       photo = await Photolink.findOne({where: {userinfo_id: user.id}, raw: true})
-      bid = await Bid.findAll({limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
-      benefits = await Benifit.findAll({limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
-      store = await Store.findAll({limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
+      bid = await Bid.findAll({order: [['id', 'DESC']], limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
+      benefits = await Benifit.findAll({order: [['id', 'DESC']], limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
+      store = await Store.findAll({order: [['id', 'DESC']], limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
       // console.log(store)
       res.json({
         user: {user_id: user.id, user: user.nick_name, role: user.role, home_id: user.home_id }, 
