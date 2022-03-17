@@ -250,6 +250,7 @@ const Navigation = () => {
         {<Route  path="/localnews" element={<LocalNewsList/>} ></Route>}
         {<Route  path="/local/form/:id" element={<LocalNewsForm/>} ></Route>}
         {<Route  path="/local/:id" element={<LocalNewsItem/>} ></Route>}
+        {<Route  path="/local/put/:id" element={<LocalNewsForm/>} ></Route>}
       </Routes>
       <ModalPage onClick={handleDrawerClose} />
     </div>
@@ -267,11 +268,11 @@ const pages = [
   { name: "Услуги", src: "/services" },
   { name: "Барахолка", src: "/baraholka" },
   { name: "Разместить свой товар", src: "/addProduct" },
-
+  
   { name: "Заявка,жалоба", src: "/addBid" },
   { name: "Все заявки", src: "/bids" },
   { name: "Все пользователи", src: "/users" },
-
+ 
 
   { name: "ЧАТ", src: "/chat" },
 

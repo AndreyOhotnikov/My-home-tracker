@@ -99,6 +99,7 @@ function GlobalNewsForm() {
         spacing={3}
         textAlign={"center"}
         marginTop={"5vh"}
+        maxWidth={'100%'}
       >
         <Stack spacing={2} textAlign={"start"} marginLeft={"180px"}>
           <Box

@@ -1,7 +1,7 @@
 import React from "react";
 import Box from '@mui/material/Box';
 import { types } from "../../store/types/userTypes";
-import { Grid, Stack } from "@mui/material";
+import { Grid, Stack,Avatar } from "@mui/material";
 import Paper from '@mui/material/Paper';
 import { getAllLocalNews, addLikeLocalSaga,deleteLocalSaga } from "../../store/actionCreators/localNewsAC";
 import { styled } from '@mui/material/styles';
@@ -25,6 +25,8 @@ function LocalNewsItem({el,view,setView,id,setId}){
   console.log(state)
   const userRole = useSelector((state)=>state.auth.auth)
   console.log(userRole)
+  const stateUser = useSelector((store)=>store.user)
+  const photo = stateUser["Userinfo.Photolinks.link"]
   function findDataInGlobalArr(id){
     // console.log(id)
     
@@ -33,12 +35,11 @@ function LocalNewsItem({el,view,setView,id,setId}){
    const defaultData = findDataInGlobalArr(params.id)[0]
   //  console.log('find',defaultData)
   const dispatch = useDispatch()
-  function changeLike(id,e){
-    e.preventDefault()
+  function changeLike(id){
     dispatch(addLikeLocalSaga(id))
   }
-  function updateGlobal(id){
-    // navigate(`/global/put/${id}`)
+  function updateLocal(id){
+     navigate(`/local/put/${id}`)
   }
   function seeItem(id){
     navigate(`/local/${id}`)
@@ -107,6 +108,10 @@ function LocalNewsItem({el,view,setView,id,setId}){
    < Box   >
     </Box>
    <Stack direction="column" spacing={1} marginLeft={'5ch'} marginTop={'5vh'}>
+   <Stack direction={'row'}> 
+   <Box><Avatar src={photo}/></Box>
+   <Box marginLeft={'5px'} marginTop={'10px'}>{userRole.user}</Box>
+   </Stack>
      <Box>{goodDate(defaultData?.updatedAt)}</Box>
    <Box  underline="none" onClick ={()=>{
       statusView(view,setView)
@@ -128,58 +133,70 @@ function LocalNewsItem({el,view,setView,id,setId}){
             srcSet={`${defaultData?.link}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
             alt={defaultData?.title}
             loading="lazy"
-            width={'40ch'}
-            height={'40vh'}
+            maxWidth={'40ch'}
+            maxHeight={'40vh'}
           />
-          <Stack direction={'row'}>
+          {/* <Stack direction= {'row'} marginLeft={'15ch'}>
          
-          <Box paddingLeft={'35ch'} marginTop={'5vh'} > {defaultData?.likeLength ? defaultData?.likeLength: 0 }</Box> 
-          <Box marginTop={'5vh'}> < FavoriteIcon onClick={(e)=> changeLike(defaultData?.id,e)}/></Box> 
+          <Box  marginTop={'5vh'} > {defaultData?.likeLength ? defaultData?.likeLength: 0 }</Box> 
+          <Box marginTop={'5vh'} > < FavoriteIcon onClick={(e)=> changeLike(defaultData?.id,e)}/></Box> 
    
          
-          </Stack>
+          </Stack> */}
           
           </Stack>
           
    </Stack>
    <Stack direction={'row'} >
-          {((userRole.user_id === defaultData.user_id)|| userRole.role==="chairman") && <Box marginRight={'100ch'}><Button onClick={()=>{
-            updateGlobal(defaultData.id)
+          {((userRole?.user_id === defaultData?.user_id)|| userRole?.role==="chairman") && <Box marginRight={'100ch'}><Button onClick={()=>{
+            updateLocal(defaultData.id)
             }}>Редактировать</Button>
           <Button onClick={()=>{
             deleteGlobal(defaultData.id)
             navigateToMain()
             }}>Удалить</Button></Box>}
+         <Box marginLleft={'150%'}>
+           <Stack direction={'row'} textAlign={'center'}>
+           <Box  marginLeft={'120%'}><Button onClick={()=> changeLike(defaultData?.id)} >понравилось: </Button></Box>
+           <Box marginTop={'1vh'}>{defaultData?.likeLength ? defaultData?.likeLength: 0 }</Box>
+            <Box marginTop={'1vh'}>< FavoriteIcon /></Box>
+           </Stack>
           
-          
+           </Box>
    </Stack>
    
-    
-   
-   
    </Stack>
-   
    </Item>
    <Box marginTop={'3vh'} marginBottom={'5vh'}>
    <Grid  container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
   {state.map((el, index) => (
     <Grid item xs={2} sm={4} md={4} key={index}>
       <Item><Box width={'50ch'} height={'50vh'} onClick={()=>seeItem(el.id)}>
-        <Box>{goodDate(el.updatedAt)} <Box component={'span'} marginLeft={'9ch'}>автор новости:{userRole.user}</Box></Box>
-        <Box>{el.title}</Box>
+        <Box>
+        <Box component={'span'} marginLeft={'9ch'}> 
         
-        <Box paddingLeft={'8ch'} marginTop={'4vh'}><Box component='img'
+        <Stack direction={'raw'}>
+        <Avatar src={photo}/>
+        <Box marginLeft={'1ch'}marginTop={'1vh'}>{userRole.user}</Box>
+        <Box marginLeft={'25ch'}>{goodDate(el.updatedAt)}</Box>
+        </Stack>
+         
+       </Box>
+       
+        </Box>
+        <Box marginTop={'2vh'} textAlign={'center'}>{el.title}</Box>
+        
+        <Box  marginTop={'2vh'} textAlign={'center'}><Box component='img'
             src={el.link}
              srcSet={`${el.link}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
              alt={el.title}
             loading="lazy"
-            width={'40ch'}
-            height={'40vh'}
+            maxWidth={'40ch'}
+            maxHeight={'40vh'}
           /></Box>
           <Box marginLeft={'50ch'}>
             <Stack direction={'row'}>
-            <Box>{defaultData?.likeLength ? defaultData?.likeLength: 0 }</Box>
-            < FavoriteIcon onClick={(e)=> changeLike(el?.id,e)}/>
+           
             </Stack>
            
             </Box> 
