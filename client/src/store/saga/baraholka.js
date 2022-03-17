@@ -14,16 +14,20 @@ async function productBaraholka(product) {
   const app = initializeApp(firebaseConfig);
   const storage = getStorage(app);
   const file = [...product.link];
-  console.log("/////////////////", file);
-  const storageRef = await ref(
-    storage,
-    `images/${Date.now()}${file[0].name.slice(file[0].name.indexOf("."))}`
-  );
-  console.log(storageRef, "/////////////");
-  const snapshot = await uploadBytes(storageRef, file[0]); // загрузка файла
-  const url = await getDownloadURL(storageRef);
-  console.log(url);
-  const response = await fetch(`baraholka/new`, {
+  console.log("/////////////////", file);   
+
+  let url
+  // if (file.length) {
+    const storageRef = await ref(
+      storage,
+      `images/${Date.now()}${file[0].name.slice(file[0].name.indexOf("."))}`
+    );
+    console.log(storageRef, "/////////////");
+    const snapshot = await uploadBytes(storageRef, file[0]); // загрузка файла
+    url = await getDownloadURL(storageRef);
+    console.log(url);
+  // } else url = ''
+  const response = await fetch(`/baraholka/new`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

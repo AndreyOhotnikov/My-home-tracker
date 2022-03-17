@@ -23,7 +23,7 @@ const BaraholkaList = () => {
   const params = useParams();
   //console.log(params.id);
 
-  const dispatch = useDispatch();
+ 
   useEffect(() => {
     dispatch(allProductsView());
   }, []);

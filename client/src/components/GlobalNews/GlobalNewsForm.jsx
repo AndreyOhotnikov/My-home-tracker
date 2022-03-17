@@ -173,7 +173,7 @@ function GlobalNewsForm() {
                   e.preventDefault();
                   console.log(1234);
                   sagaGlobalData();
-                  //navigateToMain()
+                  navigateToMain()
                 }}
                 variant="contained"
               >

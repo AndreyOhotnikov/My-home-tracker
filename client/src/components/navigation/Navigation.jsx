@@ -260,7 +260,6 @@ export default Navigation;
 
 const pages = [
   { name: "Главная", src: "/" },
-  { name: "Картинка", src: "/pictures" },
   { name: "Главные новости", src: "/GlobalNews" },
   { name: "Новости пользователей", src: "/localnews" },
   { name: "События", src: "/doings" },

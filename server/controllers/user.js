@@ -84,75 +84,34 @@ exports.destroySession = (req, res, next) => { // Уничтоженеи сес�
 
 
 
-// exports.checkAuth = async (req, res) => {
+exports.checkAuth = async (req, res) => {
+  let user, userInfo, photo, bid, benefits, store
+  if (req.session.user) {
+    try {
+      user = await User.findOne({where: {id: req.session.user.id}, raw: true})
+      userInfo = await Userinfo.findOne({where: {user_id: user.id}, raw: true})
+      photo = await Photolink.findOne({where: {userinfo_id: user.id}, raw: true})
+      bid = await Bid.findAll({limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
+      benefits = await Benifit.findAll({limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
+      store = await Store.findAll({limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
+      // console.log(store)
+      res.json({
+        user: {user_id: user.id, user: user.nick_name, role: user.role, home_id: user.home_id }, 
+        userInfo, 
+        photo,
+        bid,
+        benefits,
+        store,
+        email: user.email
+      })
 
-//   let user, userInfo, photo, bid, benefits, store
-
-//   // console.log(234234)
-//   if (req.session.user) {
-//     try {
-
-//       user = await User.findOne({where: {id: req.session.user.id}, raw: true})
-//       userInfo = await Userinfo.findOne({where: {user_id: user.id}, raw: true})
-//       photo = await Photolink.findOne({where: {userinfo_id: user.id}, raw: true})
-//       bid = await Bid.findAll({limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
-//       benefits = await Benifit.findAll({limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
-//       store = await Store.findAll({limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
-//       console.log(store)
-      
-//       res.json({
-//         user: {user_id: user.id, user: user.nick_name, role: user.role, home_id: user.home_id }, 
-//         userInfo, 
-//         photo,
-//         bid,
-//         benefits,
-//         store,
-//         email: user.email
-//       })
-
-//     } catch (error) {
-//       res.json({error: false})
-//       // req.session.destroy((err) => {
-//       //   console.log('Удаление сессии')
-//       //   if (err) return next(err);
-//       //   res.clearCookie('myHome');
-//       //   res.json(false);
-//       //   console.log(req?.session?.user)
-        
-//       // });
-//     }
-//   }
+    } catch (error) {
+      res.json({error: false})
+    }
+  }
+}
 
 
-
-    
-//     res.json({
-//       user: {
-//         user_id: user.id, user: user.nick_name, role: user.role, home_id: user.home_id,
-//       },
-//       //   config: {
-//       //   apiKey: process.env.apiKey,
-//       //   authDomain: process.env.authDomain,
-//       //   projectId: process.env.projectId,
-//       //   storageBucket: process.env.storageBucket,
-//       //   messagingSenderId: process.env.messagingSenderId,
-//       //   appId: process.env.appId
-//       // }
-//     });
-//   } else {
-//     res.json({
-//       error: false,
-//       //   config: {
-//       //   apiKey: process.env.apiKey,
-//       //   authDomain: process.env.authDomain,
-//       //   projectId: process.env.projectId,
-//       //   storageBucket: process.env.storageBucket,
-//       //   messagingSenderId: process.env.messagingSenderId,
-//       //   appId: process.env.appId
-//       }
-//     });
-  
-// };
 
 exports.createUserAndSession = async (req, res, next) => {
 
@@ -190,45 +149,6 @@ exports.createUserAndSession = async (req, res, next) => {
         user = await User.create({nick_name: name, email: email, role: 'chairman', checked: 'false', password: pass, home_id: newHome.id})
         document = await Promise.all(await photoIsChairman.map(async photo => await Photolink.create({link: photo, documentIsChairman_user_id: user.id})))
 
-//   console.log(req.body);
-//   const {
-//     name, email, pass, isChairman, city, street, home, home_id, street_id, city_id, idHome,
-//   } = req.body;
-//   try {
-//     let user; let newHome; let newStreet; let newCity; let findCity; let findStreet; let
-//       findHome;
-//     const checkUser = await User.findOne({ where: { [Op.or]: [{ nick_name: name }, { email }] } });
-//     if (!checkUser) {
-//       const saltRounds = 10;
-//       const hashedPassword = await bcrypt.hash(pass, saltRounds);
-//       if (idHome && name && email && pass) { // если указан конкретный id дома создаем простого пользователя
-//         user = await User.create({
-//           nick_name: name, email, role: 'user', checked: 'false', password: hashedPassword, home_id: idHome,
-//         });
-//       } else if (home_id && street_id && city_id && name && email && pass) {
-//         user = await User.create({
-//           nick_name: name, email, role: 'user', checked: 'false', password: hashedPassword, home_id,
-//         });
-//       } else if (isChairman && city_id && street_id) {
-//         newHome = await Home.create({ name: home, street_id });
-//         user = await User.create({
-//           nick_name: name, email, role: 'chairman', checked: 'false', password: hashedPassword, home_id: newHome.id,
-//         });
-//       } else if (isChairman && city_id) {
-//         newStreet = await Street.create({ name: street, city_id });
-//         newHome = await Home.create({ name: home, street_id: newStreet.id });
-//         user = await User.create({
-//           nick_name: name, email, role: 'chairman', checked: 'false', password: hashedPassword, home_id: newHome.id,
-//         });
-//       } else if (isChairman) {
-//         console.log('-----------------------------------46');
-
-//         newCity = await City.create({ name: city });
-//         newStreet = await Street.create({ name: street, city_id: newCity.id });
-//         newHome = await Home.create({ name: home, street_id: newStreet.id });
-//         user = await User.create({
-//           nick_name: name, email, role: 'chairman', checked: 'false', password: pass, home_id: newHome.id,
-//         });
 
       } else {
         console.log('У вас нет прав');

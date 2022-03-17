@@ -24,9 +24,9 @@ exports.getAllBids = async (req, res) => {
 exports.getAllUsers = async (req, res) => {
   const users = await User.findAll({
     include: [{
-      model: Bid,
-      attributes: [],
-      include: [{ model: Photolink, attributes: [] }],
+      model: Userinfo,
+      attributes: ['full_name', 'adress', 'phone'],
+      include: [{ model: Photolink, attributes: ['link'] }],
     }],
     raw: true,
   });
