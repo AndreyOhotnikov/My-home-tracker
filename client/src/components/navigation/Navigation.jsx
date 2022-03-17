@@ -107,7 +107,7 @@ const Navigation = () => {
   useEffect(() => {
     dispatch(servicesSagaApi());
   }, []);
-
+  console.log(auth)
   return (
     <div onClick={handleDrawerClose}>
       {auth && (
@@ -157,9 +157,22 @@ const Navigation = () => {
                     </IconButton>
                   </DrawerHeader>
                   <List onClick={handleDrawerClose} onClose={handleDrawerClose}>
-                    {["Inbox", "Starred", "Send email", "Drafts"].map(
+                    {options.map(
+                      (option, index) => (
+                         <ListItem button key={option.name} onClick={() => navigate(option.src)}>
+                          <ListItemIcon>
+                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                          </ListItemIcon>
+                          <ListItemText primary={option.name} />
+                        </ListItem>
+                      )
+                    )}
+                  </List>
+                  <Divider />
+                  <List onClick={handleDrawerClose} onClose={handleDrawerClose}>
+                    {["Поддержка", "Памятки", "Общая информация"].map(
                       (text, index) => (
-                        <ListItem button key={text}>
+                        <ListItem button key={text} >
                           <ListItemIcon>
                             {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                           </ListItemIcon>
@@ -169,7 +182,7 @@ const Navigation = () => {
                     )}
                   </List>
                   <Divider />
-                  ываывывпа
+                  
                 </Drawer>
 
                 <div
@@ -196,8 +209,9 @@ const Navigation = () => {
                     onClose={handleCloseUserMenu}
                     onClick={handleDrawerClose}
                   >
-                    {settings.map((setting) => (
-                      <MenuItem
+                    {settings.map((setting) => {
+                     if ( auth.role === setting.role || !setting.role) {
+                     return (<MenuItem
                         key={setting.name}
                         onClick={handleCloseUserMenu}
                       >
@@ -205,13 +219,13 @@ const Navigation = () => {
                           onClick={(e) => {
                             setting.name === "Профиль" && navigate("/profile");
                             setting.name === "Выйти" && handleOpen(e);
+                            (setting.name === "Все заявки" || setting.name === "Все пользователи") && navigate(setting.src);
                           }}
                           textAlign="center"
                         >
                           {setting.name}
                         </Typography>
-                      </MenuItem>
-                    ))}
+                      </MenuItem>)}})}
                   </Menu>
                 </div>
               </Box>
@@ -262,28 +276,33 @@ export default Navigation;
 const pages = [
   { name: "Главная", src: "/" },
   { name: "Главные новости", src: "/GlobalNews" },
-  { name: "Новости пользователей", src: "/localnews" },
-  { name: "События", src: "/doings" },
-  { name: "Добавить услугу", src: "/services/new" },
+  { name: "События", src: "/localnews" },
+  // { name: "События", src: "/doings" },
+  // { name: "Добавить услугу", src: "/services/new" },
   { name: "Услуги", src: "/services" },
   { name: "Барахолка", src: "/baraholka" },
-  { name: "Разместить свой товар", src: "/addProduct" },
-  
-  { name: "Заявка,жалоба", src: "/addBid" },
-  { name: "Все заявки", src: "/bids" },
-  { name: "Все пользователи", src: "/users" },
- 
+  // { name: "Разместить свой товар", src: "/addProduct" },
 
+  // { name: "Заявка,жалоба", src: "/addBid" },
+  // { name: "Все заявки", src: "/bids" },
+  // { name: "Все пользователи", src: "/users" },
   { name: "ЧАТ", src: "/chat" },
-
-  { name: "Добавить Главную новость", src: "/form/:id" },
-  { name: "Добавить локальную новость", src: "/local/form/:id" },
-
-
+  // { name: "Добавить Главную новость", src: "/form/:id" },
+  // { name: "Добавить событие", src: "/local/form/:id" },
 
 ];
 
 const settings = [
   { name: "Профиль", src: "/profile" },
   { name: "Выйти", src: "/signout" },
+  { role: 'chairman', name: "Все заявки", src: "/bids" },
+  { role: 'chairman', name: "Все пользователи", src: "/users" },
 ];
+
+const options = [
+  { name: "Заявка,жалоба", src: "/addBid" },
+  { name: "Добавить услугу", src: "/services/new" },
+  { name: "Разместить свой товар", src: "/addProduct" },
+  { name: "Добавить событие", src: "/local/form/:id" },
+  { name: "Добавить Главную новость", src: "/form/:id" },
+]

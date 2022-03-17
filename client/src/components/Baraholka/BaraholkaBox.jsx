@@ -38,46 +38,42 @@ const BaraholkaBox = () => {
   };
 
   return (
-
-    <Container>
-      <Box>
-        <Grid container xl={8} direction="row">
-          <Grid item>
-            <Paper>Категории товаров</Paper>
-            <Box m={10}>
-              {allCategories?.map((category) => {
-                return (
-                  <Grid key={category.id} container direction="row">
-                    <Card>
-                      <CardMedia
-                        component="img"
-                        image={category.link}
-                        alt="green iguana"
-                      />
-                      <CardContent>
-                        <Typography component="div" variant="h5">
-                          {category.title}
-                        </Typography>
-                      </CardContent>
-                      <CardActions>
-                        <Button
-                          size="smal"
-                          type="button"
-                          onClick={() => submitHandler(category.id)}
-                        >
-                          Подробнее
-                        </Button>
-                      </CardActions>
-                    </Card>
-                  </Grid>
-                );
-              })}
-            </Box>
-          </Grid>
-
+    <Box>
+      <Grid container>
+        <Grid item>
+          {/* <Paper>Категории товаров</Paper> */}
+          <Box>
+            {allCategories?.map((category) => {
+              return (
+                <Grid key={category.id} item container xs={8}>
+                  <Card>
+                    <CardMedia
+                      component="img"
+                      image={category.link}
+                      alt="green iguana"
+                    />
+                    <CardContent>
+                      <Typography component="div" variant="h5">
+                        {category.title}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button
+                        size="smal"
+                        type="button"
+                        onClick={() => submitHandler(category.id)}
+                      >
+                        Подробнее
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              );
+            })}
+          </Box>
         </Grid>
-      </Box>
-    </Container>
+      </Grid>
+    </Box>
   );
 };
 
