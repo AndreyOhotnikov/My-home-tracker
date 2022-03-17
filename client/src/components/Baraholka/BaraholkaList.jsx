@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import ACTypes from "../../store/types/baraholkaTypes";
+import { allProductsView } from "../../store/actionCreators/baraholkaAC";
 import {
   Box,
   List,
@@ -20,10 +21,13 @@ const BaraholkaList = () => {
   const params = useParams();
   //console.log(params.id);
 
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(allProductsView());
+  }, []);
 
   const category = useSelector((store) => store.baraholka.category);
-  console.log(category);
+  //console.log("*********************************", category);
 
   const productsList = category.filter((el) => el.id === Number(params.id));
   console.log(productsList);

@@ -1,9 +1,9 @@
 import { actiontTypes } from "../types/globalTypes"
 
-export const addGlobalNews = (obj) => (
-  { 
-  type: actiontTypes.ADD_GLOBAL_NEWS_SAGA,payload:obj
-});
+// export const addGlobalNews = (obj) => (
+ // { 
+  //type: actiontTypes.ADD_GLOBAL_NEWS_SAGA,payload:obj
+// });
  
 export const addGlobalNewsRedux = (obj) => (
   { 
@@ -19,3 +19,7 @@ export const addLikeSaga=(id)=>( {type:actiontTypes.ADD_LIKE_GLOBAL_SAGA,payload
  
 
 export const addLikeToRedux=(data)=>({type:actiontTypes.ADD_LIKE_GLOBAL_REDUX,payload:data})
+
+export const deleteGlobalSaga =(id)=>({type:actiontTypes.DEL_NEWS_GLOBAL_SAGA,payload:id})
+
+export const delGlobalNewsRedux = (id)=>({type:actiontTypes.DEL_NEWS_GLOBAL_REDUX,payload:id})
