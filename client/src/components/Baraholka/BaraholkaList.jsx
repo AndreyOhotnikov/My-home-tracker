@@ -71,12 +71,14 @@ const BaraholkaList = () => {
               />
 
               <ListItemText
+                sx={{ marginLeft: "5%" }}
+                component="h3"
                 onClick={() => submitHandler(product.id)}
                 primary={product.title}
                 secondary={
                   <React.Fragment>
                     <Typography
-                      sx={{ display: "inline" }}
+                      sx={{ display: "inline", fontSize: 15 }}
                       component="span"
                       variant="body2"
                       color="text.primary"
