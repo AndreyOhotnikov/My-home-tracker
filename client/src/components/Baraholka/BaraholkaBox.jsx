@@ -41,13 +41,13 @@ const BaraholkaBox = () => {
 
     <Container>
       <Box>
-        <Grid container xl={8} direction="row">
-          <Grid item>
+        <Grid container spacing={1}>
+          <Grid item xs={12} sm={7}>
             <Paper>Категории товаров</Paper>
             <Box m={10}>
               {allCategories?.map((category) => {
                 return (
-                  <Grid key={category.id} container direction="row">
+                  <Grid key={category.id} xs={12} sm={7}>
                     <Card>
                       <CardMedia
                         component="img"

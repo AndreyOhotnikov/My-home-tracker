@@ -12,6 +12,7 @@ import {
   Typography,
   ListItemAvatar,
   Button,
+  CardMedia,
 } from "@mui/material";
 
 import { useSelector } from "react-redux";
@@ -31,10 +32,10 @@ const BaraholkaList = () => {
   const category = useSelector((store) => store.baraholka.category);
 
   const productsList = category.filter((el) => el.id === Number(params.id));
-  console.log(productsList);
+  //console.log(productsList);
 
   const prod = productsList.map((el) => el.products);
-  console.log(prod);
+  //console.log("prod", prod);
 
   const submitHandler = (id) => {
     navigate(`/product/${id}`);
@@ -44,7 +45,7 @@ const BaraholkaList = () => {
   }, []);
 
   return (
-    <Box m={10}>
+    <Box m={10} sx={{ marginLeft: "auto", marginRight: "auto" }}>
       {prod[0]?.map((product) => {
         return (
           <List
@@ -52,12 +53,13 @@ const BaraholkaList = () => {
             title={product.title}
             text={product.text}
             price={product.price}
+            link={product.status}
             sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
           >
             <ListItem alignItems="flex-start">
-              <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-              </ListItemAvatar>
+              <ListItem>
+                <CardMedia component="img" image={product.status} />
+              </ListItem>
               <ListItemText
                 onClick={() => submitHandler(product.id)}
                 primary={product.title}
