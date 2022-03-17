@@ -29,11 +29,13 @@ async function addCity(obj) {
     console.log(err);
   }
 }
+
 //city.map((el) => addCity(el));
 const street = [
   { name: "Lenina", city_id: 1 },
   { name: "Traphalgar", city_id: 2 },
 ];
+
 async function addStreet(obj) {
   try {
     await Street.create({
@@ -44,7 +46,9 @@ async function addStreet(obj) {
     console.log(err);
   }
 }
+
 //street.map((el) => addStreet(el));
+
 
 const home = [
   { name: 31, street_id: 1 },
@@ -60,7 +64,9 @@ async function addHome(obj) {
     console.log(err);
   }
 }
+
 //home.map((el) => addHome(el));
+
 
 const user = [
   {
@@ -189,6 +195,7 @@ const userinfo = [
     phone: 88005553535,
   },
 ];
+
 async function addUserinfo(obj) {
   try {
     await Userinfo.create({
@@ -202,22 +209,21 @@ async function addUserinfo(obj) {
     console.log(err);
   }
 }
-//userinfo.map((el) => addUserinfo(el));
+// userinfo.map((el) => addUserinfo(el));
 
-const bid = [
-  {
-    user_id: 1,
-    title: "няня",
-    status: "актуально",
-    text: "bid_text",
-  },
-  {
-    user_id: 2,
-    title: "Посидеть с собакой",
-    status: "неактуально",
-    text: "bid_text",
-  },
-];
+
+const bid = [{
+
+  user_id: 1, title: 'няня', status: 'актуально', text: 'bid_text',
+}, {
+  user_id: 1, title: 'Посидеть с собакой', status: 'неактуально', text: 'bid_text',
+}, {
+  user_id: 5, title: 'Хулиганство', status: 'актуально', text: 'Разрисованная и замусоренная детская площадка',
+}, {
+  user_id: 6, title: 'Нужен электрик', status: 'неактуально', text: 'Не работает выключатель в комнате',
+
+}];
+
 async function addBid(obj) {
   try {
     await Bid.create({
@@ -231,6 +237,7 @@ async function addBid(obj) {
   }
 }
 //bid.map((el) => addBid(el));
+
 
 const store = [
   {
@@ -248,6 +255,7 @@ const store = [
     price: 300,
   },
 ];
+
 async function addStore(obj) {
   try {
     await Store.create({
@@ -261,6 +269,7 @@ async function addStore(obj) {
     console.log(err);
   }
 }
+
 //store.map((el) => addStore(el));
 
 const local_news = [
@@ -292,7 +301,9 @@ async function addLocal_news(obj) {
     console.log(err);
   }
 }
+
 //local_news.map((el) => addLocal_news(el));
+
 
 const global_news = [
   {
@@ -375,22 +386,25 @@ async function addLike(obj) {
     console.log(err);
   }
 }
-//like.map((el) => addLike(el));
+
+// like.map((el) => addLike(el));
 
 const photolink = [
+  // {
+  //   userinfo_id: 5, link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
+  // },
+  // {
+  //   userinfo_id: 6, link: 'https://images.unsplash.com/photo-1544465544-1b71aee9dfa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBob3RvfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+  // },
   {
-    userinfo_id: 1,
-    global_news_id: 1,
-    bid_id: 1,
-    local_news_id: 1,
-    link: "https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg",
+    bid_id: 34, link: 'https://www.remontexpress.ru/upload/iblock/0c7/cover.jpg',
   },
   {
-    userinfo_id: 2,
-    global_news_id: 2,
-    bid_id: 2,
-    local_news_id: 2,
-    link: "https://images.unsplash.com/photo-1544465544-1b71aee9dfa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBob3RvfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+    bid_id: 41, link: 'https://news.store.rambler.ru/img/035a7ae1fb4176e472b69b66b29399d6?img-1-resize=width%3A1280%2Cheight%3A960%2Cfit%3Acover&img-format=auto',
+
+//like.map((el) => addLike(el));
+
+
   },
 ];
 async function addPhotolink(obj) {
@@ -406,7 +420,10 @@ async function addPhotolink(obj) {
     console.log(err);
   }
 }
+
+
 //photolink.map((el) => addPhotolink(el));
+
 
 const category_store = [
   {
@@ -444,7 +461,9 @@ async function addCategory_store(obj) {
     console.log(err);
   }
 }
+
 //category_store.map((el) => addCategory_store(el));
+
 
 const category_benifit = [
   {

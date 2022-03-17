@@ -114,6 +114,7 @@ const BaraholkaForm = () => {
           // accept="image/*"
           id="icon-button-file"
           type="file"
+
         />
       </label>
 

@@ -3,17 +3,16 @@ import { addService, allServices, delService } from '../actionCreators/benefitSe
 import {  REQUEST_ADD_SERVICE_SAGA, REQUEST_DEL_SERVICE_SAGA,  SAGA_API_SERVICES } from '../types/servicesTypes';
 
 function getServices() {
-  // return fetch ("http://127.0.0.1:3010/services",{
-    return fetch ("services", {
-    // credentials: "include",
+    return fetch ("/services", {
   }).then(response => response.json())
 }
 
 function* workerGetServices(action) {
+  console.log(action,'action');
   try {
+    console.log('===========');
     const res = yield call(getServices, action.payload);
-
-
+    console.log(action.payload,'action.payload');
     yield put(allServices(res))
   } catch (err) {
     console.error('Err', err);
@@ -27,13 +26,12 @@ export function* watcherServicesSaga() {
 }
 
 function addServicesSaga(action) {
-  // return fetch("http://127.0.0.1:3010/services/add", {
-    return fetch("services/add", {
+  console.log('addServicesSaga');
+    return fetch("/services/add", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    // credentials: "include",
     body: JSON.stringify(action)
   }).then((res) => res.json())
 }
@@ -52,12 +50,8 @@ export function* watcherAddServiceSaga() {
   yield takeEvery(REQUEST_ADD_SERVICE_SAGA, addServiceWorker)
 }
 function deleteServiceSaga(id) {
-  console.log('---------------------------', id)
-  // return fetch(`http://127.0.0.1:3010/services/${id}`,{
-    return fetch(`services/${id}`,{
- 
+    return fetch(`/services/${id}`,{
     method: 'DELETE', 
-  // credentials: "include",
   }).then(response => response.json())
 }
 
