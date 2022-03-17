@@ -24,7 +24,6 @@ const BaraholkaList = () => {
   const params = useParams();
   //console.log(params.id);
 
- 
   useEffect(() => {
     dispatch(allProductsView());
   }, []);
@@ -45,7 +44,15 @@ const BaraholkaList = () => {
   }, []);
 
   return (
-    <Box m={10} sx={{ marginLeft: "auto", marginRight: "auto" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        marginLeft: "10%",
+        marginTop: "5%",
+      }}
+    >
       {prod[0]?.map((product) => {
         return (
           <List
@@ -54,12 +61,15 @@ const BaraholkaList = () => {
             text={product.text}
             price={product.price}
             link={product.status}
-            sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+            // sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
           >
-            <ListItem alignItems="flex-start">
-              <ListItem>
-                <CardMedia component="img" image={product.status} />
-              </ListItem>
+            <ListItem>
+              <CardMedia
+                sx={{ width: "30%" }}
+                component="img"
+                image={product.status}
+              />
+
               <ListItemText
                 onClick={() => submitHandler(product.id)}
                 primary={product.title}
