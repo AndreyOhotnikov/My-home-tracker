@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import ACTypes from "../../store/types/baraholkaTypes";
 import { delProductSaga } from "../../store/actionCreators/baraholkaAC";
 import { useNavigate } from "react-router-dom";
+import { allProductsView } from "../../store/actionCreators/baraholkaAC";
 import {
   Box,
   List,
@@ -20,11 +21,15 @@ const BaraholkaItem = () => {
   //console.log(params);
   const navigate = useNavigate();
   const [showContact, setShowContact] = useState(false);
-  const dispatch = useDispatch();
 
   const category = useSelector((store) => store.baraholka.category);
   //console.log(category);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(allProductsView());
+  }, []);
 
+  
   const prList = category
     .map((el) => el.products)
     .reduce((a, b) => {
@@ -53,13 +58,13 @@ const BaraholkaItem = () => {
             <ListItemAvatar>
               <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
             </ListItemAvatar>
-            <ListItem variant="body2" color="textSecondary" component="p">
+            <ListItem variant="body2" color="textSecondary">
               <ListItemText>{prodItem.title}</ListItemText>
             </ListItem>
-            <ListItem variant="body2" color="textSecondary" component="p">
+            <ListItem variant="body2" color="textSecondary">
               <ListItemText>Описание: {prodItem.text}</ListItemText>
             </ListItem>
-            <ListItem variant="body2" color="textSecondary" component="p">
+            <ListItem variant="body2" color="textSecondary">
               <ListItemText>Цена: {prodItem.price} </ListItemText>
             </ListItem>
             <Box mt={4}>

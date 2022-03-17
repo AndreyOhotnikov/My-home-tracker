@@ -25,12 +25,13 @@ export const BenefitServicesList = () => {
     dispatch(sagaAddService());
   
   }, []);
-  console.log(category)
+  //console.log(category)
   const benefits = category
     .map((el) => el.benifits)
     .reduce((a, b) => {
       return a.concat(b);
     });
+    
 
   const a = benefits.filter((el) => el.category_id === Number(params.id) && el);
 

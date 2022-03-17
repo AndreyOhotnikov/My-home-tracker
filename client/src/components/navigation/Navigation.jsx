@@ -12,6 +12,7 @@ import BaraholkaBox from "../Baraholka/BaraholkaBox";
 import BaraholkaForm from "../Baraholka/BaraholkaForm";
 import BaraholkaList from "../Baraholka/BaraholkaList";
 import BaraholkaItem from "../Baraholka/BaraholkaItem";
+import Chat from "../Chat/Chat";
 import SignIn from "../Signin/SignIn";
 import Signup from "../Signup/Signup";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,6 +24,7 @@ import { openModaleReducer } from "../../store/actionCreators/userAC";
 import PrivatePageUser from "../PrivatePageUser/PrivatePageUser";
 import {BenefitServicesList} from "../BenefitServices/BenefitServicesList";
 import ModalPage from "../Signout/ModalPage";
+
 
 import {
   Button,
@@ -224,6 +226,7 @@ const Navigation = () => {
         <Route path="/baraholka/:id" element={<BaraholkaList />} />
         <Route path="/product/:id" element={<BaraholkaItem />} />
         <Route path="/addProduct" element={<BaraholkaForm />} />
+        <Route path="/chat" element={<Chat />} />
         {!auth && <Route path="/" element={<WelcomePage />} />}
         {!auth && <Route path="/locationHome" element={<LockationHome />} />}
         {<Route  path="/form/:id" element={<GlobalNewsForm/>} ></Route>}
@@ -250,8 +253,12 @@ const pages = [
   { name: "Услуги", src: "/services" },
   { name: "Барахолка", src: "/baraholka" },
   { name: "Разместить свой товар", src: "/addProduct" },
+
+  { name: "ЧАТ", src: "/chat" },
+
   { name: "Добавить Главную новость", src: "/form/:id" },
   { name: "Добавить локальную новость", src: "/local/form/:id" },
+
 
 ];
 
