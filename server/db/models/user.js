@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Global_news,{foreignKey:'user_id'})
       this.hasMany(models.Response,{foreignKey:'user_id'})
       this.hasMany(models.Like,{foreignKey:'user_id'})
+      this.hasMany(models.Photolink,{foreignKey:'documentIsChairman_user_id'})
     }
   }
   User.init({

@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     user_id: DataTypes.INTEGER,
     title: DataTypes.STRING,
     status: DataTypes.STRING,
-    text: DataTypes.TEXT
+    text: DataTypes.TEXT,
+    link: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Bid',

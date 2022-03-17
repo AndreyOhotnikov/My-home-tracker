@@ -27,6 +27,9 @@ module.exports = {
       phone: {
         type: Sequelize.BIGINT
       },
+      link: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

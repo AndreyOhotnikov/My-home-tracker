@@ -4,10 +4,10 @@ const { Store, Category_store, User, Userinfo } = require("../db/models");
 exports.createProductBaraholka = async (req, res) => {
   //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
   const { title, text, price, category, link, categoryId } = req.body;
-  //console.log(title, text, price, category, link, categoryId);
+  console.log(title, text, price, category, link, categoryId);
   let newProduct;
   let categoryPR;
-
+  console.log(title, text, price, category, link)
   try {
     if (!categoryId) {
       categoryPR = await Category_store.findOne({ where: { title: category } });

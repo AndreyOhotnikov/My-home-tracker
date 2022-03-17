@@ -24,6 +24,7 @@ import { watcherGetLocation } from '../saga/locations';
 import { watcherSignOut } from '../saga/userSignout';
 import { watcherSignIn } from '../saga/userSignin';
 import { watcherCheckIsAuth } from '../saga/userIsAuth';
+import { watcherProfilePageEdit } from '../saga/userProfilePage';
 
 
 const sagaMiddleware = saga();
@@ -46,7 +47,7 @@ export const store = createStore(rootReducer,InitialState, composeEnhancer)
 
 sagaMiddleware.run(
   function*() {
-    yield all([watcherServicesSaga(),watcherAddServiceSaga(),watcherDelServiceSaga(),watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(),watcherAllGlobalNews(),watcherGlobalNews(),watcherAddLike(),watcherBaraholka(), watcherProducts(), watcherDelProductBaraholka()]) 
+    yield all([watcherProfilePageEdit(), watcherServicesSaga(),watcherAddServiceSaga(),watcherDelServiceSaga(),watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(),watcherAllGlobalNews(),watcherGlobalNews(),watcherAddLike(),watcherBaraholka(), watcherProducts(), watcherDelProductBaraholka()]) 
 
   }
 )

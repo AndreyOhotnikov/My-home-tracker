@@ -44,7 +44,7 @@ const BaraholkaBox = () => {
           <Box m={10}>
             {allCategories.map((category) => {
               return (
-                <Grid key={category} conteiner direction="row">
+                <Grid key={category.id} direction="row">
                   <Card>
                     <CardMedia
                       component="img"

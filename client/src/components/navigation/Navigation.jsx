@@ -23,6 +23,7 @@ import { openModaleReducer } from "../../store/actionCreators/userAC";
 import PrivatePageUser from "../PrivatePageUser/PrivatePageUser";
 import {BenefitServicesList} from "../BenefitServices/BenefitServicesList";
 import ModalPage from "../Signout/ModalPage";
+import { useParams } from "react-router-dom";
 
 import {
   Button,
@@ -68,7 +69,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 const Navigation = () => {
   const dispatche = useDispatch();
   const auth = useSelector((state) => state.auth.auth);
-
+  const params = useParams();
   const navigate = useNavigate();
   const theme = useTheme();
 

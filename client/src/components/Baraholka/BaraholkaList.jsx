@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect} from "react";
 import { useDispatch } from "react-redux";
+
 import ACTypes from "../../store/types/baraholkaTypes";
+import { allProductsView } from "../../store/actionCreators/baraholkaAC";
+
 import {
   Box,
   List,
@@ -16,6 +19,7 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
 const BaraholkaList = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
   //console.log(params.id);
@@ -34,6 +38,9 @@ const BaraholkaList = () => {
   const submitHandler = (id) => {
     navigate(`/product/${id}`);
   };
+  useEffect(() => {
+    dispatch(allProductsView());
+  }, []);
 
   return (
     <Box m={10}>

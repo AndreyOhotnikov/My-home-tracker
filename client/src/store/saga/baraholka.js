@@ -30,7 +30,7 @@ function* workerAddProduct({ product }) {
 
 //получаем все продукты
 async function productsFind() {
-  const response = await fetch(`baraholka/allProduct`);
+  const response = await fetch(`/baraholka/allProduct`, {method: 'GET'});
   return await response.json(); //принмаем продукты
 }
 
