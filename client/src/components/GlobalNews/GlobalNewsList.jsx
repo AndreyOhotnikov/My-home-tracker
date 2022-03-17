@@ -91,16 +91,24 @@ function GlobalNewsList() {
           <Stack
             direction="column"
             spacing={1}
-            marginRight={30}
-            marginLeft={30}
+            marginRight={'3%'}
+            marginLeft={'3%'}
           >
             {state?.map((el, index) => {
               return (
                 <>
-                  <Item  onClick={() => seeItem(el.id)}>
-                    <Box>{goodDate(el?.updatedAt)}</Box>
+                  <Item  onClick={() => seeItem(el.id)}  style={{border: '1px solid black'}}>
+                    <Box >{goodDate(el?.updatedAt)}</Box>
 
                     <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      marginLeft: "10%",
+                      marginTop: "5%",
+                    }}
+              
                       marginTop={"2vh"}
                       // onClick={() => seeItem(el.id)}
                       key={index}
@@ -109,22 +117,17 @@ function GlobalNewsList() {
                       {el.title}
                     </Box>
 
-                    <Stack direction="row" spacing={1}>
-                      <Box width={1600} marginTop={3}>
-                        {/* {el.text} */}
+                    <Stack direction="row" spacing={1} >
+                      <Box style={{width: '1600px'}} width={1600} marginTop={3}>
+                        {el.text}
                       </Box>
-                      <Box
-                        component="img"
-                        maxHeight={'80%'}
-                        maxWeight={'80%'}
-                        src={el.link}
-                        // srcSet={`${el.link}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                        // alt={el.title}
-                        loading="lazy"
+                      <img style={{maxWidth: '30%'}}
+                        src={el.link} alt={''}
                       />
-                    </Stack>
+                    </Stack >
                     <Box marginLeft={"120ch"}>
                       <Stack
+                     
                         direction={"raw"}
                         alignContent={"end"}
                         marginTop={"1vh"}
@@ -136,14 +139,15 @@ function GlobalNewsList() {
                         </Box>
                         <Box>
                           {" "}
-                          <FavoriteIcon
+                        </Box>
+                      </Stack>
+                    </Box>
+                    <FavoriteIcon
+                         
                             onClick={() => {
                               changeLike(el.id);
                             }}
                           />
-                        </Box>
-                      </Stack>
-                    </Box>
                   </Item>
                 </>
               );

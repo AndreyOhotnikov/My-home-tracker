@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import { localTypes } from "../../store/types/localTypes";
 import { Link,Stack } from "@mui/material";
 import Paper from '@mui/material/Paper';
+import { IconButton } from "@mui/material";
 
 import { styled } from '@mui/material/styles';
 import { useState } from "react";
@@ -13,7 +14,8 @@ import Button from '@mui/material/Button';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import { IconButton } from "@mui/material";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
+
 import { Input } from "@mui/material";
 import { Provider, useDispatch,useSelector } from "react-redux";
 
@@ -70,83 +72,101 @@ function LocalNewsForm(){
     
    },[])
   return(
-     <>
-     <Stack direction={'row'} spacing={3} textAlign={'center'} marginTop={'5vh'} maxWidth={'100%'}>
-     <Stack spacing={2} textAlign={'start'} marginLeft={'180px'} maxWidth={'100%'}>
+     <div style={{maxWidth: '80%'}}>
+      <Stack direction={'row'} spacing={3} textAlign={'center'} marginTop={'5vh'} maxWidth={'80%'} display={'flex'} flexDirection={'column'} >
+      <Stack spacing={2} textAlign={'start'} marginLeft={'180px'} maxWidth={'100%'} >
 
-<Box component="form"
-maxWidth={'100%'}
-sx={{
-'& .MuiTextField-root': { mt:7, width: '25ch' },
-}}
-noValidate
-autoComplete="off">
-<TextField onChange={(event)=>{
-  setTitle(event.target.value)}}
-    required
-    id="1"
-    label="Введите заголовок"
-    defaultValue={defaultData?.title }
-  />
-</Box>
-<Box component="form"
-sx={{
-'& .MuiTextField-root': { mt:3, width: '25ch' },
-}}
-noValidate
-autoComplete="off">
+        <Box component="form" 
+        maxWidth={'80%'}
+        sx={{
+        '& .MuiTextField-root': { mt:'2%', width: '80%' },
+        }}
+        noValidate
+        autoComplete="off">
+        <TextField onChange={(event)=>{
+          setTitle(event.target.value)}}
+            required
+            id="1"
+            label="Введите заголовок"
+            defaultValue={defaultData?.title }
+            maxWidth={'80%'}/>
+        </Box>
+        <Box component="form" maxWidth={'80%'}
+        sx={{
+        '& .MuiTextField-root': { mt:"2%", width: '25ch' },
+        }}
+        noValidate
+        autoComplete="off">
 
-</Box>
-<Box component="form"
-sx={{
-'& .MuiTextField-root': { mt:3, width: '130ch' ,},
-}}
-noValidate
-autoComplete="off">
-<TextField
-    onChange={(event)=>{
-    setText(event.target.value)}}
-    required
-    id="1"
-    label="Введите текст"
-    defaultValue={defaultData?.text}
-    multiline
-    rows={20}
-  />
-</Box>
+        </Box>
+        <Box component="form" maxWidth={'80%'}
+        sx={{
+        '& .MuiTextField-root': { mt:"2%", width: '130ch' ,},
+        }}
+        noValidate
+        autoComplete="off">
+        <TextField  
+            onChange={(event)=>{
+            setText(event.target.value)}}
+            required
+            id="1"
+            label="Введите текст"
+            defaultValue={defaultData?.text}
+            multiline
+            rows={15}
+            maxWidth={'80%'}
+          />
+        </Box>
 
-</Stack>
-<Box paddingTop={'18vh'} paddingLeft={'5ch'}>
+        </Stack >
+        <Box paddingTop={''} paddingLeft={'16%'} maxWidth={'80%'} >
 
-<Stack spacing={2} direction="column" textAlign={'start'} >
+        <Stack spacing={2} direction="column" textAlign={'start'} maxWidth={'80%'}   display={'flex'}>
 
-{/* <Box marginBottom={'38vh'}  >
-      <FormControlLabel  control={<Checkbox defaultChecked={trueOrFalse(defaultData?.fixed)} onChange={(e)=>{
-        count()
-      }}/>} label="Закрепить новость" />
-</Box> */}
-<Stack spacing={2} direction="column" marginTop={'200px'}   >
-<label htmlFor="icon-button-file">
-       
-        <Button component="span"  variant="contained">
-        <Input   accept="image/*" id="icon-button-file" type="file" onChange={(e)=>{
-            setLink(e.target.files)
-        }}/>
-        </Button>
-      </label>
-<Button  onClick={(e)=>{
- 
-  e.preventDefault()
-  sagaLocalData()
-  navigateToMain()
-}}  variant="contained"   >Опубликовать новость</Button>
-</Stack>
+        {/* <Box marginBottom={'38vh'}  >
+              <FormControlLabel  control={<Checkbox defaultChecked={trueOrFalse(defaultData?.fixed)} onChange={(e)=>{
+                count()
+              }}/>} label="Закрепить новость" />
+        </Box> */} <br/>
+        <Stack spacing={2} direction="column" marginTop={'20px'}    >
+             <label style={{justifyContent: 'space-between', width: '50%'}} htmlFor="icon-button-file" >
+                  
+                    <IconButton
+                  color="primary"
+                  aria-label="upload picture"
+                  component="span"
+                >
+                  <PhotoCamera />
+                </IconButton>
+                <Box component="span">Выберите фото</Box>
+                <input
+                 onChange={(e)=>setLink(e.target.files)}
+                  style={{display: 'none'}}
+                  accept="image/*"
+                  id="icon-button-file"
+                  type="file"
+                  multiple
+                />
+                    {/* <Button component="span"  variant="contained" width={'600px'}> 
+                    <Input   accept="image/*" id="icon-button-file" type="file" onChange={(e)=>{
+                        setLink(e.target.files)
+                    }}/>
+                    </Button> */}
+                  
+                    <Button  onClick={(e)=>{
+                    
+                      e.preventDefault()
+                      sagaLocalData()
+                      navigateToMain()
+                    }}  variant="contained"  width={'60px'} >Опубликовать новость</Button>
+                    </label>
+          </Stack>
 
-</Stack>
+        </Stack>
 
-</Box>
-     </Stack>   
- </>
+        </Box>
+      </Stack>   
+ </div>
    )
  }
 
