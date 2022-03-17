@@ -86,7 +86,7 @@ function GlobalNewsList() {
   return (
     <>
       {view && (
-        <Box paddingTop={2}>
+        <Box paddingTop={2} maxWidth={'100%'}>
           <Box marginTop={3}>Главные новости</Box>
           <Stack
             direction="column"
@@ -108,12 +108,6 @@ function GlobalNewsList() {
                     >
                       {el.title}
                     </Box>
-                    {/* <Link to={true && `/form/${el.id}` }  underline="none" onClick ={()=>{
-      statusView(view,setView)
-      setId(el.id)
-      }}>
-    {el.title} */}
-                    {/* </Link >  */}
 
                     <Stack direction="row" spacing={1}>
                       <Box width={1600} marginTop={3}>
@@ -121,6 +115,8 @@ function GlobalNewsList() {
                       </Box>
                       <Box
                         component="img"
+                        maxHeight={'80%'}
+                        maxWeight={'80%'}
                         src={el.link}
                         // srcSet={`${el.link}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                         // alt={el.title}

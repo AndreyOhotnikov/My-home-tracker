@@ -264,6 +264,7 @@ const Navigation = () => {
         {<Route  path="/localnews" element={<LocalNewsList/>} ></Route>}
         {<Route  path="/local/form/:id" element={<LocalNewsForm/>} ></Route>}
         {<Route  path="/local/:id" element={<LocalNewsItem/>} ></Route>}
+        {<Route  path="/local/put/:id" element={<LocalNewsForm/>} ></Route>}
       </Routes>
       <ModalPage onClick={handleDrawerClose} />
     </div>

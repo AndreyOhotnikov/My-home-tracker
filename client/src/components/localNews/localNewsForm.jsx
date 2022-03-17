@@ -71,10 +71,11 @@ function LocalNewsForm(){
    },[])
   return(
      <>
-     <Stack direction={'row'} spacing={3} textAlign={'center'} marginTop={'5vh'}>
-     <Stack spacing={2} textAlign={'start'} marginLeft={'180px'}>
+     <Stack direction={'row'} spacing={3} textAlign={'center'} marginTop={'5vh'} maxWidth={'100%'}>
+     <Stack spacing={2} textAlign={'start'} marginLeft={'180px'} maxWidth={'100%'}>
 
 <Box component="form"
+maxWidth={'100%'}
 sx={{
 '& .MuiTextField-root': { mt:7, width: '25ch' },
 }}
@@ -94,13 +95,7 @@ sx={{
 }}
 noValidate
 autoComplete="off">
-<TextField onChange={(event)=>{
-  setTitle(event.target.value)}}
-    required
-    id="1"
-    label="Введите телефон "
-    defaultValue={defaultData?.title }
-  />
+
 </Box>
 <Box component="form"
 sx={{

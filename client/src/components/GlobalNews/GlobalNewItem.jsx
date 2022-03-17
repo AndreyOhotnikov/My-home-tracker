@@ -56,14 +56,14 @@ function GlobalNewsItem({el,view,setView,id,setId}){
        navigate('/GlobalNews')
   }
   function isFixed(el){
-    if(el.fixed ==='true'){
+    if(el?.fixed ==='true'){
       return true
     }
   }
   useEffect(()=>{ 
-     if(!userRole) dispatch({ type: types.CHECK_IS_AUTH_SAGA });
-    dispatch(getAllGlobalNews()) 
     
+    dispatch(getAllGlobalNews()) 
+    if(!userRole) dispatch({ type: types.CHECK_IS_AUTH_SAGA });
    },[])
    const goodDate=(str='')=>{ 
     const timeSec = str?.slice(-10,-8)
@@ -113,25 +113,26 @@ function GlobalNewsItem({el,view,setView,id,setId}){
     {defaultData?.title}
    </Box >
     
-   <Stack direction={'row'}>
-   <Box width={'140ch'} marginTop={'5ch'}  >
+   <Stack direction={'row'} >
+   <Box width={'100%'} marginTop={'5ch'}  >
    {defaultData?.text}    
    </Box>
   
-   <Stack>
+   <Stack width={'20%'}>
    
-   <Box paddingLeft={'5ch'} component='img'
+   <Box marginRight={'20%'} component='img'
             src={defaultData?.link}
             srcSet={`${defaultData?.link}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
             alt={defaultData?.title}
             loading="lazy"
-            width={'40ch'}
-            height={'40vh'}
+            maxWidth={'100%'}
+            maxHeight={'100%'}
+            borderRadius={'15px'}
           />
-          <Stack direction={'row'}>
-         
-          <Box paddingLeft={'35ch'} marginTop={'5vh'} > {defaultData?.likeLength ? defaultData?.likeLength:0 }</Box> 
-          <Box marginTop={'5vh'}> < FavoriteIcon onClick={(e)=> changeLike(defaultData?.id,e)}/></Box> 
+          <Stack direction={'row'} >
+          {/* <Box  marginTop={'5vh'} > <Button onClick={(e)=> changeLike(defaultData?.id,e)} >понравилось</Button></Box> 
+          <Box marginTop={'35%'} > {defaultData?.likeLength ? defaultData?.likeLength:0 }</Box> 
+          <Box marginTop={'35%'} > < FavoriteIcon /></Box>  */}
    
          
           </Stack>
@@ -140,13 +141,14 @@ function GlobalNewsItem({el,view,setView,id,setId}){
           
    </Stack>
    <Stack direction={'row'} >
-          {userRole?.role==='user' && <Box marginRight={'100ch'}><Button onClick={()=>updateGlobal(defaultData.id)}>Редактировать</Button>
+          {userRole?.role!=='user' && <Box marginRight={'100ch'}><Button onClick={()=>updateGlobal(defaultData.id)}>Редактировать</Button>
           <Button onClick={()=>{
             deleteGlobal(defaultData.id)
             navigateToMain()
             }}>Удалить</Button></Box>}
-          
-          
+          <Box marginLeft={'17%'}><Button  onClick={(e)=> changeLike(defaultData?.id,e)} >понравилось</Button></Box>
+          <Box marginTop={'8px'} > {defaultData?.likeLength ? defaultData?.likeLength:0 }</Box> 
+          <Box marginTop={'8px'} > < FavoriteIcon /></Box> 
    </Stack>
    
     
@@ -158,11 +160,25 @@ function GlobalNewsItem({el,view,setView,id,setId}){
    <Box marginTop={'3vh'}>
    <Grid  container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
   {state.map((el, index) => (
-    <Grid item xs={2} sm={4} md={4} key={index}>
-      <Item><Box width={'50ch'} height={'50vh'} onClick={()=>seeItem(el.id)}>
+    <Grid item xs={2} sm={4} md={4} key={index} marginBottom={'10%'}>
+      <Item ><Box width={'90%'} height={'50vh'} onClick={()=>seeItem(el.id)}>
         <Box>{goodDate(el.updatedAt)}</Box>
         <Box style={isFixed(el)?{color:'red'}:null}>{el.title}</Box>
+        <Box marginTop={'5%'} textAlign={'center'}>
+        <Box component='img'
+             borderRadius={'15px'}
+             src={el.link}
+              srcSet={`${el.link}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+              alt={el.title}
+             loading="lazy"
+             maxWidth={'80%'}
+             maxHeight={'80%'}
+           />
         </Box>
+        <Box marginTop={'7%'}><Button onClick={(e)=> changeLike(el?.id,e)}>Понравилось</Button><Box component={'span'}>{el.likeLength ? el?.likeLength:0 }</Box><Box position={'absolute'} component={'span'} marginTop={'4px'}>< FavoriteIcon /></Box></Box>
+        
+        </Box>
+        
         </Item>
     </Grid>
   ))}
