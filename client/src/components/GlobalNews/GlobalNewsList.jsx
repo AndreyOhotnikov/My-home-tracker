@@ -97,12 +97,12 @@ function GlobalNewsList() {
             {state?.map((el, index) => {
               return (
                 <>
-                  <Item>
+                  <Item  onClick={() => seeItem(el.id)}>
                     <Box>{goodDate(el?.updatedAt)}</Box>
 
                     <Box
                       marginTop={"2vh"}
-                      onClick={() => seeItem(el.id)}
+                      // onClick={() => seeItem(el.id)}
                       key={index}
                       style={isFixed(el) ? { color: "red" } : null}
                     >

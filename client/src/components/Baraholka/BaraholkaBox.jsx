@@ -45,7 +45,7 @@ const BaraholkaBox = () => {
           <Grid item>
             <Paper>Категории товаров</Paper>
             <Box m={10}>
-              {allCategories.map((category) => {
+              {allCategories?.map((category) => {
                 return (
                   <Grid key={category.id} container direction="row">
                     <Card>

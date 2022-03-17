@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { addBid, allBids, allUser, delBid } from "../actionCreators/bid";
-import { REQUEST_ADD_BID_SAGA, REQUEST_DEL_BID_SAGA, SAGA_API_BIDS } from "../types/bid";
+import { REQUEST_ADD_BID_SAGA, REQUEST_DEL_BID_SAGA, SAGA_API_BIDS, SAGA_API_USERS } from "../types/bid";
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { firebaseConfig } from "../types/firebaseConfig";
@@ -32,6 +32,7 @@ async function addBidSaga(bids) {
 function* addBidWorker(action) {
   try {
     const dataFromServer = yield call(addBidSaga, action.payload);
+    console.log(dataFromServer)
     if (dataFromServer) yield put(addBid(dataFromServer))
   } catch (err) {
     console.error('Err', err);
@@ -49,6 +50,7 @@ function getAllUser() {
 }
 
 function* workerGetAllUser(action) {
+  console.log('////////////////////////////////////////////////////////////////')
   try {
     const res = yield call(getAllUser, action.payload);
     yield put(allUser(res))
@@ -59,7 +61,7 @@ function* workerGetAllUser(action) {
   }
 }
 export function* watcherUsersSaga() {
-  yield takeEvery(SAGA_API_BIDS, workerGetAllUser)
+  yield takeEvery(SAGA_API_USERS, workerGetAllUser)
 }
 
 

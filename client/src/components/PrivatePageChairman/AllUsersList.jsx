@@ -27,8 +27,8 @@ import { useNavigate } from "react-router-dom";
 export const AllUsersList = () => {
   const navigate = useNavigate();
   // const classes = useStyles();
-  const store = useSelector((state) => state.bids);
-
+  const store = useSelector((state) => state.user);
+console.log(store)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(usersSagaApi());
@@ -49,19 +49,22 @@ export const AllUsersList = () => {
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
                 <Avatar
-                  src={user["User.Userinfo.Photolinks.link"]}
+                  src={user["Userinfo.Photolinks.link"]}
                 />
               </ListItemAvatar>
               <ListItemText
                 // onClick={() => submitHandler(user.id)}
-                primary={user["User.Userinfo.full_name"]}
+                primary={user["Userinfo.full_name"]}
                 secondary={
                   <React.Fragment>
                     <Typography variant="body2" color="text.secondary">
-                      Телефон: {user["User.Userinfo.phone"]}
+                      Телефон: {user["Userinfo.phone"]}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      Email : {user["User.email"]}
+                      Email : {user["email"]}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Адрес : {user["Userinfo.adress"]}
                     </Typography>
                   </React.Fragment>
                 }
