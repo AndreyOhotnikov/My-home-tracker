@@ -61,8 +61,7 @@ function GlobalNewsItem({el,view,setView,id,setId}){
     }
   }
   useEffect(()=>{ 
-    debugger
-     if(!userRole)dispatch({ type: types.CHECK_IS_AUTH_SAGA });
+     if(!userRole) dispatch({ type: types.CHECK_IS_AUTH_SAGA });
     dispatch(getAllGlobalNews()) 
     
    },[])

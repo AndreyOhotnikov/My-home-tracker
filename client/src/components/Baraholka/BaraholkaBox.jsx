@@ -38,13 +38,14 @@ const BaraholkaBox = () => {
   };
 
   return (
+
     <Container>
       <Box>
         <Grid container spacing={1}>
           <Grid item xs={12} sm={7}>
             <Paper>Категории товаров</Paper>
             <Box m={10}>
-              {allCategories.map((category) => {
+              {allCategories?.map((category) => {
                 return (
                   <Grid key={category.id} xs={12} sm={7}>
                     <Card>
@@ -73,6 +74,7 @@ const BaraholkaBox = () => {
               })}
             </Box>
           </Grid>
+
         </Grid>
       </Box>
     </Container>
