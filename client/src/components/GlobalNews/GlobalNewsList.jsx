@@ -115,8 +115,8 @@ function GlobalNewsList() {
                       </Box>
                       <Box
                         component="img"
-                        maxHeight={'80%'}
-                        maxWeight={'80%'}
+                        sx={{ width: "60%" }}
+                        sx={{ height: "60%" }}
                         src={el.link}
                         // srcSet={`${el.link}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                         // alt={el.title}
