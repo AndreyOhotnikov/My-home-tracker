@@ -8,13 +8,15 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       user_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Users',
-          key: 'id',
-        },
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        allowNull: true,
+        // references: {
+        //   model: 'Users',
+        //   key: 'id',
+        // },
       },
       local_news_id: {
+        allowNull: true,
         type: Sequelize.INTEGER,
         references: {
           model: 'Local_news',

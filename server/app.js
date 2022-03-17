@@ -6,20 +6,19 @@ const path = require('path');
 const session = require('express-session');
 require('dotenv').config();
 
-const servicesRouter = require('./routes/benefitServices')
-
-const globalNewsRouter = require('./routes/globalNews');
-const locationRouter = require('./routes/location')
-const usersRouter = require('./routes/user');
-const baraholkaRouter = require('./routes/baraholka');
-
 const redis = require('redis');
 const RedisStore = require('connect-redis')(session);
+const servicesRouter = require('./routes/benefitServices');
+
+const globalNewsRouter = require('./routes/globalNews');
+const localNewsRouter = require('./routes/localNews');
+const locationRouter = require('./routes/location');
+const usersRouter = require('./routes/user');
+const baraholkaRouter = require('./routes/baraholka');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 // const FileStore = require('session-file-store')(session);
-
 
 const redisClient = redis.createClient();
 
@@ -50,9 +49,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/services', servicesRouter)
+app.use('/services', servicesRouter);
 app.use('/baraholka', baraholkaRouter);
-app.use('/global', globalNewsRouter);
+app.use('/globalNews', globalNewsRouter);
+app.use('/localNews', localNewsRouter);
 
 app.use('/user', usersRouter);
 app.use('/global', locationRouter);

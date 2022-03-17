@@ -14,8 +14,8 @@ import { watcherAddServiceSaga,  watcherDelServiceSaga,  watcherGetFindServiceSa
 
 
  import {globalNewsReducer} from './globalNewsReducer'
- import { watcherGlobalNews ,watcherAllGlobalNews, watcherAddLike} from '../saga/globalNews';
-
+ import { watcherGlobalNews ,watcherAllGlobalNews, watcherAddLike,watcherDelGlobalNews} from '../saga/globalNews';
+import { watcherLocalNews,watcherAllLocalNews,watcherAddLocalLike,watcherDelLocalNews } from '../saga/localNews';
 import {locationReducer} from './locationReducer'
 import { firebaseReducer } from './firebaseReducer';
 import {authReducer} from './userReducer'
@@ -24,13 +24,14 @@ import { watcherGetLocation } from '../saga/locations';
 import { watcherSignOut } from '../saga/userSignout';
 import { watcherSignIn } from '../saga/userSignin';
 import { watcherCheckIsAuth } from '../saga/userIsAuth';
-
+import { localNewsReducer } from './localReducer';
 
 const sagaMiddleware = saga();
 
 const rootReducer = combineReducers({
   services: servicesReducer,
   globalNews:globalNewsReducer,
+  localReducer:localNewsReducer,
   auth: authReducer,
   location: locationReducer,
   firebase: firebaseReducer,
@@ -46,7 +47,7 @@ export const store = createStore(rootReducer,InitialState, composeEnhancer)
 
 sagaMiddleware.run(
   function*() {
-    yield all([watcherServicesSaga(),watcherAddServiceSaga(),watcherDelServiceSaga(),watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(),watcherAllGlobalNews(),watcherGlobalNews(),watcherAddLike(),watcherBaraholka(), watcherProducts(), watcherDelProductBaraholka()]) 
+    yield all([watcherServicesSaga(),watcherAddServiceSaga(),watcherDelServiceSaga(),watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(),watcherAllGlobalNews(),watcherGlobalNews(),watcherAddLike(),watcherBaraholka(), watcherProducts(), watcherDelProductBaraholka(),watcherDelGlobalNews(),watcherLocalNews(),watcherAllLocalNews(),watcherAddLocalLike(),watcherDelLocalNews()]) 
 
   }
 )

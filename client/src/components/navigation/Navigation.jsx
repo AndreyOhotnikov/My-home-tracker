@@ -56,7 +56,11 @@ import MailIcon from "@mui/icons-material/Mail";
 import { BenefitServicesMain } from "../BenefitServices/BenefitServicesMain";
 import { BenefitServicesForm } from "../BenefitServices/BenefitServicesForm";
 import { BenefitServicesItem } from "../BenefitServices/BenefitServicesItem";
-
+import GlobalNewsForm from "../GlobalNews/GlobalNewsForm";
+import GlobalNewsItem from "../GlobalNews/GlobalNewItem";
+import LocalNewsList from "../localNews/localNewsList";
+import LocalNewsForm from "../localNews/localNewsForm";
+import LocalNewsItem from "../localNews/localNewsItem";
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
@@ -68,7 +72,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 const Navigation = () => {
   const dispatche = useDispatch();
   const auth = useSelector((state) => state.auth.auth);
-
+  console.log(auth,'auth')
   const navigate = useNavigate();
   const theme = useTheme();
 
@@ -81,13 +85,13 @@ const Navigation = () => {
   };
 
   useEffect(() => {
-    console.log("ДОЛЖЕН СРАБАТЫВАТЬ ТОЛЬКО ПРИ ПЕРЕЗАГРУЗКЕ СТРАНИЦЫ");
+    // console.log("ДОЛЖЕН СРАБАТЫВАТЬ ТОЛЬКО ПРИ ПЕРЕЗАГРУЗКЕ СТРАНИЦЫ");
     if (!auth) dispatche({ type: types.CHECK_IS_AUTH_SAGA });
   }, []);
 
   const handleOpen = () => dispatche(openModaleReducer(true));
   // const handleClose = () => dispatche(openModaleReducer(false));
-  console.log("РЕНДЕР КОМПОНЕНТА НАВИГАЦИЯ", auth);
+  // console.log("РЕНДЕР КОМПОНЕНТА НАВИГАЦИЯ", auth);
 
   const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
   const handleCloseUserMenu = () => setAnchorElUser(null);
@@ -222,6 +226,12 @@ const Navigation = () => {
         <Route path="/addProduct" element={<BaraholkaForm />} />
         {!auth && <Route path="/" element={<WelcomePage />} />}
         {!auth && <Route path="/locationHome" element={<LockationHome />} />}
+        {<Route  path="/form/:id" element={<GlobalNewsForm/>} ></Route>}
+        {<Route  path="/global/:id" element={<GlobalNewsItem/>} ></Route>}
+        {<Route  path="/global/put/:id" element={<GlobalNewsForm/>} ></Route>}
+        {<Route  path="/localnews" element={<LocalNewsList/>} ></Route>}
+        {<Route  path="/local/form/:id" element={<LocalNewsForm/>} ></Route>}
+        {<Route  path="/local/:id" element={<LocalNewsItem/>} ></Route>}
       </Routes>
       <ModalPage onClick={handleDrawerClose} />
     </div>
@@ -234,11 +244,15 @@ const pages = [
   { name: "Главная", src: "/" },
   { name: "Картинка", src: "/pictures" },
   { name: "Главные новости", src: "/GlobalNews" },
+  { name: "Новости пользователей", src: "/localnews" },
   { name: "События", src: "/doings" },
   { name: "Добавить услугу", src: "/services/new" },
   { name: "Услуги", src: "/services" },
   { name: "Барахолка", src: "/baraholka" },
   { name: "Разместить свой товар", src: "/addProduct" },
+  { name: "Добавить Главную новость", src: "/form/:id" },
+  { name: "Добавить локальную новость", src: "/local/form/:id" },
+
 ];
 
 const settings = [

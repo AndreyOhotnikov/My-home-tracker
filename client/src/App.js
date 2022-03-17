@@ -1,5 +1,5 @@
 import './App.css';
-import Navigation from './components/Navigation/Navigation'
+import Navigation from './components/navigation/Navigation'
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from "react-redux";
 import { store } from './store/reducers/rootReducer.js';
