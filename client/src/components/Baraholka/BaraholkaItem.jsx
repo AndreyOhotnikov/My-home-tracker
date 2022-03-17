@@ -48,16 +48,6 @@ const BaraholkaItem = () => {
   }, []);
 
 
-  // const prList = category?
-  //   .map((el) => el.products)
-  //   .reduce((a, b) => {
-  //     return a.concat(b);
-  //   });
-  // console.log(prList);
-
-
-
-
   //console.log(productsList);
   const showContactHandler = () => {
     setShowContact(true);
