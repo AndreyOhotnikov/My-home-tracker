@@ -18,8 +18,8 @@ import { watcherGetLocation } from '../saga/locations';
 import { watcherSignOut } from '../saga/userSignout';
 import { watcherSignIn } from '../saga/userSignin';
 import { watcherCheckIsAuth } from '../saga/userIsAuth';
-import { watcherAddBidSaga, watcherBidsSaga } from '../saga/bid';
-import { bidsReducer } from './bidReducer';
+import { watcherAddBidSaga, watcherBidsSaga, watcherDelBidSaga, watcherUsersSaga } from '../saga/bid';
+import { bidsReducer, userReducer } from './bidReducer';
 
 
 const sagaMiddleware = saga();
@@ -32,6 +32,7 @@ const rootReducer = combineReducers({
   firebase: firebaseReducer,
   baraholka: baraholkaReducer,
   bids:bidsReducer,
+  user:userReducer,
 })
 
 const composeEnhancer =
@@ -43,7 +44,7 @@ export const store = createStore(rootReducer, InitialState, composeEnhancer)
 
 sagaMiddleware.run(
   function* () {
-    yield all([watcherServicesSaga(), watcherAddServiceSaga(), watcherDelServiceSaga(), watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(), watcherAllGlobalNews(), watcherGlobalNews(), watcherAddLike(), watcherBaraholka(), watcherProducts(), watcherDelProductBaraholka(), watcherAddBidSaga(),watcherBidsSaga()])
+    yield all([watcherServicesSaga(), watcherAddServiceSaga(), watcherDelServiceSaga(), watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(), watcherAllGlobalNews(), watcherGlobalNews(), watcherAddLike(), watcherBaraholka(), watcherProducts(), watcherDelProductBaraholka(), watcherAddBidSaga(),watcherBidsSaga(),watcherDelBidSaga(),watcherUsersSaga()])
 
   }
 )

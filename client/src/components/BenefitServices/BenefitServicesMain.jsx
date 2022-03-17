@@ -36,32 +36,22 @@ export const BenefitServicesMain = () => {
   const category = useSelector((state) => state.services);
   const navigate = useNavigate();
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(servicesSagaApi());
-  }, []);
-
   const submitHandler = (id) => {
     console.log('submitHandler');
     navigate(`/services/${id}`);
   };
 
   return (
-    <Box 
-    //className={classes}
-    >
+    <Box m={5}>
       <Grid container xl={8} direction="row">
         <Grid item>
           <Paper>Категории услуг</Paper>
-          <Box m={10} 
-          // className={classes.item}
-          >
-            {category.map((category) => {
+          <Box m={5}  >
+            {category?.map((category) => {
               return (
                 <Grid key={category.id} container direction="row">
                   <Card>
                     <CardMedia
-                      // className={classes.img}
                       component="img"
                       image={category.link}
                       alt="green iguana"

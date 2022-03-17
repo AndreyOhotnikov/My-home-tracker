@@ -1,9 +1,12 @@
 const router = require('express').Router();
-const { addNewBid, getAllBids } = require('../controllers/bids');
+const {
+  addNewBid, getAllBids, deleteBid, getAllUsers,
+} = require('../controllers/bids');
 
 router
   .get('/', getAllBids)
-  .post('/add', addNewBid);
-// .delete('/:id', deleteServise);
+  .get('/users', getAllUsers)
+  .post('/add', addNewBid)
+  .delete('/:id', deleteBid);
 
 module.exports = router;

@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Routes,
-  Link,
   Route,
   useNavigate,
-  Navigate,
-  useLocation,
 } from "react-router-dom";
-import HomeMain from "../HomeMain/HomeMain";
 import BaraholkaBox from "../Baraholka/BaraholkaBox";
 import BaraholkaForm from "../Baraholka/BaraholkaForm";
 import BaraholkaList from "../Baraholka/BaraholkaList";
@@ -34,6 +30,8 @@ import {
   Typography,
   IconButton,
   Toolbar,
+  List,
+  Divider,
   Box,
   AppBar,
 } from "@mui/material";
@@ -41,10 +39,6 @@ import {
   styled,
   useTheme,
   Drawer,
-  CssBaseline,
-  MuiAppBar,
-  List,
-  Divider,
 } from "@mui/material";
 import { ListItem, ListItemIcon, ListItemText } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -58,8 +52,9 @@ import { BenefitServicesForm } from "../BenefitServices/BenefitServicesForm";
 import { BenefitServicesItem } from "../BenefitServices/BenefitServicesItem";
 import { BidForm } from "../Bids/BidsForm";
 import { AllBidsList } from "../PrivatePageChairman/AllBidsList";
-import { PrivatePageChairman } from "../PrivatePageChairman/PrivatePageChairman";
 import { BidsItem } from "../PrivatePageChairman/BidsItem";
+import { servicesSagaApi } from "../../store/actionCreators/benefitServicesAC";
+import { AllUsersList } from "../PrivatePageChairman/AllUsersList";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -96,6 +91,11 @@ const Navigation = () => {
 
   const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
   const handleCloseUserMenu = () => setAnchorElUser(null);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(servicesSagaApi());
+  }, []);
 
   return (
     <div onClick={handleDrawerClose}>
@@ -224,8 +224,8 @@ const Navigation = () => {
         <Route path="/baraholka/:id" element={<BaraholkaList />} />
         <Route path="/product/:id" element={<BaraholkaItem />} />
         <Route path="/addProduct" element={<BaraholkaForm />} />
-        <Route path="/privateChairman" element={<PrivatePageChairman />} />
         <Route path="/bids" element={<AllBidsList />} />
+        <Route path="/users" element={<AllUsersList />} />
         <Route path="/bid/:id" element={<BidsItem />} />
         {!auth && <Route path="/" element={<WelcomePage />} />}
         {!auth && <Route path="/locationHome" element={<LockationHome />} />}
@@ -239,16 +239,16 @@ export default Navigation;
 
 const pages = [
   { name: "Главная", src: "/" },
-  // { name: "Картинка", src: "/pictures" },
-  // { name: "Главные новости", src: "/GlobalNews" },
-  // { name: "События", src: "/doings" },
-  // { name: "Добавить услугу", src: "/services/new" },
-  // { name: "Услуги", src: "/services" },
-  // { name: "Барахолка", src: "/baraholka" },
-  // { name: "Разместить свой товар", src: "/addProduct" },
+  { name: "Картинка", src: "/pictures" },
+  { name: "Главные новости", src: "/GlobalNews" },
+  { name: "События", src: "/doings" },
+  { name: "Добавить услугу", src: "/services/new" },
+  { name: "Услуги", src: "/services" },
+  { name: "Барахолка", src: "/baraholka" },
+  { name: "Разместить свой товар", src: "/addProduct" },
   { name: "Заявка,жалоба", src: "/addBid" },
-  { name: "Личный кабинет,председателя", src: "/privateChairman" },
   { name: "Все заявки", src: "/bids" },
+  { name: "Все пользователи", src: "/users" },
 ];
 
 const settings = [

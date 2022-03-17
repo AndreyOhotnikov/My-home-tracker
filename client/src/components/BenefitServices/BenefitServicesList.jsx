@@ -9,27 +9,29 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import {  useNavigate, useParams } from "react-router-dom";
 
+
 export const BenefitServicesList = () => {
   const navigate = useNavigate();
   const params = useParams();
   
   const category = useSelector((state) => state.services);
 
-  const benefits = category
-    .map((el) => el.benifits)
-    .reduce((a, b) => {
+  const benefits = category?.map((el) => el.benifits)?.reduce((a, b) => {
       return a.concat(b);
-    });
+    },);
+    const list = benefits?.filter((el) => el.category_id === Number(params.id) && el);
 
-  const a = benefits.filter((el) => el.category_id === Number(params.id) && el);
+  
+
 
   const submitHandler = (id) => {
     navigate(`/service/${id}`);
   };
 
   return (
+    <>
     <Box m={10}>
-      {a?.map((ben) => {
+      {list?.map((ben) => {
         return (
           <List
             key={ben.id}
@@ -64,5 +66,6 @@ export const BenefitServicesList = () => {
         );
       })}
     </Box>
+  </>
   );
 };

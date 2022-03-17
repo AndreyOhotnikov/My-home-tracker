@@ -129,10 +129,10 @@ async function addBenifit(obj) {
 // benifit.map((el) => addBenifit(el));
 
 const userinfo = [{
-  user_id: 9, full_name: 'Иванов Иван Иванович', entrance: 3, flat: 100, phone: 88005553534
+  user_id: 5, full_name: 'Иванов Иван Иванович', entrance: 3, flat: 100, phone: 88005553534
   ,
 }, {
-  user_id: 10, full_name: 'Петров Пётр Петрович', entrance: 1, flat: 42, phone: 88005553535,
+  user_id: 6, full_name: 'Петров Пётр Петрович', entrance: 1, flat: 42, phone: 88005553535,
 }];
 async function addUserinfo(obj) {
   try {
@@ -150,9 +150,9 @@ async function addUserinfo(obj) {
 // userinfo.map((el) => addUserinfo(el));
 
 const bid = [{
-  user_id: 5, title: 'няня', status: 'актуально', text: 'bid_text',
+  user_id: 5, title: 'Хулиганство', status: 'актуально', text: 'Разрисованная и замусоренная детская площадка',
 }, {
-  user_id: 6, title: 'Посидеть с собакой', status: 'неактуально', text: 'bid_text',
+  user_id: 6, title: 'Нужен электрик', status: 'неактуально', text: 'Не работает выключатель в комнате',
 }];
 async function addBid(obj) {
   try {
@@ -186,7 +186,7 @@ async function addStore(obj) {
     console.log(err);
   }
 }
-store.map((el) => addStore(el));
+// store.map((el) => addStore(el));
 
 const local_news = [{
   user_id: 5, title: 'локальная новость 1', status: 'актуально', text: 'local_text', phone: 88005553535,
@@ -268,11 +268,20 @@ async function addLike(obj) {
 }
 // like.map((el) => addLike(el));
 
-const photolink = [{
-  userinfo_id: 5, global_news_id: 1, bid_id: 1, local_news_id: 1, link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
-}, {
-  userinfo_id: 6, global_news_id: 2, bid_id: 2, local_news_id: 2, link: 'https://images.unsplash.com/photo-1544465544-1b71aee9dfa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBob3RvfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-}];
+const photolink = [
+  // {
+  //   userinfo_id: 5, link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
+  // },
+  // {
+  //   userinfo_id: 6, link: 'https://images.unsplash.com/photo-1544465544-1b71aee9dfa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBob3RvfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+  // },
+  {
+    bid_id: 34, link: 'https://www.remontexpress.ru/upload/iblock/0c7/cover.jpg',
+  },
+  {
+    bid_id: 41, link: 'https://news.store.rambler.ru/img/035a7ae1fb4176e472b69b66b29399d6?img-1-resize=width%3A1280%2Cheight%3A960%2Cfit%3Acover&img-format=auto',
+  },
+];
 async function addPhotolink(obj) {
   try {
     await Photolink.create({

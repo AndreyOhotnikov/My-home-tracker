@@ -8,15 +8,18 @@ import {
   Avatar,
   Typography,
 } from "@mui/material";
+// import { makeStyles } from "@mui/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { bidsSagaApi } from "../../store/actionCreators/bid";
-import { servicesSagaApi } from "../../store/actionCreators/benefitServicesAC";
 import { useNavigate } from "react-router-dom";
 
 export const AllBidsList = () => {
   const navigate = useNavigate();
+    // const classes = useStyles();
+
   const store = useSelector((state) => state.bids);
   console.log(store, "store");
+
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -28,7 +31,7 @@ export const AllBidsList = () => {
   };
 
   return (
-    <Box m={10}>
+    <Box >
       {store?.map((bid) => {
         return (
           <List
@@ -38,7 +41,6 @@ export const AllBidsList = () => {
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
                 <Avatar
-                  alt="Remy Sharp"
                   src={bid["User.Userinfo.Photolinks.link"]}
                 />
               </ListItemAvatar>
@@ -53,8 +55,17 @@ export const AllBidsList = () => {
                       variant="body2"
                       color="text.primary"
                     >
-                      Текст: {bid.text}
+                      Название: {bid.title}
                     </Typography>
+                    <Typography
+                      sx={{ display: "flex" }}
+                      component="span"
+                      variant="body2"
+                      color="text.primary"
+                    >
+                      Описание: {bid.text}
+                    </Typography>
+
                     <Typography
                       sx={{ display: "inline" }}
                       component="span"

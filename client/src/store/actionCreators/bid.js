@@ -1,4 +1,4 @@
-import { ADD_BID, DELETE_BID, GET_ALL_BIDS, REQUEST_ADD_BID_SAGA, REQUEST_DEL_BID_SAGA, SAGA_API_BIDS } from "../types/bid"
+import { ADD_BID, DELETE_BID, GET_ALL_BIDS, GET_ALL_USER, REQUEST_ADD_BID_SAGA, REQUEST_DEL_BID_SAGA, SAGA_API_BIDS, SAGA_API_USERS } from "../types/bid"
 
 export const addBid = (newBid) => {
   return {
@@ -14,10 +14,10 @@ export const sagaAddBid = (formData) => {
   }
 }
 
-export const allBids = (services) => {
+export const allBids = (bids) => {
   return {
     type: GET_ALL_BIDS,
-    payload: services
+    payload: bids
   }
 }
 
@@ -27,7 +27,19 @@ export const bidsSagaApi = (bids) => {
     payload: bids
   }
 }
+export const allUser = (bids) => {
+  return {
+    type: GET_ALL_USER,
+    payload: bids
+  }
+}
 
+export const usersSagaApi = (bids) => {
+  return {
+    type: SAGA_API_USERS,
+    payload: bids
+  }
+}
 
 export const delBid = (id) => {
   return {

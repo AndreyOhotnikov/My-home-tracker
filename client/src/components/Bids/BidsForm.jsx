@@ -10,7 +10,7 @@ import Select from "@mui/material/Select";
 import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import { sagaAddService } from "../../store/actionCreators/benefitServicesAC";
+
 import { useNavigate, useParams } from "react-router-dom";
 import { sagaAddBid } from "../../store/actionCreators/bid";
 
@@ -26,6 +26,7 @@ export const BidForm = () => {
   const navigate = useNavigate();
 
   const formRef = useRef(null);
+
   const handleChange = (event) => {
     setStatus(event.target.value);
   };
@@ -33,7 +34,6 @@ export const BidForm = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-
     const valuesOfForm = Object.fromEntries(
       new FormData(formRef.current, { status: status }).entries()
     );
@@ -102,13 +102,14 @@ export const BidForm = () => {
               <PhotoCamera />
             </IconButton>
             <Box component="span">Выберите фото</Box>
-            <Input
+            <input
               onChange={(event) => setLink(event.target.value)}
               name="link"
-              sx={{ display: "none" }}
+              style={{display: 'none'}}
               accept="image/*"
               id="icon-button-file"
               type="file"
+              multiple
             />
           </label>
         </Grid>
