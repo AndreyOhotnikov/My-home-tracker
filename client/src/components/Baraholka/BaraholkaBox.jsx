@@ -10,6 +10,7 @@ import {
   Typography,
   CardActions,
   Button,
+  Container,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Paper from "@mui/material/Paper";
@@ -37,42 +38,46 @@ const BaraholkaBox = () => {
   };
 
   return (
-    <Box>
-      <Grid xl={8} direction="row">
-        <Grid item>
-          <Paper>Категории товаров</Paper>
-          <Box m={10}>
-            {allCategories.map((category) => {
-              return (
-                <Grid key={category} conteiner direction="row">
-                  <Card>
-                    <CardMedia
-                      component="img"
-                      image={category.link}
-                      alt="green iguana"
-                    />
-                    <CardContent>
-                      <Typography component="div" variant="h5">
-                        {category.title}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button
-                        size="smal"
-                        type="button"
-                        onClick={() => submitHandler(category.id)}
-                      >
-                        Подробнее
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
-              );
-            })}
-          </Box>
+
+    <Container>
+      <Box>
+        <Grid container xl={8} direction="row">
+          <Grid item>
+            <Paper>Категории товаров</Paper>
+            <Box m={10}>
+              {allCategories?.map((category) => {
+                return (
+                  <Grid key={category.id} container direction="row">
+                    <Card>
+                      <CardMedia
+                        component="img"
+                        image={category.link}
+                        alt="green iguana"
+                      />
+                      <CardContent>
+                        <Typography component="div" variant="h5">
+                          {category.title}
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <Button
+                          size="smal"
+                          type="button"
+                          onClick={() => submitHandler(category.id)}
+                        >
+                          Подробнее
+                        </Button>
+                      </CardActions>
+                    </Card>
+                  </Grid>
+                );
+              })}
+            </Box>
+          </Grid>
+
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </Container>
   );
 };
 

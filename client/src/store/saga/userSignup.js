@@ -20,6 +20,7 @@ async function signUpAsync(user) {
       }))
     user.photoIsChairman = urls
   }
+  console.log(user)
   const response = await fetch(`user/signup`, {
     method: "POST",
     headers: {

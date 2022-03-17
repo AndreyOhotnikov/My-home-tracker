@@ -14,8 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   LikeLocal.init({
-    user_id: DataTypes.INTEGER,
-    local_news_id: DataTypes.INTEGER,
+    user_id: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      allowNull: true,
+    },
+    local_news_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
   }, {
     sequelize,
     modelName: 'LikeLocal',

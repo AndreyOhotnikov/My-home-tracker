@@ -15,9 +15,13 @@ router
 
 router.route("/allProduct").get(findAllProductAndCategories);
 
-router
-  .route("/:id")
-  //удаление
-  .delete(deleteProduct);
+// const checkBaraholka = async (res, req, next) => {
+//   console.log(
+//     "******************************************************************",
+//     req.params.id
+//   );
+//   next();
+// };
+router.route("/:id").delete(deleteProduct);
 
 module.exports = router;
