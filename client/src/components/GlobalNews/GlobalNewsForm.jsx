@@ -1,7 +1,7 @@
 import React from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-
+import { actiontTypes } from "../../store/types/globalTypes";
 import { Link,Stack } from "@mui/material";
 import Paper from '@mui/material/Paper';
 
@@ -18,18 +18,19 @@ import { Input } from "@mui/material";
 import { Provider, useDispatch,useSelector } from "react-redux";
 import findDataInGlobalArr from './GlobalNewsList'
 import { addGlobalNews } from "../../store/actionCreators/globalNewsAC";
-import {useParams} from 'react-router-dom'
-
+import {useParams,useNavigate} from 'react-router-dom'
+import { getAllGlobalNews } from "../../store/actionCreators/globalNewsAC";
 
 function GlobalNewsForm(){
   const state = useSelector((store)=>store.globalNews.arrGlobalNews)
+  console.log(state,'sssssssssssssssstateeeeeeeeeeee')
   const params = useParams()
-  
+  const navigate = useNavigate()
   function findDataInGlobalArr(id){
     return state?.filter((el)=>el.id == id)
    }
    const defaultData = findDataInGlobalArr(params.id)[0]
-   console.log('find',defaultData)
+  // console.log('find',defaultData)
   const dispatch = useDispatch()
   const [title,setTitle]=useState(defaultData?.title)
   const [text,setText]=useState(defaultData?.text)
@@ -37,8 +38,8 @@ function GlobalNewsForm(){
   const [check,setCheck]=useState(trueOrFalse(defaultData?.fixed) || false)
   const [idNews,setIdNews] = useState(defaultData?.id || 0)
   
-  const globalNews = useSelector((store)=>store)
-  console.log('globalNews',globalNews)
+  const globalNews = useSelector((store)=>store.globalNews.arrGlobalNews)
+  //console.log('globalNews',globalNews)
   
   function count(){
    if(check == false){
@@ -53,6 +54,7 @@ function GlobalNewsForm(){
    return (a==='true'?true:false)
   }
   function sagaGlobalData(){
+    console.log(123)
     const obj = {
       title,
       text,
@@ -60,8 +62,15 @@ function GlobalNewsForm(){
       check,
       idNews
     }
-     dispatch(addGlobalNews(obj))
+     dispatch({type: actiontTypes.ADD_GLOBAL_NEWS_SAGA,payload:obj})
   }
+   function navigateToMain(){
+     navigate('/GlobalNews')
+  }
+  useEffect(()=>{ 
+    dispatch(getAllGlobalNews())
+    
+   },[])
   return(
      <>
      <Stack direction={'row'} spacing={3} textAlign={'center'} marginTop={'5vh'}>
@@ -114,14 +123,16 @@ autoComplete="off">
        
         <Button component="span"  variant="contained">
         <Input   accept="image/*" id="icon-button-file" type="file" onChange={(e)=>{
-            setLink(e.target.value)
+            setLink(e.target.files)
         }}/>
         </Button>
       </label>
 <Button  onClick={(e)=>{
  
   e.preventDefault()
+  console.log(1234)
   sagaGlobalData()
+  //navigateToMain()
 }}  variant="contained"   >Опубликовать новость</Button>
 </Stack>
 
