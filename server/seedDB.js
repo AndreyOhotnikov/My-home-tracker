@@ -402,14 +402,14 @@ async function addUserinfo(obj) {
 
 const store = [
   {
-    user_id: 1,
+    user_id: 5,
     title: 'холодильник',
     status: 'актуально',
     text: 'store_text',
     price: 300,
   },
   {
-    user_id: 1,
+    user_id: 6,
     title: 'кровать',
     status: 'актуально',
     text: 'store_text',
@@ -628,4 +628,4 @@ async function addCategory_store(obj) {
   }
 }
 
-category_store.map((el) => addCategory_store(el));
+// category_store.map((el) => addCategory_store(el));

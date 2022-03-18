@@ -11,22 +11,22 @@ const categoryBaraholka=[
   },
   {
     title: 'Игрушки',
-    link: 'https://www.pngkit.com/png/detail/385-3856632_ted-laying-down-ted-love.png'
+    link: 'https://klike.net/uploads/posts/2020-04/1585896248_2.jpg'
   },
   {
     title: 'Техника',
-    link: 'https://st2.depositphotos.com/1001877/8712/i/600/depositphotos_87121732-stock-photo-delivery-or-moving-concept-home.jpg'
+    link: 'http://e-finland.ru/media/cache/46/5d/465d120b249bc15fe4c1513086509d38.jpg'
   },
   {
 
     title: 'Одежда',
     link: 'https://st.depositphotos.com/1177973/3041/i/600/depositphotos_30413835-stock-photo-beautiful-girl-with-lots-clothes.jpg'
   },
-  {
+  // {
 
-    title: 'Прочее',
-    link: 'https://st2.depositphotos.com/1258191/11997/i/600/depositphotos_119973774-stock-photo-desktop-with-piles-of-paperwork.jpg'
-  },
+  //   title: 'Прочее',
+  //   link: 'https://st2.depositphotos.com/1258191/11997/i/600/depositphotos_119973774-stock-photo-desktop-with-piles-of-paperwork.jpg'
+  // },
 ]
 
 
@@ -37,6 +37,6 @@ async function addCategoryBarah(obj) {
   })
 }
 
-categoryBaraholka.map((el) => {
-  addCategoryBarah(el)
-});
+// categoryBaraholka.map((el) => {
+//   addCategoryBarah(el)
+// });

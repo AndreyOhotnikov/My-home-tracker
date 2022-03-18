@@ -8,11 +8,10 @@ import {
   List,
   ListItem,
   ListItemText,
-  Avatar,
   Typography,
-  ListItemAvatar,
   Button,
   CardMedia,
+  Card,
 } from "@mui/material";
 
 import { useSelector } from "react-redux";
@@ -44,54 +43,49 @@ const BaraholkaList = () => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        marginLeft: "10%",
-        marginTop: "5%",
-      }}
-    >
-      {prod[0]?.map((product) => {
-        return (
-          <List
-            key={product.id}
-            title={product.title}
-            text={product.text}
-            price={product.price}
-            link={product.status}
-            // sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-          >
-            <ListItem>
-              <CardMedia
-                sx={{ width: "30%" }}
-                component="img"
-                image={product.status}
-              />
+    <>
+      <Typography
+        component="span"
+        variant="h5"
+        className="benefit-service-form__typography"
+      >
+        Выберите товар
+      </Typography>
+      <Box className="benefit-services-list">
+        {prod[0]?.map((product) => {
+          return (
+            <List key={product.id} className="benefit-services-list__list">
+              <ListItem alignItems="flex-start">
+                <CardMedia
+                  className="benefit-services-main__card"
+                  sx={{ width: "30%" }}
+                  component="img"
+                  image={product.status}
+                />
 
-              <ListItemText
-                sx={{ marginLeft: "5%" }}
-                component="h3"
-                onClick={() => submitHandler(product.id)}
-                primary={product.title}
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{ display: "inline", fontSize: 15 }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    ></Typography>
-                    {product.text}
-                  </React.Fragment>
-                }
-              />
-            </ListItem>
-          </List>
-        );
-      })}
-    </Box>
+                <ListItemText
+                  sx={{ marginLeft: "5%" }}
+                  component="h3"
+                  onClick={() => submitHandler(product.id)}
+                  primary={product.title}
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        sx={{ display: "inline", fontSize: 15 }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      ></Typography>
+                      {product.text}
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+            </List>
+          );
+        })}
+      </Box>
+    </>
   );
 };
 
