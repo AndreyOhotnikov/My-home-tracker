@@ -166,7 +166,11 @@ const Navigation = () => {
                           <ListItemText primary={option.name} />
                         </ListItem>
                       )
-                    )}
+                    )} 
+                    {auth.role === 'chairman' && <ListItem button key={"Добавить Главную новость"} onClick={() => navigate("/form/:id")}>
+                    <ListItemIcon> <MailIcon /> </ListItemIcon>
+                          <ListItemText primary={"Добавить Главную новость"} />
+                        </ListItem>}
                   </List>
                   <Divider />
                   <List onClick={handleDrawerClose} onClose={handleDrawerClose}>
@@ -304,5 +308,5 @@ const options = [
   { name: "Добавить услугу", src: "/services/new" },
   { name: "Разместить свой товар", src: "/addProduct" },
   { name: "Добавить событие", src: "/local/form/:id" },
-  { name: "Добавить Главную новость", src: "/form/:id" },
+  // { name: "Добавить Главную новость", src: "/form/:id" },
 ]

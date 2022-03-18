@@ -10,13 +10,9 @@ import {
   Typography,
   CardActions,
   Button,
-  Container,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
-import BaraholkaItem from "./BaraholkaItem";
 import { allProductsView } from "../../store/actionCreators/baraholkaAC";
 
 const BaraholkaBox = () => {
@@ -24,10 +20,7 @@ const BaraholkaBox = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const allCategories = useSelector((store) => store.baraholka.category);
-  //console.log(allCategories);
-  //const navigate = Navigate();
 
   useEffect(() => {
     dispatch(allProductsView());
@@ -41,7 +34,6 @@ const BaraholkaBox = () => {
     <Box>
       <Grid container>
         <Grid item>
-          {/* <Paper>Категории товаров</Paper> */}
           <Box>
             {allCategories?.map((category) => {
               return (

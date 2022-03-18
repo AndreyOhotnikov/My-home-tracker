@@ -55,6 +55,7 @@ function GlobalNewsForm() {
     dispatch({ type: actiontTypes.ADD_GLOBAL_NEWS_SAGA, payload: obj });
   }
 
+  
   function navigateToMain() {
     navigate("/GlobalNews");
   }
