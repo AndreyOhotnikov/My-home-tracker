@@ -8,43 +8,53 @@ import {
   Avatar,
   Typography,
 } from "@mui/material";
-// import { makeStyles } from "@mui/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { bidsSagaApi } from "../../store/actionCreators/bid";
 import { useNavigate } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
 export const AllBidsList = () => {
   const navigate = useNavigate();
-    // const classes = useStyles();
-
   const store = useSelector((state) => state.bids);
-  console.log(store, "store");
+  
 
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(bidsSagaApi());
   }, []);
+  
+  if (store.length === 0) {
+    return (
+      <div>
+        <CircularProgress />
+      </div>
+    );
+  }
+  
+
 
   const submitHandler = (id) => {
     navigate(`/bid/${id}`);
   };
 
   return (
-    <Box >
+    <>
+    <Typography variant="h5" className="benefit-service-form__typography"> Список всех заявок</Typography>
+    <Box className="benefit-services-list">
       {store?.map((bid) => {
         return (
-          <List
+          <List className="benefit-services-list__list"
             key={bid.id}
             sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
           >
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
                 <Avatar
-                  src={bid["User.Userinfo.Photolinks.link"]}
+                  src={bid["User.Userinfo.link"]}
                 />
               </ListItemAvatar>
-              <ListItemText
+              <ListItemText 
                 onClick={() => submitHandler(bid.id)}
                 primary={bid["User.Userinfo.full_name"]}
                 secondary={
@@ -65,15 +75,6 @@ export const AllBidsList = () => {
                     >
                       Описание: {bid.text}
                     </Typography>
-
-                    <Typography
-                      sx={{ display: "inline" }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      Статус: {bid.status}
-                    </Typography>
                   </React.Fragment>
                 }
               />
@@ -82,5 +83,6 @@ export const AllBidsList = () => {
         );
       })}
     </Box>
+    </>
   );
 };

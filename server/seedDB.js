@@ -17,9 +17,9 @@ const {
   Support,
   Category_store,
   Category_benifit,
-} = require("./db/models");
+} = require('./db/models');
 
-const city = [{ name: "Moscow" }, { name: "London" }];
+const city = [{ name: 'Moscow' }, { name: 'London' }];
 async function addCity(obj) {
   try {
     await City.create({
@@ -30,10 +30,11 @@ async function addCity(obj) {
   }
 }
 
-//city.map((el) => addCity(el));
+// city.map((el) => addCity(el));
+
 const street = [
-  { name: "Lenina", city_id: 1 },
-  { name: "Traphalgar", city_id: 2 },
+  { name: 'Lenina', city_id: 1 },
+  { name: 'Traphalgar', city_id: 2 },
 ];
 
 async function addStreet(obj) {
@@ -47,8 +48,7 @@ async function addStreet(obj) {
   }
 }
 
-//street.map((el) => addStreet(el));
-
+// street.map((el) => addStreet(el));
 
 const home = [
   { name: 31, street_id: 1 },
@@ -65,25 +65,144 @@ async function addHome(obj) {
   }
 }
 
-//home.map((el) => addHome(el));
-
+// home.map((el) => addHome(el));
 
 const user = [
   {
-    nick_name: "bob",
-    email: "123",
-    role: "admin",
-    checked: "true",
-    password: "123",
+    nick_name: 'bob',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
     home_id: 1,
   },
   {
-    nick_name: "liza",
-    email: "123",
-    role: "admin",
-    checked: "true",
-    password: "123",
+    nick_name: 'bib',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
+    home_id: 1,
+  },
+  {
+    nick_name: 'lol',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
+    home_id: 1,
+  },
+  {
+    nick_name: 'hob',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
+    home_id: 1,
+  },
+  {
+    nick_name: 'lob',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
+    home_id: 1,
+  },
+  {
+    nick_name: 'mob',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
+    home_id: 1,
+  },
+  {
+    nick_name: 'ob',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
+    home_id: 1,
+  },
+  {
+    nick_name: 'mike',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
+    home_id: 1,
+  },
+  {
+    nick_name: 'lina',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
+    home_id: 1,
+  },
+  {
+    nick_name: 'german',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
+    home_id: 1,
+  },
+  {
+    nick_name: 'lola',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
+    home_id: 1,
+  },
+  {
+    nick_name: 'kerem',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
+    home_id: 1,
+  },
+  {
+    nick_name: 'marfa',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
+    home_id: 1,
+  },
+  {
+    nick_name: 'mia',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
+    home_id: 1,
+  },
+  {
+    nick_name: 'liza',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
     home_id: 2,
+  },
+  {
+    nick_name: 'mila',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
+    home_id: 1,
+  },
+  {
+    nick_name: 'rom',
+    email: '123',
+    role: 'admin',
+    checked: 'true',
+    password: '123',
+    home_id: 1,
   },
 ];
 async function addUser(obj) {
@@ -103,9 +222,10 @@ async function addUser(obj) {
 // user.map((el) => {
 //   addUser(el);
 // });
+
 const chat = [
-  { user_id: 1, text: "blabla" },
-  { user_id: 2, text: "some words" },
+  { user_id: 1, text: 'blabla' },
+  { user_id: 2, text: 'some words' },
 ];
 async function addChat(obj) {
   try {
@@ -117,10 +237,11 @@ async function addChat(obj) {
     console.log(err);
   }
 }
-//chat.map((el) => addChat(el));
+// chat.map((el) => addChat(el));
+
 const instruction = [
-  { user_id: 1, text: "first instruction", title: "first" },
-  { user_id: 2, text: "second instruction", title: "second" },
+  { user_id: 1, text: 'Памятка для собственников помещений многоквартирных домов.Памятка для собственников помещений многоквартирных домов, проводящих общее собрание по вопросу изменения способа формирования фонда капитального ремонта МКД. В соответствии с пунктом 1.1 части 2 статьи 44, частью 1 статьи 173 Жилищного кодекса Российской Федерации общее собрание собственников помещений в многоквартирном доме вправе принять решение  об изменении способа формирования фонда капитального ремонта  многоквартирного дома в любое время.Порядок принятия решения и оформления его результатов установлен статьями 44-48 Жилищного кодекса Российской Федерации.Согласно части 4 статьи 173 Жилищного кодекса Российской Федерации решение общего собрания собственников помещений в многоквартирном доме об изменении способа формирования фонда капитального ремонта в течение пяти рабочих дней после принятия такого решения направляется владельцу специального счета, на который перечисляются взносы на капитальный ремонт общего имущества в таком многоквартирном доме, или региональному оператору, на счет которого перечисляются эти взносы. В силу части 5 статьи 173 Жилищного кодекса Российской Федерации решение о прекращении формирования фонда капитального ремонта на счете регионального оператора и формировании фонда капитального ремонта на специальном счете вступает в силу через два года после направления региональному оператору решения общего собрания собственников помещений в многоквартирном доме в соответствии с частью 4 настоящей статьи, если меньший срок не установлен законом субъекта Российской Федерации. В течение пяти дней после вступления в силу указанного решения региональный оператор перечисляет средства фонда капитального ремонта на специальный счет.Решение о прекращении формирования фонда капитального ремонта на специальном счете и формировании фонда капитального ремонта на счете регионального оператора вступает в силу через один месяц после направления владельцу специального счета решения общего собрания собственников помещений в многоквартирном доме в соответствии с частью 4 настоящей статьи, но не ранее наступления условия, указанного в части 2 настоящей статьи. В течение пяти дней после вступления в силу указанного решения владелец специального счета перечисляет средства фонда капитального ремонта на счет регионального оператора (Часть 6 статьи 173 Жилищного кодекса Российской Федерации)', title: 'Памятка для собственников помещений многоквартирных домов' },
+  { user_id: 2, text: 'second instruction', title: 'second' },
 ];
 async function addInstruction(obj) {
   try {
@@ -133,11 +254,11 @@ async function addInstruction(obj) {
     console.log(err);
   }
 }
-//instruction.map((el) => addInstruction(el));
+// instruction.map((el) => addInstruction(el));
 
 const support = [
-  { user_id: 1, text: "first support" },
-  { user_id: 2, text: "second support" },
+  { user_id: 1, text: 'first support' },
+  { user_id: 2, text: 'second support' },
 ];
 async function addSupport(obj) {
   try {
@@ -149,49 +270,117 @@ async function addSupport(obj) {
     console.log(err);
   }
 }
-//support.map((el) => addSupport(el));
-
-const benifit = [
-  {
-    user_id: 1,
-    text: "first benifit",
-    title: "first",
-    price: 100000,
-  },
-  {
-    user_id: 2,
-    text: "second benifit",
-    title: "second",
-    price: 1000,
-  },
-];
-async function addBenifit(obj) {
-  try {
-    await Benifit.create({
-      text: obj.text,
-      user_id: obj.user_id,
-      title: obj.title,
-      price: obj.price,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
-//benifit.map((el) => addBenifit(el));
+// support.map((el) => addSupport(el));
 
 const userinfo = [
   {
-    user_id: 1,
-    full_name: "Иванов Иван Иванович",
-    entrance: 3,
-    flat: 100,
+    user_id: 18,
+    full_name: 'Иванов Иван Иванович',
+    adress: 'П 4 кв 200',
     phone: 88005553534,
   },
   {
-    user_id: 2,
-    full_name: "Петров Пётр Петрович",
-    entrance: 1,
-    flat: 42,
+    user_id: 19,
+    full_name: 'Иванов Вадим Иванович',
+    adress: 'П 4 кв 200',
+    phone: 88005553534,
+  },
+  {
+    user_id: 20,
+    full_name: 'Серов Иван Иванович',
+    adress: 'П 4 кв 200',
+    phone: 88005553534,
+  },
+  {
+    user_id: 21,
+    full_name: 'Попов Иван Иванович',
+    adress: 'П 4 кв 200',
+    phone: 88005553534,
+  },
+  {
+    user_id: 22,
+    full_name: 'Иванова Вера Иванович',
+    adress: 'П 4 кв 200',
+    phone: 88005553534,
+  },
+  {
+    user_id: 23,
+    full_name: 'Иванова Лиза Иванович',
+    adress: 'П 4 кв 200',
+    phone: 88005553534,
+  },
+  {
+    user_id: 23,
+    full_name: 'Семенов Иван Иванович',
+    adress: 'П 4 кв 200',
+    phone: 88005553534,
+  },
+  {
+    user_id: 25,
+    full_name: 'Новак Иван Иванович',
+    adress: 'П 4 кв 200',
+    phone: 88005553534,
+  },
+  {
+    user_id: 26,
+    full_name: 'Гун Иван Иванович',
+    adress: 'П 4 кв 200',
+    phone: 88005553534,
+  },
+  {
+    user_id: 27,
+    full_name: 'Че Иван Иванович',
+    adress: 'П 4 кв 200',
+    link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
+    phone: 88005553534,
+  },
+  {
+    user_id: 28,
+    full_name: 'Соловьев Иван Иванович',
+    adress: 'П 4 кв 200',
+    link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
+    phone: 88005553534,
+  },
+  {
+    user_id: 29,
+    full_name: 'Седов Иван Иванович',
+    adress: 'П 4 кв 200',
+    link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
+    phone: 88005553534,
+  },
+  {
+    user_id: 30,
+    full_name: 'Петров Пётр Петрович',
+    adress: 'П 4 кв 200',
+    link: 'https://st.depositphotos.com/2413271/5050/i/600/depositphotos_50503825-stock-photo-handsome-man-taking-selfie.jpg',
+    phone: 88005553535,
+  },
+  {
+    user_id: 31,
+    full_name: 'Петрова Ирина Петровна',
+    adress: 'П 4 кв 200',
+    link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
+    phone: 88005553535,
+  },
+  {
+    user_id: 32,
+    full_name: 'Гоман Анна Петровна',
+    adress: 'П 4 кв 200',
+    link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
+    phone: 88005553535,
+  },
+  {
+    user_id: 33,
+    full_name: 'Петров Света Петровна',
+    adress: 'П 4 кв 200',
+    link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
+    phone: 88005553535,
+  },
+  {
+    user_id: 34,
+    full_name: 'Петров Роман Петрович',
+    adress: 'П 4 кв 200',
+    link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
     phone: 88005553535,
   },
 ];
@@ -201,8 +390,8 @@ async function addUserinfo(obj) {
     await Userinfo.create({
       full_name: obj.full_name,
       user_id: obj.user_id,
-      entrance: obj.entrance,
-      flat: obj.flat,
+      link: obj.link,
+      adress: obj.adress,
       phone: obj.phone,
     });
   } catch (err) {
@@ -211,47 +400,19 @@ async function addUserinfo(obj) {
 }
 // userinfo.map((el) => addUserinfo(el));
 
-
-const bid = [{
-
-  user_id: 1, title: 'няня', status: 'актуально', text: 'bid_text',
-}, {
-  user_id: 1, title: 'Посидеть с собакой', status: 'неактуально', text: 'bid_text',
-}, {
-  user_id: 5, title: 'Хулиганство', status: 'актуально', text: 'Разрисованная и замусоренная детская площадка',
-}, {
-  user_id: 6, title: 'Нужен электрик', status: 'неактуально', text: 'Не работает выключатель в комнате',
-
-}];
-
-async function addBid(obj) {
-  try {
-    await Bid.create({
-      status: obj.status,
-      user_id: obj.user_id,
-      title: obj.title,
-      text: obj.text,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
-//bid.map((el) => addBid(el));
-
-
 const store = [
   {
     user_id: 1,
-    title: "холодильник",
-    status: "актуально",
-    text: "store_text",
+    title: 'холодильник',
+    status: 'актуально',
+    text: 'store_text',
     price: 300,
   },
   {
     user_id: 1,
-    title: "кровать",
-    status: "актуально",
-    text: "store_text",
+    title: 'кровать',
+    status: 'актуально',
+    text: 'store_text',
     price: 300,
   },
 ];
@@ -270,21 +431,21 @@ async function addStore(obj) {
   }
 }
 
-//store.map((el) => addStore(el));
+// store.map((el) => addStore(el));
 
 const local_news = [
   {
     user_id: 1,
-    title: "локальная новость 1",
-    status: "актуально",
-    text: "local_text",
+    title: 'локальная новость 1',
+    status: 'актуально',
+    text: 'local_text',
     phone: 88005553535,
   },
   {
     user_id: 2,
-    title: "локальная новость 2",
-    status: "актуально",
-    text: "local_text",
+    title: 'локальная новость 2',
+    status: 'актуально',
+    text: 'local_text',
     phone: 88005553535,
   },
 ];
@@ -302,23 +463,22 @@ async function addLocal_news(obj) {
   }
 }
 
-//local_news.map((el) => addLocal_news(el));
-
+// local_news.map((el) => addLocal_news(el));
 
 const global_news = [
   {
     user_id: 1,
-    title: "глобальная новость 1",
-    status: "актуально",
-    text: "пдщифд_text",
+    title: 'глобальная новость 1',
+    status: 'актуально',
+    text: 'пдщифд_text',
     phone: 880055,
   },
   {
     user_id: 2,
-    title: "локальная новость 2",
-    status: "актуально",
-    text: "local_text",
-    fixed: "true",
+    title: 'локальная новость 2',
+    status: 'актуально',
+    text: 'local_text',
+    fixed: 'true',
   },
 ];
 async function addGlobal_news(obj) {
@@ -334,18 +494,18 @@ async function addGlobal_news(obj) {
     console.log(err);
   }
 }
-//global_news.map((el) => addGlobal_news(el));
+// global_news.map((el) => addGlobal_news(el));
 
 const response = [
   {
     user_id: 2,
     global_news_id: 1,
-    status: "true",
+    status: 'true',
   },
   {
     user_id: 1,
     local_news_id: 2,
-    status: "true",
+    status: 'true',
   },
 ];
 async function addResponce(obj) {
@@ -390,21 +550,29 @@ async function addLike(obj) {
 // like.map((el) => addLike(el));
 
 const photolink = [
-  // {
-  //   userinfo_id: 5, link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
-  // },
-  // {
-  //   userinfo_id: 6, link: 'https://images.unsplash.com/photo-1544465544-1b71aee9dfa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBob3RvfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-  // },
   {
-    bid_id: 34, link: 'https://www.remontexpress.ru/upload/iblock/0c7/cover.jpg',
+    userinfo_id: 1, link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
   },
   {
-    bid_id: 41, link: 'https://news.store.rambler.ru/img/035a7ae1fb4176e472b69b66b29399d6?img-1-resize=width%3A1280%2Cheight%3A960%2Cfit%3Acover&img-format=auto',
-
-//like.map((el) => addLike(el));
-
-
+    userinfo_id: 1, link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
+  },
+  {
+    userinfo_id: 4, link: 'https://media.istockphoto.com/photos/close-up-young-smiling-man-in-casual-clothes-posing-isolated-on-blue-picture-id1270987867?k=20&m=1270987867&s=612x612&w=0&h=lX9Y1qUxtWOa0W0Mc-SvNta00UH0-sgJQItkxfwE4uU=',
+  },
+  {
+    userinfo_id: 5, link: 'https://st.depositphotos.com/2413271/5050/i/600/depositphotos_50503825-stock-photo-handsome-man-taking-selfie.jpg',
+  },
+  {
+    userinfo_id: 6, link: 'https://m.hi-tech.ua/wp-content/uploads/2017/06/selfie-1.jpg',
+  },
+  {
+    userinfo_id: 1, link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
+  },
+  {
+    userinfo_id: 1, link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
+  },
+  {
+    userinfo_id: 2, link: 'https://images.unsplash.com/photo-1544465544-1b71aee9dfa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBob3RvfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
   },
 ];
 async function addPhotolink(obj) {
@@ -421,34 +589,32 @@ async function addPhotolink(obj) {
   }
 }
 
-
-//photolink.map((el) => addPhotolink(el));
-
+// photolink.map((el) => addPhotolink(el));
 
 const category_store = [
   {
-    title: "Без категории",
-    link: "http://localhost:3000/...",
+    title: 'Без категории',
+    link: 'http://localhost:3000/...',
   },
   {
-    title: "Мебель",
-    link: "http://localhost:3000/...",
+    title: 'Мебель',
+    link: 'http://localhost:3000/...',
   },
   {
-    title: "Игрушки",
-    link: "http://localhost:3000/...",
+    title: 'Игрушки',
+    link: 'http://localhost:3000/...',
   },
   {
-    title: "Техника",
-    link: "http://localhost:3000/...",
+    title: 'Техника',
+    link: 'http://localhost:3000/...',
   },
   {
-    title: "Одежда",
-    link: "http://localhost:3000/...",
+    title: 'Одежда',
+    link: 'http://localhost:3000/...',
   },
   {
-    title: "Прочее",
-    link: "http://localhost:3000/...",
+    title: 'Прочее',
+    link: 'http://localhost:3000/...',
   },
 ];
 async function addCategory_store(obj) {
@@ -462,27 +628,4 @@ async function addCategory_store(obj) {
   }
 }
 
-//category_store.map((el) => addCategory_store(el));
-
-
-const category_benifit = [
-  {
-    title: "Няня",
-    link: "http://localhost:3000/...",
-  },
-  {
-    title: "Репетитор",
-    link: "http://localhost:3000/...",
-  },
-];
-async function addCategory_benifit(obj) {
-  try {
-    await Category_benifit.create({
-      title: obj.title,
-      link: obj.link,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
-// category_benifit.map((el) => addCategory_benifit(el));
+category_store.map((el) => addCategory_store(el));

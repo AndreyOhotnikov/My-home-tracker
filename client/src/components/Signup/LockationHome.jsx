@@ -83,10 +83,11 @@ const LockationHome = () => {
         home: location.home,
       },
     });
-    navigate("/");
+    navigate("/GlobalNews");
   };
 
   return (
+    <div style={{width: '100%', height: '60vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
     <Stack spacing={2} sx={{ width: 300 }}>
       <Autocomplete
         id="free-solo-demo"
@@ -131,6 +132,7 @@ const LockationHome = () => {
         Прикрепиться
       </Button>
     </Stack>
+    </div>
   );
 };
 

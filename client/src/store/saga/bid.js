@@ -14,17 +14,17 @@ async function addBidSaga(bids) {
     console.log(file, 'file');
     const storageRef = await ref(storage, `images/${Date.now()}${file.name.slice(file.name.indexOf('.'))}`);
     console.log(storageRef, 'storageRef');
-    const snapshot = await uploadBytes(storageRef, file)                      // загрузка файла
+    const snapshot = await uploadBytes(storageRef, file)
     const url = await getDownloadURL(storageRef)
     console.log(url, 'url');
-    // ссылка на фотку
+
 
     return fetch("/bids/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({bids, url})
+      body: JSON.stringify({ bids, url })
     }).then((res) => res.json())
   }
 }
@@ -50,7 +50,6 @@ function getAllUser() {
 }
 
 function* workerGetAllUser(action) {
-  console.log('////////////////////////////////////////////////////////////////')
   try {
     const res = yield call(getAllUser, action.payload);
     yield put(allUser(res))
@@ -94,6 +93,7 @@ function deleteBidSaga(id) {
 function* workerDelBidSaga(action) {
   try {
     const res = yield call(deleteBidSaga, action.payload);
+    console.log(res, ' gfgfgfgfgfgfgfg');
     yield put(delBid(res))
   } catch (err) {
     console.error('Err', err);

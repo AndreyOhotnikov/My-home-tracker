@@ -10,7 +10,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import { useNavigate, useParams } from "react-router-dom";
 import { delSagaService } from "../../store/actionCreators/benefitServicesAC";
-
+import { CircularProgress, Typography } from "@mui/material";
 
 export const BenefitServicesItem = () => {
   const params = useParams();
@@ -18,8 +18,22 @@ export const BenefitServicesItem = () => {
   const navigate = useNavigate();
   const [showContact, setShowContact] = useState(false);
 
+  const auth = useSelector((state) => state.auth.auth);
+  
+
   const services = useSelector((state) => state.services);
-  const store = services?.map((el) => el.benifits)?.reduce((a, b) => {
+ 
+
+  if (services.length === 0) {
+    return (
+      <div>
+        <CircularProgress />
+      </div>
+    );
+  }
+  const store = services
+    ?.map((el) => el.benifits)
+    ?.reduce((a, b) => {
       return a.concat(b);
     });
 
@@ -28,67 +42,119 @@ export const BenefitServicesItem = () => {
   const showContactHandler = () => {
     setShowContact(true);
   };
+  setTimeout(showContactHandler,2000)
+
+  const handleCloseshowCont = () => {
+    if (showContact === true)
+    setShowContact(false);
+  };
 
   const delHandler = (e) => {
     e.preventDefault();
     dispatch(delSagaService(Number(params.id)));
-    navigate("/services"); //нужно сделать навигейт на категорию список
+    navigate("/services");
   };
 
   return (
-    <Box display="flex">
-      {servise?.map((serv) => {
-        return (
-          <List key={serv.id}  sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-            <ListItemAvatar>
-              <Avatar
-                src={serv["User.Userinfo.Photolinks.link"]}
-              />
-            </ListItemAvatar>
-            <ListItem alignItems="flex-start" variant="body2" color="textSecondary" component="p">
-              <ListItemText> {serv["User.nick_name"]} </ListItemText>
-            </ListItem>
-            <ListItem alignItems="flex-start" variant="body2" color="textSecondary" component="p">
-              <ListItemText alignItems="flex-start"> Название услуги: {serv.title} </ListItemText>
-            </ListItem>
-            <ListItem alignItems="flex-start" variant="body2" color="textSecondary" component="p">
-              <ListItemText alignItems="flex-start"> Описание: {serv.text} </ListItemText>
-            </ListItem>
-            <ListItem alignItems="flex-start" variant="body2" color="textSecondary" component="p">
-              <ListItemText alignItems="flex-start">
-                Стоимость (*указано за час ) :{serv.price}
-              </ListItemText>
-            </ListItem >
-            <Box mt={4}>
-              <Button variant="contained" onClick={showContactHandler}>
-                Связаться
-              </Button>
+    <>
+      <Typography variant="h5" className="benefit-service-form__typography">
+        Подробнее о услуге
+      </Typography>
+      <Box className="benefit-service-item">
+        {servise?.map((serv) => {
+          return (
+            <List key={serv.id} className="benefit-services-item__list">
+              <ListItem alignItems="flex-start">
+                <ListItemAvatar>
+                  <Avatar src={serv["User.Userinfo.link"]} />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={
+                    <Typography
+                      sx={{ display: "flex", mb: "10px" }}
+                      component="span"
+                      variant="h6"
+                      color="text.primary"
+                    >
+                      {serv["User.nick_name"]}
+                    </Typography>
+                  }
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        sx={{ display: "flex", mb: "10px" }}
+                        component="span"
+                        variant="body1"
+                        color="text.primary"
+                      >
+                        Название услуги: {serv.title}
+                      </Typography>
+                      <Typography
+                        sx={{ display: "flex", mb: "10px" }}
+                        component="span"
+                        variant="body1"
+                        color="text.primary"
+                      >
+                        Описание: {serv.text}
+                      </Typography>
+                      <Typography
+                        sx={{ display: "flex" }}
+                        component="span"
+                        variant="body1"
+                        color="text.primary"
+                      >
+                        Стоимость :{serv.price}
+                      </Typography>
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+              <Box className="benefit-service-item__button" mt={4}>
+                <Button
+                  variant="contained"
+                  onClick={showContactHandler}
+                  onClose={handleCloseshowCont}
+                >
+                  Связаться
+                </Button>
+                {auth.user_id && (
+                  <Button variant="contained" onClick={delHandler}>
+                    Удалить
+                  </Button>
+                )}
+              </Box>
               {showContact && (
                 <>
-                  <ListItem variant="body2" color="textSecondary" component="p">
-                    <ListItemText>
-                      Имя: {serv["User.Userinfo.full_name"]}{" "}
-                    </ListItemText>
-                  </ListItem>
-                  <ListItem variant="body2" color="textSecondary" component="p">
-                    <ListItemText>
-                      {" "}
-                      Телефон: {serv["User.Userinfo.phone"]}{" "}
-                    </ListItemText>
-                  </ListItem>
-                  <ListItem variant="body2" color="textSecondary" component="p">
-                    <ListItemText>Email : {serv["User.email"]}</ListItemText>
+                  <ListItem className="benefit-services-item__list">
+                    <ListItemText
+                      secondary={
+                        <React.Fragment>
+                          <Typography
+                            sx={{ display: "flex", mb: "10px" }}
+                            component="span"
+                            variant="body1"
+                            color="text.primary"
+                          >
+                            Телефон: {serv["User.Userinfo.phone"]}
+                          </Typography>
+                          <Typography
+                            sx={{ display: "flex", mb: "10px" }}
+                            component="span"
+                            variant="body1"
+                            color="text.primary"
+                          >
+                            Email : {serv["User.email"]}
+                          </Typography>
+                        </React.Fragment>
+                      }
+                    />
                   </ListItem>
                 </>
               )}
-              {/* <Button variant="contained">Редактировать</Button> */}
-              <Button variant="contained" onClick={delHandler}>
-                Удалить
-              </Button>
-            </Box>
-          </List>
-        );
-      })}
-    </Box>
+            </List>
+          );
+        })}
+      </Box>
+    </>
   );
 };
