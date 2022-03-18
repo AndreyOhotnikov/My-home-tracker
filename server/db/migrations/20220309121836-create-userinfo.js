@@ -25,7 +25,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       phone: {
-        type: Sequelize.BIGINT
+        type: Sequelize.STRING
+      },
+      adress: {
+        type: Sequelize.STRING
+      },
+      link: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

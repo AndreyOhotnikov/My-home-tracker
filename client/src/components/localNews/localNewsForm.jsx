@@ -62,9 +62,9 @@ function LocalNewsForm(){
     }
      dispatch({type: localTypes.ADD_LOCAL_NEWS_SAGA,payload:obj})
   }
-  //  function navigateToMain(){
-  //    navigate('/GlobalNews')
-  // }
+   function navigateToMain(){
+     navigate('/localnews')
+  }
   useEffect(()=>{ 
     dispatch(getAllLocalNews())
     
@@ -143,7 +143,7 @@ autoComplete="off">
  
   e.preventDefault()
   sagaLocalData()
-  //navigateToMain()
+  navigateToMain()
 }}  variant="contained"   >Опубликовать новость</Button>
 </Stack>
 

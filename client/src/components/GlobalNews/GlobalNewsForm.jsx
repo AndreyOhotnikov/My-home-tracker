@@ -31,31 +31,28 @@ function GlobalNewsForm() {
   function findDataInGlobalArr(id) {
     return state?.filter((el) => el.id == id);
   }
-  //  const defaultData = findDataInGlobalArr(params.id)[0]
-  // // console.log('find',defaultData)
-  // const dispatch = useDispatch()
-  // const [title,setTitle]=useState(defaultData?.title)
-  // const [text,setText]=useState(defaultData?.text)
-  // const [link,setLink]=useState(defaultData?.link)
-  // const [check,setCheck]=useState(trueOrFalse(defaultData?.fixed) || false)
-  // const [idNews,setIdNews] = useState(defaultData?.id || 0)
-
-  // const globalNews = useSelector((store)=>store.globalNews.arrGlobalNews)
-  //console.log('globalNews',globalNews)
-
-  // function count(){
-  //  if(check == false){
-  //    return setCheck(true)
-  //  }
-  //   else {
-  //     return setCheck(false)
-
-  //  }
-
-  // }
   const defaultData = findDataInGlobalArr(params.id)[0];
-  console.log("find", defaultData);
+  // console.log('find',defaultData)
   const dispatch = useDispatch();
+  // const [title, setTitle] = useState(defaultData?.title);
+  // const [text, setText] = useState(defaultData?.text);
+  // const [link, setLink] = useState(defaultData?.link);
+  // const [check, setCheck] = useState(trueOrFalse(defaultData?.fixed) || false);
+  // const [idNews, setIdNews] = useState(defaultData?.id || 0);
+
+  // const globalNews = useSelector((store) => store.globalNews.arrGlobalNews);
+  // //console.log('globalNews',globalNews)
+
+  // function count() {
+  //   if (check == false) {
+  //     return setCheck(true);
+  //   } else {
+  //     return setCheck(false);
+  //   }
+  // }
+  // // const defaultData = findDataInGlobalArr(params.id)[0];
+  // console.log("find", defaultData);
+  // const dispatch = useDispatch();
   const [title, setTitle] = useState(defaultData?.title);
   const [text, setText] = useState(defaultData?.text);
   const [link, setLink] = useState(defaultData?.link);
@@ -176,7 +173,7 @@ function GlobalNewsForm() {
                   e.preventDefault();
                   console.log(1234);
                   sagaGlobalData();
-                  //navigateToMain()
+                  navigateToMain()
                 }}
                 variant="contained"
               >

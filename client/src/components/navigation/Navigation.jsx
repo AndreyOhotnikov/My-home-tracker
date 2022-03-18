@@ -20,6 +20,7 @@ import { openModaleReducer } from "../../store/actionCreators/userAC";
 import PrivatePageUser from "../PrivatePageUser/PrivatePageUser";
 import {BenefitServicesList} from "../BenefitServices/BenefitServicesList";
 import ModalPage from "../Signout/ModalPage";
+import { useParams } from "react-router-dom";
 
 
 import {
@@ -58,8 +59,6 @@ import { AllBidsList } from "../PrivatePageChairman/AllBidsList";
 import { BidsItem } from "../PrivatePageChairman/BidsItem";
 import { servicesSagaApi } from "../../store/actionCreators/benefitServicesAC";
 import { AllUsersList } from "../PrivatePageChairman/AllUsersList";
-
-
 import GlobalNewsForm from "../GlobalNews/GlobalNewsForm";
 import GlobalNewsItem from "../GlobalNews/GlobalNewItem";
 import LocalNewsList from "../localNews/localNewsList";
@@ -78,7 +77,7 @@ const Navigation = () => {
   const dispatche = useDispatch();
   const auth = useSelector((state) => state.auth.auth);
 
-  console.log(auth,'auth')
+  const params = useParams();
 
   const navigate = useNavigate();
   const theme = useTheme();
@@ -97,7 +96,6 @@ const Navigation = () => {
   }, []);
 
   const handleOpen = () => dispatche(openModaleReducer(true));
-  // const handleClose = () => dispatche(openModaleReducer(false));
   // console.log("РЕНДЕР КОМПОНЕНТА НАВИГАЦИЯ", auth);
 
   const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
@@ -260,7 +258,6 @@ export default Navigation;
 
 const pages = [
   { name: "Главная", src: "/" },
-  { name: "Картинка", src: "/pictures" },
   { name: "Главные новости", src: "/GlobalNews" },
   { name: "Новости пользователей", src: "/localnews" },
   { name: "События", src: "/doings" },

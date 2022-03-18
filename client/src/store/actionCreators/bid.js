@@ -27,17 +27,17 @@ export const bidsSagaApi = (bids) => {
     payload: bids
   }
 }
-export const allUser = (bids) => {
+export const allUser = (users) => {
   return {
     type: GET_ALL_USER,
-    payload: bids
+    payload: users
   }
 }
 
-export const usersSagaApi = (bids) => {
+export const usersSagaApi = (users) => {
   return {
     type: SAGA_API_USERS,
-    payload: bids
+    payload: users
   }
 }
 

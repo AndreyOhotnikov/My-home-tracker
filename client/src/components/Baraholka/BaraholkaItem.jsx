@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect  } from "react";
 import { useDispatch } from "react-redux";
 import ACTypes from "../../store/types/baraholkaTypes";
 import { delProductSaga } from "../../store/actionCreators/baraholkaAC";
 import { useNavigate } from "react-router-dom";
 import { allProductsView } from "../../store/actionCreators/baraholkaAC";
+import { types } from "../../store/types/userTypes";
 import {
   Box,
   List,
@@ -22,22 +23,31 @@ const BaraholkaItem = () => {
   const navigate = useNavigate();
   const [showContact, setShowContact] = useState(false);
 
+  const dispatch = useDispatch();
+  const auth = useSelector((store) => store.auth.auth);
   const category = useSelector((store) => store.baraholka.category);
   //console.log(category);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(allProductsView());
-  }, []);
-
-  
-  const prList = category
-    .map((el) => el.products)
-    .reduce((a, b) => {
+  let productsList, prList
+  if (category.length) {
+       prList = category
+      .map((el) => el.products)
+      .reduce((a, b) => {
       return a.concat(b);
     });
-  console.log(prList);
+    console.log(prList);
 
-  const productsList = prList.filter((el) => el.id === Number(params.id));
+    productsList = prList.filter((el) => el.id === Number(params.id));
+  } 
+
+
+  useEffect(() => {
+    dispatch(allProductsView());
+    if(!auth) dispatch({ type: types.CHECK_IS_AUTH_SAGA });
+  }, []);
+
+
+
+
   //console.log(productsList);
   const showContactHandler = () => {
     setShowContact(true);
@@ -49,10 +59,9 @@ const BaraholkaItem = () => {
     navigate("/baraholka");
     //delProductSaga(Number(params.id)
   };
-
   return (
     <Box>
-      {productsList.map((prodItem) => {
+      {productsList?.map((prodItem) => {
         return (
           <List key={prodItem.id}>
             <ListItemAvatar>
@@ -92,13 +101,13 @@ const BaraholkaItem = () => {
                 </>
               )}
             </Box>
-            <Button
+           {auth.user_id === prodItem.user_id && <Button
               variant="outlined"
               color="error"
               onClick={() => deleteProduct(prodItem.id)}
             >
               Удалить
-            </Button>
+            </Button>}
           </List>
         );
       })}

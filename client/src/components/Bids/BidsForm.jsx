@@ -22,7 +22,6 @@ export const BidForm = () => {
 
   const dispatch = useDispatch();
   const params = useParams();
-  // console.log(params.id, "paramsId");
   const navigate = useNavigate();
 
   const formRef = useRef(null);
@@ -30,19 +29,20 @@ export const BidForm = () => {
   const handleChange = (event) => {
     setStatus(event.target.value);
   };
-  console.log(status, "sss");
+  
 
   const submitHandler = (event) => {
     event.preventDefault();
     const valuesOfForm = Object.fromEntries(
       new FormData(formRef.current, { status: status }).entries()
     );
+
     valuesOfForm["status"] = status;
     console.log(valuesOfForm, "valuesOfForm");
     dispatch(sagaAddBid(valuesOfForm));
     formRef.current.reset();
     setStatus("");
-    // navigate((`/services`)); //нужно сделать навигейт на категорию список
+    navigate((`/bids`)); 
   };
 
   return (

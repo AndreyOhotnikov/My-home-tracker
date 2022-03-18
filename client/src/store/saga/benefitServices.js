@@ -8,8 +8,11 @@ function getServices() {
 }
 
 function* workerGetServices(action) {
+  console.log(action,'action');
   try {
+    console.log('===========');
     const res = yield call(getServices, action.payload);
+    console.log(action.payload,'action.payload');
     yield put(allServices(res))
   } catch (err) {
     console.error('Err', err);

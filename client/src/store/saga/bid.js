@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { addBid, allBids, allUser, delBid } from "../actionCreators/bid";
-import { REQUEST_ADD_BID_SAGA, REQUEST_DEL_BID_SAGA, SAGA_API_BIDS } from "../types/bid";
+import { REQUEST_ADD_BID_SAGA, REQUEST_DEL_BID_SAGA, SAGA_API_BIDS, SAGA_API_USERS } from "../types/bid";
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { firebaseConfig } from "../types/firebaseConfig";
@@ -14,17 +14,17 @@ async function addBidSaga(bids) {
     console.log(file, 'file');
     const storageRef = await ref(storage, `images/${Date.now()}${file.name.slice(file.name.indexOf('.'))}`);
     console.log(storageRef, 'storageRef');
-    const snapshot = await uploadBytes(storageRef, file)                      // загрузка файла
+    const snapshot = await uploadBytes(storageRef, file)
     const url = await getDownloadURL(storageRef)
     console.log(url, 'url');
-    // ссылка на фотку
+
 
     return fetch("/bids/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({bids, url})
+      body: JSON.stringify({ bids, url })
     }).then((res) => res.json())
   }
 }
@@ -32,6 +32,7 @@ async function addBidSaga(bids) {
 function* addBidWorker(action) {
   try {
     const dataFromServer = yield call(addBidSaga, action.payload);
+    console.log(dataFromServer)
     if (dataFromServer) yield put(addBid(dataFromServer))
   } catch (err) {
     console.error('Err', err);
@@ -59,7 +60,7 @@ function* workerGetAllUser(action) {
   }
 }
 export function* watcherUsersSaga() {
-  yield takeEvery(SAGA_API_BIDS, workerGetAllUser)
+  yield takeEvery(SAGA_API_USERS, workerGetAllUser)
 }
 
 
@@ -92,6 +93,7 @@ function deleteBidSaga(id) {
 function* workerDelBidSaga(action) {
   try {
     const res = yield call(deleteBidSaga, action.payload);
+    console.log(res, ' gfgfgfgfgfgfgfg');
     yield put(delBid(res))
   } catch (err) {
     console.error('Err', err);
