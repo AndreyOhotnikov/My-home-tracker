@@ -14,11 +14,11 @@ export const globalNewsReducer = (state = initState, action) => {
 
     case actiontTypes.GET_GLOBAL_NEWS_REDUX:
       return {
-        ...state, arrGlobalNews: action.payload.sort((a, b) => {
-          return b?.fixed?.localeCompare(a?.fixed)
-        })
+        ...state, arrGlobalNews: action.payload
       }
-
+//.sort((a, b) => {
+//   return b?.fixed?.localeCompare(a?.fixed)
+// })
     case actiontTypes.DEL_NEWS_GLOBAL_REDUX:
       if (state.arrGlobalNews.length === 1) {
         return { ...state, arrGlobalNews: [] }

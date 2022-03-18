@@ -1,7 +1,7 @@
+const sequelize = require('sequelize');
 const { Global_news, Like, Photolink } = require('../db/models');
 
 exports.createGlobalNews = async (req, res) => {
-  // console.log(req.body, 'eeeeeeeeeeeee');
   const findNews = await Global_news.findOne({ where: { id: req.body?.idNews } });
   if (!findNews) {
     const newGlobal = await Global_news.create({
@@ -9,7 +9,7 @@ exports.createGlobalNews = async (req, res) => {
     });
     const global = await Photolink.create({ global_news_id: newGlobal.id, link: req.body.link });
     newGlobal.dataValues.link = global.link;
-   
+
     res.json(newGlobal.dataValues);
   } else if (findNews) {
     const newGlobal = await Global_news.update({ title: req.body.title, text: req.body.text, fixed: req.body.check }, { where: { id: req.body.idNews } });
@@ -22,17 +22,14 @@ exports.createGlobalNews = async (req, res) => {
 exports.getAllGlobalNews = async (req, res) => {
   try {
     const allNews = await Global_news.findAll({ include: [{ model: Like }, { model: Photolink }], raw: true });
-    // console.log(allNews);
     const arr = allNews.map((el) => {
       el.likeLength = el['Likes.user_id']?.length;
       el.link = el['Photolinks.link'];
       return el;
     });
-    // console.log(allNews);
+    console.log(arr);
+    arr.sort((a, b) => (b.id - a.id));
     res.json(arr);
-    // await Global_news.destroy({
-    //   where: { status: null },
-    // });
   } catch (err) {
     console.log(err);
   }
@@ -42,7 +39,6 @@ exports.addLike = async (req, res) => {
   console.log(req.params.id);
   try {
     const findCurrentLike = await Like.findOne({ where: { global_news_id: Number(req.params.id) }, raw: true }); // user_id: req.session.user.id
-    // console.log(findCurrentLike.user_id, '37');
     if (findCurrentLike) {
       if (findCurrentLike.user_id) {
         const filterArr = findCurrentLike.user_id.filter((el) => el !== req.session.user.id);
@@ -52,7 +48,6 @@ exports.addLike = async (req, res) => {
           const createLike = await Like.update({ user_id: [...findCurrentLike.user_id, req.session.user.id] }, {
             where: { global_news_id: Number(req.params.id) },
           });
-          console.log(findCurrentLike.user_id?.length);
           res.json({ status: true, id: Number(req.params.id) });
         } else if (findCurrentLike.user_id?.length !== filterArr.length) {
           const createLike = await Like.update({ user_id: [...filterArr] }, {
@@ -65,7 +60,6 @@ exports.addLike = async (req, res) => {
       const createLike = await Like.create({ user_id: [Number(req.session.user.id)], global_news_id: Number(req.params.id) }, {
         where: { global_news_id: Number(req.params.id) },
       });
-      console.log(Number(req.params.id));
       res.json({ status: true, id: Number(req.params.id) });
     }
   } catch (err) {
@@ -74,11 +68,9 @@ exports.addLike = async (req, res) => {
 };
 exports.delGlobalNews = (async (req, res) => {
   try {
-    console.log(req.params);
     await Photolink.destroy({ where: { global_news_id: Number(req.params.id) } });
     await Like.destroy({ where: { global_news_id: Number(req.params.id) } }),
     await Global_news.destroy({ where: { id: Number(req.params.id) } }),
-
     res.json(Number(req.params.id));
   } catch (err) {
     console.log(err);
