@@ -110,7 +110,7 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
     <>
       <Box m={5}>
         <Box className="global-news-item">
-          <Card className="benefit-services-main__card-item-news">
+          <Card  onClick={() => seeItem(el.id)}  className="benefit-services-main__card-item-news">
             {/* <Item> */}
             {/* <Stack
             direction="column"
