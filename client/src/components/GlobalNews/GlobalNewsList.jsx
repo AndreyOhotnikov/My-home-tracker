@@ -27,11 +27,17 @@ import { useNavigate } from "react-router-dom";
 import { addLikeSaga } from "../../store/actionCreators/globalNewsAC";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { color } from "@mui/system";
+import { types } from "../../store/types/userTypes";
 
 function GlobalNewsList() {
   const state = useSelector((store) => store.globalNews.arrGlobalNews);
+  const auth = useSelector((state) => state.auth.auth);
   const navigate = useNavigate();
   // console.log(state,'=>>>>>>>>>>>>>>>>>>>>>')
+  useEffect(() => {
+    // console.log("ДОЛЖЕН СРАБАТЫВАТЬ ТОЛЬКО ПРИ ПЕРЕЗАГРУЗКЕ СТРАНИЦЫ");
+    if (!auth) dispatch({ type: types.CHECK_IS_AUTH_SAGA });
+  }, []);
   const dispatch = useDispatch();
   const [view, setView] = useState(true);
   const [id, setId] = useState(0);
@@ -139,6 +145,7 @@ function GlobalNewsList() {
                       {" "}
                       {el.likeLength}
                     </Box>
+
                   </Stack>
                 </Box>
                 <Box marginTop={"2vh"} marginLeft={""} alignContent={"end"}>
@@ -155,6 +162,58 @@ function GlobalNewsList() {
               </Card>
             );
           })}
+
+
+//                     <Stack direction="row" spacing={1} >
+//                       <Box style={{width: '1600px'}} width={1600} marginTop={3}>
+//                         {el.text}
+//                       </Box>
+//                       <img style={{maxWidth: '30%'}}
+//                         src={el.link} alt={''}
+//                       />
+//                     </Stack >
+//                     <Box marginLeft={"120ch"}>
+//                       <Stack
+                     
+//                         direction={"raw"}
+//                         alignContent={"end"}
+//                         marginTop={"1vh"}
+//                         marginLeft={"20ch"}
+//                       >
+//                          <Box marginRight={"1ch"} alignContent={"end"}>
+//                           {" "}
+//                           {el.likeLength}
+//                         </Box>
+// <<<<<<< dev
+//                       </Stack>
+//                    </Box>
+//                       <Box marginTop={'2vh'} marginLeft={''} alignContent={'end'}>
+//                           < FavoriteIcon />
+//                               <Button 
+//                                   onClick={()=>{
+//                                   changeLike(el.id)
+//                                   }} >понравилось
+//                               </Button> {el.likeLength}
+//                       </Box>
+// =======
+//                         <Box>
+//                           {" "}
+//                         </Box>
+//                       </Stack>
+//                     </Box>
+//                     <FavoriteIcon
+                         
+//                             onClick={() => {
+//                               changeLike(el.id);
+//                             }}
+//                           />
+// >>>>>>> main
+//                   </Item>
+//                 </>
+//               );
+//             })}
+//           </Stack>
+
         </Box>
       </Grid>
       <Routes>
