@@ -19,11 +19,17 @@ import { useNavigate } from "react-router-dom";
 import { addLikeSaga } from "../../store/actionCreators/globalNewsAC";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { color } from "@mui/system";
+import { types } from "../../store/types/userTypes";
 
 function GlobalNewsList() {
   const state = useSelector((store) => store.globalNews.arrGlobalNews);
+  const auth = useSelector((state) => state.auth.auth);
   const navigate = useNavigate();
   // console.log(state,'=>>>>>>>>>>>>>>>>>>>>>')
+  useEffect(() => {
+    // console.log("ДОЛЖЕН СРАБАТЫВАТЬ ТОЛЬКО ПРИ ПЕРЕЗАГРУЗКЕ СТРАНИЦЫ");
+    if (!auth) dispatch({ type: types.CHECK_IS_AUTH_SAGA });
+  }, []);
   const dispatch = useDispatch();
   const [view, setView] = useState(true);
   const [id, setId] = useState(0);
