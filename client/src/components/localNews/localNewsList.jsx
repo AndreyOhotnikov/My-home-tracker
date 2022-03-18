@@ -125,16 +125,13 @@ function LocalNewsList(){
    
    </Stack>
    
-   < Box marginLeft={'120ch'}  >
-   <Stack direction={'raw'} alignContent={'end'} marginTop={'1vh'} marginLeft={'20ch'}>
-   
-   <Box marginTop={'2vh'} marginLeft={'-10ch'} alignContent={'end'}><Button onClick={()=>{
-     changeLike(el.id)
-   }} >понравилось</Button> {el.likeLength}</Box>
-   <Box marginTop={'2vh'}  > < FavoriteIcon /></Box> 
-    
-     </Stack>
-    </Box>
+    <Box marginTop={'2vh'} marginLeft={''} alignContent={'end'}>< FavoriteIcon />
+     <Button 
+        onClick={()=>{
+        changeLike(el.id)
+        }} >понравилось
+        </Button> {el.likeLength}
+      </Box>
    </Item>
       </>
     })}
