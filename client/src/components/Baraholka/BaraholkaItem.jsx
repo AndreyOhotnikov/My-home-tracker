@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import ACTypes from "../../store/types/baraholkaTypes";
 import { delProductSaga } from "../../store/actionCreators/baraholkaAC";
@@ -10,8 +10,7 @@ import {
   List,
   ListItem,
   ListItemText,
-  ListItemAvatar,
-  Avatar,
+  Typography,
   Button,
   CardMedia,
   Card,
@@ -29,24 +28,21 @@ const BaraholkaItem = () => {
   const auth = useSelector((store) => store.auth.auth);
   const category = useSelector((store) => store.baraholka.category);
   //console.log(category);
-  let productsList, prList
+  let productsList, prList;
   if (category.length) {
-       prList = category
+    prList = category
       .map((el) => el.products)
       .reduce((a, b) => {
-      return a.concat(b);
-    });
-    console.log(prList);
+        return a.concat(b);
+      });
 
     productsList = prList.filter((el) => el.id === Number(params.id));
-  } 
-
+  }
 
   useEffect(() => {
     dispatch(allProductsView());
-    if(!auth) dispatch({ type: types.CHECK_IS_AUTH_SAGA });
+    if (!auth) dispatch({ type: types.CHECK_IS_AUTH_SAGA });
   }, []);
-
 
   //console.log(productsList);
   const showContactHandler = () => {
@@ -54,47 +50,57 @@ const BaraholkaItem = () => {
   };
 
   const deleteProduct = (id) => {
-    console.log("component", id);
     dispatch({ type: ACTypes.DEL_PRODUCT_SAGA, id });
     navigate("/baraholka");
     //delProductSaga(Number(params.id)
   };
   return (
-    <Box sx={{
-      display: "flex",
-       flexDirection: "column",
-      justifyContent: "center",
-      marginLeft: "25%",
-      marginTop: "2%",
-    }}>
-      {productsList?.map((prodItem) => {
-        return (
-          <List key={prodItem.id}  sx={{
-            display: "flex",
-             flexDirection: "column",
-            justifyContent: "center",
-            marginLeft: "10%",
-            marginTop: "5%",
-          }}>
-            <ListItem sx={{ width: "50%", height: "40%" }}>
-              <CardMedia component="img" image={prodItem.status} />
-            </ListItem>
-            <ListItem variant="body2" color="textSecondary">
-              <ListItemText>{prodItem.title}</ListItemText>
-            </ListItem>
-            <ListItem variant="body2" color="textSecondary">
-              <ListItemText>Описание: {prodItem.text}</ListItemText>
-            </ListItem>
-            <ListItem variant="body2" color="textSecondary">
-              <ListItemText>Цена: {prodItem.price} </ListItemText>
-            </ListItem>
-            <Box mt={4}>
-              <Button variant="contained " onClick={showContactHandler} sx={{mr:80}}>
-                Связаться
-              </Button>
+    <>
+      <Typography component="span" variant="h5" className="benefit-service-form__typography">
+        Подробнее о товаре
+      </Typography>
+      <Box className="benefit-service-item">
+        {productsList?.map((prodItem) => {
+          return (
+            <List key={prodItem.id} className="benefit-services-item__list">
+              <ListItem alignItems="flex-start">
+                <Card className="benefit-services-main__card">
+                  <CardMedia component="img" image={prodItem.status} />
+                </Card>
+              </ListItem>
+              <ListItem variant="body2" color="textSecondary">
+                <ListItemText>Название товара:{prodItem.title}</ListItemText>
+              </ListItem>
+              <ListItem variant="body2" color="textSecondary">
+                <ListItemText>Описание: {prodItem.text}</ListItemText>
+              </ListItem>
+              <ListItem variant="body2" color="textSecondary">
+                <ListItemText>Стоимость: {prodItem.price} </ListItemText>
+              </ListItem>
+              <Box className="benefit-service-item__button" mt={4}>
+              <Button
+                  variant="contained"
+                  onClick={showContactHandler}
+                >
+                  Связаться
+                </Button>
+                {auth.user_id === prodItem.user_id && (
+                  <Button
+                    variant="contained"
+                    onClick={() => deleteProduct(prodItem.id)}
+                  >
+                    Удалить
+                  </Button>
+                )}
+              </Box>
               {showContact && (
                 <>
-                  <ListItem variant="body2" color="textSecondary" component="p">
+                  <ListItem
+                    className="benefit-services-item__list"
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
                     <ListItemText>
                       Имя: {prodItem["User.Userinfo.full_name"]}{" "}
                     </ListItemText>
@@ -112,19 +118,11 @@ const BaraholkaItem = () => {
                   </ListItem>
                 </>
               )}
-            </Box>
-           {auth.user_id === prodItem.user_id && <Button
-           
-              variant="outlined"
-              color="error"
-              onClick={() => deleteProduct(prodItem.id)}
-            >
-              Удалить
-            </Button>}
-          </List>
-        );
-      })}
-    </Box>
+            </List>
+          );
+        })}
+      </Box>
+    </>
   );
 };
 

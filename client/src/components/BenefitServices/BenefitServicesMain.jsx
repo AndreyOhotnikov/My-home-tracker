@@ -1,5 +1,4 @@
 import "./BenefitServicesForm.scss";
-
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
@@ -29,11 +28,9 @@ export const BenefitServicesMain = () => {
   return (
     <Box className="benefit-services-main" m={5}>
       <Grid item>
-        <Paper>
           <Typography variant="h4" className="benefit-service-form__typography">
             Категории услуг
           </Typography>
-        </Paper>
         <Box className="benefit-services-main__card--wrapper">
           {category?.map((category) => {
             return (

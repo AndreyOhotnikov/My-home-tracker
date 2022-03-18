@@ -38,8 +38,8 @@ export const BenefitServicesList = () => {
 
   return (
     <>
-    <Typography variant="h5" className="benefit-service-form__typography">
-        Выберете услугу
+    <Typography  component="span" variant="h5" className="benefit-service-form__typography">
+        Выберите услугу
       </Typography>
       <Box className="benefit-services-list">
         {list?.map((ben) => {

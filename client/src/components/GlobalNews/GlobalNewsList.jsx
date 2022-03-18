@@ -2,7 +2,15 @@ import React from "react";
 
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
-import { Link, Stack } from "@mui/material";
+import {
+  Link,
+  Stack,
+  Grid,
+  Typography,
+  Card,
+  CardMedia,
+  CardContent,
+} from "@mui/material";
 import Paper from "@mui/material/Paper";
 
 import { styled } from "@mui/material/styles";
@@ -84,75 +92,71 @@ function GlobalNewsList() {
   };
 
   return (
-    <>
-      {view && (
-        <Box paddingTop={2} maxWidth={'100%'}>
-          <Box marginTop={3}>Главные новости</Box>
-          <Stack
-            direction="column"
-            spacing={1}
-            marginRight={'3%'}
-            marginLeft={'3%'}
-          >
-            {state?.map((el, index) => {
-              return (
-                <>
-                  <Item  onClick={() => seeItem(el.id)}  style={{border: '1px solid black'}}>
-                    <Box >{goodDate(el?.updatedAt)}</Box>
-
-                    <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      marginLeft: "10%",
-                      marginTop: "5%",
-                    }}
-              
-                      marginTop={"2vh"}
-                      key={index}
-                      style={isFixed(el) ? { color: "red" } : null}
-                    >
+    <Box className="benefit-services-main" m={5}>
+      <Grid item>
+        <Typography variant="h4" className="benefit-service-form__typography">
+          Главные новости
+        </Typography>
+        <Box className="benefit-services-main__card--wrapper">
+          {state?.map((el) => {
+            return (
+              <Card
+                onClick={() => seeItem(el.id)}
+                key={el.id}
+                className="benefit-services-main__card benefit-services-main__card-global-news"
+              >
+                <CardMedia
+                  className="benefit-services-main__card-global-news--img"
+                  component="img"
+                  image={el.link}
+                  alt="green iguana"
+                />
+                <CardContent>
+                  <Box className="benefit-services-main__card-global-news--text">
+                    <Typography gutterBottom variant="h5" component="div">
                       {el.title}
+                    </Typography>
+                  </Box>
+                  <Box >
+                    <Typography className="benefit-services-main__card-global-news--text" gutterBottom variant="boby2" component="div">
+                      {el.text}
+                    </Typography>
+                  </Box>
+                  <Box className="benefit-services-main__card-global-news--text">
+                    <Typography gutterBottom variant="boby2" component="div">
+                      {goodDate(el?.updatedAt)}
+                    </Typography>
+                  </Box>
+                </CardContent>
+                <Box marginLeft={"120ch"}>
+                  <Stack
+                    direction={"raw"}
+                    alignContent={"end"}
+                    marginTop={"1vh"}
+                    marginLeft={"20ch"}
+                  >
+                    <Box marginRight={"1ch"} alignContent={"end"}>
+                      {" "}
+                      {el.likeLength}
                     </Box>
-
-                    <Stack direction="row" spacing={1} >
-                      <Box style={{width: '1600px'}} width={1600} marginTop={3}>
-                        {el.text}
-                      </Box>
-                      <img style={{maxWidth: '30%'}}
-                        src={el.link} alt={''}
-                      />
-                    </Stack >
-                    <Box marginLeft={"120ch"}>
-                      <Stack
-                     
-                        direction={"raw"}
-                        alignContent={"end"}
-                        marginTop={"1vh"}
-                        marginLeft={"20ch"}
-                      >
-                         <Box marginRight={"1ch"} alignContent={"end"}>
-                          {" "}
-                          {el.likeLength}
-                        </Box>
-                      </Stack>
-                   </Box>
-                      <Box marginTop={'2vh'} marginLeft={''} alignContent={'end'}>
-                          < FavoriteIcon />
-                              <Button 
-                                  onClick={()=>{
-                                  changeLike(el.id)
-                                  }} >понравилось
-                              </Button> {el.likeLength}
-                      </Box>
-                  </Item>
-                </>
-              );
-            })}
-          </Stack>
+                  </Stack>
+                </Box>
+                <Box marginTop={"2vh"} marginLeft={""} alignContent={"end"}>
+                  <FavoriteIcon />
+                  <Button
+                    onClick={() => {
+                      changeLike(el.id);
+                    }}
+                  >
+                    понравилось
+                  </Button>{" "}
+                  {el.likeLength}
+                </Box>
+              </Card>
+            );
+          })}
         </Box>
-      )}
+      </Grid>
       <Routes>
         {/* {!view && <Route  path="/form/:id" element={<GlobalNewsForm/>} ></Route>} */}
         {!view && (
@@ -163,7 +167,7 @@ function GlobalNewsList() {
         )}
         {/* {!view && <Route  path="/global/:id" element={<GlobalNewsId  />} ></Route>} */}
       </Routes>
-    </>
+    </Box>
   );
 }
 

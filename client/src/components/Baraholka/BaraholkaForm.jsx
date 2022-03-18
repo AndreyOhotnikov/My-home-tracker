@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Navigate, Link, useNavigate } from "react-router-dom";
-import { Box, Input, MenuItem, TextField, Button } from "@mui/material";
+import { Box, Input, MenuItem, TextField, Button,Typography,Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
@@ -60,7 +60,28 @@ const BaraholkaForm = () => {
   };
 
   return (
-    <Box component="form" className={classes.mainForm}>
+    <>
+      <Typography variant="h5" className="benefit-service-form__typography">
+        Добавьте новый товар
+      </Typography>
+      <form
+        className="benefit-service-form"
+        validate="true"
+        autoComplete="off"
+        // ref={formRef}
+        // onSubmit={submitHandler}
+      >
+         <Box
+          sx={{
+            "& .MuiTextField-root": { m: 2, width: "45ch" },
+          }}
+        >
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
       <TextField
         onChange={(event) => setTitle(event.target.value)}
         id="outlined-basic"
@@ -117,16 +138,22 @@ const BaraholkaForm = () => {
         />
       </label>
 
+      <Box mt={3}>
       <Button
         type="submit"
         onClick={(event) => addProduct(event)}
-        variant="outlined"
-        className={classes.lastButton}
-        sx={{ mt: "20px", ml: "40%" }}
+        // variant="outlined"
+        variant="contained"
+        // className={classes.lastButton}
+        // sx={{ mt: "20px", ml: "40%" }}
       >
         Опубликовать
       </Button>
+      </Box>
+      </Grid>
     </Box>
+    </form>
+    </>
   );
 };
 

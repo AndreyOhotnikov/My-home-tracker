@@ -31,21 +31,25 @@ const BaraholkaBox = () => {
   };
 
   return (
-    <Box>
-      <Grid container>
-        <Grid item>
-          <Box>
+    <Box className="benefit-services-main" m={5}>
+      <Grid item>
+      <Typography variant="h4" className="benefit-service-form__typography">
+            Категории товаров
+          </Typography>
+          <Box className="benefit-services-main__card--wrapper">
             {allCategories?.map((category) => {
               return (
-                <Grid key={category.id} item container xs={8}>
-                  <Card>
+                <Card key={category.id} 
+                className="benefit-services-main__card" >
                     <CardMedia
+                    className="benefit-services-main__card--img"
                       component="img"
                       image={category.link}
                       alt="green iguana"
                     />
                     <CardContent>
-                      <Typography component="div" variant="h5">
+                      <Typography 
+                      gutterBottom component="div" variant="h5">
                         {category.title}
                       </Typography>
                     </CardContent>
@@ -59,11 +63,9 @@ const BaraholkaBox = () => {
                       </Button>
                     </CardActions>
                   </Card>
-                </Grid>
               );
             })}
           </Box>
-        </Grid>
       </Grid>
     </Box>
   );

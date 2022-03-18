@@ -117,7 +117,7 @@ export const BenefitServicesItem = () => {
                 >
                   Связаться
                 </Button>
-                {auth.user_id && (
+                {auth.user_id === serv.user_id && (
                   <Button variant="contained" onClick={delHandler}>
                     Удалить
                   </Button>
