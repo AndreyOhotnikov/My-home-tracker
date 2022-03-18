@@ -8,12 +8,10 @@ exports.getAllBids = async (req, res) => {
       include: [{
         model: User,
         attributes: ['id', 'nick_name', 'email'],
-        include: [{ model: Userinfo, attributes: ['phone', 'id', 'full_name', 'entrance', 'flat'], include: [{ model: Photolink, attributes: ['bid_id', 'userinfo_id', 'id', 'link'] }] }],
+        include: [{ model: Userinfo, attributes: ['phone', 'id', 'full_name', 'adress', 'link'], include: [{ model: Photolink, attributes: ['bid_id', 'userinfo_id', 'id', 'link'] }] }],
       }],
       raw: true,
     });
-
-    console.log(bids, 'bbbbbbbb');
 
     res.json(bids);
   } catch (error) {
@@ -25,28 +23,16 @@ exports.getAllUsers = async (req, res) => {
   const users = await User.findAll({
     include: [{
       model: Userinfo,
-      attributes: ['full_name', 'adress', 'phone'],
+      attributes: ['full_name', 'adress', 'phone','link'],
       include: [{ model: Photolink, attributes: ['link'] }],
     }],
     raw: true,
   });
 
-  console.log(users, 'bbbbbbbb');
 
   res.json(users);
 };
 
-// exports.getAllBids = async (req, res) => {
-//   let bid;
-//   bid = await Bid.findAll({ raw: true });
-//   const bidAndUserAndPhoto = await Promise.all(await bid.map(async (el) => {
-//     const userinfo = await User.findAll({ include: [{where:bid_id:bid include: [{ model: Userinfo, attributes: ['phone', 'full_name', 'entrance', 'flat'], include: [{ model: Photolink, attributes: ['bid_id', 'userinfo_id', 'id', 'link'] }] }] }], raw: true });
-//     el.userinfo = userinfo;
-//     console.log(bidAndUserAndPhoto,'bidAndUserAndPhoto');
-//     return el;
-//   }));
-//   res.json(bidAndUserAndPhoto);
-// };
 
 exports.addNewBid = async (req, res) => {
   const {

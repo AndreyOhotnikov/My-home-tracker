@@ -1,3 +1,5 @@
+import "./BenefitServicesForm.scss";
+
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
@@ -13,69 +15,52 @@ import Typography from "@mui/material/Typography";
 import { useDispatch, useSelector } from "react-redux";
 import { servicesSagaApi } from "../../store/actionCreators/benefitServicesAC";
 
-// const useStyles = makeStyles({
-//   root: {
-//     display: "flex",
-//     flexDirection: "row",
-//     flexWrap: "wrap",
-//   },
-//   item: {
-//     display: "flex",
-//     justifyContent: "space-between;",
-//     flexDirection: "row",
-//   },
-//   img: {
-//     height: 300,
-//     width: 300,
-//   },
-// });
 
 export const BenefitServicesMain = () => {
-  // const classes = useStyles();
 
   const category = useSelector((state) => state.services);
   const navigate = useNavigate();
 
   const submitHandler = (id) => {
-    console.log('submitHandler');
+    console.log("submitHandler");
     navigate(`/services/${id}`);
   };
 
   return (
-    <Box m={5}>
-      <Grid container xl={8} direction="row">
-        <Grid item>
-          <Paper>Категории услуг</Paper>
-          <Box m={5}  >
-            {category?.map((category) => {
-              return (
-                <Grid key={category.id} container direction="row">
-                  <Card>
-                    <CardMedia
-                      component="img"
-                      image={category.link}
-                      alt="green iguana"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {category.title}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button
-                        size="small"
-                        type="button"
-                        onClick={() => submitHandler(category.id)}
-                      >
-                        Подробнее
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
-              );
-            })}
-          </Box>
-        </Grid>
+    <Box className="benefit-services-main" m={5}>
+      <Grid item>
+        <Paper>
+          <Typography variant="h4" className="benefit-service-form__typography">
+            Категории услуг
+          </Typography>
+        </Paper>
+        <Box className="benefit-services-main__card--wrapper">
+          {category?.map((category) => {
+            return (
+              <Card key={category.id} className="benefit-services-main__card">
+                <CardMedia
+                  component="img"
+                  image={category.link}
+                  alt="green iguana"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {category.title}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    size="small"
+                    type="button"
+                    onClick={() => submitHandler(category.id)}
+                  >
+                    Подробнее
+                  </Button>
+                </CardActions>
+              </Card>
+            );
+          })}
+        </Box>
       </Grid>
     </Box>
   );

@@ -59,8 +59,6 @@ import { AllBidsList } from "../PrivatePageChairman/AllBidsList";
 import { BidsItem } from "../PrivatePageChairman/BidsItem";
 import { servicesSagaApi } from "../../store/actionCreators/benefitServicesAC";
 import { AllUsersList } from "../PrivatePageChairman/AllUsersList";
-
-
 import GlobalNewsForm from "../GlobalNews/GlobalNewsForm";
 import GlobalNewsItem from "../GlobalNews/GlobalNewItem";
 import LocalNewsList from "../localNews/localNewsList";
