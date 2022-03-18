@@ -110,7 +110,6 @@ function GlobalNewsList() {
                     }}
               
                       marginTop={"2vh"}
-                      // onClick={() => seeItem(el.id)}
                       key={index}
                       style={isFixed(el) ? { color: "red" } : null}
                     >
@@ -133,21 +132,20 @@ function GlobalNewsList() {
                         marginTop={"1vh"}
                         marginLeft={"20ch"}
                       >
-                        <Box marginRight={"1ch"} alignContent={"end"}>
+                         <Box marginRight={"1ch"} alignContent={"end"}>
                           {" "}
                           {el.likeLength}
                         </Box>
-                        <Box>
-                          {" "}
-                        </Box>
                       </Stack>
-                    </Box>
-                    <FavoriteIcon
-                         
-                            onClick={() => {
-                              changeLike(el.id);
-                            }}
-                          />
+                   </Box>
+                      <Box marginTop={'2vh'} marginLeft={''} alignContent={'end'}>
+                          < FavoriteIcon />
+                              <Button 
+                                  onClick={()=>{
+                                  changeLike(el.id)
+                                  }} >понравилось
+                              </Button> {el.likeLength}
+                      </Box>
                   </Item>
                 </>
               );

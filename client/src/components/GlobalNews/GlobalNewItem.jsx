@@ -99,7 +99,7 @@ function GlobalNewsItem({el,view,setView,id,setId}){
   }
    return (
     <>
-   <Box marginLeft={'10ch'} width={'180ch'} marginTop={'5ch'}>
+   <Box marginLeft={'10ch'} width={'80%'} marginTop={'5ch'} >
    <Item  > 
    < Box   >
     </Box>
@@ -141,12 +141,12 @@ function GlobalNewsItem({el,view,setView,id,setId}){
           
    </Stack>
    <Stack direction={'row'} >
-          {userRole?.role!=='user' && <Box marginRight={'100ch'}><Button onClick={()=>updateGlobal(defaultData.id)}>Редактировать</Button>
+          {userRole?.role!=='user' && <Box marginRight={''}><Button onClick={()=>updateGlobal(defaultData.id)}>Редактировать</Button>
           <Button onClick={()=>{
             deleteGlobal(defaultData.id)
             navigateToMain()
             }}>Удалить</Button></Box>}
-          <Box marginLeft={'17%'}><Button  onClick={(e)=> changeLike(defaultData?.id,e)} >понравилось</Button></Box>
+          <Box marginLeft={'30px'}><Button  onClick={(e)=> changeLike(defaultData?.id,e)} >понравилось</Button></Box>
           <Box marginTop={'8px'} > {defaultData?.likeLength ? defaultData?.likeLength:0 }</Box> 
           <Box marginTop={'8px'} > < FavoriteIcon /></Box> 
    </Stack>
@@ -161,7 +161,7 @@ function GlobalNewsItem({el,view,setView,id,setId}){
    <Grid  container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
   {state.map((el, index) => (
     <Grid item xs={2} sm={4} md={4} key={index} marginBottom={'10%'}>
-      <Item ><Box width={'90%'} height={'50vh'} onClick={()=>seeItem(el.id)}>
+      <Item ><Box width={'90%'} height={'auto'} onClick={()=>seeItem(el.id)}>
         <Box>{goodDate(el.updatedAt)}</Box>
         <Box style={isFixed(el)?{color:'red'}:null}>{el.title}</Box>
         <Box marginTop={'5%'} textAlign={'center'}>
@@ -175,7 +175,17 @@ function GlobalNewsItem({el,view,setView,id,setId}){
              maxHeight={'80%'}
            />
         </Box>
-        <Box marginTop={'7%'}><Button onClick={(e)=> changeLike(el?.id,e)}>Понравилось</Button><Box component={'span'}>{el.likeLength ? el?.likeLength:0 }</Box><Box position={'absolute'} component={'span'} marginTop={'4px'}>< FavoriteIcon /></Box></Box>
+        <Box marginTop={'7%'}>
+          <Button onClick={(e)=> changeLike(el?.id,e)}>
+            Понравилось
+          </Button>
+          <Box component={'span'}>
+            {el.likeLength ? el?.likeLength:0 }
+          </Box>
+          <Box position={'absolute'} component={'span'} marginTop={'4px'}>
+            < FavoriteIcon />
+          </Box>
+        </Box>
         
         </Box>
         

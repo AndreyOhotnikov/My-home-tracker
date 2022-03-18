@@ -8,71 +8,72 @@ import {
   Avatar,
   Typography,
 } from "@mui/material";
-// import { makeStyles } from "@mui/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { usersSagaApi } from "../../store/actionCreators/bid";
 import { useNavigate } from "react-router-dom";
-
-// const useStyles = makeStyles({
-//   root: {
-//     flexGrow: 1,
-//   },
-//   item: {
-//     display: "flex",
-//     justifyContent: "space-between;",
-//     alignItems: "stretch",
-//   },
-// });
+import { CircularProgress } from "@mui/material";
 
 export const AllUsersList = () => {
   const navigate = useNavigate();
-  // const classes = useStyles();
   const store = useSelector((state) => state.user);
-console.log(store)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(usersSagaApi());
   }, []);
+
+  if (store.length === 0) {
+    return (
+      <div>
+        <div style={{ paddingTop: "130px", paddingLeft: "80px" }}>
+          <CircularProgress />
+        </div>
+      </div>
+    );
+  }
 
   // const submitHandler = (id) => {
   //   navigate(`/users/${id}`);
   // };
 
   return (
-    <Box m={3} >
-      {store?.map((user) => {
-        return (
-          <List
-            key={user.id}
-            sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-          >
-            <ListItem alignItems="flex-start">
-              <ListItemAvatar>
-                <Avatar
-                  src={user["Userinfo.Photolinks.link"]}
+    <>
+      <Typography variant="h5" className="benefit-service-form__typography">
+        Список всех пользователей
+      </Typography>
+      <Box className="benefit-services-list">
+        {store?.map((user) => {
+          return (
+            <List
+              className="benefit-services-list__list"
+              key={user.id}
+              sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+            >
+              <ListItem alignItems="flex-start">
+                <ListItemAvatar>
+                  <Avatar src={user["Userinfo.link"]} />
+                </ListItemAvatar>
+                <ListItemText
+                  // onClick={() => submitHandler(user.id)}
+                  primary={user["Userinfo.full_name"]}
+                  secondary={
+                    <React.Fragment>
+                      <Typography variant="body2" color="text.secondary">
+                        Телефон: {user["Userinfo.phone"]}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Email : {user["email"]}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Адрес : {user["Userinfo.adress"]}
+                      </Typography>
+                    </React.Fragment>
+                  }
                 />
-              </ListItemAvatar>
-              <ListItemText
-                // onClick={() => submitHandler(user.id)}
-                primary={user["Userinfo.full_name"]}
-                secondary={
-                  <React.Fragment>
-                    <Typography variant="body2" color="text.secondary">
-                      Телефон: {user["Userinfo.phone"]}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Email : {user["email"]}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Адрес : {user["Userinfo.adress"]}
-                    </Typography>
-                  </React.Fragment>
-                }
-              />
-            </ListItem>
-          </List>
-        );
-      })}
-    </Box>
+              </ListItem>
+            </List>
+          );
+        })}
+      </Box>
+    </>
   );
 };
