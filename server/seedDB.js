@@ -19,7 +19,7 @@ const {
   Category_benifit,
 } = require('./db/models');
 
-const city = [{ name: 'Moscow' }, { name: 'London' }];
+const city = [{ name: 'Москва' }, { name: 'Ступино' }, { name: 'Саратов' }, { name: 'Обнинск' }];
 async function addCity(obj) {
   try {
     await City.create({
@@ -33,8 +33,26 @@ async function addCity(obj) {
 // city.map((el) => addCity(el));
 
 const street = [
-  { name: 'Lenina', city_id: 1 },
-  { name: 'Traphalgar', city_id: 2 },
+  { name: 'Ленина', city_id: 1 },
+  { name: 'Труда', city_id: 1 },
+  { name: 'Никольская', city_id: 1 },
+  { name: 'Моховая', city_id: 1 },
+  { name: 'Тверская', city_id: 1 },
+  { name: 'Андропова', city_id: 2 },
+  { name: 'Восточная', city_id: 2 },
+  { name: 'Дачная', city_id: 2 },
+  { name: 'Берёзовая', city_id: 2 },
+  { name: 'Гоголя', city_id: 2 },
+  { name: 'Кирова', city_id: 3 },
+  { name: 'Астраханская', city_id: 3 },
+  { name: 'Железнодорожная', city_id: 3 },
+  { name: 'Рабочая', city_id: 3 },
+  { name: 'Кузнечная', city_id: 3 },
+  { name: 'Ленина', city_id: 4 },
+  { name: 'Курчатова', city_id: 4 },
+  { name: 'Гагарина', city_id: 4 },
+  { name: 'Маркса', city_id: 4 },
+  { name: 'Калужская', city_id: 4 },
 ];
 
 async function addStreet(obj) {
@@ -52,7 +70,45 @@ async function addStreet(obj) {
 
 const home = [
   { name: 31, street_id: 1 },
-  { name: 123, street_id: 2 },
+  { name: 123, street_id: 1 },
+  { name: 1, street_id: 2 },
+  { name: 145, street_id: 2 },
+  { name: 3, street_id: 3 },
+  { name: 56, street_id: 3 },
+  { name: 56, street_id: 4 },
+  { name: 43, street_id: 4 },
+  { name: 45, street_id: 5 },
+  { name: 25, street_id: 5 },
+  { name: 48, street_id: 6 },
+  { name: 12, street_id: 6 },
+  { name: 56, street_id: 7 },
+  { name: 14, street_id: 7 },
+  { name: 10, street_id: 8 },
+  { name: 12, street_id: 8 },
+  { name: 23, street_id: 9 },
+  { name: 21, street_id: 9 },
+  { name: 2, street_id: 10 },
+  { name: 35, street_id: 10 },
+  { name: 43, street_id: 11 },
+  { name: 42, street_id: 11 },
+  { name: 32, street_id: 12 },
+  { name: 9, street_id: 12 },
+  { name: 4, street_id: 13 },
+  { name: 56, street_id: 13 },
+  { name: 3, street_id: 14 },
+  { name: 32, street_id: 14 },
+  { name: 43, street_id: 15 },
+  { name: 56, street_id: 15 },
+  { name: 32, street_id: 16 },
+  { name: 3, street_id: 16 },
+  { name: 34, street_id: 17 },
+  { name: 32, street_id: 17 },
+  { name: 32, street_id: 18 },
+  { name: 12, street_id: 18 },
+  { name: 13, street_id: 19 },
+  { name: 8, street_id: 19 },
+  { name: 32, street_id: 20 },
+  { name: 2, street_id: 20 },
 ];
 async function addHome(obj) {
   try {
@@ -70,136 +126,136 @@ async function addHome(obj) {
 const user = [
   {
     nick_name: 'bob',
-    email: '123',
-    role: 'admin',
+    email: '123@md.ru',
+    role: 'chairman',
     checked: 'true',
     password: '123',
     home_id: 1,
   },
   {
     nick_name: 'bib',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'chairman',
     checked: 'true',
     password: '123',
     home_id: 1,
   },
   {
     nick_name: 'lol',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'user',
     checked: 'true',
     password: '123',
-    home_id: 1,
+    home_id: 2,
   },
   {
     nick_name: 'hob',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'user',
     checked: 'true',
     password: '123',
-    home_id: 1,
+    home_id: 3,
   },
   {
     nick_name: 'lob',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'user',
     checked: 'true',
     password: '123',
     home_id: 1,
   },
   {
     nick_name: 'mob',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'user',
     checked: 'true',
     password: '123',
     home_id: 1,
   },
   {
     nick_name: 'ob',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'user',
     checked: 'true',
     password: '123',
     home_id: 1,
   },
   {
     nick_name: 'mike',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'user',
     checked: 'true',
     password: '123',
     home_id: 1,
   },
   {
     nick_name: 'lina',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'user',
     checked: 'true',
     password: '123',
     home_id: 1,
   },
   {
     nick_name: 'german',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'user',
     checked: 'true',
     password: '123',
     home_id: 1,
   },
   {
     nick_name: 'lola',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'user',
     checked: 'true',
     password: '123',
     home_id: 1,
   },
   {
     nick_name: 'kerem',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'user',
     checked: 'true',
     password: '123',
     home_id: 1,
   },
   {
     nick_name: 'marfa',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'user',
     checked: 'true',
     password: '123',
     home_id: 1,
   },
   {
     nick_name: 'mia',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'user',
     checked: 'true',
     password: '123',
     home_id: 1,
   },
   {
     nick_name: 'liza',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'user',
     checked: 'true',
     password: '123',
     home_id: 2,
   },
   {
     nick_name: 'mila',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'user',
     checked: 'true',
     password: '123',
     home_id: 1,
   },
   {
     nick_name: 'rom',
-    email: '123',
-    role: 'admin',
+    email: '123md.ru',
+    role: 'user',
     checked: 'true',
     password: '123',
     home_id: 1,
@@ -223,161 +279,170 @@ async function addUser(obj) {
 //   addUser(el);
 // });
 
-const chat = [
-  { user_id: 1, text: 'blabla' },
-  { user_id: 2, text: 'some words' },
-];
-async function addChat(obj) {
-  try {
-    await Chat.create({
-      text: obj.text,
-      user_id: obj.user_id,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
+// const chat = [
+//   { user_id: 1, text: 'blabla' },
+//   { user_id: 2, text: 'some words' },
+// ];
+// async function addChat(obj) {
+//   try {
+//     await Chat.create({
+//       text: obj.text,
+//       user_id: obj.user_id,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 // chat.map((el) => addChat(el));
 
-const instruction = [
-  { user_id: 1, text: 'Памятка для собственников помещений многоквартирных домов.Памятка для собственников помещений многоквартирных домов, проводящих общее собрание по вопросу изменения способа формирования фонда капитального ремонта МКД. В соответствии с пунктом 1.1 части 2 статьи 44, частью 1 статьи 173 Жилищного кодекса Российской Федерации общее собрание собственников помещений в многоквартирном доме вправе принять решение  об изменении способа формирования фонда капитального ремонта  многоквартирного дома в любое время.Порядок принятия решения и оформления его результатов установлен статьями 44-48 Жилищного кодекса Российской Федерации.Согласно части 4 статьи 173 Жилищного кодекса Российской Федерации решение общего собрания собственников помещений в многоквартирном доме об изменении способа формирования фонда капитального ремонта в течение пяти рабочих дней после принятия такого решения направляется владельцу специального счета, на который перечисляются взносы на капитальный ремонт общего имущества в таком многоквартирном доме, или региональному оператору, на счет которого перечисляются эти взносы. В силу части 5 статьи 173 Жилищного кодекса Российской Федерации решение о прекращении формирования фонда капитального ремонта на счете регионального оператора и формировании фонда капитального ремонта на специальном счете вступает в силу через два года после направления региональному оператору решения общего собрания собственников помещений в многоквартирном доме в соответствии с частью 4 настоящей статьи, если меньший срок не установлен законом субъекта Российской Федерации. В течение пяти дней после вступления в силу указанного решения региональный оператор перечисляет средства фонда капитального ремонта на специальный счет.Решение о прекращении формирования фонда капитального ремонта на специальном счете и формировании фонда капитального ремонта на счете регионального оператора вступает в силу через один месяц после направления владельцу специального счета решения общего собрания собственников помещений в многоквартирном доме в соответствии с частью 4 настоящей статьи, но не ранее наступления условия, указанного в части 2 настоящей статьи. В течение пяти дней после вступления в силу указанного решения владелец специального счета перечисляет средства фонда капитального ремонта на счет регионального оператора (Часть 6 статьи 173 Жилищного кодекса Российской Федерации)', title: 'Памятка для собственников помещений многоквартирных домов' },
-  { user_id: 2, text: 'second instruction', title: 'second' },
-];
-async function addInstruction(obj) {
-  try {
-    await Instruction.create({
-      text: obj.text,
-      user_id: obj.user_id,
-      title: obj.title,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
+// const instruction = [
+//   { user_id: 1, text: 'Памятка для собственников помещений многоквартирных домов.Памятка для собственников помещений многоквартирных домов, проводящих общее собрание по вопросу изменения способа формирования фонда капитального ремонта МКД. В соответствии с пунктом 1.1 части 2 статьи 44, частью 1 статьи 173 Жилищного кодекса Российской Федерации общее собрание собственников помещений в многоквартирном доме вправе принять решение  об изменении способа формирования фонда капитального ремонта  многоквартирного дома в любое время.Порядок принятия решения и оформления его результатов установлен статьями 44-48 Жилищного кодекса Российской Федерации.Согласно части 4 статьи 173 Жилищного кодекса Российской Федерации решение общего собрания собственников помещений в многоквартирном доме об изменении способа формирования фонда капитального ремонта в течение пяти рабочих дней после принятия такого решения направляется владельцу специального счета, на который перечисляются взносы на капитальный ремонт общего имущества в таком многоквартирном доме, или региональному оператору, на счет которого перечисляются эти взносы. В силу части 5 статьи 173 Жилищного кодекса Российской Федерации решение о прекращении формирования фонда капитального ремонта на счете регионального оператора и формировании фонда капитального ремонта на специальном счете вступает в силу через два года после направления региональному оператору решения общего собрания собственников помещений в многоквартирном доме в соответствии с частью 4 настоящей статьи, если меньший срок не установлен законом субъекта Российской Федерации. В течение пяти дней после вступления в силу указанного решения региональный оператор перечисляет средства фонда капитального ремонта на специальный счет.Решение о прекращении формирования фонда капитального ремонта на специальном счете и формировании фонда капитального ремонта на счете регионального оператора вступает в силу через один месяц после направления владельцу специального счета решения общего собрания собственников помещений в многоквартирном доме в соответствии с частью 4 настоящей статьи, но не ранее наступления условия, указанного в части 2 настоящей статьи. В течение пяти дней после вступления в силу указанного решения владелец специального счета перечисляет средства фонда капитального ремонта на счет регионального оператора (Часть 6 статьи 173 Жилищного кодекса Российской Федерации)', title: 'Памятка для собственников помещений многоквартирных домов' },
+//   { user_id: 2, text: 'second instruction', title: 'second' },
+// ];
+// async function addInstruction(obj) {
+//   try {
+//     await Instruction.create({
+//       text: obj.text,
+//       user_id: obj.user_id,
+//       title: obj.title,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 // instruction.map((el) => addInstruction(el));
 
-const support = [
-  { user_id: 1, text: 'first support' },
-  { user_id: 2, text: 'second support' },
-];
-async function addSupport(obj) {
-  try {
-    await Support.create({
-      text: obj.text,
-      user_id: obj.user_id,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
+// const support = [
+//   { user_id: 1, text: 'first support' },
+//   { user_id: 2, text: 'second support' },
+// ];
+// async function addSupport(obj) {
+//   try {
+//     await Support.create({
+//       text: obj.text,
+//       user_id: obj.user_id,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 // support.map((el) => addSupport(el));
 
 const userinfo = [
   {
-    user_id: 18,
+    user_id: 1,
     full_name: 'Иванов Иван Иванович',
+    link: 1,
     adress: 'П 4 кв 200',
     phone: 88005553534,
   },
   {
-    user_id: 19,
+    user_id: 2,
     full_name: 'Иванов Вадим Иванович',
+    link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
     adress: 'П 4 кв 200',
     phone: 88005553534,
   },
   {
-    user_id: 20,
+    user_id: 3,
     full_name: 'Серов Иван Иванович',
+    link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
     adress: 'П 4 кв 200',
     phone: 88005553534,
   },
   {
-    user_id: 21,
+    user_id: 4,
     full_name: 'Попов Иван Иванович',
+    link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
     adress: 'П 4 кв 200',
     phone: 88005553534,
   },
   {
-    user_id: 22,
+    user_id: 5,
     full_name: 'Иванова Вера Иванович',
+    link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
     adress: 'П 4 кв 200',
     phone: 88005553534,
   },
   {
-    user_id: 23,
+    user_id: 6,
     full_name: 'Иванова Лиза Иванович',
+    link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
     adress: 'П 4 кв 200',
     phone: 88005553534,
   },
   {
-    user_id: 23,
+    user_id: 7,
     full_name: 'Семенов Иван Иванович',
+    link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
     adress: 'П 4 кв 200',
     phone: 88005553534,
   },
   {
-    user_id: 25,
+    user_id: 8,
     full_name: 'Новак Иван Иванович',
+    link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
     adress: 'П 4 кв 200',
     phone: 88005553534,
   },
   {
-    user_id: 26,
+    user_id: 9,
     full_name: 'Гун Иван Иванович',
+    link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
     adress: 'П 4 кв 200',
     phone: 88005553534,
   },
   {
-    user_id: 27,
+    user_id: 10,
     full_name: 'Че Иван Иванович',
     adress: 'П 4 кв 200',
     link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
     phone: 88005553534,
   },
   {
-    user_id: 28,
+    user_id: 11,
     full_name: 'Соловьев Иван Иванович',
     adress: 'П 4 кв 200',
     link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
     phone: 88005553534,
   },
   {
-    user_id: 29,
+    user_id: 12,
     full_name: 'Седов Иван Иванович',
     adress: 'П 4 кв 200',
     link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
     phone: 88005553534,
   },
   {
-    user_id: 30,
+    user_id: 13,
     full_name: 'Петров Пётр Петрович',
     adress: 'П 4 кв 200',
     link: 'https://st.depositphotos.com/2413271/5050/i/600/depositphotos_50503825-stock-photo-handsome-man-taking-selfie.jpg',
     phone: 88005553535,
   },
   {
-    user_id: 31,
+    user_id: 14,
     full_name: 'Петрова Ирина Петровна',
     adress: 'П 4 кв 200',
     link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
     phone: 88005553535,
   },
   {
-    user_id: 32,
+    user_id: 15,
     full_name: 'Гоман Анна Петровна',
     adress: 'П 4 кв 200',
     link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
     phone: 88005553535,
   },
   {
-    user_id: 33,
+    user_id: 16,
     full_name: 'Петров Света Петровна',
     adress: 'П 4 кв 200',
     link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
     phone: 88005553535,
   },
   {
-    user_id: 34,
+    user_id: 17,
     full_name: 'Петров Роман Петрович',
     adress: 'П 4 кв 200',
     link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
@@ -388,9 +453,10 @@ const userinfo = [
 async function addUserinfo(obj) {
   try {
     await Userinfo.create({
+      link: obj.link,
       full_name: obj.full_name,
       user_id: obj.user_id,
-      link: obj.link,
+
       adress: obj.adress,
       phone: obj.phone,
     });
@@ -403,6 +469,23 @@ async function addUserinfo(obj) {
 const store = [
   {
     user_id: 1,
+    category_id: 1,
+    title: 'холодильник',
+    status: 'актуально',
+    text: 'store_text',
+    price: 300,
+  },
+  {
+    user_id: 2,
+    category_id: 1,
+    title: 'кровать',
+    status: 'актуально',
+    text: 'store_text',
+    price: 300,
+  },
+  {
+    user_id: 1,
+    category_id: 1,
     title: 'холодильник',
     status: 'актуально',
     text: 'store_text',
@@ -410,7 +493,56 @@ const store = [
   },
   {
     user_id: 1,
-    title: 'кровать',
+    category_id: 1,
+    title: 'холодильник',
+    status: 'актуально',
+    text: 'store_text',
+    price: 300,
+  },
+  {
+    user_id: 1,
+    category_id: 1,
+    title: 'холодильник',
+    status: 'актуально',
+    text: 'store_text',
+    price: 300,
+  },
+  {
+    user_id: 1,
+    category_id: 1,
+    title: 'холодильник',
+    status: 'актуально',
+    text: 'store_text',
+    price: 300,
+  },
+  {
+    user_id: 1,
+    category_id: 1,
+    title: 'холодильник',
+    status: 'актуально',
+    text: 'store_text',
+    price: 300,
+  },
+  {
+    user_id: 1,
+    category_id: 1,
+    title: 'холодильник',
+    status: 'актуально',
+    text: 'store_text',
+    price: 300,
+  },
+  {
+    user_id: 1,
+    category_id: 1,
+    title: 'холодильник',
+    status: 'актуально',
+    text: 'store_text',
+    price: 300,
+  },
+  {
+    user_id: 1,
+    category_id: 1,
+    title: 'холодильник',
     status: 'актуально',
     text: 'store_text',
     price: 300,
@@ -420,6 +552,7 @@ const store = [
 async function addStore(obj) {
   try {
     await Store.create({
+      category_id: obj.category_id,
       status: obj.status,
       user_id: obj.user_id,
       title: obj.title,
@@ -436,18 +569,33 @@ async function addStore(obj) {
 const local_news = [
   {
     user_id: 1,
-    title: 'локальная новость 1',
-    status: 'актуально',
-    text: 'local_text',
-    phone: 88005553535,
+    title: 'Осторожно, сосульки !!',
+    status: '',
+    text: 'Сегодня обратил внимание, что УК невовремя убирает снег с крыши,будьте аккуратнее',
+
   },
   {
     user_id: 2,
-    title: 'локальная новость 2',
-    status: 'актуально',
-    text: 'local_text',
-    phone: 88005553535,
+    title: 'Благодарность',
+    status: '',
+    text: 'Хочу поблагодарить жильца 2 подъезда Петрова А.А. за помощь устранении неполдадки со стиральной машиной',
+
   },
+  {
+    user_id: 3,
+    title: 'Подозрительные личности',
+    status: '',
+    text: 'Дорогие жильцы нашего дома , сегодня столкнулся с подозрительными личностями,которые в течение 20 минут копали землю около детской площадки.Будьте аккуратнее',
+
+  },
+  {
+    user_id: 4,
+    title: 'Работа УК ТСЖ',
+    status: '',
+    text: 'Хотелось бы выразить благодарность управляещему по нашему дому Петрову Б.Б. за своевременное реагирования на просьбы жильцов',
+
+  },
+
 ];
 async function addLocal_news(obj) {
   try {
@@ -468,17 +616,37 @@ async function addLocal_news(obj) {
 const global_news = [
   {
     user_id: 1,
-    title: 'глобальная новость 1',
+    title: 'Собрание жильцов 3 подъезда',
     status: 'актуально',
-    text: 'пдщифд_text',
-    phone: 880055,
+    text: 'Уважаемые жильцы 21 марта 2022 года с 09:00 до 10:00, в целях проведения работ по технологическому присоединению в вашем многоквартирном доме силами ОСП "НГЭС" МУП "Коммунальные сети ", будет введено ограничение режима потребления электроэнергии.',
   },
   {
     user_id: 2,
-    title: 'локальная новость 2',
+    title: 'Собственники помещений рискуют заплатить за мусор своих арендаторов',
     status: 'актуально',
-    text: 'local_text',
-    fixed: 'true',
+    text: 'Региональный оператор по обращению с ТКО  напоминает, что все потребители, имеющие в собственности объект жилой или нежилой недвижимости обязаны оплачивать услугу по обращению с ТКО. Арендатор сам оплачивает услугу, только если заключил договор с региональным оператором напрямую. Во всех остальных случаях счет должен оплачивать собственник помещения.Если собственник помещения ссылается на прямой договор между арендатором и регоператором, но договор не был заключен, то регоператор вынужден будет взыскать имеющийся долг с собственника помещения.',
+    fixed: 'false',
+  },
+  {
+    user_id: 1,
+    title: 'Силами управляющей компании устранен провал грунта у жилого дома',
+    status: 'актуально',
+    text: 'После проведенных МУП "Водоканал" работ осенью прошлого года на проезжей части придомовой территории  образовался провал размером 2*3 м и глубиной до 50 см. Жильцы  дома стали жаловаться на неудобства, а некоторые автомобилисты даже получили небольшие повреждения кузова при попадании в яму. Силами Управляющей компании  с использованием техники и противоусадочных материалов провал был ликвидирован.',
+    fixed: 'false',
+  },
+  {
+    user_id: 2,
+    title: 'Собственники помещений рискуют заплатить за мусор своих арендаторов',
+    status: 'актуально',
+    text: 'Региональный оператор по обращению с ТКО  напоминает, что все потребители, имеющие в собственности объект жилой или нежилой недвижимости обязаны оплачивать услугу по обращению с ТКО. Арендатор сам оплачивает услугу, только если заключил договор с региональным оператором напрямую. Во всех остальных случаях счет должен оплачивать собственник помещения.Если собственник помещения ссылается на прямой договор между арендатором и регоператором, но договор не был заключен, то регоператор вынужден будет взыскать имеющийся долг с собственника помещения.',
+    fixed: 'false',
+  },
+  {
+    user_id: 2,
+    title: 'Уборочные работы с наступлением теплых дней идут полным ходом ',
+    status: 'актуально',
+    text: 'Быстрая весенняя карусель стремительно обнажила все "прелести" городских пейзажей. Однако, не все обитатели городских джунглей успеют насладиться мусорными развалами в окрестностях своих домов. Бдительные стражи этих богатых залежей в лице коммунальщиков Управляющей компании "ЖКХ" оперативно пресекают все нежелательные контакты жителей с городскими мусорными "подснежниками". Чистым улицам и дворам в городе БЫТЬ! ',
+    fixed: 'false',
   },
 ];
 async function addGlobal_news(obj) {
@@ -496,83 +664,86 @@ async function addGlobal_news(obj) {
 }
 // global_news.map((el) => addGlobal_news(el));
 
-const response = [
-  {
-    user_id: 2,
-    global_news_id: 1,
-    status: 'true',
-  },
-  {
-    user_id: 1,
-    local_news_id: 2,
-    status: 'true',
-  },
-];
-async function addResponce(obj) {
-  try {
-    await Response.create({
-      local_news_id: obj.local_news_id,
-      user_id: obj.user_id,
-      global_news_id: obj.global_news_id,
-      status: obj.status,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
+// const response = [
+//   {
+//     user_id: 2,
+//     global_news_id: 1,
+//     status: 'true',
+//   },
+//   {
+//     user_id: 1,
+//     local_news_id: 2,
+//     status: 'true',
+//   },
+// ];
+// async function addResponce(obj) {
+//   try {
+//     await Response.create({
+//       local_news_id: obj.local_news_id,
+//       user_id: obj.user_id,
+//       global_news_id: obj.global_news_id,
+//       status: obj.status,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 // response.map((el) => addResponce(el));
 
-const like = [
-  {
-    user_id: 2,
-    global_news_id: 1,
-    count: 20,
-  },
-  {
-    user_id: 1,
-    local_news_id: 2,
-    count: 30,
-  },
-];
-async function addLike(obj) {
-  try {
-    await Like.create({
-      local_news_id: obj.local_news_id,
-      user_id: obj.user_id,
-      global_news_id: obj.global_news_id,
-      count: obj.count,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
+// const like = [
+//   {
+//     user_id: 1,
+//     global_news_id: 1,
+//     count: 20,
+//   },
+//   {
+//     user_id: 1,
+//     local_news_id: 2,
+//     count: 30,
+//   },
+// ];
+// async function addLike(obj) {
+//   try {
+//     await Like.create({
+//       local_news_id: obj.local_news_id,
+//       user_id: obj.user_id,
+//       global_news_id: obj.global_news_id,
+//       count: obj.count,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 
 // like.map((el) => addLike(el));
 
 const photolink = [
   {
-    userinfo_id: 1, link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
+    global_news_id: 2, link: 'https://gkhirkutsk.ru/news/10062021/WhatsApp%20Image%202021-06-10%20at%2013.57.35.jpeg',
   },
   {
-    userinfo_id: 1, link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
+    global_news_id: 3, link: 'https://opt-1390303.ssl.1c-bitrix-cdn.ru/images/%D0%9D%D0%9E%D0%92%D0%9E%D0%A1%D0%A2%D0%98/%D0%9E%D0%91%D0%A9%D0%95%D0%95/WhatsApp%20Image%202021-03-19%20at%2008.18.37.jpeg',
   },
   {
-    userinfo_id: 4, link: 'https://media.istockphoto.com/photos/close-up-young-smiling-man-in-casual-clothes-posing-isolated-on-blue-picture-id1270987867?k=20&m=1270987867&s=612x612&w=0&h=lX9Y1qUxtWOa0W0Mc-SvNta00UH0-sgJQItkxfwE4uU=',
+    global_news_id: 1, link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3-8lfKPSXrJfQ9HuPr4dFAMRZT7flgNqlP_uSWQZU9-M8sW1mhBp1GSNn6UHGVziPzzo&usqp=CAU',
   },
   {
-    userinfo_id: 5, link: 'https://st.depositphotos.com/2413271/5050/i/600/depositphotos_50503825-stock-photo-handsome-man-taking-selfie.jpg',
+    global_news_id: 4, link: 'https://opt-1390303.ssl.1c-bitrix-cdn.ru/images/%D0%9D%D0%9E%D0%92%D0%9E%D0%A1%D0%A2%D0%98/%D0%9E%D0%91%D0%A9%D0%95%D0%95/WhatsApp%20Image%202021-03-31%20at%2020.41.21%20(9).jpeg',
   },
   {
-    userinfo_id: 6, link: 'https://m.hi-tech.ua/wp-content/uploads/2017/06/selfie-1.jpg',
+    global_news_id: 5, link: 'https://gkhirkutsk.ru/news/10062021/WhatsApp%20Image%202021-06-10%20at%2013.57.35.jpeg',
   },
   {
-    userinfo_id: 1, link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
+    local_news_id: 1, link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIFyMFS7ZsFF72MNvOwYZVEEIUKQ8ZhDvcvg&usqp=CAU',
   },
   {
-    userinfo_id: 1, link: 'https://www.bigstockphoto.com/images/homepage/collections2020/module-4.jpg',
+    local_news_id: 2, link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd0iYiQe1N1GbsOyJ5BwsOdXERmVC7VOSf5w&usqp=CAU',
   },
   {
-    userinfo_id: 2, link: 'https://images.unsplash.com/photo-1544465544-1b71aee9dfa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBob3RvfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+    local_news_id: 3, link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY6v6uCtuyr4t3DXd5197b5bLmFdLsas5lHA&usqp=CAU',
+  },
+  {
+    local_news_id: 4, link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBzPNECQdXPkz5XaVv5sFPP6mWz-f-fhIa9A&usqp=CAU',
   },
 ];
 async function addPhotolink(obj) {
@@ -628,4 +799,4 @@ async function addCategory_store(obj) {
   }
 }
 
-category_store.map((el) => addCategory_store(el));
+// category_store.map((el) => addCategory_store(el));

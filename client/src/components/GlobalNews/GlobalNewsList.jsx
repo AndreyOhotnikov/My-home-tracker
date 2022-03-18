@@ -1,10 +1,10 @@
 import React from "react";
-
+import "../BenefitServices/BenefitServicesForm.scss";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import { Link, Stack } from "@mui/material";
 import Paper from "@mui/material/Paper";
-
+import { Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -93,7 +93,11 @@ function GlobalNewsList() {
     <>
       {view && (
         <Box paddingTop={2} maxWidth={'100%'}>
-          <Box marginTop={3}>Главные новости</Box>
+           <Paper>
+          <Typography variant="h4" className="benefit-service-form__typography">
+           Главные новости
+          </Typography>
+        </Paper>
           <Stack
             direction="column"
             spacing={1}

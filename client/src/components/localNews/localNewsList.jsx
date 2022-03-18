@@ -1,8 +1,9 @@
 import React from "react";
+import "../BenefitServices/BenefitServicesForm.scss";
 import { types } from "../../store/types/userTypes";
 import Box  from '@mui/material/Box';
 import { Button,Avatar} from "@mui/material";
-import { Link,Stack } from "@mui/material";
+import { Link,Stack,Typography } from "@mui/material";
 import Paper from '@mui/material/Paper';
 
 import { styled } from '@mui/material/styles';
@@ -92,7 +93,11 @@ function LocalNewsList(){
     <>
     
     {view && <Box paddingTop={'2vh'} marginBottom={'3vh'} >
-    <Box marginTop={3}>Новости пользователей</Box>
+    <Paper>
+          <Typography variant="h4" className="benefit-service-form__typography">
+           Новости пользователей
+          </Typography>
+        </Paper>
       <Stack direction="column" spacing={1} marginRight={30} marginLeft={30}>
     {state?.map((el,index)=>{
       return <> 
