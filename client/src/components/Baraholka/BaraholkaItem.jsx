@@ -13,6 +13,8 @@ import {
   ListItemAvatar,
   Avatar,
   Button,
+  CardMedia,
+  Card,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -46,8 +48,6 @@ const BaraholkaItem = () => {
   }, []);
 
 
-
-
   //console.log(productsList);
   const showContactHandler = () => {
     setShowContact(true);
@@ -60,13 +60,25 @@ const BaraholkaItem = () => {
     //delProductSaga(Number(params.id)
   };
   return (
-    <Box>
+    <Box sx={{
+      display: "flex",
+       flexDirection: "column",
+      justifyContent: "center",
+      marginLeft: "25%",
+      marginTop: "2%",
+    }}>
       {productsList?.map((prodItem) => {
         return (
-          <List key={prodItem.id}>
-            <ListItemAvatar>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            </ListItemAvatar>
+          <List key={prodItem.id}  sx={{
+            display: "flex",
+             flexDirection: "column",
+            justifyContent: "center",
+            marginLeft: "10%",
+            marginTop: "5%",
+          }}>
+            <ListItem sx={{ width: "50%", height: "40%" }}>
+              <CardMedia component="img" image={prodItem.status} />
+            </ListItem>
             <ListItem variant="body2" color="textSecondary">
               <ListItemText>{prodItem.title}</ListItemText>
             </ListItem>
@@ -77,7 +89,7 @@ const BaraholkaItem = () => {
               <ListItemText>Цена: {prodItem.price} </ListItemText>
             </ListItem>
             <Box mt={4}>
-              <Button variant="contained " onClick={showContactHandler}>
+              <Button variant="contained " onClick={showContactHandler} sx={{mr:80}}>
                 Связаться
               </Button>
               {showContact && (
@@ -102,6 +114,7 @@ const BaraholkaItem = () => {
               )}
             </Box>
            {auth.user_id === prodItem.user_id && <Button
+           
               variant="outlined"
               color="error"
               onClick={() => deleteProduct(prodItem.id)}

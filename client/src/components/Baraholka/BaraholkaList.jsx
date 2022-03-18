@@ -12,6 +12,7 @@ import {
   Typography,
   ListItemAvatar,
   Button,
+  CardMedia,
 } from "@mui/material";
 
 import { useSelector } from "react-redux";
@@ -23,7 +24,6 @@ const BaraholkaList = () => {
   const params = useParams();
   //console.log(params.id);
 
- 
   useEffect(() => {
     dispatch(allProductsView());
   }, []);
@@ -31,10 +31,10 @@ const BaraholkaList = () => {
   const category = useSelector((store) => store.baraholka.category);
 
   const productsList = category.filter((el) => el.id === Number(params.id));
-  console.log(productsList);
+  //console.log(productsList);
 
   const prod = productsList.map((el) => el.products);
-  console.log(prod);
+  //console.log("prod", prod);
 
   const submitHandler = (id) => {
     navigate(`/product/${id}`);
@@ -44,7 +44,15 @@ const BaraholkaList = () => {
   }, []);
 
   return (
-    <Box m={10}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        marginLeft: "10%",
+        marginTop: "5%",
+      }}
+    >
       {prod[0]?.map((product) => {
         return (
           <List
@@ -52,19 +60,25 @@ const BaraholkaList = () => {
             title={product.title}
             text={product.text}
             price={product.price}
-            sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+            link={product.status}
+            // sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
           >
-            <ListItem alignItems="flex-start">
-              <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-              </ListItemAvatar>
+            <ListItem>
+              <CardMedia
+                sx={{ width: "30%" }}
+                component="img"
+                image={product.status}
+              />
+
               <ListItemText
+                sx={{ marginLeft: "5%" }}
+                component="h3"
                 onClick={() => submitHandler(product.id)}
                 primary={product.title}
                 secondary={
                   <React.Fragment>
                     <Typography
-                      sx={{ display: "inline" }}
+                      sx={{ display: "inline", fontSize: 15 }}
                       component="span"
                       variant="body2"
                       color="text.primary"

@@ -38,16 +38,16 @@ function GlobalNewsId(){
   
   
   return ( <>
-    <Stack direction={'row'} spacing={3} textAlign={'center'} marginTop={'25vh'}>
-    <Stack spacing={2} textAlign={'start'} marginLeft={'180px'}>
+    <Stack direction={'row'} spacing={3} textAlign={'center'} marginTop={'10vh'} >
+    <Stack spacing={2} textAlign={'start'} marginLeft={'180px'} >
 
-<Box component="form"
+<Box component="form" 
 sx={{
 '& .MuiTextField-root': { mt:7, width: '25ch' },
 }}
 noValidate
 autoComplete="off">
-<Box>
+<Box >
   {defaultData.title}
 </Box>
 </Box>

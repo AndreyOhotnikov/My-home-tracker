@@ -19,7 +19,7 @@ const SignIn = () => {
     if (isValid) {
       // console.log(2342342)
       dispatche({type: types.SIGN_IN_USER_SAGA, user: {name, pass}})
-      navigate('/')
+      navigate('/GlobalNews')
     } else if (!/^[A-Za-z]\w+$/.test(name)) alert('введи нормально логин')
     // console.log('name-', name, 'pass-', pass, )
   }

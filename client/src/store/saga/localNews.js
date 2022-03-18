@@ -36,7 +36,7 @@ async function addLocalNewsToDb(obj) {
 }
 
 async function addLikeLocalToDb(id) {
- 
+   console.log('========================',id)
   const response = await fetch(`/localNews/like/${id}`);
   const data = await response.json()
   console.log(data,'data')

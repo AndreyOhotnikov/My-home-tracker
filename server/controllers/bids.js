@@ -61,7 +61,7 @@ exports.addNewBid = async (req, res) => {
       price,
       status: resStatusInDb,
       user_id: req.session.user.id,
-      link: req.body.url,
+      link: req.body.url
     });
     bidPhoto = await Photolink.create({ bid_id: newBid.id, link: req.body.url });
 

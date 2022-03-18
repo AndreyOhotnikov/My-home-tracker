@@ -1,7 +1,7 @@
 import React from "react";
-
+import { types } from "../../store/types/userTypes";
 import Box  from '@mui/material/Box';
-import { Button} from "@mui/material";
+import { Button,Avatar} from "@mui/material";
 import { Link,Stack } from "@mui/material";
 import Paper from '@mui/material/Paper';
 
@@ -22,6 +22,8 @@ import LocalNewsItem from "./localNewsItem";
 
 function LocalNewsList(){
   const state = useSelector((store)=>store.localReducer.arrLocalNews)
+  const stateUser = useSelector((store)=>store.user)
+  const photo = stateUser["Userinfo.Photolinks.link"]
   const userRole = useSelector((state)=>state.auth.auth)
   const navigate = useNavigate();
   // console.log(state,'=>>>>>>>>>>>>>>>>>>>>>')
@@ -48,7 +50,7 @@ function LocalNewsList(){
   }
 
  useEffect(()=>{ 
-  
+  dispatch({ type: types.CHECK_IS_AUTH_SAGA });
   dispatch(getAllLocalNews())
   
  },[])
@@ -94,10 +96,16 @@ function LocalNewsList(){
       <Stack direction="column" spacing={1} marginRight={30} marginLeft={30}>
     {state?.map((el,index)=>{
       return <> 
-      
        <Item  > 
+        
+           
+       
          <Box>{goodDate(el?.updatedAt)}</Box>
-         
+         <Stack direction={'row'} marginTop={'2vh'}>
+         <Box  marginLeft={'0ch'}> <Avatar src={photo}/></Box>
+          <Box marginLeft={'3ch'}> {userRole.user}</Box>
+         </Stack>
+        
        <Box marginTop={'2vh'} onClick={()=>seeItem(el.id)} key={index} style={isFixed(el)?{color:'red'}:null}>{el.title}</Box>
   
   
@@ -111,34 +119,25 @@ function LocalNewsList(){
              srcSet={`${el.link}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
              alt={el.title}
             loading="lazy"
-            width={'40ch'}
-            height={'40vh'}
+            maxWidth={'40ch'}
+            maxHeight={'40vh'}
           />
    
    </Stack>
    
-   < Box marginLeft={'120ch'}  >
-   <Stack direction={'raw'} alignContent={'end'} marginTop={'1vh'} marginLeft={'20ch'}>
-   <Box marginLeft={'-140ch'}>Автор новости: {userRole.user}</Box>
-   <Box marginLeft={'120ch'} alignContent={'end'}> {el.likeLength}</Box>
-   <Box  > < FavoriteIcon onClick={()=>{
-     changeLike(el.id)
-   }}/></Box> 
-    
-     </Stack>
-    </Box>
+    <Box marginTop={'2vh'} marginLeft={''} alignContent={'end'}>< FavoriteIcon />
+     <Button 
+        onClick={()=>{
+        changeLike(el.id)
+        }} >понравилось
+        </Button> {el.likeLength}
+      </Box>
    </Item>
       </>
     })}
       </Stack>
-  
-     
     </Box>}
     <Routes>
-      {/* {!view && <Route  path="/form/:id" element={<GlobalNewsForm/>} ></Route>} */}
-      {/* {!view && <Route  path="/local/:id" element={<LocalNewsItem/>} ></Route>} */}
-      {/* {!view && <Route  path="/global/:id" element={<GlobalNewsId  />} ></Route>} */}
-      
       </Routes>
     </>
     

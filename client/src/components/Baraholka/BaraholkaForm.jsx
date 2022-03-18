@@ -57,7 +57,6 @@ const BaraholkaForm = () => {
       product: { title, text, category, price, link, categoryId },
     });
     navigate(`/baraholka`)
-    // console.log(product);
   };
 
   return (

@@ -10,13 +10,9 @@ import {
   Typography,
   CardActions,
   Button,
-  Container,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
-import BaraholkaItem from "./BaraholkaItem";
 import { allProductsView } from "../../store/actionCreators/baraholkaAC";
 
 const BaraholkaBox = () => {
@@ -24,10 +20,7 @@ const BaraholkaBox = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const allCategories = useSelector((store) => store.baraholka.category);
-  //console.log(allCategories);
-  //const navigate = Navigate();
 
   useEffect(() => {
     dispatch(allProductsView());
@@ -38,46 +31,41 @@ const BaraholkaBox = () => {
   };
 
   return (
-
-    <Container>
-      <Box>
-        <Grid container xl={8} direction="row">
-          <Grid item>
-            <Paper>Категории товаров</Paper>
-            <Box m={10}>
-              {allCategories?.map((category) => {
-                return (
-                  <Grid key={category.id} container direction="row">
-                    <Card>
-                      <CardMedia
-                        component="img"
-                        image={category.link}
-                        alt="green iguana"
-                      />
-                      <CardContent>
-                        <Typography component="div" variant="h5">
-                          {category.title}
-                        </Typography>
-                      </CardContent>
-                      <CardActions>
-                        <Button
-                          size="smal"
-                          type="button"
-                          onClick={() => submitHandler(category.id)}
-                        >
-                          Подробнее
-                        </Button>
-                      </CardActions>
-                    </Card>
-                  </Grid>
-                );
-              })}
-            </Box>
-          </Grid>
-
+    <Box>
+      <Grid container>
+        <Grid item>
+          <Box>
+            {allCategories?.map((category) => {
+              return (
+                <Grid key={category.id} item container xs={8}>
+                  <Card>
+                    <CardMedia
+                      component="img"
+                      image={category.link}
+                      alt="green iguana"
+                    />
+                    <CardContent>
+                      <Typography component="div" variant="h5">
+                        {category.title}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button
+                        size="smal"
+                        type="button"
+                        onClick={() => submitHandler(category.id)}
+                      >
+                        Подробнее
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              );
+            })}
+          </Box>
         </Grid>
-      </Box>
-    </Container>
+      </Grid>
+    </Box>
   );
 };
 
