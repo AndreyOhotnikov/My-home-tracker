@@ -3,12 +3,24 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { localTypes } from "../../store/types/localTypes";
 import { Link,Stack } from "@mui/material";
+
+
+
+import Paper from '@mui/material/Paper';
 import { IconButton } from "@mui/material";
+
+
 import { styled } from '@mui/material/styles';
 import { useState } from "react";
 import { useEffect } from "react";
 import Button from '@mui/material/Button';
+
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
+
+
 import { Input } from "@mui/material";
 import { Provider, useDispatch,useSelector } from "react-redux";
 
@@ -61,6 +73,7 @@ function LocalNewsForm(){
    },[])
 
   return(
+
     <div style={{maxWidth: '80%'}}>
     <Stack direction={'row'} spacing={3} textAlign={'center'} marginTop={'3vh'} maxWidth={'80%'} display={'flex'} flexDirection={'column'} >
     <Stack spacing={2} textAlign={'start'} marginLeft={'150px'} maxWidth={'100%'} >
@@ -143,6 +156,7 @@ function LocalNewsForm(){
       </Box>
     </Stack>   
 </div>
+
    )
  }
 

@@ -142,16 +142,30 @@ function GlobalNewsList() {
                           {" "}
                           {el.likeLength}
                         </Box>
-                      </Stack>
-                   </Box>
-                      <Box marginTop={'2vh'} marginLeft={''} alignContent={'end'}>
-                          < FavoriteIcon />
-                              <Button 
-                                  onClick={()=>{
-                                  changeLike(el.id)
-                                  }} >понравилось
-                              </Button> {el.likeLength}
-                      </Box>
+// <<<<<<< dev
+//                       </Stack>
+//                    </Box>
+//                       <Box marginTop={'2vh'} marginLeft={''} alignContent={'end'}>
+//                           < FavoriteIcon />
+//                               <Button 
+//                                   onClick={()=>{
+//                                   changeLike(el.id)
+//                                   }} >понравилось
+//                               </Button> {el.likeLength}
+//                       </Box>
+// =======
+//                         <Box>
+//                           {" "}
+//                         </Box>
+//                       </Stack>
+//                     </Box>
+//                     <FavoriteIcon
+                         
+//                             onClick={() => {
+//                               changeLike(el.id);
+//                             }}
+//                           />
+// >>>>>>> main
                   </Item>
                 </>
               );
