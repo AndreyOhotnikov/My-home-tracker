@@ -144,6 +144,7 @@ function GlobalNewsList() {
                     <Box marginRight={"1ch"} alignContent={"end"}>
                       {el.likeLength}
                     </Box>
+
                   </Stack>
                 </Box>
                 <Box marginTop={"2vh"} marginLeft={""} alignContent={"end"}>
@@ -160,6 +161,58 @@ function GlobalNewsList() {
               </Card>
             );
           })}
+
+
+//                     <Stack direction="row" spacing={1} >
+//                       <Box style={{width: '1600px'}} width={1600} marginTop={3}>
+//                         {el.text}
+//                       </Box>
+//                       <img style={{maxWidth: '30%'}}
+//                         src={el.link} alt={''}
+//                       />
+//                     </Stack >
+//                     <Box marginLeft={"120ch"}>
+//                       <Stack
+                     
+//                         direction={"raw"}
+//                         alignContent={"end"}
+//                         marginTop={"1vh"}
+//                         marginLeft={"20ch"}
+//                       >
+//                          <Box marginRight={"1ch"} alignContent={"end"}>
+//                           {" "}
+//                           {el.likeLength}
+//                         </Box>
+// <<<<<<< dev
+//                       </Stack>
+//                    </Box>
+//                       <Box marginTop={'2vh'} marginLeft={''} alignContent={'end'}>
+//                           < FavoriteIcon />
+//                               <Button 
+//                                   onClick={()=>{
+//                                   changeLike(el.id)
+//                                   }} >понравилось
+//                               </Button> {el.likeLength}
+//                       </Box>
+// =======
+//                         <Box>
+//                           {" "}
+//                         </Box>
+//                       </Stack>
+//                     </Box>
+//                     <FavoriteIcon
+                         
+//                             onClick={() => {
+//                               changeLike(el.id);
+//                             }}
+//                           />
+// >>>>>>> main
+//                   </Item>
+//                 </>
+//               );
+//             })}
+//           </Stack>
+
         </Box>
       </Grid>
       <Routes>
