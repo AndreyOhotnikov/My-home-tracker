@@ -1,7 +1,7 @@
 const { Local_news, LikeLocal, Photolink } = require('../db/models');
 
 exports.createLocalNews = async (req, res) => {
-  const findNews = await Local_news.findOne({ where: { id: req.body?.idNews } });
+  const findNews = await Local_news.findOne({ where: { id: req.body?.idNews }, raw: true });
   if (!findNews) {
     const newLocal = await Local_news.create({
       title: req.body.title, text: req.body.text, user_id: req.session.user.id,
@@ -11,10 +11,11 @@ exports.createLocalNews = async (req, res) => {
 
     res.json(newLocal.dataValues);
   } else if (findNews) {
-    const newLocal = await Local_news.update({ title: req.body.title, text: req.body.text }, { where: { id: req.body.idNews } });
-    const local = await Photolink.update({ global_news_id: newLocal.id, link: req.body.link });
-    newLocal.dataValues.link = local.link;
-    res.json(newLocal.dataValues);
+    await Local_news.update({ title: req.body.title, text: req.body.text }, { where: { id: req.body.idNews } });
+    await Photolink.update({ link: req.body.link }, { where: { local_news_id: req.body.idNews } });
+    const findLink = await Photolink.findOne({ where: { local_news_id: req.body.idNews }, raw: true });
+    findNews.link = findLink.link;
+    res.json(findNews);
   }
 };
 

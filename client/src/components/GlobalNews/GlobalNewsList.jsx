@@ -11,31 +11,24 @@ import {
   CardMedia,
   CardContent,
 } from "@mui/material";
-import Paper from "@mui/material/Paper";
-import { Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useEffect } from "react";
 import GlobalNewsItem from "./GlobalNewItem";
 
 import { Route, Routes } from "react-router-dom";
-import GlobalNewsForm from "./GlobalNewsForm";
 import { useSelector, useDispatch } from "react-redux";
-import GlobalNewsId from "./GlobalNewsId";
 import { getAllGlobalNews } from "../../store/actionCreators/globalNewsAC";
 import { useNavigate } from "react-router-dom";
 import { addLikeSaga } from "../../store/actionCreators/globalNewsAC";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { color } from "@mui/system";
 import { types } from "../../store/types/userTypes";
 
 function GlobalNewsList() {
   const state = useSelector((store) => store.globalNews.arrGlobalNews);
   const auth = useSelector((state) => state.auth.auth);
   const navigate = useNavigate();
-  // console.log(state,'=>>>>>>>>>>>>>>>>>>>>>')
+  // console.log(state[0].link)
   useEffect(() => {
-    // console.log("ДОЛЖЕН СРАБАТЫВАТЬ ТОЛЬКО ПРИ ПЕРЕЗАГРУЗКЕ СТРАНИЦЫ");
     if (!auth) dispatch({ type: types.CHECK_IS_AUTH_SAGA });
   }, []);
   const dispatch = useDispatch();
@@ -45,17 +38,6 @@ function GlobalNewsList() {
     dispatch(addLikeSaga(id));
   }
 
-  function statusView() {
-    if (view) {
-      setView(false);
-    } else setView(true);
-  }
-
-  const Item = styled(Paper)(({ theme }) => ({
-    padding: theme.spacing(1),
-    textAlign: "start",
-    color: theme.palette.text.secondary,
-  }));
   function seeItem(id) {
     navigate(`/global/${id}`);
   }
@@ -108,24 +90,24 @@ function GlobalNewsList() {
             return (
               <Card
                 onClick={() => seeItem(el.id)}
-                key={el.id}
+                key={el?.id}
                 className="benefit-services-main__card benefit-services-main__card-global-news"
               >
                 <CardMedia
                   className="benefit-services-main__card-global-news--img"
                   component="img"
-                  image={el.link}
+                  image={el?.link}
                   alt="green iguana"
                 />
                 <CardContent>
                   <Box className="benefit-services-main__card-global-news--text">
                     <Typography gutterBottom variant="h5" component="div">
-                      {el.title}
+                      {el?.title}
                     </Typography>
                   </Box>
                   <Box >
                     <Typography className="benefit-services-main__card-global-news--text" gutterBottom variant="boby2" component="div">
-                      {el.text}
+                      {el?.text}
                     </Typography>
                   </Box>
                   <Box className="benefit-services-main__card-global-news--text">

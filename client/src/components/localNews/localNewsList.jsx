@@ -3,14 +3,13 @@ import "../BenefitServices/BenefitServicesForm.scss";
 import { types } from "../../store/types/userTypes";
 import Box from "@mui/material/Box";
 import { Button, Avatar, Typography } from "@mui/material";
-import { Link, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import Paper from "@mui/material/Paper";
 
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useEffect } from "react";
 
-import { Route, Routes } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -18,7 +17,6 @@ import { getAllLocalNews } from "../../store/actionCreators/localNewsAC";
 import { useNavigate } from "react-router-dom";
 import { addLikeLocalSaga } from "../../store/actionCreators/localNewsAC";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocalNewsItem from "./localNewsItem";
 
 function LocalNewsList() {
   const state = useSelector((store) => store.localReducer.arrLocalNews);
@@ -26,18 +24,11 @@ function LocalNewsList() {
   const photo = stateUser["Userinfo.Photolinks.link"];
   const userRole = useSelector((state) => state.auth.auth);
   const navigate = useNavigate();
-  // console.log(state,'=>>>>>>>>>>>>>>>>>>>>>')
+  
   const dispatch = useDispatch();
   const [view, setView] = useState(true);
-  const [id, setId] = useState(0);
   function changeLike(id) {
     dispatch(addLikeLocalSaga(id));
-  }
-
-  function statusView() {
-    if (view) {
-      setView(false);
-    } else setView(true);
   }
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -156,7 +147,7 @@ function LocalNewsList() {
           </Stack>
         </Box>
       )}
-      <Routes></Routes>
+     
     </>
   );
 }

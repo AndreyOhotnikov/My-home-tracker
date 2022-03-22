@@ -9,43 +9,42 @@ import {
   deleteLocalSaga,
 } from "../../store/actionCreators/localNewsAC";
 import { styled } from "@mui/material/styles";
-import { useState } from "react";
 import { useEffect } from "react";
-import ImageListItem from "@mui/material/ImageListItem";
-import { Route, Routes, Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-//import {goodDate} from './GlobalNewsList'
-//import { getAllGlobalNews } from "../../store/actionCreators/globalNewsAC";
+
 
 function LocalNewsItem({ el, view, setView, id, setId }) {
   const params = useParams();
   const navigate = useNavigate();
   const state = useSelector((store) => store.localReducer.arrLocalNews);
-  console.log(state);
+  
   const userRole = useSelector((state) => state.auth.auth);
-  console.log(userRole);
+ 
   const stateUser = useSelector((store) => store.user);
   const photo = stateUser["Userinfo.Photolinks.link"];
+  
   function findDataInGlobalArr(id) {
-    // console.log(id)
-
     return state.filter((el) => el.id == id);
   }
   const defaultData = findDataInGlobalArr(params.id)[0];
-  //  console.log('find',defaultData)
+  
   const dispatch = useDispatch();
+  
   function changeLike(id) {
     dispatch(addLikeLocalSaga(id));
   }
+  
   function updateLocal(id) {
     navigate(`/local/put/${id}`);
   }
+  
   function seeItem(id) {
     navigate(`/local/${id}`);
   }
+  
   function statusView() {
     if (view) {
       setView(false);
@@ -54,11 +53,13 @@ function LocalNewsItem({ el, view, setView, id, setId }) {
   function deleteGlobal(id) {
     dispatch(deleteLocalSaga(id));
   }
+  
   const Item = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(1),
     textAlign: "start",
     color: theme.palette.text.secondary,
   }));
+  
   function navigateToMain() {
     navigate("/LocalNews");
   }
@@ -67,6 +68,7 @@ function LocalNewsItem({ el, view, setView, id, setId }) {
     if (!userRole) dispatch({ type: types.CHECK_IS_AUTH_SAGA });
     dispatch(getAllLocalNews());
   }, []);
+
   const goodDate = (str = "") => {
     const timeSec = str?.slice(-10, -8);
     let timeHour = +str?.slice(-13, -11);

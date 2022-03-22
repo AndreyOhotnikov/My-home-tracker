@@ -109,18 +109,11 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
   return (
     <>
       <Box m={5}>
-        <Box className="global-news-item">
+        <Box className="global-news-item" marginLeft={'40%'}>
 
           <Card className="benefit-services-main__card-item-news">
 
-//           <Card  onClick={() => seeItem(el.id)}  className="benefit-services-main__card-item-news">
-//             {/* <Item> */}
-//             {/* <Stack
-//             direction="column"
-//             spacing={1}
-//             marginLeft={"5ch"}
-//             marginTop={"5vh"}
-//           > */}
+           <Card  onClick={() => seeItem(el.id)}  className="benefit-services-main__card-item-news">
 
 
             <Box
@@ -161,11 +154,7 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
                 >
                   {goodDate(defaultData?.updatedAt)}
                 </Typography>
-              </Box>
-            </CardContent>
-          </Card>
-          <Box className="global-news-item__right">
-            <Typography
+                <Typography
               className="benefit-services-main__card-item-news--text"
               gutterBottom
               variant="boby2"
@@ -173,21 +162,19 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
             >
               {defaultData?.text}
             </Typography>
-
-            <Box className="global-news-item__footer">
-              <Box marginLeft={"30px"}>
+            <Box >
                 <Button onClick={(e) => changeLike(defaultData?.id, e)}>
                   понравилось
                 </Button>
-              </Box>
-              <Box marginTop={"8px"}>
+                <Box component={'span'}  >
                 {defaultData?.likeLength ? defaultData?.likeLength : 0}
-              </Box>
-              <Box marginTop={"8px"} marginLeft={"10px"}>
+              </Box >
+              <Box position={'absolute'} component={'span'} top={'354px'} >
                 <FavoriteIcon />
               </Box>
             </Box>
-            {userRole?.role !== "user" && (
+             
+              {userRole?.role !== "user" && (
               <Box>
                 <Button onClick={() => updateGlobal(defaultData.id)}>
                   Редактировать
@@ -202,7 +189,10 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
                 </Button>
               </Box>
             )}
-          </Box>
+              </Box>
+            </CardContent>
+          </Card>
+          </Card>
         </Box>
 
         <Box className="benefit-services-main__card-global-news--card-item-box">
@@ -212,7 +202,7 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
             columns={{ xs: 4, sm: 8, md: 12 }}
           >
             {state.map((el, index) => (
-              <Grid item xs={2} sm={4} md={4} key={index} marginBottom={"10%"}>
+              <Grid item xs={2} sm={4} md={3} key={index} marginBottom={"10%"}>
                 <Card className="benefit-services-main__card-item-news">
                   <Box
                     underline="none"
@@ -265,7 +255,7 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
                         position={"absolute"}
                         component={"span"}
                         marginTop={"4px"}
-                        marginLeft={"10px"}
+                        
                       >
                         <FavoriteIcon />
                       </Box>

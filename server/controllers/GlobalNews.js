@@ -2,20 +2,25 @@ const sequelize = require('sequelize');
 const { Global_news, Like, Photolink } = require('../db/models');
 
 exports.createGlobalNews = async (req, res) => {
-  const findNews = await Global_news.findOne({ where: { id: req.body?.idNews } });
-  if (!findNews) {
-    const newGlobal = await Global_news.create({
-      title: req.body.title, text: req.body.text, fixed: req.body.check, user_id: req.session.user.id,
-    });
-    const global = await Photolink.create({ global_news_id: newGlobal.id, link: req.body.link });
-    newGlobal.dataValues.link = global.link;
-
-    res.json(newGlobal.dataValues);
-  } else if (findNews) {
-    const newGlobal = await Global_news.update({ title: req.body.title, text: req.body.text, fixed: req.body.check }, { where: { id: req.body.idNews } });
-    const global = await Photolink.update({ global_news_id: newGlobal.id, link: req.body.link });
-    newGlobal.dataValues.link = global.link;
-    res.json(newGlobal.dataValues);
+  try {
+    const findNews = await Global_news.findOne({ where: { id: req.body?.idNews } });
+    if (!findNews) {
+      const newGlobal = await Global_news.create({
+        title: req.body.title, text: req.body.text, fixed: req.body.check, user_id: req.session.user.id,
+      });
+      const global = await Photolink.create({ global_news_id: newGlobal.id, link: req.body.link });
+      newGlobal.dataValues.link = global.link;
+      res.json(newGlobal.dataValues);
+    } else if (findNews) {
+      await Global_news.update({ title: req.body.title, text: req.body.text, fixed: req.body.check }, { where: { id: req.body.idNews } });
+      await Photolink.update({ link: req.body.link }, { where: { global_news_id: req.body.idNews } });
+      const findGlobal = await Global_news.findOne({ where: { id: req.body.idNews }, raw: true });
+      const findLink = await Photolink.findOne({ where: { global_news_id: req.body.idNews }, raw: true });
+      findGlobal.link = findLink.link;
+      res.json(findGlobal);
+    }
+  } catch (err) {
+    console.log(err);
   }
 };
 
