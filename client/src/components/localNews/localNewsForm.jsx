@@ -1,5 +1,4 @@
 import "./Style.scss";
-
 import React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -13,7 +12,6 @@ import Button from "@mui/material/Button";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { Input } from "@mui/material";
 import { Provider, useDispatch, useSelector } from "react-redux";
-
 import { addGlobalNews } from "../../store/actionCreators/globalNewsAC";
 import { useParams, useNavigate } from "react-router-dom";
 import { getAllLocalNews } from "../../store/actionCreators/localNewsAC";

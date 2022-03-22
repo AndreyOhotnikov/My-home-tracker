@@ -1,11 +1,12 @@
-.benefit-service-form {
+.baraholka-form {
+
   &__typography {
     margin: 50px 0 50px 0 !important;
     box-shadow: none !important;
   }
 }
 
-.benefit-services-main {
+.baraholka-main {
   margin: auto !important;
   width: auto !important;
 
@@ -27,15 +28,15 @@
         max-width: 300px !important;
       }
     }
-    &__card-item-news {
-      max-width: 60% !important;
-      &--text {
+      &__card-item-news {
         max-width: 60% !important;
+          &--text {
+            max-width: 60% !important; 
+          }
+          &--card-item-box {
+            max-width: 300px !important;
+          }
       }
-      &--card-item-box {
-        max-width: 300px !important;
-      }
-    }
 
     &--wrapper {
       display: flex;
@@ -52,7 +53,7 @@
   }
 }
 
-.benefit-services-list {
+.baraholka-list {
   margin: 0 auto !important;
   width: 450px !important;
 
@@ -68,7 +69,7 @@
   }
 }
 
-.benefit-service-item {
+.baraholka-item {
   margin: 0 auto !important;
   width: 450px !important;
 
@@ -83,3 +84,7 @@
     padding: 0 15px 10px 70px;
   }
 }
+
+
+
+

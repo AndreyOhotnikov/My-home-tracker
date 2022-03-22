@@ -1,7 +1,7 @@
+import "./Baraholka.scss";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import ACTypes from "../../store/types/baraholkaTypes";
-import { delProductSaga } from "../../store/actionCreators/baraholkaAC";
 import { useNavigate } from "react-router-dom";
 import { allProductsView } from "../../store/actionCreators/baraholkaAC";
 import { types } from "../../store/types/userTypes";
@@ -20,14 +20,12 @@ import { useSelector } from "react-redux";
 
 const BaraholkaItem = () => {
   const params = useParams();
-  //console.log(params);
   const navigate = useNavigate();
   const [showContact, setShowContact] = useState(false);
 
   const dispatch = useDispatch();
   const auth = useSelector((store) => store.auth.auth);
   const category = useSelector((store) => store.baraholka.category);
-  //console.log(category);
   let productsList, prList;
   if (category.length) {
     prList = category
@@ -44,7 +42,7 @@ const BaraholkaItem = () => {
     if (!auth) dispatch({ type: types.CHECK_IS_AUTH_SAGA });
   }, []);
 
-  //console.log(productsList);
+
   const showContactHandler = () => {
     setShowContact(true);
   };
@@ -52,7 +50,6 @@ const BaraholkaItem = () => {
   const deleteProduct = (id) => {
     dispatch({ type: ACTypes.DEL_PRODUCT_SAGA, id });
     navigate("/baraholka");
-    //delProductSaga(Number(params.id)
   };
   return (
     <>
@@ -96,7 +93,7 @@ const BaraholkaItem = () => {
               {showContact && (
                 <>
                   <ListItem
-                    className="benefit-services-item__list"
+                    className="baraholka-item__list"
                     variant="body2"
                     color="textSecondary"
                     component="p"

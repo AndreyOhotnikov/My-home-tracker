@@ -142,7 +142,6 @@ function GlobalNewsList() {
                     marginLeft={"20ch"}
                   >
                     <Box marginRight={"1ch"} alignContent={"end"}>
-                      {" "}
                       {el.likeLength}
                     </Box>
                   </Stack>
@@ -155,7 +154,7 @@ function GlobalNewsList() {
                     }}
                   >
                     понравилось
-                  </Button>{" "}
+                  </Button>
                   {el.likeLength}
                 </Box>
               </Card>
@@ -164,21 +163,19 @@ function GlobalNewsList() {
         </Box>
       </Grid>
       <Routes>
-        {/* {!view && <Route  path="/form/:id" element={<GlobalNewsForm/>} ></Route>} */}
         {!view && (
           <Route
             path="/global/:id"
             element={<GlobalNewsItem isFixed={isFixed} />}
           ></Route>
         )}
-        {/* {!view && <Route  path="/global/:id" element={<GlobalNewsId  />} ></Route>} */}
       </Routes>
     </Box>
   );
 }
 
-//
+
 
 export default GlobalNewsList;
 
-//<GlobalNewsItem view={view}  setId={setId} setView={setView} key={index} el={el} />
+
