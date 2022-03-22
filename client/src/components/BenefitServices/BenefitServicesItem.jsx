@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -11,7 +10,6 @@ import Avatar from "@mui/material/Avatar";
 import { useNavigate, useParams } from "react-router-dom";
 import { delSagaService } from "../../store/actionCreators/benefitServicesAC";
 import { CircularProgress, Typography } from "@mui/material";
-
 export const BenefitServicesItem = () => {
   const params = useParams();
   const dispatch = useDispatch();
@@ -19,10 +17,8 @@ export const BenefitServicesItem = () => {
   const [showContact, setShowContact] = useState(false);
 
   const auth = useSelector((state) => state.auth.auth);
-  
 
   const services = useSelector((state) => state.services);
- 
 
   if (services.length === 0) {
     return (
@@ -42,11 +38,10 @@ export const BenefitServicesItem = () => {
   const showContactHandler = () => {
     setShowContact(true);
   };
-  setTimeout(showContactHandler,2000)
+  setTimeout(showContactHandler, 2000);
 
   const handleCloseshowCont = () => {
-    if (showContact === true)
-    setShowContact(false);
+    if (showContact === true) setShowContact(false);
   };
 
   const delHandler = (e) => {
