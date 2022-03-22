@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { actiontTypes } from "../../store/types/globalTypes";
-import { Link, Stack } from "@mui/material";
+import { Link, Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -35,8 +35,8 @@ function GlobalNewsForm() {
   const globalNews = useSelector((store) => store);
 
   function count() {
-    if (check == false) return setCheck(true)
-    else return setCheck(false)
+    if (check == false) return setCheck(true);
+    else return setCheck(false);
   }
 
   function trueOrFalse(a) {
@@ -44,7 +44,6 @@ function GlobalNewsForm() {
   }
 
   function sagaGlobalData() {
-
     const obj = {
       title,
       text,
@@ -55,7 +54,6 @@ function GlobalNewsForm() {
     dispatch({ type: actiontTypes.ADD_GLOBAL_NEWS_SAGA, payload: obj });
   }
 
-  
   function navigateToMain() {
     navigate("/GlobalNews");
   }
@@ -65,92 +63,88 @@ function GlobalNewsForm() {
   }, []);
 
   return (
+    <>
+      <Typography variant="h5" className="benefit-service-form__typography">
+        Добавьте главную новость
+      </Typography>
 
-    <div style={{maxWidth: '80%'}}>
-    <Stack direction={'row'} spacing={3} textAlign={'center'} marginTop={'3vh'} maxWidth={'80%'} display={'flex'} flexDirection={'column'} >
-    <Stack spacing={2} textAlign={'start'} marginLeft={'150px'} maxWidth={'100%'} >
-
-      <Box component="form" 
-      maxWidth={'80%'}
-      sx={{
-      '& .MuiTextField-root': { mt:'2%', width: '80%' },
-      }}
-      noValidate
-      autoComplete="off">
-      <TextField onChange={(event)=>{
-        setTitle(event.target.value)}}
-          required
-          id="1"
-          label="Введите заголовок"
-          defaultValue={defaultData?.title }
-          maxWidth={'80%'}/>
-      </Box>
-      <Box component="form" maxWidth={'80%'}
-      sx={{
-      '& .MuiTextField-root': { mt:"2%", width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off">
-
-      </Box>
-      <Box component="form" maxWidth={'80%'}
-      sx={{
-      '& .MuiTextField-root': { mt:"2%", width: '130ch' ,},
-      }}
-      noValidate
-      autoComplete="off">
-      <TextField  
-          onChange={(event)=>{
-          setText(event.target.value)}}
-          required
-          id="1"
-          label="Введите текст"
-          defaultValue={defaultData?.text}
-          multiline
-          rows={15}
-          maxWidth={'80%'}
-        />
-      </Box>
-
-      </Stack >
-      <Box paddingTop={''}  maxWidth={'80%'} >
-
-      <Stack spacing={2} direction="column" textAlign={'start'} maxWidth={'80%'}   display={'flex'}>
-      <Stack spacing={2} direction="column" marginLeft={'150px'} marginTop={'20px'}  maxWidth={'100%'}  >
-           <label style={{ display:'flex', flexDirection:'row', justifyContent: 'space-between', width: '50%'}} htmlFor="icon-button-file" >
-                
-                  <IconButton
-                color="primary"
-                aria-label="upload picture"
-                component="span"
-              >
-                <PhotoCamera />
-              </IconButton>
-              {/* <Box component="span">Выберите фото</Box> */}
+      <div className="local-news-form">
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { width: "50%" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField
+            onChange={(event) => {
+              setTitle(event.target.value);
+            }}
+            required
+            id="1"
+            label="Введите заголовок"
+            defaultValue={defaultData?.title}
+          />
+        </Box>
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { mt: "20px", width: "50%" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField
+            onChange={(event) => {
+              setText(event.target.value);
+            }}
+            required
+            id="1"
+            label="Введите текст"
+            defaultValue={defaultData?.text}
+            multiline
+            rows={10}
+          />
+        </Box>
+        <Box
+          style={{
+            margin: "50px auto",
+            width: "700px",
+          }}
+        >
+          <label htmlFor="icon-button-file">
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="span"
+            >
               <input
-               onChange={(e)=>setLink(e.target.files)}
-                style={{display: 'none'}}
+                onChange={(e) => setLink(e.target.files)}
+                style={{ display: "none" }}
                 accept="image/*"
                 id="icon-button-file"
                 type="file"
                 multiple
               />
-              
-                
-                  <Button marginLeft={'20px'}  onClick={(e)=>{
-                  
-                    e.preventDefault()
-                    sagaGlobalData()
-                    navigateToMain()
-                  }}  variant="contained"  width={'60px'} >Опубликовать новость</Button>
-                  </label>
-        </Stack>
-
-      </Stack>
-
-      </Box>
-    </Stack>   
-</div>
+              <PhotoCamera />
+            </IconButton>
+            <Button
+              className="local-news-form__button"
+              ml={"40px"}
+              onClick={(e) => {
+                e.preventDefault();
+                sagaGlobalData();
+                navigateToMain();
+              }}
+              variant="contained"
+            >
+              Опубликовать новость
+            </Button>
+          </label>
+        </Box>
+      </div>
+    </>
   );
 }
 

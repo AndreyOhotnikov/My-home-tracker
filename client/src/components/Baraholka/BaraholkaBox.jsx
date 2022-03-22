@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Navigate, Link, useNavigate } from "react-router-dom";
-
+import {  useNavigate } from "react-router-dom";
+import "./Baraholka.scss";
 import {
   Box,
   Grid,
@@ -16,8 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { allProductsView } from "../../store/actionCreators/baraholkaAC";
 
 const BaraholkaBox = () => {
-  const classes = useStyles();
-
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const allCategories = useSelector((store) => store.baraholka.category);
@@ -31,21 +30,24 @@ const BaraholkaBox = () => {
   };
 
   return (
-    <Box>
-      <Grid container>
-        <Grid item>
-          <Box>
+    <Box className="baraholka-main" m={5}>
+      <Grid item>
+      <Typography variant="h4" className="baraholka-form__typography">
+            Категории товаров
+          </Typography>
+          <Box className="baraholka-main__card--wrapper">
             {allCategories?.map((category) => {
               return (
-                <Grid key={category.id} item container xs={8}>
-                  <Card>
+                <Card key={category.id} 
+                className="baraholka-main__card" >
                     <CardMedia
+                    className="baraholka-main__card--img"
                       component="img"
                       image={category.link}
-                      alt="green iguana"
                     />
                     <CardContent>
-                      <Typography component="div" variant="h5">
+                      <Typography 
+                      gutterBottom component="div" variant="h5">
                         {category.title}
                       </Typography>
                     </CardContent>
@@ -59,11 +61,9 @@ const BaraholkaBox = () => {
                       </Button>
                     </CardActions>
                   </Card>
-                </Grid>
               );
             })}
           </Box>
-        </Grid>
       </Grid>
     </Box>
   );
@@ -71,4 +71,3 @@ const BaraholkaBox = () => {
 
 export default BaraholkaBox;
 
-const useStyles = makeStyles({});

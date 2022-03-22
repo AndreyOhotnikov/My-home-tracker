@@ -1,7 +1,5 @@
 import "./BenefitServicesForm.scss";
-
 import React, { useRef } from "react";
-// import { makeStyles } from "@mui/styles";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -14,14 +12,9 @@ import Select from "@mui/material/Select";
 import { useState } from "react";
 import { sagaAddService } from "../../store/actionCreators/benefitServicesAC";
 import { useNavigate, useParams } from "react-router-dom";
-import { Paper, Typography } from "@mui/material";
+import {  Typography } from "@mui/material";
 
-// const useStyles = makeStyles({
-//   root: {
-//     backgroundColor: "red",
-//     color: (props) => props.color,
-//   },
-// });
+
 
 export const BenefitServicesForm = () => {
   const services = useSelector((state) => state.services);
@@ -40,7 +33,7 @@ export const BenefitServicesForm = () => {
       .reduce((a, b) => {
         return a.concat(b);
       });
-    console.log(res, "res");
+
     const a = res.filter((el) => el.category_id);
     
   }

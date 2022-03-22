@@ -470,6 +470,7 @@ const store = [
   {
     user_id: 1,
     category_id: 1,
+    //user_id: 5,
     title: 'холодильник',
     status: 'актуально',
     text: 'store_text',
@@ -478,6 +479,7 @@ const store = [
   {
     user_id: 2,
     category_id: 1,
+    // user_id: 6,
     title: 'кровать',
     status: 'актуально',
     text: 'store_text',

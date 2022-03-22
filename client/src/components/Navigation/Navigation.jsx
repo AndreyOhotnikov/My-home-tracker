@@ -276,7 +276,6 @@ const Navigation = () => {
 export default Navigation;
 
 const pages = [
-  { name: "Главная", src: "/" },
   { name: "Главные новости", src: "/GlobalNews" },
   { name: "События", src: "/localnews" },
   // { name: "События", src: "/doings" },

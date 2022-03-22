@@ -8,7 +8,7 @@ const WelcomePage = () => {
   const navigateTo = (url) => navigate(url);
 
    return (
-      <div>
+      <div style={{marginTop: '15%'}}>
         <Button onClick={() => navigateTo('/signup')}>Зарегистрироваться</Button>
         <Button onClick={() => navigateTo('/signin')}>Авторизоваться</Button>
       </div>
