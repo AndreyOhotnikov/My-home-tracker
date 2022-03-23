@@ -9,16 +9,20 @@ export const globalNewsReducer = (state = initState, action) => {
 
   switch (action.type) {
     case actiontTypes.ADD_GLOBAL_NEWS:
-      console.log(action.payload, '=>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-      return { ...state, arrGlobalNews: [...state.arrGlobalNews, action.payload] };
-
+    return {...state,arrGlobalNews: state.arrGlobalNews.map((el)=>{
+       if(el.id === action.payload.id){
+         return el = action.payload
+       }
+       else return el
+    })  
+  }  
     case actiontTypes.GET_GLOBAL_NEWS_REDUX:
       return {
-        ...state, arrGlobalNews: action.payload.sort((a, b) => {
-          return b?.fixed?.localeCompare(a?.fixed)
-        })
+        ...state, arrGlobalNews: action.payload
       }
-
+//.sort((a, b) => {
+//   return b?.fixed?.localeCompare(a?.fixed)
+// })
     case actiontTypes.DEL_NEWS_GLOBAL_REDUX:
       if (state.arrGlobalNews.length === 1) {
         return { ...state, arrGlobalNews: [] }
@@ -27,7 +31,6 @@ export const globalNewsReducer = (state = initState, action) => {
       }
 
     case actiontTypes.ADD_LIKE_GLOBAL_REDUX:
-      // console.log(action.payload,'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.')
       if (action.payload.status === true) {
         return {
           ...state, arrGlobalNews: [...state.arrGlobalNews.map((el) => {
@@ -61,6 +64,6 @@ export const globalNewsReducer = (state = initState, action) => {
       }
 
     default:
-      return state;
+       return state;
   }
 }

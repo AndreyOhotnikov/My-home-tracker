@@ -109,15 +109,12 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
   return (
     <>
       <Box m={5}>
-        <Box className="global-news-item">
-          <Card  onClick={() => seeItem(el.id)}  className="benefit-services-main__card-item-news">
-            {/* <Item> */}
-            {/* <Stack
-            direction="column"
-            spacing={1}
-            marginLeft={"5ch"}
-            marginTop={"5vh"}
-          > */}
+        <Box className="global-news-item" marginLeft={'40%'}>
+
+          <Card className="benefit-services-main__card-item-news">
+
+           <Card  onClick={() => seeItem(el.id)}  className="benefit-services-main__card-item-news">
+
 
             <Box
               underline="none"
@@ -136,9 +133,6 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
               srcSet={`${defaultData?.link}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
               alt={defaultData?.title}
               loading="lazy"
-              // maxWidth={"100%"}
-              // maxHeight={"100%"}
-              // borderRadius={"15px"}
             />
             <CardContent>
               <Box className="benefit-services-main__card-global-news--text">
@@ -160,11 +154,7 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
                 >
                   {goodDate(defaultData?.updatedAt)}
                 </Typography>
-              </Box>
-            </CardContent>
-          </Card>
-          <Box className="global-news-item__right">
-            <Typography
+                <Typography
               className="benefit-services-main__card-item-news--text"
               gutterBottom
               variant="boby2"
@@ -172,21 +162,19 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
             >
               {defaultData?.text}
             </Typography>
-
-            <Box className="global-news-item__footer">
-              <Box marginLeft={"30px"}>
+            <Box >
                 <Button onClick={(e) => changeLike(defaultData?.id, e)}>
                   понравилось
                 </Button>
-              </Box>
-              <Box marginTop={"8px"}>
+                <Box component={'span'}  >
                 {defaultData?.likeLength ? defaultData?.likeLength : 0}
-              </Box>
-              <Box marginTop={"8px"} marginLeft={"10px"}>
+              </Box >
+              <Box position={'absolute'} component={'span'} top={'354px'} >
                 <FavoriteIcon />
               </Box>
             </Box>
-            {userRole?.role !== "user" && (
+             
+              {userRole?.role !== "user" && (
               <Box>
                 <Button onClick={() => updateGlobal(defaultData.id)}>
                   Редактировать
@@ -201,12 +189,11 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
                 </Button>
               </Box>
             )}
-          </Box>
+              </Box>
+            </CardContent>
+          </Card>
+          </Card>
         </Box>
-
-        {/* <Box  marginTop={'5vh'} > <Button onClick={(e)=> changeLike(defaultData?.id,e)} >понравилось</Button></Box> 
-          <Box marginTop={'35%'} > {defaultData?.likeLength ? defaultData?.likeLength:0 }</Box> 
-          <Box marginTop={'35%'} > < FavoriteIcon /></Box>  */}
 
         <Box className="benefit-services-main__card-global-news--card-item-box">
           <Grid
@@ -215,16 +202,8 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
             columns={{ xs: 4, sm: 8, md: 12 }}
           >
             {state.map((el, index) => (
-              <Grid item xs={2} sm={4} md={4} key={index} marginBottom={"10%"}>
+              <Grid item xs={2} sm={4} md={3} key={index} marginBottom={"10%"}>
                 <Card className="benefit-services-main__card-item-news">
-                  {/* <Item> */}
-                  {/* <Stack
-            direction="column"
-            spacing={1}
-            marginLeft={"5ch"}
-            marginTop={"5vh"}
-          > */}
-
                   <Box
                     underline="none"
                     style={isFixed(defaultData) ? { color: "red" } : null}
@@ -242,13 +221,11 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
                     srcSet={`${el?.link}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                     alt={defaultData?.title}
                     loading="lazy"
-                    // maxWidth={"100%"}
-                    // maxHeight={"100%"}
-                    // borderRadius={"15px"}
                   />
                   <CardContent>
                     <Box className="benefit-services-main__card-global-news--text">
                       <Typography
+                        onClick={() => seeItem(el.id)}
                         className="benefit-services-main__card-global-news--text"
                         gutterBottom
                         variant="boby2"
@@ -278,7 +255,7 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
                         position={"absolute"}
                         component={"span"}
                         marginTop={"4px"}
-                        marginLeft={'10px'}
+                        
                       >
                         <FavoriteIcon />
                       </Box>
