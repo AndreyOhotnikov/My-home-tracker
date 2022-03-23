@@ -29,6 +29,10 @@ const BaraholkaItem = () => {
   const category = useSelector((store) => store.baraholka.category);
   //console.log(category);
   let productsList, prList;
+  useEffect(() => {
+    dispatch(allProductsView());
+    if (!auth) dispatch({ type: types.CHECK_IS_AUTH_SAGA });
+  }, []);
   if (category.length) {
     prList = category
       .map((el) => el.products)
@@ -39,10 +43,6 @@ const BaraholkaItem = () => {
     productsList = prList.filter((el) => el.id === Number(params.id));
   }
 
-  useEffect(() => {
-    dispatch(allProductsView());
-    if (!auth) dispatch({ type: types.CHECK_IS_AUTH_SAGA });
-  }, []);
 
   //console.log(productsList);
   const showContactHandler = () => {

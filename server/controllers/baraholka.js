@@ -9,7 +9,7 @@ exports.createProductBaraholka = async (req, res) => {
 
   const { title, text, price, category, categoryId} = req.body.product;
   const { url } = req.body;
-  //console.log(title, text, price, category, link, categoryId);
+  console.log(title, text, price, category, categoryId, url);
 
   let newProduct;
   let categoryPR;

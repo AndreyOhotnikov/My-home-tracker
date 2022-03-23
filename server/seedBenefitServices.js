@@ -152,7 +152,7 @@ async function addBenifitServices(obj) {
   }
 }
 
-services.map((el) => addBenifitServices(el));
+// services.map((el) => addBenifitServices(el));
 
 const category = [
   {
@@ -184,6 +184,6 @@ async function addBenefitCategory(obj) {
   });
 }
 
-// category.map((el) => {
-//   addBenefitCategory(el)
-// });
+category.map((el) => {
+  addBenefitCategory(el)
+});

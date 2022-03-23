@@ -8,9 +8,9 @@ const session = require('express-session');
 require('dotenv').config();
 const ws = require('ws');
 
-// const redis = require('redis');
-// const RedisStore = require('connect-redis')(session);
-const FileStore = require('session-file-store')(session);
+const redis = require('redis');
+const RedisStore = require('connect-redis')(session);
+// const FileStore = require('session-file-store')(session);
 const servicesRouter = require('./routes/benefitServices');
 
 const globalNewsRouter = require('./routes/globalNews');
@@ -23,7 +23,7 @@ const bidsRouter = require('./routes/bids');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// const redisClient = redis.createClient();
+const redisClient = redis.createClient();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -35,8 +35,8 @@ const fileStoreOptions = {};
 const sessionConfig = {
 
   name: 'myHome',
-  // store: new RedisStore({ client: redisClient }),
-  store: new FileStore(fileStoreOptions),
+  store: new RedisStore({ client: redisClient }),
+  // store: new FileStore(fileStoreOptions),
   secret: process.env.COOKIE_SECRET,
   resave: false,
   saveUninitialized: false,

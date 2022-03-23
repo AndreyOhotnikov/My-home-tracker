@@ -19,7 +19,7 @@ const {
   Category_benifit,
 } = require('./db/models');
 
-const city = [{ name: 'Moscow' }, { name: 'London' }];
+const city = [{ name: 'Москва' }, { name: 'Воронеж' }];
 async function addCity(obj) {
   try {
     await City.create({
@@ -30,11 +30,12 @@ async function addCity(obj) {
   }
 }
 
-// city.map((el) => addCity(el));
+city.map((el) => addCity(el));
 
 const street = [
-  { name: 'Lenina', city_id: 1 },
-  { name: 'Traphalgar', city_id: 2 },
+  { name: 'Труда', city_id: 1 },
+  { name: 'Победы', city_id: 1 },
+  { name: 'Ленина', city_id: 2 },
 ];
 
 async function addStreet(obj) {
@@ -48,11 +49,13 @@ async function addStreet(obj) {
   }
 }
 
-// street.map((el) => addStreet(el));
+street.map((el) => addStreet(el));
 
 const home = [
   { name: 31, street_id: 1 },
-  { name: 123, street_id: 2 },
+  { name: 31, street_id: 2 },
+  { name: 32, street_id: 1 },
+  { name: 123, street_id: 3 },
 ];
 async function addHome(obj) {
   try {
@@ -65,7 +68,7 @@ async function addHome(obj) {
   }
 }
 
-// home.map((el) => addHome(el));
+home.map((el) => addHome(el));
 
 const user = [
   {

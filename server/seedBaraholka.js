@@ -37,6 +37,6 @@ async function addCategoryBarah(obj) {
   })
 }
 
-// categoryBaraholka.map((el) => {
-//   addCategoryBarah(el)
-// });
+categoryBaraholka.map((el) => {
+  addCategoryBarah(el)
+});
