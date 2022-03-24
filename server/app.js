@@ -8,9 +8,9 @@ const session = require('express-session');
 require('dotenv').config();
 const ws = require('ws');
 
-// const redis = require('redis');
-// const RedisStore = require('connect-redis')(session);
-const FileStore = require('session-file-store')(session);
+const redis = require('redis');
+const RedisStore = require('connect-redis')(session);
+// const FileStore = require('session-file-store')(session);
 const servicesRouter = require('./routes/benefitServices');
 
 const globalNewsRouter = require('./routes/globalNews');
@@ -23,7 +23,7 @@ const bidsRouter = require('./routes/bids');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// const redisClient = redis.createClient();
+const redisClient = redis.createClient();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -35,8 +35,8 @@ const fileStoreOptions = {};
 const sessionConfig = {
 
   name: 'myHome',
-  // store: new RedisStore({ client: redisClient }),
-  store: new FileStore(fileStoreOptions),
+  store: new RedisStore({ client: redisClient }),
+  // store: new FileStore(fileStoreOptions),
   secret: process.env.COOKIE_SECRET,
   resave: false,
   saveUninitialized: false,
@@ -93,27 +93,19 @@ const httpServer = app.listen(PORT, () => {
   console.log(`server started PORT: ${PORT}`);
 });
 
-// web Socked
 
 const wsServer = new ws.WebSocketServer({
   server: httpServer,
 });
 
-// EventEmitter Эхо сервер для многих клиентов
 wsServer.on('connection', (currentClient) => {
-  console.log('>>>> client connected. clients: ', wsServer.clients.size); // wsServer.clients -  итерируемый обьект Set
-  // https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Set
-
   currentClient.on('message', (data, req) => {
     const message = data.toString('utf-8');
-
-    console.log('>>> send messages to all clients', message);
     wsServer.clients.forEach((client) => {
       client.send(message);
     });
   });
 
   currentClient.on('close', (client) => {
-    console.log('>>>> client disconnected. clients: ', wsServer.clients.size);
   });
 });

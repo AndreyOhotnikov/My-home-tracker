@@ -13,15 +13,12 @@ async function signout() {
 
 
 function* workerSignOut() {
-  console.log(345345)
  try {
    const data = yield call(signout)
      yield put(authUserReducer(false))
  } catch (err) {
    console.error('Err', err);
- } finally {
-   console.log('finally');
- }
+ } 
 }
 
 export function* watcherSignOut() {

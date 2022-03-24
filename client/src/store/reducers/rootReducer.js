@@ -6,19 +6,12 @@ import { all } from '@redux-saga/core/effects';
 import { InitialState } from "../initState";
 import { servicesReducer } from './servicesReducer';
 import { baraholkaReducer } from "./baraholkaReducer";
-
 import { watcherBaraholka, watcherProducts, watcherDelProductBaraholka } from "../saga/baraholka";
 import { watcherAddServiceSaga, watcherDelServiceSaga, watcherServicesSaga } from '../saga/benefitServices';
 import { globalNewsReducer } from './globalNewsReducer'
-
 import { locationReducer } from './locationReducer'
-
-
-
 import { watcherGlobalNews, watcherAllGlobalNews, watcherAddLike, watcherDelGlobalNews } from '../saga/globalNews';
 import { watcherLocalNews, watcherAllLocalNews, watcherAddLocalLike, watcherDelLocalNews } from '../saga/localNews';
-
-
 import { firebaseReducer } from './firebaseReducer';
 import { authReducer } from './userReducer'
 import { watcherSignUp } from '../saga/userSignup';
@@ -27,11 +20,8 @@ import { watcherSignOut } from '../saga/userSignout';
 import { watcherSignIn } from '../saga/userSignin';
 import { watcherCheckIsAuth } from '../saga/userIsAuth';
 import { watcherProfilePageEdit } from '../saga/userProfilePage';
-
 import { watcherAddBidSaga, watcherBidsSaga, watcherDelBidSaga, watcherUsersSaga } from '../saga/bid';
 import { bidsReducer, userReducer } from './bidReducer';
-
-
 import { localNewsReducer } from './localReducer';
 
 
@@ -59,7 +49,32 @@ export const store = createStore(rootReducer, InitialState, composeEnhancer)
 sagaMiddleware.run(
 
   function* () {
-    yield all([watcherProfilePageEdit(), watcherServicesSaga(), watcherAddServiceSaga(), watcherDelServiceSaga(), watcherSignUp(), watcherGetLocation(), watcherSignOut(), watcherSignIn(), watcherCheckIsAuth(), watcherAllGlobalNews(), watcherGlobalNews(), watcherAddLike(), watcherBaraholka(), watcherProducts(), watcherDelProductBaraholka(), watcherDelGlobalNews(), watcherLocalNews(), watcherAllLocalNews(), watcherAddLocalLike(), watcherDelLocalNews(), watcherUsersSaga(), watcherBidsSaga(), watcherAddBidSaga(), watcherDelBidSaga()])
+    yield all([
+      watcherProfilePageEdit(), 
+      watcherServicesSaga(), 
+      watcherAddServiceSaga(), 
+      watcherDelServiceSaga(), 
+      watcherSignUp(), 
+      watcherGetLocation(), 
+      watcherSignOut(), 
+      watcherSignIn(), 
+      watcherCheckIsAuth(), 
+      watcherAllGlobalNews(), 
+      watcherGlobalNews(), 
+      watcherAddLike(), 
+      watcherBaraholka(), 
+      watcherProducts(), 
+      watcherDelProductBaraholka(), 
+      watcherDelGlobalNews(), 
+      watcherLocalNews(), 
+      watcherAllLocalNews(), 
+      watcherAddLocalLike(), 
+      watcherDelLocalNews(), 
+      watcherUsersSaga(), 
+      watcherBidsSaga(), 
+      watcherAddBidSaga(), 
+      watcherDelBidSaga()
+    ])
 
   }
 )

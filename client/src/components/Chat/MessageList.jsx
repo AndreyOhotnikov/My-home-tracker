@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { servicesSagaApi } from "../../store/actionCreators/benefitServicesAC";
 import {
   List,
   ListItemAvatar,
@@ -14,15 +13,12 @@ const ws = new WebSocket("ws://localhost:3010");
 const MessageList = () => {
   const [messages, setMessages] = useState([]);
 
-  const userForChat = useSelector((state) => state.auth.auth); // имя юзера
-  //console.log("userForChat", userForChat);
+  const userForChat = useSelector((state) => state.auth.auth); 
   const user = userForChat.user;
 
   ws.onmessage = (event) => {
-    //сообщение из веб сокетов
     const message = JSON.parse(event.data);
     setMessages([...messages, message]);
-    //console.log(message);
   };
   let now = new Date().toLocaleTimeString().slice(0, -3);
 

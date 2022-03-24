@@ -10,23 +10,17 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { firebaseConfig } from "../types/firebaseConfig";
 
 async function productBaraholka(product) {
-  console.log("------------------------------", product);
   const app = initializeApp(firebaseConfig);
   const storage = getStorage(app);
   const file = [...product.link];
-  console.log("/////////////////", file);   
 
   let url
-  // if (file.length) {
     const storageRef = await ref(
       storage,
       `images/${Date.now()}${file[0].name.slice(file[0].name.indexOf("."))}`
     );
-    console.log(storageRef, "/////////////");
-    const snapshot = await uploadBytes(storageRef, file[0]); // загрузка файла
+    const snapshot = await uploadBytes(storageRef, file[0]); 
     url = await getDownloadURL(storageRef);
-    console.log(url);
-  // } else url = ''
   const response = await fetch(`/baraholka/new`, {
     method: "POST",
     headers: {
@@ -34,15 +28,13 @@ async function productBaraholka(product) {
     },
     body: JSON.stringify({ product, url }),
   });
-  return await response.json(); //принмаем продукты
+  return await response.json(); 
 }
 
-//worker
 function* workerAddProduct({ product }) {
   try {
-    const prod = yield call(() => productBaraholka(product)); //отправляем  на бек
+    const prod = yield call(() => productBaraholka(product)); 
     yield put(getAllProductsRedux(prod));
-    yield console.log(prod);
   } catch (err) {
     console.error("ERROR", err);
   }
@@ -51,14 +43,13 @@ function* workerAddProduct({ product }) {
 //получаем все продукты
 async function productsFind() {
   const response = await fetch(`/baraholka/allProduct`, {method: 'GET'});
-  return await response.json(); //принмаем продукты
+  return await response.json();
 }
 
 function* workerProductList() {
   try {
     const prodList = yield call(() => productsFind());
-   yield put(getAllProductsRedux(prodList)); // отправляем в редакс
-    //console.log(prodList);
+   yield put(getAllProductsRedux(prodList)); 
   } catch (err) {
     console.error("ERROR", err);
   }
@@ -66,25 +57,19 @@ function* workerProductList() {
 
 //удаление товаров
 async function delProductDB(id) {
-  console.log("ПЕРЕД ФЕТЧ ЗАПРОСОМ!!!");
-  console.log("id", id);
   const response = await fetch(`/baraholka/${id}`, { method: "DELETE" });
-
   return await response.json();
 }
 
 function* workerDelProductBaraholka({ id }) {
-  console.log("saga", id);
   try {
     const deleteProd = yield call(() => delProductDB(id));
-    console.log(deleteProd);
     if (deleteProd) yield put(delProductRedux(deleteProd));
   } catch (error) {
     console.error("ERROR", error);
   }
 }
 
-//watcher
 export function* watcherProducts() {
   yield takeEvery(ACTypes.PRODUCT_SAGA, workerProductList);
 }

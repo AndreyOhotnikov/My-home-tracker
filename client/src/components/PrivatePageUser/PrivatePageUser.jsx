@@ -13,17 +13,13 @@ import TextField from '@mui/material/TextField';
 
 const PrivatePageUser = () => {
   const [openMadaleEditUser, setOpenMadaleEditUser] = useState(false)
-  const params = useParams();
   const dispatche = useDispatch()
   const navigate = useNavigate();
 
-  const auth = useSelector(state => state.auth.auth)
-  const {fullName, phone, photo, adress, store, bid, benefits, email} = useSelector(state => state.auth.profilePage) // {email, phone, photo, adress: }
+  const {fullName, phone, photo, adress, store, bid, benefits, email} = useSelector(state => state.auth.profilePage) 
   const [file, setFile] = useState('')
-  console.log(params)
   const editProfile = async (e) => {
     e.preventDefault()
-    console.log(e)
     dispatche({type: types.INFO_USER_PAGE_EDIT_SAGA, 
       userInfo: {
         fullName: e.target.form[1].value, 
@@ -36,9 +32,7 @@ const PrivatePageUser = () => {
   const handleOpen = () => setOpenMadaleEditUser(true);
   const handleClose = () => setOpenMadaleEditUser(false);
 
-  useEffect(() => {
-    dispatche({ type: types.CHECK_IS_AUTH_SAGA })
-  }, [])
+  useEffect(() => dispatche({ type: types.CHECK_IS_AUTH_SAGA }), [])
 
 
   return ( <>
@@ -131,31 +125,23 @@ const PrivatePageUser = () => {
                   multiple
                 />
                 <TextField
-              // id="email"  
               type="text" 
               placeholder='Введите ваше ФИО' 
               defaultValue={fullName}
-              // name="email" 
               required 
                />
                <TextField
-              // id="email"  
               type="text" 
               placeholder='Введите ваш адрес' 
               defaultValue={adress}
-              // name="email" 
               required 
                />
                <TextField
-              // id="email"  
               type="text" 
               placeholder='Введите ваш телефон' 
               defaultValue={phone}
-              // name="email" 
               required 
                />
-                {/* <input type="text"  defaultValue={adress} placeholder={'Введите ваш адрес'}/>
-                <input type="tel"  defaultValue={phone} placeholder={'Введите ваш телефон'}/> */}
               </label>
               <input type="submit" value="Редактировать" onClick={(e) => {
                 editProfile(e)

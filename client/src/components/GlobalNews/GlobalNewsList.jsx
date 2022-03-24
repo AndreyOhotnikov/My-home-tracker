@@ -1,53 +1,41 @@
 import React from "react";
-
+import "../BenefitServices/BenefitServicesForm.scss";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
-import { Link, Stack } from "@mui/material";
-import Paper from "@mui/material/Paper";
-
-import { styled } from "@mui/material/styles";
+import {
+  Link,
+  Stack,
+  Grid,
+  Typography,
+  Card,
+  CardMedia,
+  CardContent,
+} from "@mui/material";
 import { useState } from "react";
 import { useEffect } from "react";
 import GlobalNewsItem from "./GlobalNewItem";
 
 import { Route, Routes } from "react-router-dom";
-import GlobalNewsForm from "./GlobalNewsForm";
 import { useSelector, useDispatch } from "react-redux";
-import GlobalNewsId from "./GlobalNewsId";
 import { getAllGlobalNews } from "../../store/actionCreators/globalNewsAC";
 import { useNavigate } from "react-router-dom";
 import { addLikeSaga } from "../../store/actionCreators/globalNewsAC";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { color } from "@mui/system";
 import { types } from "../../store/types/userTypes";
 
 function GlobalNewsList() {
   const state = useSelector((store) => store.globalNews.arrGlobalNews);
   const auth = useSelector((state) => state.auth.auth);
   const navigate = useNavigate();
-  // console.log(state,'=>>>>>>>>>>>>>>>>>>>>>')
   useEffect(() => {
-    // console.log("ДОЛЖЕН СРАБАТЫВАТЬ ТОЛЬКО ПРИ ПЕРЕЗАГРУЗКЕ СТРАНИЦЫ");
     if (!auth) dispatch({ type: types.CHECK_IS_AUTH_SAGA });
   }, []);
   const dispatch = useDispatch();
   const [view, setView] = useState(true);
-  const [id, setId] = useState(0);
   function changeLike(id) {
     dispatch(addLikeSaga(id));
   }
 
-  function statusView() {
-    if (view) {
-      setView(false);
-    } else setView(true);
-  }
-
-  const Item = styled(Paper)(({ theme }) => ({
-    padding: theme.spacing(1),
-    textAlign: "start",
-    color: theme.palette.text.secondary,
-  }));
   function seeItem(id) {
     navigate(`/global/${id}`);
   }
@@ -90,105 +78,88 @@ function GlobalNewsList() {
   };
 
   return (
-    <>
-      {view && (
-        <Box paddingTop={2} maxWidth={'100%'}>
-          <Box marginTop={3}>Главные новости</Box>
-          <Stack
-            direction="column"
-            spacing={1}
-            marginRight={'3%'}
-            marginLeft={'3%'}
-          >
-            {state?.map((el, index) => {
-              return (
-                <>
-                  <Item  onClick={() => seeItem(el.id)}  style={{border: '1px solid black'}}>
-                    <Box >{goodDate(el?.updatedAt)}</Box>
-
-                    <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      marginLeft: "10%",
-                      marginTop: "5%",
-                    }}
-              
-                      marginTop={"2vh"}
-                      key={index}
-                      style={isFixed(el) ? { color: "red" } : null}
-                    >
-                      {el.title}
+    <Box className="benefit-services-main" m={5}>
+      <Grid item>
+        <Typography variant="h4" className="benefit-service-form__typography">
+          Главные новости
+        </Typography>
+        <Box className="benefit-services-main__card--wrapper">
+          {state?.map((el) => {
+            return (
+              <Card
+                onClick={() => seeItem(el.id)}
+                key={el?.id}
+                className="benefit-services-main__card benefit-services-main__card-global-news"
+              >
+                <CardMedia
+                  className="benefit-services-main__card-global-news--img"
+                  component="img"
+                  image={el?.link}
+                  alt="green iguana"
+                />
+                <CardContent>
+                  <Box className="benefit-services-main__card-global-news--text">
+                    <Typography gutterBottom variant="h5" component="div">
+                      {el?.title}
+                    </Typography>
+                  </Box>
+                  <Box >
+                    <Typography className="benefit-services-main__card-global-news--text" gutterBottom variant="boby2" component="div">
+                      {el?.text}
+                    </Typography>
+                  </Box>
+                  <Box className="benefit-services-main__card-global-news--text">
+                    <Typography gutterBottom variant="boby2" component="div">
+                      {goodDate(el?.updatedAt)}
+                    </Typography>
+                  </Box>
+                </CardContent>
+                <Box marginLeft={"120ch"}>
+                  <Stack
+                    direction={"raw"}
+                    alignContent={"end"}
+                    marginTop={"1vh"}
+                    marginLeft={"20ch"}
+                  >
+                    <Box marginRight={"1ch"} alignContent={"end"}>
+                      {el.likeLength}
                     </Box>
 
-                    <Stack direction="row" spacing={1} >
-                      <Box style={{width: '1600px'}} width={1600} marginTop={3}>
-                        {el.text}
-                      </Box>
-                      <img style={{maxWidth: '30%'}}
-                        src={el.link} alt={''}
-                      />
-                    </Stack >
-                    <Box marginLeft={"120ch"}>
-                      <Stack
-                     
-                        direction={"raw"}
-                        alignContent={"end"}
-                        marginTop={"1vh"}
-                        marginLeft={"20ch"}
-                      >
-                         <Box marginRight={"1ch"} alignContent={"end"}>
-                          {" "}
-                          {el.likeLength}
-                        </Box>
-// <<<<<<< dev
-//                       </Stack>
-//                    </Box>
-//                       <Box marginTop={'2vh'} marginLeft={''} alignContent={'end'}>
-//                           < FavoriteIcon />
-//                               <Button 
-//                                   onClick={()=>{
-//                                   changeLike(el.id)
-//                                   }} >понравилось
-//                               </Button> {el.likeLength}
-//                       </Box>
-// =======
-//                         <Box>
-//                           {" "}
-//                         </Box>
-//                       </Stack>
-//                     </Box>
-//                     <FavoriteIcon
-                         
-//                             onClick={() => {
-//                               changeLike(el.id);
-//                             }}
-//                           />
-// >>>>>>> main
-                  </Item>
-                </>
-              );
-            })}
-          </Stack>
+                  </Stack>
+                </Box>
+                <Box marginTop={"2vh"} marginLeft={""} alignContent={"end"}>
+                  <FavoriteIcon />
+                  <Button
+                    onClick={() => {
+                      changeLike(el.id);
+                    }}
+                  >
+                    понравилось
+                  </Button>
+                  {el.likeLength}
+                </Box>
+              </Card>
+            );
+          })}
+
+
+
         </Box>
-      )}
+      </Grid>
       <Routes>
-        {/* {!view && <Route  path="/form/:id" element={<GlobalNewsForm/>} ></Route>} */}
         {!view && (
           <Route
             path="/global/:id"
             element={<GlobalNewsItem isFixed={isFixed} />}
           ></Route>
         )}
-        {/* {!view && <Route  path="/global/:id" element={<GlobalNewsId  />} ></Route>} */}
       </Routes>
-    </>
+    </Box>
   );
 }
 
-//
+
 
 export default GlobalNewsList;
 
-//<GlobalNewsItem view={view}  setId={setId} setView={setView} key={index} el={el} />
+

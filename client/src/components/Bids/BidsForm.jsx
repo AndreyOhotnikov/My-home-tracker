@@ -1,17 +1,9 @@
 import React, { useRef } from "react";
-import Box from "@mui/material/Box";
-import { Button, Input, InputLabel } from "@mui/material";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
+import {Box, Button, InputLabel, TextField, Grid, MenuItem, FormControl, Select,IconButton} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import { useState } from "react";
-import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { sagaAddBid } from "../../store/actionCreators/bid";
 
 export const BidForm = () => {
@@ -21,7 +13,6 @@ export const BidForm = () => {
   const chairman = useSelector((state) => state.auth.auth);
 
   const dispatch = useDispatch();
-  const params = useParams();
   const navigate = useNavigate();
 
   const formRef = useRef(null);
@@ -38,7 +29,6 @@ export const BidForm = () => {
     );
 
     valuesOfForm["status"] = status;
-    console.log(valuesOfForm, "valuesOfForm");
     dispatch(sagaAddBid(valuesOfForm));
     formRef.current.reset();
     setStatus("");

@@ -31,31 +31,6 @@ export const bidsReducer = (state = InitialState.bids, action) => {
   }
 }
 
-
-/**
- * 
- *User.Userinfo.Photolinks.bid_id: null
-User.Userinfo.Photolinks.id: 4
-User.Userinfo.Photolinks.link: "https://firebasestorage.googleapis.com/v0/b/my-home-tracker.appspot.com/o/images%2F1647451306439.jpg?alt=media&token=4a4aebe2-79e9-4b9e-b0dd-9e1d87efe94f"
-User.Userinfo.Photolinks.userinfo_id: 2
-User.Userinfo.entrance: null
-User.Userinfo.flat: null
-User.Userinfo.full_name: "чавпрапр234"
-User.Userinfo.id: 2
-User.Userinfo.phone: "88005553535"
-User.email: "zxcv@dfg.fgh"
-User.id: 3
-User.nick_name: "zxcv"
-createdAt: "2022-03-17T09:26:52.034Z"
-id: 3
-link: null
-status: null
-text: "dfgdfg"
-title: "fgfd"
-updatedAt: "2022-03-17T09:26:52.034Z"
-user_id: 3
- */
-
 export const userReducer = (state = InitialState.user, action) => {
   switch (action.type) {
     case GET_ALL_USER:

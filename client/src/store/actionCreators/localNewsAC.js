@@ -1,10 +1,5 @@
 import { localTypes } from "../types/localTypes"
 
-// export const addGlobalNews = (obj) => (
- // { 
-  //type: actiontTypes.ADD_GLOBAL_NEWS_SAGA,payload:obj
-// });
- 
 export const addLocalNewsRedux = (obj) => (
   { 
   type: localTypes.ADD_LOCAL_NEWS,payload:obj

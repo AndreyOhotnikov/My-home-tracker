@@ -38,7 +38,6 @@ exports.addNewBid = async (req, res) => {
   const {
     title, text, price, status, url,
   } = req.body.bids;
-  console.log(req.body.url, 'req.body');
   const statusInDb = () => {
     switch (status) {
       case 'actualno':
@@ -65,8 +64,6 @@ exports.addNewBid = async (req, res) => {
     });
     bidPhoto = await Photolink.create({ bid_id: newBid.id, link: req.body.url });
 
-    console.log(newBid, 'newBid');
-    console.log(bidPhoto, 'bidPhoto');
   } catch (error) {
     console.log(error);
   }
@@ -74,7 +71,6 @@ exports.addNewBid = async (req, res) => {
 };
 
 exports.deleteBid = async (req, res) => {
-  console.log('lllll');
   const { id } = req.params;
   await Bid.destroy({ where: { id } });
   res.status(200).end();

@@ -1,3 +1,4 @@
+import "./PrivatePageChairman.scss"
 import React, { useEffect } from "react";
 import {
   List,
@@ -17,9 +18,7 @@ export const AllUsersList = () => {
   const navigate = useNavigate();
   const store = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(usersSagaApi());
-  }, []);
+  useEffect(() => dispatch(usersSagaApi()), []);
 
   if (store.length === 0) {
     return (
@@ -31,20 +30,16 @@ export const AllUsersList = () => {
     );
   }
 
-  // const submitHandler = (id) => {
-  //   navigate(`/users/${id}`);
-  // };
-
   return (
     <>
-      <Typography variant="h5" className="benefit-service-form__typography">
+      <Typography variant="h5" className="private-page-chairman__typography">
         Список всех пользователей
       </Typography>
-      <Box className="benefit-services-list">
+      <Box className="private-page-chairman-list">
         {store?.map((user) => {
           return (
             <List
-              className="benefit-services-list__list"
+              className="private-page-chairman-list__list"
               key={user.id}
               sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
             >
@@ -53,7 +48,6 @@ export const AllUsersList = () => {
                   <Avatar src={user["Userinfo.link"]} />
                 </ListItemAvatar>
                 <ListItemText
-                  // onClick={() => submitHandler(user.id)}
                   primary={user["Userinfo.full_name"]}
                   secondary={
                     <React.Fragment>

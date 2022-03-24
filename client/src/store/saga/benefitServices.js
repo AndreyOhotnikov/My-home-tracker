@@ -8,17 +8,12 @@ function getServices() {
 }
 
 function* workerGetServices(action) {
-  console.log(action,'action');
   try {
-    console.log('===========');
     const res = yield call(getServices, action.payload);
-    console.log(action.payload,'action.payload');
     yield put(allServices(res))
   } catch (err) {
     console.error('Err', err);
-  } finally {
-    console.log('finally');
-  }
+  } 
 }
 
 export function* watcherServicesSaga() {
@@ -26,7 +21,6 @@ export function* watcherServicesSaga() {
 }
 
 function addServicesSaga(action) {
-  console.log('addServicesSaga');
     return fetch("/services/add", {
     method: "POST",
     headers: {
@@ -42,9 +36,7 @@ function* addServiceWorker(action) {
     if (dataFromServer) yield put(addService(dataFromServer))
   } catch (err) {
     console.error('Err', err);
-  } finally {
-    console.log('finally');
-  }
+  } 
 }
 export function* watcherAddServiceSaga() {
   yield takeEvery(REQUEST_ADD_SERVICE_SAGA, addServiceWorker)
@@ -61,9 +53,7 @@ function* workerDelServiceSaga(action) {
     yield put(delService(res))
   } catch (err) {
     console.error('Err', err);
-  } finally {
-    console.log('finally');
-  }
+  } 
 }
 
 export function* watcherDelServiceSaga() {

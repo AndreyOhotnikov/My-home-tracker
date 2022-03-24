@@ -5,7 +5,6 @@ const initState = {
 };
 
 export const baraholkaReducer = (state = initState, action) => {
-  //console.log(action);
   switch (action.type) {
     case ACTypes.ADD_PRODUCT:
       return { ...state, category: action.payload };
@@ -22,7 +21,6 @@ export const baraholkaReducer = (state = initState, action) => {
       };
 
     default:
-      //нужен при первой загрузке для инициализации
       return state;
   }
 };

@@ -1,12 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  Routes,
-  Link,
-  Route,
-  useNavigate,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -17,8 +10,8 @@ import { types } from "../../store/types/userTypes";
 import { locationTypes } from "../../store/types/locationTypes";
 
 const LockationHome = () => {
-  const [location, setLocation] = useState({ city: "", street: "", home: "" }); // это забираем с собой на бек
-  const { _user } = useSelector((state) => state.auth); // это забираем с собой на бек из временногог хранилища
+  const [location, setLocation] = useState({ city: "", street: "", home: "" }); 
+  const { _user } = useSelector((state) => state.auth);
   const locationsCity = useSelector((state) => state.location.location);
   const [locationStreets, setLocationStreets] = useState([]);
   const [locationHomes, setLocationHomes] = useState([]);

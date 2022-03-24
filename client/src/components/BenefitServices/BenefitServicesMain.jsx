@@ -1,20 +1,8 @@
 import "./BenefitServicesForm.scss";
-
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import Box from "@mui/material/Box";
-import CardMedia from "@mui/material/CardMedia";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-// import { makeStyles } from "@mui/styles";
-import { useDispatch, useSelector } from "react-redux";
-import { servicesSagaApi } from "../../store/actionCreators/benefitServicesAC";
-
+import {Box, CardMedia, Grid,CardActions, Card, CardContent,Button, Typography      } from "@mui/material";
+import {  useSelector } from "react-redux";
 
 export const BenefitServicesMain = () => {
 
@@ -22,18 +10,15 @@ export const BenefitServicesMain = () => {
   const navigate = useNavigate();
 
   const submitHandler = (id) => {
-    console.log("submitHandler");
     navigate(`/services/${id}`);
   };
 
   return (
     <Box className="benefit-services-main" m={5}>
       <Grid item>
-        <Paper>
           <Typography variant="h4" className="benefit-service-form__typography">
             Категории услуг
           </Typography>
-        </Paper>
         <Box className="benefit-services-main__card--wrapper">
           {category?.map((category) => {
             return (
@@ -41,7 +26,6 @@ export const BenefitServicesMain = () => {
                 <CardMedia
                   component="img"
                   image={category.link}
-                  alt="green iguana"
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">

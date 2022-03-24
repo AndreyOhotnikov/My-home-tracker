@@ -2,7 +2,6 @@ import { types } from "../types/userTypes"
 
 import { takeEvery, put, call, debounce, retry, throttle } from 'redux-saga/effects';
 import {authUserReducer, signupUserReducer} from '../actionCreators/userAC'
-import SignIn from "../../components/Signin/SignIn";
 
 async function signInAsync(user) {
  
@@ -11,25 +10,21 @@ async function signInAsync(user) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(user) // {name, pass}
+    body: JSON.stringify(user)
   });
-  return await response.json() // сюда примем имя пользователя
+  return await response.json()
 }
 
 
 function* workerSignIn({user}) {
   try {
-    console.log(user)
     const signIn = yield call(() => signInAsync(user))
-    console.log(signIn)
     if(!signIn.error) {
-      yield put(authUserReducer(signIn)) // {name, role, home_id}
+      yield put(authUserReducer(signIn)) 
     } 
   } catch (err) {
     console.error('Err', err);
-  } finally {
-    console.log('finally');
-  }
+  } 
 }
 
 export function* watcherSignIn() {
