@@ -1,43 +1,55 @@
-# Bike race
+# My-home-tracker
+<br/>
 
-## Веб-приложение для составления маршрута велопрогулок
-### Используемые технологии: HTML, CSS, Ajax, REST API Express.js, Node.js, PostgreSQL(Sequelize-cli), cookie + Redis, Yandex Maps Api, Bootstrap, Handlebars(hbs)
+## Вэб приложение по удобной коммуникации соседей многоквартирного дома
+<br/>
+
+### Используемые технологии: React, Redux, Redux-Saga, HTML, CSS, SCSS, Express.js, Node.js, PosgreSQL(Sequelize-cli), WebSocket, cookie+Redis, Material UI
+<br/>
+
+My home tracker — это приложение, в котором жильцы могоквартирного дома общаются друг с другом, деляться новостями, предлагают помощь и продают товары.
 <br/>
 <br/>
-Bice Race — это приложение, в котором пользователи  прокладывают веломаршруты, деляться ими, оставляют отзывы и оценки на чужие маршруты.
+
+1. Страница главных новостей
 <br/>
 <br/>
-1. Страница регистрации
+<img width="1400" alt="Снимок экрана" src="https://lh3.googleusercontent.com/SGZy01Otc-isdc0GjdzGm3LpL0X_m4rvGLIqYpUTV40QVD1t_emZCyIXnJnbSRa39-_CoDqHURImqZ0p3xEEGS-tAB5eeAoEHRrqRJMY68QakKJzjnb7Om60p90io_4BGmPa_9R7JNP68toGUV_RhGdzySYmJG3pDJOJ9w9kKo3CpMWMNHS_EjgV85mVMXZn37rwVnIwppUjzi6bYXSLcz3wuiVf-jcYVMwjkeD3QlQk_KQV_qO4iuQ18-L7D2YZRd0kKi1Cai_5PdsxH-eYyQsmjm99xCiEgXBPbE-0UQonjCTgvdYIoIJVTPMcQxh0euevLk9EGz7hM9cvbEEtGX6YgknPyW1h_OBMdbdQhafbEqPvOHkFHNEeG9CnWvPWI5iInjYomACRlWJA3RqThrmslYRyl9rKJcfznYMPKeExa5Ul_fvMkCwjLQUl-QElVOY8TlysI0ZMPSIRXn82uUsV6ZWrSaW68TpjypWecIoxeOmK694Hx7SKvNqtpXUmc-dwr3yK0ghTLAIUVrvqpxcVXO8ICbDbS8AWVJtv4Kqb834Qg3z6VT0TxSl9ccgZgILzrl2ZAlUF8hUlgw8OmDmme_GgD48c7b93jD8gsnu1mf6aJVTMbcdrnZZelQD9aI7CIi-L4kPSuOh0MEEH90sVNaxkpJv4PdFaj456pokK6H8aJ1nXo5X_vke5sHH1mEvSlwvH93wcTTYHET-KyAOZbgOeu2O5pJhN9_CXMxUrVhOongbQaHlAQ2wGb_8=w1008-h923-no?authuser=0">
+2. Личный кабинет
 <br/>
 <br/>
-<img width="1400" alt="Снимок экрана" src="https://lh3.googleusercontent.com/pw/AM-JKLXsMdgKlVyfUW27pF3tBijiIgBHJK0pTRI_Nn-uQ_YHq2sMW8P4OPyxp1QLGGRI3QQ9u9aqx2wS6SCs0uS69YjxyXkOJdQ9qi8XHPMs6t8zsZLUzJ0ii4kPSjIv3nNE6Q1d3gl-sCTzSX_ovhyX1RVzHA=w954-h538-no?authuser=0">
-2. Домашняя страница
+<img width="1440" alt="Снимок экрана" src="https://lh3.googleusercontent.com/bzg1ntm884zbUZDj8EbRYWJ55ESCM2Neic2wxaUKlmhCySo4i3INMPymz0syxd7GCwiexH_YKvd8zDiW5BjM_sNL_bPJzD18Qhyzng5HcuHHM-D0fq0xSV06J8GKbuSc-fK-9OBbjb_Ks2XIElJfjHiAPuWYBgpCcaKW7VPA1PiOuF1oYLohHeollI9pMon7dEphA-KBsI9bwEOu2v2Ar94h3FPw8V04gOmns0WRwtRDMgrDM_COGECm7E9F5-_jFl2_WfLyyu6UpWQKldiJpeDvthcEBhc5QMDhoi9DsEfulbVkM47Yj7ykbSQen4OVb8ZfeuIwUS5Arht2ndwFUvMYuacEOpmQlE7fJKKOoTnIR_aTTVccRv2epBAwO1A6FtjO1Csbiu6FmSEau1UgesNVO5kWJg75w49UQGTC_8klIRB9OY72yeoBsWX9OYMSkhFfB2YhwBMWl4yYKr5qH1EkK5ED6a6bB1afWq9L4MeWBkE-0Z8LTWX6wOZQi3FfJDtFL_YNXioArEkgftKEe8_HQ5_lqo8kn5YPAsaZ1Gp_QA8zldN-GFTceukjxjDsoqTYbbgfvwyLD-ILtJtnLjcoSHHRRy1npm-zJGwEw_nttpFydpUjaGD23RSUFi34fmsOOg2FJFomMK_gelaNvkcNBrsrX8g3LYobGEmB7nEmIkPmRhvEu82wRiybUy0mjagcQhT-0iddVuHZQpnbXrSdlCGJQe89zaruh4Of1YECjv80bU3KUWsqbaYWVC4=w1025-h867-no?authuser=0">
+3. Местная барахолка
 <br/>
 <br/>
-<img width="1400" alt="Снимок экрана" src="https://lh3.googleusercontent.com/pw/AM-JKLUpO0HdEaq-QgTAFYga86Ng1RnR0aYJkqPygyjioy237qB0b7ukf0tNyZ_Hls8K13_BVwUv2HhXXVYHUFSKv4SnNCjfeGm1mAJSuPLTP5oNUov2nYWvGLpGXg2NiPzVp7-HK0cF_GuA5STSn26-l1C19Q=w954-h762-no?authuser=0">
-3. Личный кабинет
+<img width="1255" alt="Снимок экрана" src="https://lh3.googleusercontent.com/Pn8EmGyg0uqMl2uyfw-0y_wrs5ycNHCor1iix5wqxnD__iUH2EfVakPQz-1t9A-OOTo5Eacf6GE374kA5iw5kFgYNspN9fHfCojoxvG2zVTDflhEyqhjY7glDZJYBAS6pGjXuHjmaO3FH5PpdOptLo_Lvfau9wZ061OsjM7YFO_gv9ERLXFdjSWvIT018VMeQyqpmvc2faEXsupFuICOE9sgF_McbRKNed3nvQQQp08Xvc_mKBnXb3Df-opyss4a2TorefbGqAychn38MN4tbwirthSOalnqdxVx7y_fBMFaI9KX3OtJDWs-tNWnGkx01qmaJgqIerdl84jvw1lf6LALAT8GQWvIcyzNde2PcLrH7897ytwSiZIVLzTb_XhmWD0yCfUMz2xuhGkDJB2Vjld0ZA0ST_xjsUDLkjoeE08OCH3LDsyP40URLFmkbF5sUugij33Z1WhvVcLiRTi1FS8RRjFg21ZdZzgDjAbsOqjim2je7j2Bad3wPl_SJYMb0PJCiGsvOMCMkGM614_2xFuvE_3w-TnVUraYfTOaNOtu02f4KAvCiuicyXdzrLkhqMiHB50_8D2nOgyyNdUvq0HA8BgFVTL4_hNgYapj7HDQmlcNuYhox4Dq2_8mrOgTC-gx8dkxgp9Z3CtyDQqcz9Tph3muAD5ra20sq6JgYFez5oJ4iSURROTzhx-PqNqZIf394Iv9sriR2K8M1GOgVHfmNIUbjBIX0RfJGvCEiomqSB5ikEaG_LVxvF0qKt4=w1004-h917-no?authuser=0">
 <br/>
 <br/>
-<img width="1400" alt="Снимок экрана" src="https://lh3.googleusercontent.com/pw/AM-JKLWV1Sb6cI_Xfln_XrB064fhdWpuHq9N15yTwrOLuQcc7wWV9b2G1QGaMS02eq1VEY0xYBVkUmhv3UQE_QkmVw68lc-xKG3CcdJBeActbw8yqQO_TdBrbxEIXtwl2GZBspV-tWrYPtgoD89m8ZB9sQeotg=w952-h501-no?authuser=0">
+4. Страница добавления главной новости
 <br/>
 <br/>
-4. Создание нового маршрута
+<img width="1440" alt="Снимок экрана" src="https://lh3.googleusercontent.com/my3T8vej2Ht6pzzFY_gDSISSeeCfgnh570uFHXrhc37wZH5ScPaDrFrdA8qTXf5JQSFsbUMsj_c2e4qNNI-h-Pxd733VS70WA8g08aK1TkS6Mo4vGD3sjjQPQ1bsZJ1_TB9O3nqQ0bnvnJQ73prTAbfkq1yYRd8nOu5yS2o35nWt4TkKhLUKP63A30tCWvekXIva8uDLw5Rl0floufe4fklgFIDTcqgFHGasd4J3zRC4FsFsD7Mj4Ob-EFplUOeXXjXQ4wXP1i2CKqagj8PKtGakTdDTPIx_omTydNkN3voGWjhG-XVbIwwTO7AXO_T7Agj9qw8Iy3YLvqpE51icpxokx-Y1HMKoo5wtVX_RA4zP942XbT0c4_MPtc66K6_aiOSD6hV7vDUuEWtk2USPHnmUUsUraZ_mxOCRsedbKGGrTp7HyIbNlmeKy4Z_lO6qIjP9547P3qPe_e455k_5ym-xF8OwlG2Qm_kRKN40Zpd3G8Uzsz9lg4V_VSvUVS3-veA_03J4tdluvlcMvin-CO7zqtHHNNRvKZziqdgWZSugA598B61FwQm5cRZe0aQDsiQPIJWaFb4F666VzsskFXnzdgO0S1qfmSD49iW3sePeVN_vtcBDjlXyYEZEhbZ6KZ1kthMftVfQkkpGeJLACAzhH0VVM3ZREcYVPgZ2s_VoxmjCEY9kZdtdzUC1S1RJvKRcVoMIkfs-EFCRMNBujZyD03ZwGgr53pokpGYkqoudsQo-zVSucwwF05laJ9Q=w1023-h591-no?authuser=0">
 <br/>
 <br/>
-<img width="1400" alt="Снимок экрана" src="https://lh3.googleusercontent.com/pw/AM-JKLXvS-H4gQ0QtXYqd-aMeNASNE93oxYInGYWJpH0imHebKaWQJJpK7dx7hHZ-g7KgGgSYvjORVsZcWwiTNDTGdnRft3vl5z7G1WXUxEuevUnM7ZD6xmIRT7JD6W1L7jT55I0yWwlht-5EGIF-DzA1QSPDw=w950-h510-no?authuser=0">
+5. Модальное окно чата
 <br/>
 <br/>
-5. Страница маршрута с комментарием
+<img width="682" alt="Снимок экрана" src="https://lh3.googleusercontent.com/UZBGs2S83zoGU3pdRoevOwBxBiXCPd-9fNKM0yr6iaUDuuAo-lPYqVNWHQ1EDOS1qlPCNe5fueuhzFci0af2U-nsDPQ_-459WkvrqnrJEZe16G-fIMhoZK0nw-UlJ397iJnTrQuZAnZGKmiBJGWZbZz2OCfrTC0_AhAdgG2jpkRdpmcmcISTxQ0mYde0fsKPpitw4QDMFj4O7kbpHUU8ZJFUmhNb9Fdn7QJ9MKM4fMpaItdHWnFpqNgN22ZqSVLR20MMQK_JSSUy6sGuWmcTlZ8DntW_pIx9BT-iClJpxHaW7PHkGg9zJ5iaQPfKrj8Whi8yoyjqAPsHNoZDVMEqUwV6KBm9toJxhr2ZuljvPzgTIWVdMKZRMx-tihH9_8rQIY6fBR_5GKAvtHKPW3CldUKY6Jo9B7i4Y3Eco3tFUSeAOjUDOFT1hj5fyv7vessg1hEs9n9ioZrBylnlpgy807YUj6vXkYJrsYbbgrKS1x13Zs4ia1HlEQF1-z-g7hjIM68aPwsF7nb1WBPEZM7Wtsd2Ymy21VUv__34Ce9jMDcD8b_wSkrgCfCxZdUmmBDacVhrW6yyWNRxySuA0BwwUF-aTapXAyc0rR5ZLNsSuzUGOhrmNMZUhkSmnlYWG7RwZEKFmncYmT9a6n-HOBDcm_tswGf79wP5b2_93oOJr4TTLQHCC2KN-8h7z-4V4W62H810stbEtO9aSvFnKHiVNuY2246XlHgED1wrw4NZM9Lq0lRtDy7yGlHwkejBAqU=w958-h928-no?authuser=0">
 <br/>
 <br/>
-<img width="1400" alt="Снимок экрана" src="https://lh3.googleusercontent.com/pw/AM-JKLUnitSpnE4MQI2BONL80pd3wux1kFb80Ra9TPPUUf2KwmfGE8UNAlMYp4B7TguQv1dEMkPycm5PjTEk_DsQ8ULi3RQURfdfnBbXkOvjL82_sAnDsMGzkAajMyUKrdGo51_wMzCQWfxArs2ZcAohohDZiw=w953-h744-no?authuser=0">
-<br/>
-<br/>
+
 
 ## Запуск приложения
+В папке /server запустить команду
 
-1. npm i
-2. Запустить терманал Redis
-3. npx sequelize db:create
-4. npx sequelize db:migrate
-5. npm start
+npm i
+Запустить терманал Redis
+npx sequelize db:create
+npx sequelize db:migrate
+npm start
+```
+и
+В папке /client
+npm i
+npm start
+```
