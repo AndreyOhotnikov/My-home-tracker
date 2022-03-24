@@ -21,21 +21,20 @@ const Signup = () => {
   const [photoIsChairman, setPhotiIsChairman] = useState([])
 
   const dispatche = useDispatch()
-  const auth = useSelector(state => state.auth.auth)
   const navigate = useNavigate()
   const logUp = async (e) => {
     e.preventDefault();
     const isValid = /[A-Za-z]\w+/.test(name) && /^[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+\.[A-Za-z]{2,}$/.test(email)
     if (idHome && isValid) {
       dispatche({type: types.SIGN_UP_USER_SAGA, user: {name, email, pass, idHome, isChairman: !predsedatel}})
-      navigate('/')
+      navigate('/GlobalNews')
     } else if (isValid) {
-      // console.log([...photoIsChairman])
       dispatche(signup_UserReducer({name, email, pass, isChairman: !predsedatel, photoIsChairman:  [...photoIsChairman] }))
       navigate('/locationHome')
     } else if (!/^[A-Za-z]\w+$/.test(name)) alert('введи нормально логин')
      else if (!/^[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+\.[A-Za-z]{2,}$/.test(email)) alert('введи нормально email')
   }
+  
 
   return (
         <form id="signupForm" method="POST" action="" style={{marginTop:'70px'}}>

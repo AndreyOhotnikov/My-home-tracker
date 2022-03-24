@@ -1,9 +1,5 @@
 import { actiontTypes } from "../types/globalTypes"
 
-// export const addGlobalNews = (obj) => (
- // { 
-  //type: actiontTypes.ADD_GLOBAL_NEWS_SAGA,payload:obj
-// });
  
 export const addGlobalNewsRedux = (obj) => (
   { 

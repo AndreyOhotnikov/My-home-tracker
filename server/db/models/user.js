@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+
       this.belongsTo(models.Home,{foreignKey:'home_id'})
       this.hasMany(models.Support,{foreignKey:'user_id'})
       this.hasMany(models.Instruction,{foreignKey:'user_id'})
@@ -22,6 +23,8 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Global_news,{foreignKey:'user_id'})
       this.hasMany(models.Response,{foreignKey:'user_id'})
       this.hasMany(models.Like,{foreignKey:'user_id'})
+      this.hasMany(models.Photolink,{foreignKey:'documentIsChairman_user_id'})
+
     }
   }
   User.init({
@@ -30,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     role: DataTypes.STRING,
     checked: DataTypes.STRING,
     password: DataTypes.STRING,
-    home_id: DataTypes.INTEGER
+    home_id: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'User',

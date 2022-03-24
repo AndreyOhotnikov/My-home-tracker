@@ -1,22 +1,24 @@
-const { Benifit, Category_benifit, User, Userinfo, Photolink } = require('../db/models');
-
+const {
+  Benifit, Category_benifit, User, Userinfo, Photolink,
+} = require('../db/models');
 
 exports.getAllServices = async (req, res) => {
   let categor;
 
-  categor = await Category_benifit.findAll({ raw: true })
+  categor = await Category_benifit.findAll({ raw: true });
 
   const benefitAndCategory = await Promise.all(await categor.map(async (category) => {
-    const serv = await Benifit.findAll({ where: { category_id: category.id }, include: [{ model: User, attributes: ['id', 'nick_name', 'email'], include: [{ model: Userinfo, attributes: ['phone', 'full_name'], include: [{ model: Photolink, attributes: ['userinfo_id', 'link'] }] }] }], raw: true })
-    category.benifits = serv
-    return category
-  }))
-  res.json(benefitAndCategory)
-}
+    const serv = await Benifit.findAll({ where: { category_id: category.id }, include: [{ model: User, attributes: ['id', 'nick_name', 'email'], include: [{ model: Userinfo, attributes: ['phone', 'full_name','link'], include: [{ model: Photolink, attributes: ['userinfo_id', 'link'] }] }] }], raw: true });
+    category.benifits = serv;
+    return category;
+  }));
+  res.json(benefitAndCategory);
+};
 
 exports.addNewServices = async (req, res) => {
-  const { title, text, price, service } = req.body;
-
+  const {
+    title, text, price, service,
+  } = req.body;
 
   const categId = (id) => {
     switch (service) {
@@ -33,26 +35,26 @@ exports.addNewServices = async (req, res) => {
       default:
         break;
     }
-  }
+  };
   const resCategId = categId();
-  
+
   let newService;
   try {
     const newService = await Benifit.create({
       title,
       text,
       price,
-      category_id: resCategId
-    })
+      category_id: resCategId,
+      user_id: req.session.user.id,
+    });
   } catch (error) {
     console.log(error);
   }
-  res.json(newService)
-}
+  res.json(newService);
+};
 
 exports.deleteServise = async (req, res) => {
-  console.log('---------------------------------------------------------------------------------')
   const { id } = req.params;
-  await Benifit.destroy({where:{id}});
+  await Benifit.destroy({ where: { id } });
   res.status(200).end();
 };

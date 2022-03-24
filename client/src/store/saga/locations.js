@@ -18,9 +18,7 @@ function* workerGetLocation() {
     yield put(getFirebaseReducer(config))
   } catch (err) {
     console.error('Err', err);
-  } finally {
-    console.log('finally');
-  }
+  } 
 }
 
 export function* watcherGetLocation() {

@@ -1,0 +1,90 @@
+.baraholka-form {
+
+  &__typography {
+    margin: 50px 0 50px 0 !important;
+    box-shadow: none !important;
+  }
+}
+
+.baraholka-main {
+  margin: auto !important;
+  width: auto !important;
+
+  &__card {
+    max-width: 400px !important;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 80px;
+
+    &-global-news {
+      max-width: 300px !important;
+
+      &--img {
+        width: 300px !important;
+        height: 150px !important;
+      }
+
+      &--text {
+        max-width: 300px !important;
+      }
+    }
+      &__card-item-news {
+        max-width: 60% !important;
+          &--text {
+            max-width: 60% !important; 
+          }
+          &--card-item-box {
+            max-width: 300px !important;
+          }
+      }
+
+    &--wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 50px auto;
+      padding-right: 100px;
+      padding-left: 100px;
+    }
+
+    &--img {
+      width: 400px !important;
+      height: 300px !important;
+    }
+  }
+}
+
+.baraholka-list {
+  margin: 0 auto !important;
+  width: 450px !important;
+
+  &__list {
+    width: 450px !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+
+    & > div > ul {
+      margin-right: 0 !important;
+    }
+  }
+}
+
+.baraholka-item {
+  margin: 0 auto !important;
+  width: 450px !important;
+
+  &__list {
+    width: 450px !important;
+    height: 450px !important;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px 10px 70px;
+  }
+}
+
+
+
+

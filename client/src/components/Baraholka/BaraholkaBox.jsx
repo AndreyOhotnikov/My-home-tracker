@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Navigate, Link, useNavigate } from "react-router-dom";
-
+import {  useNavigate } from "react-router-dom";
+import "./Baraholka.scss";
 import {
   Box,
   Grid,
@@ -12,21 +12,14 @@ import {
   Button,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
-import BaraholkaItem from "./BaraholkaItem";
 import { allProductsView } from "../../store/actionCreators/baraholkaAC";
 
 const BaraholkaBox = () => {
-  const classes = useStyles();
-
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const allCategories = useSelector((store) => store.baraholka.category);
-  //console.log(allCategories);
-  //const navigate = Navigate();
 
   useEffect(() => {
     dispatch(allProductsView());
@@ -37,22 +30,24 @@ const BaraholkaBox = () => {
   };
 
   return (
-    <Box>
-      <Grid xl={8} direction="row">
-        <Grid item>
-          <Paper>Категории товаров</Paper>
-          <Box m={10}>
-            {allCategories.map((category) => {
+    <Box className="baraholka-main" m={5}>
+      <Grid item>
+      <Typography variant="h4" className="baraholka-form__typography">
+            Категории товаров
+          </Typography>
+          <Box className="baraholka-main__card--wrapper">
+            {allCategories?.map((category) => {
               return (
-                <Grid key={category} conteiner direction="row">
-                  <Card>
+                <Card key={category.id} 
+                className="baraholka-main__card" >
                     <CardMedia
+                    className="baraholka-main__card--img"
                       component="img"
                       image={category.link}
-                      alt="green iguana"
                     />
                     <CardContent>
-                      <Typography component="div" variant="h5">
+                      <Typography 
+                      gutterBottom component="div" variant="h5">
                         {category.title}
                       </Typography>
                     </CardContent>
@@ -66,11 +61,9 @@ const BaraholkaBox = () => {
                       </Button>
                     </CardActions>
                   </Card>
-                </Grid>
               );
             })}
           </Box>
-        </Grid>
       </Grid>
     </Box>
   );
@@ -78,4 +71,3 @@ const BaraholkaBox = () => {
 
 export default BaraholkaBox;
 
-const useStyles = makeStyles({});

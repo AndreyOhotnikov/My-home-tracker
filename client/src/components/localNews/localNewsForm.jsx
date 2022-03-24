@@ -1,160 +1,137 @@
+import "./Style.scss";
 import React from "react";
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 import { localTypes } from "../../store/types/localTypes";
-import { Link,Stack } from "@mui/material";
-import Paper from '@mui/material/Paper';
-
-import { styled } from '@mui/material/styles';
+import {  Typography } from "@mui/material";
+import { IconButton } from "@mui/material";
 import { useState } from "react";
 import { useEffect } from "react";
-import ImageListItem from '@mui/material/ImageListItem';
-import Button from '@mui/material/Button';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import { IconButton } from "@mui/material";
-import { Input } from "@mui/material";
-import { Provider, useDispatch,useSelector } from "react-redux";
-
-import { addGlobalNews } from "../../store/actionCreators/globalNewsAC";
-import {useParams,useNavigate} from 'react-router-dom'
+import Button from "@mui/material/Button";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
 import { getAllLocalNews } from "../../store/actionCreators/localNewsAC";
-function LocalNewsForm(){
-  const stateLocal = useSelector((store)=>store.localReducer.arrLocalNews)
-  console.log(stateLocal,'sssssssssssssssstateeeeeeeeeeee')
-  const params = useParams()
-  const navigate = useNavigate()
-  function findDataInLocalArr(id){
-    return stateLocal?.filter((el)=>el.id === Number(id))
-   }
-   const defaultData = findDataInLocalArr(params.id)[0]
-  // console.log('find',defaultData)
-  const dispatch = useDispatch()
-  const [title,setTitle]=useState(defaultData?.title)
-  const [text,setText]=useState(defaultData?.text)
-  const [link,setLink]=useState(defaultData?.link)
-  const [check,setCheck]=useState(trueOrFalse(defaultData?.fixed) || false)
-  const [idNews,setIdNews] = useState(defaultData?.id || 0)
-  
-  // const globalNews = useSelector((store)=>store.globalNews.arrGlobalNews)
-  //console.log('globalNews',globalNews)
-  
-  function count(){
-   if(check == false){
-     return setCheck(true)
-   }
-    else {
-      return setCheck(false)
-    
-   }
+
+function LocalNewsForm() {
+  const stateLocal = useSelector((store) => store.localReducer.arrLocalNews);
+  const params = useParams();
+  const navigate = useNavigate();
+  function findDataInLocalArr(id) {
+    return stateLocal?.filter((el) => el.id === Number(id));
   }
-  function trueOrFalse(a){
-   return (a==='true'?true:false)
-  }
-  function sagaLocalData(){
+  const defaultData = findDataInLocalArr(params.id)[0];
+  const dispatch = useDispatch();
+
+  const [title, setTitle] = useState(defaultData?.title);
+  const [text, setText] = useState(defaultData?.text);
+  const [link, setLink] = useState(defaultData?.link);
+
+  function sagaLocalData() {
     const obj = {
       title,
       text,
       link,
-      check,
-      idNews
-    }
-     dispatch({type: localTypes.ADD_LOCAL_NEWS_SAGA,payload:obj})
+
+    };
+    dispatch({ type: localTypes.ADD_LOCAL_NEWS_SAGA, payload: obj });
   }
-  //  function navigateToMain(){
-  //    navigate('/GlobalNews')
-  // }
-  useEffect(()=>{ 
-    dispatch(getAllLocalNews())
-    
-   },[])
-  return(
-     <>
-     <Stack direction={'row'} spacing={3} textAlign={'center'} marginTop={'5vh'}>
-     <Stack spacing={2} textAlign={'start'} marginLeft={'180px'}>
 
-<Box component="form"
-sx={{
-'& .MuiTextField-root': { mt:7, width: '25ch' },
-}}
-noValidate
-autoComplete="off">
-<TextField onChange={(event)=>{
-  setTitle(event.target.value)}}
-    required
-    id="1"
-    label="Введите заголовок"
-    defaultValue={defaultData?.title }
-  />
-</Box>
-<Box component="form"
-sx={{
-'& .MuiTextField-root': { mt:3, width: '25ch' },
-}}
-noValidate
-autoComplete="off">
-<TextField onChange={(event)=>{
-  setTitle(event.target.value)}}
-    required
-    id="1"
-    label="Введите телефон "
-    defaultValue={defaultData?.title }
-  />
-</Box>
-<Box component="form"
-sx={{
-'& .MuiTextField-root': { mt:3, width: '130ch' ,},
-}}
-noValidate
-autoComplete="off">
-<TextField
-    onChange={(event)=>{
-    setText(event.target.value)}}
-    required
-    id="1"
-    label="Введите текст"
-    defaultValue={defaultData?.text}
-    multiline
-    rows={20}
-  />
-</Box>
+  function navigateToMain() {
+    navigate("/localnews");
+  }
 
-</Stack>
-<Box paddingTop={'18vh'} paddingLeft={'5ch'}>
+  useEffect(() => dispatch(getAllLocalNews()), []);
 
-<Stack spacing={2} direction="column" textAlign={'start'} >
+  return (
+    <>
+      <Typography variant="h5" className="benefit-service-form__typography">
+        Добавьте новое событие
+      </Typography>
 
-{/* <Box marginBottom={'38vh'}  >
-      <FormControlLabel  control={<Checkbox defaultChecked={trueOrFalse(defaultData?.fixed)} onChange={(e)=>{
-        count()
-      }}/>} label="Закрепить новость" />
-</Box> */}
-<Stack spacing={2} direction="column" marginTop={'200px'}   >
-<label htmlFor="icon-button-file">
-       
-        <Button component="span"  variant="contained">
-        <Input   accept="image/*" id="icon-button-file" type="file" onChange={(e)=>{
-            setLink(e.target.files)
-        }}/>
-        </Button>
-      </label>
-<Button  onClick={(e)=>{
- 
-  e.preventDefault()
-  sagaLocalData()
-  //navigateToMain()
-}}  variant="contained"   >Опубликовать новость</Button>
-</Stack>
+      <div className="local-news-form">
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { width: "50%" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField
+            onChange={(event) => {
+              setTitle(event.target.value);
+            }}
+            required
+            id="1"
+            label="Введите заголовок"
+            defaultValue={defaultData?.title}
+          />
+        </Box>
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { mt: "20px", width: "50%" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField
+            onChange={(event) => {
+              setText(event.target.value);
+            }}
+            required
+            id="1"
+            label="Введите текст"
+            defaultValue={defaultData?.text}
+            multiline
+            rows={10}
+          />
+        </Box>
+        <Box
+          style={{
+            margin: "50px auto",
+            width: "700px",
+          }}
+        >
+          <label htmlFor="icon-button-file">
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="span"
+            >
+              <input
+                onChange={(e) => setLink(e.target.files)}
+                style={{ display: "none" }}
+                accept="image/*"
+                id="icon-button-file"
+                type="file"
+                multiple
+              />
 
-</Stack>
+              <PhotoCamera />
+            </IconButton>
 
-</Box>
-     </Stack>   
- </>
-   )
- }
+            <Button
+              className="local-news-form__button"
+              ml={"40px"}
+              onClick={(e) => {
+                e.preventDefault();
+                sagaLocalData();
+                navigateToMain();
+              }}
+              variant="contained"
+            >
+              Опубликовать новость
+            </Button>
+          </label>
+        </Box>
+      </div>
+    </>
+  );
+}
+
+export default LocalNewsForm;
 
 
 
-export default LocalNewsForm

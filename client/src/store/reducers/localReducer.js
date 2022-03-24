@@ -8,20 +8,24 @@
    
    switch (action.type) {
      case localTypes.ADD_LOCAL_NEWS:
-         console.log(action.payload,'=>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-       return {...state,arrLocalNews:[...state.arrLocalNews,action.payload]};
- 
+         return {...state,arrLocalNews: state.arrLocalNews.map((el)=>{
+          if(el.id === action.payload.id){
+            return el = action.payload
+          }
+          else return el
+       })
+          
+     } 
      case localTypes.GET_LOCAL_NEWS_REDUX:
        return {...state,arrLocalNews:action.payload};
      case localTypes.DEL_NEWS_LOCAL_REDUX:
-         if(state.arrLocalNews.length==1){
+         if(state.arrLocalNews.length == 1){
            return {...state,arrLocalNews:[]}
          }else{
            return {...state,arrLocalNews:[...state.arrLocalNews.filter((el)=>el.id !== action.payload)]}
          }
          
      case localTypes.ADD_LIKE_LOCAL_REDUX:
-       // console.log(action.payload,'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.')
       if(action.payload.status === true ){
        return {...state,arrLocalNews:[...state.arrLocalNews.map((el)=>{
          if(el.id == action.payload.id){
