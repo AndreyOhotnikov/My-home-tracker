@@ -91,10 +91,9 @@ exports.checkAuth = async (req, res) => {
       user = await User.findOne({where: {id: req.session.user.id}, raw: true})
       userInfo = await Userinfo.findOne({where: {user_id: user.id}, raw: true})
       photo = await Photolink.findOne({where: {userinfo_id: user.id}, raw: true})
-      bid = await Bid.findAll({order: [['id', 'DESC']], limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
-      benefits = await Benifit.findAll({order: [['id', 'DESC']], limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
-      store = await Store.findAll({order: [['id', 'DESC']], limit: 4, where: {user_id: user.id}/*, include: [{model: Photolink, attributes: ['link']}]*/, raw: true})
-      // console.log(store)
+      bid = await Bid.findAll({order: [['id', 'DESC']], limit: 4, where: {user_id: user.id}, raw: true})
+      benefits = await Benifit.findAll({order: [['id', 'DESC']], limit: 4, where: {user_id: user.id}, raw: true})
+      store = await Store.findAll({order: [['id', 'DESC']], limit: 4, where: {user_id: user.id}, raw: true})
       res.json({
         user: {user_id: user.id, user: user.nick_name, role: user.role, home_id: user.home_id }, 
         userInfo, 
@@ -115,7 +114,6 @@ exports.checkAuth = async (req, res) => {
 
 exports.createUserAndSession = async (req, res, next) => {
 
-  console.log(req.body)
   const {name, email, pass, isChairman, city, street, home, home_id, street_id, city_id, idHome, photoIsChairman} = req.body
   try {
     let user, newHome, newStreet, newCity, findCity, findStreet, findHome, document
@@ -123,7 +121,7 @@ exports.createUserAndSession = async (req, res, next) => {
     if (!checkUser) {
       const saltRounds = 10;
       const hashedPassword = await bcrypt.hash(pass, saltRounds);
-      if (idHome && name && email && pass) { //если указан конкретный id дома создаем простого пользователя
+      if (idHome && name && email && pass) { 
         user = await User.create({nick_name: name, email: email, role: 'user', checked: 'false', password: hashedPassword, home_id: idHome})
       } 
       else if (home_id && street_id && city_id && name && email && pass) {
@@ -142,7 +140,6 @@ exports.createUserAndSession = async (req, res, next) => {
         document = await Promise.all(await photoIsChairman.map(async photo => await Photolink.create({link: photo, documentIsChairman_user_id: user.id})))
       } 
       else if (isChairman ) {
-        // console.log('-----------------------------------46')
         newCity = await City.create({ name: city })
         newStreet = await Street.create({ name: street, city_id: newCity.id })
         newHome = await Home.create({ name: home, street_id: newStreet.id})
@@ -151,7 +148,6 @@ exports.createUserAndSession = async (req, res, next) => {
 
 
       } else {
-        console.log('У вас нет прав');
         res.json({ error: 'У вас нет прав' });
       }
       req.session.user = { id: user.id, name: user.nick_name, role: user.role };

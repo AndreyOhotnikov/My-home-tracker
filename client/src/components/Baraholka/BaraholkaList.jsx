@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import ACTypes from "../../store/types/baraholkaTypes";
 import { allProductsView } from "../../store/actionCreators/baraholkaAC";
 import {
   Box,

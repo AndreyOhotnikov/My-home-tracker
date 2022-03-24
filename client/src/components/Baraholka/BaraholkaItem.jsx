@@ -6,14 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { allProductsView } from "../../store/actionCreators/baraholkaAC";
 import { types } from "../../store/types/userTypes";
 import {
-  Box,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-  Button,
-  CardMedia,
-  Card,
+  Box,  List,  ListItem,  ListItemText,  Typography,
+  Button,  CardMedia,  Card,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -40,8 +34,6 @@ const BaraholkaItem = () => {
 
     productsList = prList.filter((el) => el.id === Number(params.id));
   }
-
-
 
   const showContactHandler = () => {
     setShowContact(true);

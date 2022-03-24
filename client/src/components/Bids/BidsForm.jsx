@@ -3,7 +3,7 @@ import {Box, Button, InputLabel, TextField, Grid, MenuItem, FormControl, Select,
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { sagaAddBid } from "../../store/actionCreators/bid";
 
 export const BidForm = () => {
@@ -13,7 +13,6 @@ export const BidForm = () => {
   const chairman = useSelector((state) => state.auth.auth);
 
   const dispatch = useDispatch();
-  const params = useParams();
   const navigate = useNavigate();
 
   const formRef = useRef(null);
@@ -30,7 +29,6 @@ export const BidForm = () => {
     );
 
     valuesOfForm["status"] = status;
-    console.log(valuesOfForm, "valuesOfForm");
     dispatch(sagaAddBid(valuesOfForm));
     formRef.current.reset();
     setStatus("");

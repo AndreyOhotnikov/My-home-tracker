@@ -19,11 +19,7 @@ const {
   Category_benifit,
 } = require('./db/models');
 
-<<<<<<< HEAD
-const city = [{ name: 'Москва' }, { name: 'Воронеж' }];
-=======
 const city = [{ name: 'Москва' }, { name: 'Ступино' }, { name: 'Саратов' }, { name: 'Обнинск' }];
->>>>>>> bd1dc6b06b221f81a35056d8353c1b30825c78e8
 async function addCity(obj) {
   try {
     await City.create({
@@ -37,11 +33,6 @@ async function addCity(obj) {
 city.map((el) => addCity(el));
 
 const street = [
-<<<<<<< HEAD
-  { name: 'Труда', city_id: 1 },
-  { name: 'Победы', city_id: 1 },
-  { name: 'Ленина', city_id: 2 },
-=======
   { name: 'Ленина', city_id: 1 },
   { name: 'Труда', city_id: 1 },
   { name: 'Никольская', city_id: 1 },
@@ -62,7 +53,6 @@ const street = [
   { name: 'Гагарина', city_id: 4 },
   { name: 'Маркса', city_id: 4 },
   { name: 'Калужская', city_id: 4 },
->>>>>>> bd1dc6b06b221f81a35056d8353c1b30825c78e8
 ];
 
 async function addStreet(obj) {
@@ -80,11 +70,6 @@ street.map((el) => addStreet(el));
 
 const home = [
   { name: 31, street_id: 1 },
-<<<<<<< HEAD
-  { name: 31, street_id: 2 },
-  { name: 32, street_id: 1 },
-  { name: 123, street_id: 3 },
-=======
   { name: 123, street_id: 1 },
   { name: 1, street_id: 2 },
   { name: 145, street_id: 2 },
@@ -124,7 +109,6 @@ const home = [
   { name: 8, street_id: 19 },
   { name: 32, street_id: 20 },
   { name: 2, street_id: 20 },
->>>>>>> bd1dc6b06b221f81a35056d8353c1b30825c78e8
 ];
 async function addHome(obj) {
   try {

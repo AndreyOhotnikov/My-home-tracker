@@ -93,27 +93,19 @@ const httpServer = app.listen(PORT, () => {
   console.log(`server started PORT: ${PORT}`);
 });
 
-// web Socked
 
 const wsServer = new ws.WebSocketServer({
   server: httpServer,
 });
 
-// EventEmitter Эхо сервер для многих клиентов
 wsServer.on('connection', (currentClient) => {
-  console.log('>>>> client connected. clients: ', wsServer.clients.size); // wsServer.clients -  итерируемый обьект Set
-  // https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Set
-
   currentClient.on('message', (data, req) => {
     const message = data.toString('utf-8');
-
-    console.log('>>> send messages to all clients', message);
     wsServer.clients.forEach((client) => {
       client.send(message);
     });
   });
 
   currentClient.on('close', (client) => {
-    console.log('>>>> client disconnected. clients: ', wsServer.clients.size);
   });
 });

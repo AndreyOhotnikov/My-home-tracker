@@ -14,7 +14,6 @@ const ModalPage = ({ handleOpen}) => {
   const open = useSelector(state => state.auth.modale)
   const dispatche = useDispatch()
   const navigate = useNavigate()
-  console.log(open)
   const handleClose = () => dispatche(openModaleReducer(false));
 
   const logout = async (e) => {

@@ -5,14 +5,10 @@ import Box from "@mui/material/Box";
 import { Button, Avatar, Typography } from "@mui/material";
 import { Stack } from "@mui/material";
 import Paper from "@mui/material/Paper";
-
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useEffect } from "react";
-
-
 import { useSelector, useDispatch } from "react-redux";
-
 import { getAllLocalNews } from "../../store/actionCreators/localNewsAC";
 import { useNavigate } from "react-router-dom";
 import { addLikeLocalSaga } from "../../store/actionCreators/localNewsAC";

@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import { types } from "../../store/types/userTypes";
 import {
   Grid,
-  Stack,
   Typography,
   Card,
   CardMedia,
@@ -12,22 +11,15 @@ import {
 } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import {
-  addGlobalNews,
   addLikeSaga,
   deleteGlobalSaga,
 } from "../../store/actionCreators/globalNewsAC";
 import { styled } from "@mui/material/styles";
-import { useState } from "react";
 import { useEffect } from "react";
-import ImageListItem from "@mui/material/ImageListItem";
-import { Route, Routes, Link } from "react-router-dom";
-import GlobalNewsForm from "./GlobalNewsForm";
-import findDataInGlobalArr from "./GlobalNewsList";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { goodDate } from "./GlobalNewsList";
 import { getAllGlobalNews } from "../../store/actionCreators/globalNewsAC";
 function GlobalNewsItem({ el, view, setView, id, setId }) {
   const params = useParams();
@@ -35,7 +27,6 @@ function GlobalNewsItem({ el, view, setView, id, setId }) {
   const state = useSelector((store) => store.globalNews.arrGlobalNews);
 
   const userRole = useSelector((state) => state.auth.auth);
-  console.log(userRole);
   function findDataInGlobalArr(id) {
     return state.filter((el) => el.id == id);
   }

@@ -27,13 +27,11 @@ function GlobalNewsList() {
   const state = useSelector((store) => store.globalNews.arrGlobalNews);
   const auth = useSelector((state) => state.auth.auth);
   const navigate = useNavigate();
-  // console.log(state[0].link)
   useEffect(() => {
     if (!auth) dispatch({ type: types.CHECK_IS_AUTH_SAGA });
   }, []);
   const dispatch = useDispatch();
   const [view, setView] = useState(true);
-  const [id, setId] = useState(0);
   function changeLike(id) {
     dispatch(addLikeSaga(id));
   }

@@ -11,7 +11,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useState } from "react";
 import { sagaAddService } from "../../store/actionCreators/benefitServicesAC";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {  Typography } from "@mui/material";
 
 
@@ -21,10 +21,7 @@ export const BenefitServicesForm = () => {
 
   const [service, setService] = useState("");
   const dispatch = useDispatch();
-  const params = useParams();
-  console.log(params.id, "paramsId");
   const navigate = useNavigate();
-  console.log(services);
   let res;
 
   if (services.length) {
@@ -51,7 +48,6 @@ export const BenefitServicesForm = () => {
       new FormData(formRef.current, { service: service }).entries()
     );
     valuesOfForm["service"] = service;
-    console.log(valuesOfForm, "valuesOfForm");
     dispatch(sagaAddService(valuesOfForm));
     formRef.current.reset();
     setService("");

@@ -10,7 +10,6 @@ export const BenefitServicesMain = () => {
   const navigate = useNavigate();
 
   const submitHandler = (id) => {
-    console.log("submitHandler");
     navigate(`/services/${id}`);
   };
 

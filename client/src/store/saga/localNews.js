@@ -13,8 +13,8 @@ async function addLocalNewsToDb(obj) {
   const storage = getStorage(app);
   const file =[...obj.payload.link]
     const storageRef = await ref(storage, `images/${Date.now()}${file[0].name.slice(file[0].name.indexOf('.'))}`);
-    const snapshot = await uploadBytes(storageRef, file[0])                      // загрузка файла
-    const url = await getDownloadURL(storageRef)                                     // ссылка на фотку
+    const snapshot = await uploadBytes(storageRef, file[0])                     
+    const url = await getDownloadURL(storageRef)                                   
   
   const response = await fetch('/localNews/new',{
     method: "POST",

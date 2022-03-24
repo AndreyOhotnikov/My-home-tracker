@@ -12,7 +12,6 @@ import Chat from "../Chat/Chat";
 import SignIn from "../Signin/SignIn";
 import Signup from "../Signup/Signup";
 import { useDispatch, useSelector } from "react-redux";
-import style from "./Navigation.module.css";
 import WelcomePage from "../WelcomePage/WelcomePage";
 import LockationHome from "../Signup/LockationHome";
 import { types } from "../../store/types/userTypes";
@@ -20,7 +19,6 @@ import { openModaleReducer } from "../../store/actionCreators/userAC";
 import PrivatePageUser from "../PrivatePageUser/PrivatePageUser";
 import {BenefitServicesList} from "../BenefitServices/BenefitServicesList";
 import ModalPage from "../Signout/ModalPage";
-import { useParams } from "react-router-dom";
 
 
 import {
@@ -77,8 +75,6 @@ const Navigation = () => {
   const dispatche = useDispatch();
   const auth = useSelector((state) => state.auth.auth);
 
-  const params = useParams();
-
   const navigate = useNavigate();
   const theme = useTheme();
 
@@ -91,21 +87,16 @@ const Navigation = () => {
   };
 
   useEffect(() => {
-    // console.log("ДОЛЖЕН СРАБАТЫВАТЬ ТОЛЬКО ПРИ ПЕРЕЗАГРУЗКЕ СТРАНИЦЫ");
     if (!auth) dispatche({ type: types.CHECK_IS_AUTH_SAGA });
   }, []);
 
   const handleOpen = () => dispatche(openModaleReducer(true));
-  // console.log("РЕНДЕР КОМПОНЕНТА НАВИГАЦИЯ", auth);
 
   const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
   const handleCloseUserMenu = () => setAnchorElUser(null);
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(servicesSagaApi());
-  }, []);
-  console.log(auth)
+  useEffect(() => dispatch(servicesSagaApi()), []);
   return (
     <div onClick={handleDrawerClose}>
       {auth && (
@@ -278,18 +269,9 @@ export default Navigation;
 const pages = [
   { name: "Главные новости", src: "/GlobalNews" },
   { name: "События", src: "/localnews" },
-  // { name: "События", src: "/doings" },
-  // { name: "Добавить услугу", src: "/services/new" },
   { name: "Услуги", src: "/services" },
   { name: "Барахолка", src: "/baraholka" },
-  // { name: "Разместить свой товар", src: "/addProduct" },
-
-  // { name: "Заявка,жалоба", src: "/addBid" },
-  // { name: "Все заявки", src: "/bids" },
-  // { name: "Все пользователи", src: "/users" },
   { name: "ЧАТ", src: "/chat" },
-  // { name: "Добавить Главную новость", src: "/form/:id" },
-  // { name: "Добавить событие", src: "/local/form/:id" },
 
 ];
 
@@ -305,5 +287,4 @@ const options = [
   { name: "Добавить услугу", src: "/services/new" },
   { name: "Разместить свой товар", src: "/addProduct" },
   { name: "Добавить событие", src: "/local/form/:id" },
-  // { name: "Добавить Главную новость", src: "/form/:id" },
 ]

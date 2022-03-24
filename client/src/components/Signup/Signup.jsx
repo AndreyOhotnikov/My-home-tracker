@@ -21,7 +21,6 @@ const Signup = () => {
   const [photoIsChairman, setPhotiIsChairman] = useState([])
 
   const dispatche = useDispatch()
-  const auth = useSelector(state => state.auth.auth)
   const navigate = useNavigate()
   const logUp = async (e) => {
     e.preventDefault();
@@ -30,7 +29,6 @@ const Signup = () => {
       dispatche({type: types.SIGN_UP_USER_SAGA, user: {name, email, pass, idHome, isChairman: !predsedatel}})
       navigate('/GlobalNews')
     } else if (isValid) {
-      // console.log([...photoIsChairman])
       dispatche(signup_UserReducer({name, email, pass, isChairman: !predsedatel, photoIsChairman:  [...photoIsChairman] }))
       navigate('/locationHome')
     } else if (!/^[A-Za-z]\w+$/.test(name)) alert('введи нормально логин')

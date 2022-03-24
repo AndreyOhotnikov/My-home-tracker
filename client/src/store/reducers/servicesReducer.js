@@ -4,7 +4,6 @@ import { ADD_SERVICE, DELETE_SERVICE, GET_ALL_SERVICES } from "../types/services
 
 export const servicesReducer = (state = InitialState.services, action) => {
 
-  console.log(action,'action.paiload');
   switch (action.type) {
     case GET_ALL_SERVICES:
       return action.payload

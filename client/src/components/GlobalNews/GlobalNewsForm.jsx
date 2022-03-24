@@ -3,16 +3,10 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { actiontTypes } from "../../store/types/globalTypes";
 import { Link, Stack, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useEffect } from "react";
 import Button from "@mui/material/Button";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import { Input } from "@mui/material";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import findDataInGlobalArr from "./GlobalNewsList";
-import { addGlobalNews } from "../../store/actionCreators/globalNewsAC";
 import { useParams, useNavigate } from "react-router-dom";
 import { getAllGlobalNews } from "../../store/actionCreators/globalNewsAC";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
@@ -32,7 +26,6 @@ function GlobalNewsForm() {
   const [link, setLink] = useState(defaultData?.link);
   const [check, setCheck] = useState(trueOrFalse(defaultData?.fixed) || false);
   const [idNews, setIdNews] = useState(defaultData?.id || 0);
-  const globalNews = useSelector((store) => store);
 
   function count() {
     if (check == false) return setCheck(true);
@@ -58,9 +51,7 @@ function GlobalNewsForm() {
     navigate("/GlobalNews");
   }
 
-  useEffect(() => {
-    dispatch(getAllGlobalNews());
-  }, []);
+  useEffect(() => dispatch(getAllGlobalNews()), []);
 
   return (
     <>

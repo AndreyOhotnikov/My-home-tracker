@@ -18,9 +18,7 @@ export const AllUsersList = () => {
   const navigate = useNavigate();
   const store = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(usersSagaApi());
-  }, []);
+  useEffect(() => dispatch(usersSagaApi()), []);
 
   if (store.length === 0) {
     return (
@@ -31,10 +29,6 @@ export const AllUsersList = () => {
       </div>
     );
   }
-
-  // const submitHandler = (id) => {
-  //   navigate(`/users/${id}`);
-  // };
 
   return (
     <>

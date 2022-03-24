@@ -36,8 +36,7 @@ exports.getAllLocalNews = async (req, res) => {
 
 exports.addLocalLike = async (req, res) => {
   try {
-    const findCurrentLike = await LikeLocal.findOne({ where: { local_news_id: Number(req.params.id) }, raw: true }); // user_id: req.session.user.id
-    // console.log(findCurrentLike.user_id, '37');
+    const findCurrentLike = await LikeLocal.findOne({ where: { local_news_id: Number(req.params.id) }, raw: true });
     if (findCurrentLike) {
       if (findCurrentLike.user_id) {
         const filterArr = findCurrentLike.user_id.filter((el) => el !== req.session.user.id);

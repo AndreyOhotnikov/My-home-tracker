@@ -9,8 +9,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Button from "@mui/material/Button";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-
-
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { getAllLocalNews } from "../../store/actionCreators/localNewsAC";
@@ -28,25 +26,13 @@ function LocalNewsForm() {
   const [title, setTitle] = useState(defaultData?.title);
   const [text, setText] = useState(defaultData?.text);
   const [link, setLink] = useState(defaultData?.link);
-  // const [check, setCheck] = useState(trueOrFalse(defaultData?.fixed) || false);
-  // const [idNews, setIdNews] = useState(defaultData?.id || 0);
-
-  // function count() {
-  //   if (check == false) return setCheck(true);
-  //   else return setCheck(false);
-  // }
-
-  // function trueOrFalse(a) {
-  //   return a === "true" ? true : false;
-  // }
 
   function sagaLocalData() {
     const obj = {
       title,
       text,
       link,
-      // check,
-      // idNews,
+
     };
     dispatch({ type: localTypes.ADD_LOCAL_NEWS_SAGA, payload: obj });
   }
@@ -55,10 +41,7 @@ function LocalNewsForm() {
     navigate("/localnews");
   }
 
-
-  useEffect(() => {
-    dispatch(getAllLocalNews());
-  }, []);
+  useEffect(() => dispatch(getAllLocalNews()), []);
 
   return (
     <>

@@ -4,6 +4,7 @@ import {addGlobalNewsRedux,getGlobalNewsRedux,addLikeToRedux,delGlobalNewsRedux}
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { firebaseConfig } from "../types/firebaseConfig";
+
 async function delGlobalNewsFromDb(id){
    const res = await fetch(`/globalNews/${Number(id)}`,{method:'DELETE'})
    const data = await res.json()
@@ -13,8 +14,8 @@ async function addGlobalNewsToDb(obj) {
   const storage = getStorage(app);
   const file =[...obj.payload.link]
     const storageRef = await ref(storage, `images/${Date.now()}${file[0].name.slice(file[0].name.indexOf('.'))}`);
-    const snapshot = await uploadBytes(storageRef, file[0])                      // загрузка файла
-    const url = await getDownloadURL(storageRef)                                     // ссылка на фотку
+    const snapshot = await uploadBytes(storageRef, file[0])                     
+    const url = await getDownloadURL(storageRef)                                  
     
   const response = await fetch('/globalNews/new',{
     method: "POST",

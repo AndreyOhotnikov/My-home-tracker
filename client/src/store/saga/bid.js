@@ -6,17 +6,13 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { firebaseConfig } from "../types/firebaseConfig";
 
 async function addBidSaga(bids) {
-  console.log(bids, 'bids');
   const app = initializeApp(firebaseConfig);
   const storage = getStorage(app);
   if (bids.link) {
     const file = bids.link
-    console.log(file, 'file');
     const storageRef = await ref(storage, `images/${Date.now()}${file.name.slice(file.name.indexOf('.'))}`);
-    console.log(storageRef, 'storageRef');
     const snapshot = await uploadBytes(storageRef, file)
     const url = await getDownloadURL(storageRef)
-    console.log(url, 'url');
 
 
     return fetch("/bids/add", {
@@ -32,13 +28,10 @@ async function addBidSaga(bids) {
 function* addBidWorker(action) {
   try {
     const dataFromServer = yield call(addBidSaga, action.payload);
-    console.log(dataFromServer)
     if (dataFromServer) yield put(addBid(dataFromServer))
   } catch (err) {
     console.error('Err', err);
-  } finally {
-    console.log('finally');
-  }
+  } 
 }
 export function* watcherAddBidSaga() {
   yield takeEvery(REQUEST_ADD_BID_SAGA, addBidWorker)
@@ -55,9 +48,7 @@ function* workerGetAllUser(action) {
     yield put(allUser(res))
   } catch (err) {
     console.error('Err', err);
-  } finally {
-    console.log('finally');
-  }
+  } 
 }
 export function* watcherUsersSaga() {
   yield takeEvery(SAGA_API_USERS, workerGetAllUser)
@@ -75,9 +66,7 @@ function* workerGetBids(action) {
     yield put(allBids(res))
   } catch (err) {
     console.error('Err', err);
-  } finally {
-    console.log('finally');
-  }
+  } 
 }
 export function* watcherBidsSaga() {
   yield takeEvery(SAGA_API_BIDS, workerGetBids)
@@ -97,9 +86,7 @@ function* workerDelBidSaga(action) {
     yield put(delBid(res))
   } catch (err) {
     console.error('Err', err);
-  } finally {
-    console.log('finally');
-  }
+  } 
 }
 
 export function* watcherDelBidSaga() {

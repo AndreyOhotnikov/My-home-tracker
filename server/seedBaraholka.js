@@ -22,11 +22,7 @@ const categoryBaraholka=[
     title: 'Одежда',
     link: 'https://st.depositphotos.com/1177973/3041/i/600/depositphotos_30413835-stock-photo-beautiful-girl-with-lots-clothes.jpg'
   },
-  // {
 
-  //   title: 'Прочее',
-  //   link: 'https://st2.depositphotos.com/1258191/11997/i/600/depositphotos_119973774-stock-photo-desktop-with-piles-of-paperwork.jpg'
-  // },
 ]
 
 

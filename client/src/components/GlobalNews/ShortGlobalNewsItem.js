@@ -1,18 +1,13 @@
 import React from "react";
 import Box from '@mui/material/Box';
-
 import { Stack } from "@mui/material";
 import Paper from '@mui/material/Paper';
 import { addGlobalNews, addLikeSaga } from "../../store/actionCreators/globalNewsAC";
 import { styled } from '@mui/material/styles';
-import { useState } from "react";
-import { useEffect } from "react";
-import ImageListItem from '@mui/material/ImageListItem';
 import { Route, Routes, Link } from "react-router-dom";
-import GlobalNewsForm from "./GlobalNewsForm";
-import findDataInGlobalArr from './GlobalNewsList'
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux'
+
 function ShortGlobalNewsItem({ el, view, setView, id, setId }) {
   const dispatch = useDispatch()
   function changeLike(id) {

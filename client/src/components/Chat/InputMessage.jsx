@@ -4,12 +4,10 @@ import Button from "@mui/material/Button";
 const ws = new WebSocket("ws://localhost:3010");
 
 const InputMessage = () => {
-  //const initState = { value: "" };
   const [value, setValue] = useState("");
 
   const onChangeHandler = (event) => {
     const { value } = event.target;
-    console.log(event.target.value);
     setValue(value);
   };
 
@@ -17,7 +15,6 @@ const InputMessage = () => {
     event.preventDefault();
     //const text = { ...value };
     const text = value;
-    console.log(text);
     ws.send(JSON.stringify(text));
     setValue("");
   };

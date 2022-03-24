@@ -32,7 +32,6 @@ exports.getAllGlobalNews = async (req, res) => {
       el.link = el['Photolinks.link'];
       return el;
     });
-    console.log(arr);
     arr.sort((a, b) => (b.id - a.id));
     res.json(arr);
   } catch (err) {
@@ -41,14 +40,11 @@ exports.getAllGlobalNews = async (req, res) => {
 };
 
 exports.addLike = async (req, res) => {
-  console.log(req.params.id);
   try {
     const findCurrentLike = await Like.findOne({ where: { global_news_id: Number(req.params.id) }, raw: true }); // user_id: req.session.user.id
     if (findCurrentLike) {
       if (findCurrentLike.user_id) {
         const filterArr = findCurrentLike.user_id.filter((el) => el !== req.session.user.id);
-        console.log(findCurrentLike, 'findCurrentLike');
-        console.log(filterArr, 'createLike');
         if (findCurrentLike.user_id?.length === filterArr.length) {
           const createLike = await Like.update({ user_id: [...findCurrentLike.user_id, req.session.user.id] }, {
             where: { global_news_id: Number(req.params.id) },
