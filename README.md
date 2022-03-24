@@ -46,6 +46,8 @@ npm i
 Запустить терманал Redis
 npx sequelize db:create
 npx sequelize db:migrate
+node seedBenefitServices
+node seedBaraholka
 npm start
 ```
 и
