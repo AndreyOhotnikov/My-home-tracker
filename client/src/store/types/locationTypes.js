@@ -1,6 +1,5 @@
 
 export const locationTypes = {
- 
   GET_ALL_LOCATION: "GET_ALL_LOCATION",
   GET_ALL_LOCATION_SAGA: 'GET_ALL_LOCATION_SAGA'
 

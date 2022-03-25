@@ -15,12 +15,12 @@ async function productBaraholka(product) {
   const file = [...product.link];
 
   let url
-    const storageRef = await ref(
-      storage,
-      `images/${Date.now()}${file[0].name.slice(file[0].name.indexOf("."))}`
-    );
-    const snapshot = await uploadBytes(storageRef, file[0]); 
-    url = await getDownloadURL(storageRef);
+  const storageRef = await ref(
+    storage,
+    `images/${Date.now()}${file[0].name.slice(file[0].name.indexOf("."))}`
+  );
+  const snapshot = await uploadBytes(storageRef, file[0]);
+  url = await getDownloadURL(storageRef);
   const response = await fetch(`/baraholka/new`, {
     method: "POST",
     headers: {
@@ -28,34 +28,32 @@ async function productBaraholka(product) {
     },
     body: JSON.stringify({ product, url }),
   });
-  return await response.json(); 
+  return await response.json();
 }
 
 function* workerAddProduct({ product }) {
   try {
-    const prod = yield call(() => productBaraholka(product)); 
+    const prod = yield call(() => productBaraholka(product));
     yield put(getAllProductsRedux(prod));
   } catch (err) {
     console.error("ERROR", err);
   }
 }
 
-//получаем все продукты
 async function productsFind() {
-  const response = await fetch(`/baraholka/allProduct`, {method: 'GET'});
+  const response = await fetch(`/baraholka/allProduct`, { method: 'GET' });
   return await response.json();
 }
 
 function* workerProductList() {
   try {
     const prodList = yield call(() => productsFind());
-   yield put(getAllProductsRedux(prodList)); 
+    yield put(getAllProductsRedux(prodList));
   } catch (err) {
     console.error("ERROR", err);
   }
 }
 
-//удаление товаров
 async function delProductDB(id) {
   const response = await fetch(`/baraholka/${id}`, { method: "DELETE" });
   return await response.json();

@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 const express = require('express');
 const cors = require('cors');
 const createError = require('http-errors');
@@ -7,12 +6,10 @@ const path = require('path');
 const session = require('express-session');
 require('dotenv').config();
 const ws = require('ws');
-
 const redis = require('redis');
 const RedisStore = require('connect-redis')(session);
 // const FileStore = require('session-file-store')(session);
 const servicesRouter = require('./routes/benefitServices');
-
 const globalNewsRouter = require('./routes/globalNews');
 const localNewsRouter = require('./routes/localNews');
 const locationRouter = require('./routes/location');
@@ -92,7 +89,6 @@ app.use((err, req, res) => {
 const httpServer = app.listen(PORT, () => {
   console.log(`server started PORT: ${PORT}`);
 });
-
 
 const wsServer = new ws.WebSocketServer({
   server: httpServer,

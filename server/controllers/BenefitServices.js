@@ -8,7 +8,7 @@ exports.getAllServices = async (req, res) => {
   categor = await Category_benifit.findAll({ raw: true });
 
   const benefitAndCategory = await Promise.all(await categor.map(async (category) => {
-    const serv = await Benifit.findAll({ where: { category_id: category.id }, include: [{ model: User, attributes: ['id', 'nick_name', 'email'], include: [{ model: Userinfo, attributes: ['phone', 'full_name','link'], include: [{ model: Photolink, attributes: ['userinfo_id', 'link'] }] }] }], raw: true });
+    const serv = await Benifit.findAll({ where: { category_id: category.id }, include: [{ model: User, attributes: ['id', 'nick_name', 'email'], include: [{ model: Userinfo, attributes: ['phone', 'full_name', 'link'], include: [{ model: Photolink, attributes: ['userinfo_id', 'link'] }] }] }], raw: true });
     category.benifits = serv;
     return category;
   }));

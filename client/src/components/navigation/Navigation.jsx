@@ -1,9 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import BaraholkaBox from "../Baraholka/BaraholkaBox";
 import BaraholkaForm from "../Baraholka/BaraholkaForm";
 import BaraholkaList from "../Baraholka/BaraholkaList";
@@ -17,9 +13,8 @@ import LockationHome from "../Signup/LockationHome";
 import { types } from "../../store/types/userTypes";
 import { openModaleReducer } from "../../store/actionCreators/userAC";
 import PrivatePageUser from "../PrivatePageUser/PrivatePageUser";
-import {BenefitServicesList} from "../BenefitServices/BenefitServicesList";
+import { BenefitServicesList } from "../BenefitServices/BenefitServicesList";
 import ModalPage from "../Signout/ModalPage";
-
 
 import {
   Button,
@@ -36,11 +31,7 @@ import {
   Box,
   AppBar,
 } from "@mui/material";
-import {
-  styled,
-  useTheme,
-  Drawer,
-} from "@mui/material";
+import { styled, useTheme, Drawer } from "@mui/material";
 import { ListItem, ListItemIcon, ListItemText } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -51,7 +42,6 @@ import MailIcon from "@mui/icons-material/Mail";
 import { BenefitServicesMain } from "../BenefitServices/BenefitServicesMain";
 import { BenefitServicesForm } from "../BenefitServices/BenefitServicesForm";
 import { BenefitServicesItem } from "../BenefitServices/BenefitServicesItem";
-
 import { BidForm } from "../Bids/BidsForm";
 import { AllBidsList } from "../PrivatePageChairman/AllBidsList";
 import { BidsItem } from "../PrivatePageChairman/BidsItem";
@@ -91,10 +81,8 @@ const Navigation = () => {
   }, []);
 
   const handleOpen = () => dispatche(openModaleReducer(true));
-
   const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
   const handleCloseUserMenu = () => setAnchorElUser(null);
-
   const dispatch = useDispatch();
   useEffect(() => dispatch(servicesSagaApi()), []);
   return (
@@ -113,7 +101,6 @@ const Navigation = () => {
                       color="inherit"
                       aria-label="open drawer"
                       onClick={handleDrawerOpen}
-                      // edge="start"
                       sx={{ mr: 2, ...(open && { display: "none" }) }}
                     >
                       <MenuIcon />
@@ -128,7 +115,7 @@ const Navigation = () => {
                           >
                             {page.name}
                           </Button>
-                        )
+                        ),
                     )}
                   </Toolbar>
                 </div>
@@ -146,38 +133,47 @@ const Navigation = () => {
                     </IconButton>
                   </DrawerHeader>
                   <List onClick={handleDrawerClose} onClose={handleDrawerClose}>
-                    {options.map(
-                      (option, index) => (
-                         <ListItem button key={option.name} onClick={() => navigate(option.src)}>
-                          <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                          </ListItemIcon>
-                          <ListItemText primary={option.name} />
-                        </ListItem>
-                      )
-                    )} 
-                    {auth.role === 'chairman' && <ListItem button key={"Добавить Главную новость"} onClick={() => navigate("/form/:id")}>
-                    <ListItemIcon> <MailIcon /> </ListItemIcon>
-                          <ListItemText primary={"Добавить Главную новость"} />
-                        </ListItem>}
+                    {options.map((option, index) => (
+                      <ListItem
+                        button
+                        key={option.name}
+                        onClick={() => navigate(option.src)}
+                      >
+                        <ListItemIcon>
+                          {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                        </ListItemIcon>
+                        <ListItemText primary={option.name} />
+                      </ListItem>
+                    ))}
+                    {auth.role === "chairman" && (
+                      <ListItem
+                        button
+                        key={"Добавить Главную новость"}
+                        onClick={() => navigate("/form/:id")}
+                      >
+                        <ListItemIcon>
+                          {" "}
+                          <MailIcon />{" "}
+                        </ListItemIcon>
+                        <ListItemText primary={"Добавить Главную новость"} />
+                      </ListItem>
+                    )}
                   </List>
                   <Divider />
                   <List onClick={handleDrawerClose} onClose={handleDrawerClose}>
                     {["Поддержка", "Памятки", "Общая информация"].map(
                       (text, index) => (
-                        <ListItem button key={text} >
+                        <ListItem button key={text}>
                           <ListItemIcon>
                             {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                           </ListItemIcon>
                           <ListItemText primary={text} />
                         </ListItem>
-                      )
+                      ),
                     )}
                   </List>
                   <Divider />
-                  
                 </Drawer>
-
                 <div
                   style={{ display: "contents", zIndex: "20" }}
                   onClick={handleDrawerClose}
@@ -203,22 +199,29 @@ const Navigation = () => {
                     onClick={handleDrawerClose}
                   >
                     {settings.map((setting) => {
-                     if ( auth.role === setting.role || !setting.role) {
-                     return (<MenuItem
-                        key={setting.name}
-                        onClick={handleCloseUserMenu}
-                      >
-                        <Typography
-                          onClick={(e) => {
-                            setting.name === "Профиль" && navigate("/profile");
-                            setting.name === "Выйти" && handleOpen(e);
-                            (setting.name === "Все заявки" || setting.name === "Все пользователи") && navigate(setting.src);
-                          }}
-                          textAlign="center"
-                        >
-                          {setting.name}
-                        </Typography>
-                      </MenuItem>)}})}
+                      if (auth.role === setting.role || !setting.role) {
+                        return (
+                          <MenuItem
+                            key={setting.name}
+                            onClick={handleCloseUserMenu}
+                          >
+                            <Typography
+                              onClick={(e) => {
+                                setting.name === "Профиль" &&
+                                  navigate("/profile");
+                                setting.name === "Выйти" && handleOpen(e);
+                                (setting.name === "Все заявки" ||
+                                  setting.name === "Все пользователи") &&
+                                  navigate(setting.src);
+                              }}
+                              textAlign="center"
+                            >
+                              {setting.name}
+                            </Typography>
+                          </MenuItem>
+                        );
+                      }
+                    })}
                   </Menu>
                 </div>
               </Box>
@@ -242,27 +245,24 @@ const Navigation = () => {
         <Route path="/baraholka/:id" element={<BaraholkaList />} />
         <Route path="/product/:id" element={<BaraholkaItem />} />
         <Route path="/addProduct" element={<BaraholkaForm />} />
-
         <Route path="/bids" element={<AllBidsList />} />
         <Route path="/users" element={<AllUsersList />} />
         <Route path="/bid/:id" element={<BidsItem />} />
-
         <Route path="/chat" element={<Chat />} />
-
         {!auth && <Route path="/" element={<WelcomePage />} />}
         {!auth && <Route path="/locationHome" element={<LockationHome />} />}
-        {<Route  path="/form/:id" element={<GlobalNewsForm/>} ></Route>}
-        {<Route  path="/global/:id" element={<GlobalNewsItem/>} ></Route>}
-        {<Route  path="/global/put/:id" element={<GlobalNewsForm/>} ></Route>}
-        {<Route  path="/localnews" element={<LocalNewsList/>} ></Route>}
-        {<Route  path="/local/form/:id" element={<LocalNewsForm/>} ></Route>}
-        {<Route  path="/local/:id" element={<LocalNewsItem/>} ></Route>}
-        {<Route  path="/local/put/:id" element={<LocalNewsForm/>} ></Route>}
+        {<Route path="/form/:id" element={<GlobalNewsForm />}></Route>}
+        {<Route path="/global/:id" element={<GlobalNewsItem />}></Route>}
+        {<Route path="/global/put/:id" element={<GlobalNewsForm />}></Route>}
+        {<Route path="/localnews" element={<LocalNewsList />}></Route>}
+        {<Route path="/local/form/:id" element={<LocalNewsForm />}></Route>}
+        {<Route path="/local/:id" element={<LocalNewsItem />}></Route>}
+        {<Route path="/local/put/:id" element={<LocalNewsForm />}></Route>}
       </Routes>
       <ModalPage onClick={handleDrawerClose} />
     </div>
   );
-}
+};
 
 export default Navigation;
 
@@ -272,14 +272,13 @@ const pages = [
   { name: "Услуги", src: "/services" },
   { name: "Барахолка", src: "/baraholka" },
   { name: "ЧАТ", src: "/chat" },
-
 ];
 
 const settings = [
   { name: "Профиль", src: "/profile" },
   { name: "Выйти", src: "/signout" },
-  { role: 'chairman', name: "Все заявки", src: "/bids" },
-  { role: 'chairman', name: "Все пользователи", src: "/users" },
+  { role: "chairman", name: "Все заявки", src: "/bids" },
+  { role: "chairman", name: "Все пользователи", src: "/users" },
 ];
 
 const options = [
@@ -287,4 +286,4 @@ const options = [
   { name: "Добавить услугу", src: "/services/new" },
   { name: "Разместить свой товар", src: "/addProduct" },
   { name: "Добавить событие", src: "/local/form/:id" },
-]
+];

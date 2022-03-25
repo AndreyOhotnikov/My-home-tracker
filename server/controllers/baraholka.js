@@ -1,12 +1,12 @@
-
 const express = require('express');
 const {
   Store, Category_store, User, Userinfo,
 } = require('../db/models');
 
 exports.createProductBaraholka = async (req, res) => {
-
-  const { title, text, price, category, categoryId} = req.body.product;
+  const {
+    title, text, price, category, categoryId,
+  } = req.body.product;
   const { url } = req.body;
 
   let newProduct;
@@ -36,9 +36,9 @@ exports.createProductBaraholka = async (req, res) => {
           include: [
             {
               model: User,
-              attributes: ["id", "nick_name", "email"],
+              attributes: ['id', 'nick_name', 'email'],
               include: [
-                { model: Userinfo, attributes: ["phone", "full_name"] },
+                { model: Userinfo, attributes: ['phone', 'full_name'] },
               ],
             },
           ],
@@ -46,14 +46,12 @@ exports.createProductBaraholka = async (req, res) => {
         });
         category.products = products;
         return category;
-      })
+      }),
     );
     res.json(categoryAndProduct);
-
   } catch (error) {
     return res.status(401).json({ err: error });
   }
-  
 };
 
 exports.findAllProductAndCategories = async (req, res) => {
@@ -100,4 +98,4 @@ exports.deleteProduct = async (req, res) => {
   return res.json(del);
 };
 
-exports.checkBaraholka = async (res, req, next) => {};
+exports.checkBaraholka = async (res, req, next) => { };

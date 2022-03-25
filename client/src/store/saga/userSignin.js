@@ -1,10 +1,9 @@
 import { types } from "../types/userTypes"
-
-import { takeEvery, put, call, debounce, retry, throttle } from 'redux-saga/effects';
-import {authUserReducer, signupUserReducer} from '../actionCreators/userAC'
+import { takeEvery, put, call} from 'redux-saga/effects';
+import { authUserReducer } from '../actionCreators/userAC'
 
 async function signInAsync(user) {
- 
+
   const response = await fetch(`user/signin`, {
     method: "POST",
     headers: {
@@ -16,15 +15,15 @@ async function signInAsync(user) {
 }
 
 
-function* workerSignIn({user}) {
+function* workerSignIn({ user }) {
   try {
     const signIn = yield call(() => signInAsync(user))
-    if(!signIn.error) {
-      yield put(authUserReducer(signIn)) 
-    } 
+    if (!signIn.error) {
+      yield put(authUserReducer(signIn))
+    }
   } catch (err) {
     console.error('Err', err);
-  } 
+  }
 }
 
 export function* watcherSignIn() {

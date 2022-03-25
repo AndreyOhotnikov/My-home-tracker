@@ -1,7 +1,5 @@
 const express = require('express');
-
 const router = express.Router();
-
 const {
   createLocalNews, getAllLocalNews, addLocalLike, delLocalNews,
 } = require('../controllers/localNews');

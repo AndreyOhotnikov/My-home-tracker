@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -10,14 +10,13 @@ import { types } from "../../store/types/userTypes";
 import { locationTypes } from "../../store/types/locationTypes";
 
 const LockationHome = () => {
-  const [location, setLocation] = useState({ city: "", street: "", home: "" }); 
+  const [location, setLocation] = useState({ city: "", street: "", home: "" });
   const { _user } = useSelector((state) => state.auth);
   const locationsCity = useSelector((state) => state.location.location);
   const [locationStreets, setLocationStreets] = useState([]);
   const [locationHomes, setLocationHomes] = useState([]);
   const dispatche = useDispatch();
   const navigate = useNavigate();
-
   const getLocations = () => {
     dispatche({ type: locationTypes.GET_ALL_LOCATION_SAGA });
   };
@@ -27,7 +26,7 @@ const LockationHome = () => {
   const selectSity = (e) => {
     if (e.target.innerText && !e.target.value) {
       setLocationStreets(
-        locationsCity.find((city) => city.name === e.target.innerText).streets
+        locationsCity.find((city) => city.name === e.target.innerText).streets,
       );
       setLocation({ ...location, city: e.target.innerText });
     } else if (e.target.value) {
@@ -40,7 +39,7 @@ const LockationHome = () => {
     if (e.target.innerText && !e.target.value) {
       setLocationHomes(
         locationStreets.find((street) => street.name === e.target.innerText)
-          .homes
+          .homes,
       );
       setLocation({ ...location, street: e.target.innerText });
     } else if (e.target.value) {
@@ -80,51 +79,59 @@ const LockationHome = () => {
   };
 
   return (
-    <div style={{width: '100%', height: '60vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-    <Stack spacing={2} sx={{ width: 300 }}>
-      <Autocomplete
-        id="free-solo-demo"
-        freeSolo
-        options={locationsCity.map((option) => option.name)}
-        renderInput={(params) => (
-          <TextField
-            onChange={(e) => selectSity(e)}
-            {...params}
-            label="Введите свой город"
-          />
-        )}
-        onChange={(e) => selectSity(e)}
-      />
-      <Autocomplete
-        id="free-solo-demo"
-        freeSolo
-        options={locationStreets.map((option) => option.name)}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            onChange={(e) => selectStreet(e)}
-            label="Введите свою улицу"
-          />
-        )}
-        onChange={(e) => selectStreet(e)}
-      />
-      <Autocomplete
-        id="free-solo-demo"
-        freeSolo
-        options={locationHomes.map((option) => String(option.name))}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            onChange={(e) => selectHome(e)}
-            label="Введите свой дом"
-          />
-        )}
-        onChange={(e) => selectHome(e)}
-      />
-      <Button onClick={(e) => signUpAndLocation()} variant="outlined">
-        Прикрепиться
-      </Button>
-    </Stack>
+    <div
+      style={{
+        width: "100%",
+        height: "60vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Stack spacing={2} sx={{ width: 300 }}>
+        <Autocomplete
+          id="free-solo-demo"
+          freeSolo
+          options={locationsCity.map((option) => option.name)}
+          renderInput={(params) => (
+            <TextField
+              onChange={(e) => selectSity(e)}
+              {...params}
+              label="Введите свой город"
+            />
+          )}
+          onChange={(e) => selectSity(e)}
+        />
+        <Autocomplete
+          id="free-solo-demo"
+          freeSolo
+          options={locationStreets.map((option) => option.name)}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              onChange={(e) => selectStreet(e)}
+              label="Введите свою улицу"
+            />
+          )}
+          onChange={(e) => selectStreet(e)}
+        />
+        <Autocomplete
+          id="free-solo-demo"
+          freeSolo
+          options={locationHomes.map((option) => String(option.name))}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              onChange={(e) => selectHome(e)}
+              label="Введите свой дом"
+            />
+          )}
+          onChange={(e) => selectHome(e)}
+        />
+        <Button onClick={(e) => signUpAndLocation()} variant="outlined">
+          Прикрепиться
+        </Button>
+      </Stack>
     </div>
   );
 };

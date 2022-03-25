@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Routes, Link, Route, useNavigate, Navigate, useLocation } from "react-router-dom"
+import {  useNavigate} from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button'
 import { types } from "../../store/types/userTypes";

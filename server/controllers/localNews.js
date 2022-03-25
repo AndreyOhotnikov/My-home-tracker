@@ -66,8 +66,8 @@ exports.delLocalNews = (async (req, res) => {
   try {
     await Photolink.destroy({ where: { local_news_id: Number(req.params.id) } });
     await LikeLocal.destroy({ where: { local_news_id: Number(req.params.id) } }),
-    await Local_news.destroy({ where: { id: Number(req.params.id) } }),
-    res.json(Number(req.params.id));
+      await Local_news.destroy({ where: { id: Number(req.params.id) } }),
+      res.json(Number(req.params.id));
   } catch (err) {
     console.log(err);
   }

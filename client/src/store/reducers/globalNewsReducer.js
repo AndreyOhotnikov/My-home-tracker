@@ -9,13 +9,14 @@ export const globalNewsReducer = (state = initState, action) => {
 
   switch (action.type) {
     case actiontTypes.ADD_GLOBAL_NEWS:
-    return {...state,arrGlobalNews: state.arrGlobalNews.map((el)=>{
-       if(el.id === action.payload.id){
-         return el = action.payload
-       }
-       else return el
-    })  
-  }  
+      return {
+        ...state, arrGlobalNews: state.arrGlobalNews.map((el) => {
+          if (el.id === action.payload.id) {
+            return el = action.payload
+          }
+          else return el
+        })
+      }
     case actiontTypes.GET_GLOBAL_NEWS_REDUX:
       return {
         ...state, arrGlobalNews: action.payload

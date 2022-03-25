@@ -1,5 +1,4 @@
 export const types = {
- 
   AUTH_USER: "AUTH_USER",
   LOCATION: "LOCTION",
   SIGN_UP_AUTH: "SIGN_UP_AUTH",

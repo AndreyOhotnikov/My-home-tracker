@@ -1,9 +1,9 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { addService, allServices, delService } from '../actionCreators/benefitServicesAC';
-import {  REQUEST_ADD_SERVICE_SAGA, REQUEST_DEL_SERVICE_SAGA,  SAGA_API_SERVICES } from '../types/servicesTypes';
+import { REQUEST_ADD_SERVICE_SAGA, REQUEST_DEL_SERVICE_SAGA, SAGA_API_SERVICES } from '../types/servicesTypes';
 
 function getServices() {
-    return fetch ("/services", {
+  return fetch("/services", {
   }).then(response => response.json())
 }
 
@@ -13,7 +13,7 @@ function* workerGetServices(action) {
     yield put(allServices(res))
   } catch (err) {
     console.error('Err', err);
-  } 
+  }
 }
 
 export function* watcherServicesSaga() {
@@ -21,7 +21,7 @@ export function* watcherServicesSaga() {
 }
 
 function addServicesSaga(action) {
-    return fetch("/services/add", {
+  return fetch("/services/add", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -36,14 +36,14 @@ function* addServiceWorker(action) {
     if (dataFromServer) yield put(addService(dataFromServer))
   } catch (err) {
     console.error('Err', err);
-  } 
+  }
 }
 export function* watcherAddServiceSaga() {
   yield takeEvery(REQUEST_ADD_SERVICE_SAGA, addServiceWorker)
 }
 function deleteServiceSaga(id) {
-    return fetch(`/services/${id}`,{
-    method: 'DELETE', 
+  return fetch(`/services/${id}`, {
+    method: 'DELETE',
   }).then(response => response.json())
 }
 
@@ -53,7 +53,7 @@ function* workerDelServiceSaga(action) {
     yield put(delService(res))
   } catch (err) {
     console.error('Err', err);
-  } 
+  }
 }
 
 export function* watcherDelServiceSaga() {

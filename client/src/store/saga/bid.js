@@ -31,7 +31,7 @@ function* addBidWorker(action) {
     if (dataFromServer) yield put(addBid(dataFromServer))
   } catch (err) {
     console.error('Err', err);
-  } 
+  }
 }
 export function* watcherAddBidSaga() {
   yield takeEvery(REQUEST_ADD_BID_SAGA, addBidWorker)
@@ -48,7 +48,7 @@ function* workerGetAllUser(action) {
     yield put(allUser(res))
   } catch (err) {
     console.error('Err', err);
-  } 
+  }
 }
 export function* watcherUsersSaga() {
   yield takeEvery(SAGA_API_USERS, workerGetAllUser)
@@ -66,7 +66,7 @@ function* workerGetBids(action) {
     yield put(allBids(res))
   } catch (err) {
     console.error('Err', err);
-  } 
+  }
 }
 export function* watcherBidsSaga() {
   yield takeEvery(SAGA_API_BIDS, workerGetBids)
@@ -86,7 +86,7 @@ function* workerDelBidSaga(action) {
     yield put(delBid(res))
   } catch (err) {
     console.error('Err', err);
-  } 
+  }
 }
 
 export function* watcherDelBidSaga() {

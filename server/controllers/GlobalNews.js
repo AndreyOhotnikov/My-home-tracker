@@ -71,8 +71,8 @@ exports.delGlobalNews = (async (req, res) => {
   try {
     await Photolink.destroy({ where: { global_news_id: Number(req.params.id) } });
     await Like.destroy({ where: { global_news_id: Number(req.params.id) } }),
-    await Global_news.destroy({ where: { id: Number(req.params.id) } }),
-    res.json(Number(req.params.id));
+      await Global_news.destroy({ where: { id: Number(req.params.id) } }),
+      res.json(Number(req.params.id));
   } catch (err) {
     console.log(err);
   }

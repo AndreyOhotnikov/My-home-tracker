@@ -1,7 +1,5 @@
 const express = require('express');
-
 const router = express.Router();
-
 const {
   createGlobalNews, getAllGlobalNews, addLike, delGlobalNews,
 } = require('../controllers/GlobalNews');

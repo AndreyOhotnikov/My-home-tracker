@@ -1,8 +1,7 @@
 import { locationTypes } from "../types/locationTypes"
-
-import { takeEvery, put, call, debounce, retry, throttle } from 'redux-saga/effects';
-import {getAllLocationReducer} from '../actionCreators/getAllLocations'
-import {getFirebaseReducer} from '../actionCreators/firebaseConfigAC'
+import { takeEvery, put, call } from 'redux-saga/effects';
+import { getAllLocationReducer } from '../actionCreators/getAllLocations'
+import { getFirebaseReducer } from '../actionCreators/firebaseConfigAC'
 
 async function getLocationAsync(user) {
   const response = await fetch(`/global/signupLocation`, {
@@ -13,12 +12,12 @@ async function getLocationAsync(user) {
 
 function* workerGetLocation() {
   try {
-    const {location, config} = yield call(() => getLocationAsync())
+    const { location, config } = yield call(() => getLocationAsync())
     yield put(getAllLocationReducer(location))
     yield put(getFirebaseReducer(config))
   } catch (err) {
     console.error('Err', err);
-  } 
+  }
 }
 
 export function* watcherGetLocation() {
